@@ -3,127 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Nombre - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>WARDIERE INC. | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset y estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Navegación */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #1a1a1a;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #1a1a1a;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            width: 100%;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        /* Sección About Us */
+        .about-section {
+            padding: 6rem 0;
+            background-color: #fff;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background-color: #fff;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-name {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            font-size: 1rem;
+            color: #777;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .member-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-top: 1rem;
+        }
+
+        .member-icon {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #aaa;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .team-member {
+                padding: 2rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Estilos adicionales para mejorar la apariencia */
+        .highlight {
+            background-color: #f8f9fa;
+            padding: 5rem 0;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+            margin: 4rem auto;
+            width: 80%;
+        }
+    </style>
 </head>
 <body>
     <!-- Header / Navegación -->
     <header>
-        <nav>
-            <div class="logo">
-                <h1>TuNombre</h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#sobre-mi">Sobre Mí</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <div class="logo">WARDIERE INC.</div>
+                <ul class="nav-links">
+                    <li><a href="#home">HOME</a></li>
+                    <li><a href="#store">STORE</a></li>
+                    <li><a href="#about">ABOUT US</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <!-- Sección Hero / Inicio -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h2>Hola, soy <span class="highlight">Tu Nombre</span></h2>
-            <h3>Tu Profesión o Especialidad</h3>
-            <p>Breve descripción de lo que haces o tu pasión profesional</p>
-            <a href="#contacto" class="btn">Contáctame</a>
-            <a href="#proyectos" class="btn secondary">Ver Proyectos</a>
-        </div>
-        <div class="hero-image">
-            <img src="assets/foto-perfil.jpg" alt="Tu foto de perfil">
-        </div>
-    </section>
-
-    <!-- Sección Sobre Mí -->
-    <section id="sobre-mi" class="section">
-        <h2 class="section-title">Sobre Mí</h2>
-        <div class="about-content">
-            <p>
-                Aquí puedes escribir una descripción más detallada sobre ti, 
-                tu formación, experiencia y lo que te apasiona. 
-                Cuenta tu historia profesional de manera atractiva.
-            </p>
-            <p>
-                También puedes mencionar tus objetivos profesionales 
-                y qué te motiva en tu campo.
-            </p>
-        </div>
-    </section>
-
-    <!-- Sección Proyectos -->
-    <section id="proyectos" class="section dark">
-        <h2 class="section-title">Mis Proyectos</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>Proyecto 1</h3>
-                <p>Descripción breve del proyecto y tecnologías utilizadas.</p>
-                <a href="#" class="project-link">Ver en GitHub</a>
-            </div>
-            <div class="project-card">
-                <h3>Proyecto 2</h3>
-                <p>Descripción breve del proyecto y tecnologías utilizadas.</p>
-                <a href="#" class="project-link">Ver Demo</a>
-            </div>
-            <div class="project-card">
-                <h3>Proyecto 3</h3>
-                <p>Descripción breve del proyecto y tecnologías utilizadas.</p>
-                <a href="#" class="project-link">Ver en GitHub</a>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>WARDIERE INC.</h1>
+                <p class="hero-subtitle">Innovación y excelencia en cada proyecto</p>
             </div>
         </div>
     </section>
 
-    <!-- Sección Habilidades -->
-    <section id="habilidades" class="section">
-        <h2 class="section-title">Habilidades</h2>
-        <div class="skills-container">
-            <div class="skill">
-                <i class="fab fa-html5"></i>
-                <span>HTML5</span>
-            </div>
-            <div class="skill">
-                <i class="fab fa-css3-alt"></i>
-                <span>CSS3</span>
-            </div>
-            <div class="skill">
-                <i class="fab fa-js"></i>
-                <span>JavaScript</span>
-            </div>
-            <div class="skill">
-                <i class="fab fa-git-alt"></i>
-                <span>Git</span>
-            </div>
-            <!-- Añade más habilidades según necesites -->
-        </div>
-    </section>
+    <!-- Sección About Us -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">ABOUT US</h2>
+            
+            <div class="team-grid">
+                <!-- Miembro 1 -->
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="member-name">MARCELINE ANDERSON</h3>
+                    <p class="member-role">CEO</p>
+                    <p class="member-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
 
-    <!-- Sección Contacto -->
-    <section id="contacto" class="section dark">
-        <h2 class="section-title">Contacto</h2>
-        <div class="contact-content">
-            <p>¡Hablemos! Estoy abierto a nuevas oportunidades y colaboraciones.</p>
-            <div class="social-links">
-                <a href="https://linkedin.com/in/tu-perfil" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://github.com/tuusuario" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="mailto:tuemail@ejemplo.com">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
+                <!-- Miembro 2 -->
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="member-name">YAEL AMARI</h3>
+                    <p class="member-role">PROJECT MANAGER</p>
+                    <p class="member-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+
+                <!-- Miembro 3 -->
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="member-name">SEBASTIAN BENNETT</h3>
+                    <p class="member-role">MARKETING</p>
+                    <p class="member-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+
+                <!-- Miembro 4 -->
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="member-name">HOWARD ONG</h3>
+                    <p class="member-role">GRAPHIC DESIGNER</p>
+                    <p class="member-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>WARDIERE INC.</h3>
+                    <p>Innovación y excelencia en cada proyecto que emprendemos.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>ENLACES RÁPIDOS</h3>
+                    <a href="#home">Home</a>
+                    <a href="#store">Store</a>
+                    <a href="#about">About Us</a>
+                </div>
+                <div class="footer-column">
+                    <h3>CONTACTO</h3>
+                    <p>Email: info@wardiere.com</p>
+                    <p>Teléfono: +1 (123) 456-7890</p>
+                    <p>Dirección: 123 Innovation St, Ciudad</p>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+            <div class="copyright">
+                <p>&copy; 2024 WARDIERE INC. Todos los derechos reservados.</p>
+            </div>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Smooth scroll para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Efecto de header al hacer scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.08)';
+            }
+        });
+    </script>
 </body>
 </html>
