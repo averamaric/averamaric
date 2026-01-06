@@ -73,11 +73,11 @@ nav a {
     display: flex;
     padding: 20px;
     border-radius: 15px;
-    
     align-items: center;
     gap: 15px;
     position: absolute;
     min-width: 600px;
+    height: 120px;
 }
 
 .card-top {
