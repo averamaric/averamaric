@@ -89,6 +89,15 @@ nav a {
     top: 400px;
 }
 
+.photos-side-by-side {
+    display: flex;
+    gap: 20px; /* Espacio entre fotos */
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Ocupa espacio disponible */
+    margin: 0 20px; /* Margen a los lados */
+}
+
 .photo {
     width: 120px;
     height: 150px;
