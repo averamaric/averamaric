@@ -50,7 +50,7 @@ nav a {
 }
 
 .title-container h1 {
-    font-size: 160px;
+    font-size: 120px;
     line-height: 0.9;
     margin: 0;
 }
@@ -102,8 +102,8 @@ nav a {
 }
 
 .photo-up {
-    width: 190px;
-    height: 220px;
+    width: 290px;
+    height: 320px;
     background-color: #ddd;
     border-radius: 20px;
 }
@@ -143,6 +143,7 @@ nav a {
     height: 50px;
     left: -500px;
     top: 300px;
+    align: right;
 }
 
 .arrow-icon {
