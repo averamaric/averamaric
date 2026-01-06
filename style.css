@@ -115,15 +115,26 @@ nav a {
     border-radius: 20px;
 }
 
-.member-info h3 {
-    font-size: 14px;
-    margin: 0;
+.member-info {
+    display: flex;
+    flex-direction: column;
 }
 
 .member-info .role {
     font-family: Arial, sans-serif;
     font-size: 12px;
     margin: 5px 0;
+}
+
+.member-info:not(.right) {
+    align-self: flex-start; /* Arriba */
+    text-align: left;
+}
+
+.member-info.right {
+    align-self: flex-end; /* Abajo */
+    text-align: right;
+    margin-top: auto; /* Empuja hacia abajo */
 }
 
 .plus {
