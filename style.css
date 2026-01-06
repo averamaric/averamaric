@@ -81,7 +81,7 @@ nav a {
 .card-top {
     right: 0;
     top: 0;
-    width: 750px;    /* Ancho específico */
+    width: 850px;    /* Ancho específico */
     height: 350px;   /* Alto específico */
 }
 
@@ -109,8 +109,8 @@ nav a {
 }
 
 .photo {
-    width: 100px;
-    height: 120px;
+    width: 200px;
+    height: 160px;
     background-color: #ddd;
     border-radius: 20px;
 }
@@ -120,10 +120,15 @@ nav a {
     flex-direction: column;
 }
 
+.member-info h3 {
+    margin-bottom: 5px; 
+    margin-top: 1; 
+}
+
 .member-info .role {
     font-family: Arial, sans-serif;
     font-size: 12px;
-    margin: 5px 0;
+    margin: 4px 0;
 }
 
 .member-info:not(.right) {
@@ -141,13 +146,13 @@ nav a {
     display: block;
     width: 50px;
     height: 50px;
-    left: -500px;
-    top: 300px;
+    left: 50px;
+    top: 70px;
     align: right;
 }
 
 .arrow-icon {
     position: absolute;
-    bottom: -500px;
-    right: 100px;
+    bottom: -50px;
+    left: -200px;
 }
