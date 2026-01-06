@@ -109,7 +109,7 @@ nav a {
 }
 
 .photo {
-    width: 200px;
+    width: 170px;
     height: 160px;
     background-color: #ddd;
     border-radius: 20px;
@@ -127,7 +127,7 @@ nav a {
 
 .member-info .role {
     font-family: Arial, sans-serif;
-    font-size: 12px;
+    font-size: 16px;
     margin: 4px 0;
 }
 
@@ -153,6 +153,8 @@ nav a {
 
 .arrow-icon {
     position: absolute;
-    bottom: -50px;
+    bottom: -70px;
     left: -200px;
+    width: 170px;
+    height: 130px;
 }
