@@ -76,18 +76,20 @@ nav a {
     align-items: center;
     gap: 15px;
     position: absolute;
-    min-width: 600px;
-    height: 160px;
 }
 
 .card-top {
     right: 0;
     top: 0;
+    width: 7500px;    /* Ancho específico */
+    height: 200px;   /* Alto específico */
 }
 
 .card-bottom {
     left: -500px;
     top: 300px;
+    width: 600px;    /* Ancho específico */
+    height: 180px;
 }
 
 .photos-side-by-side {
