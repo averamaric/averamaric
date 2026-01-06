@@ -50,7 +50,7 @@ nav a {
 }
 
 .title-container h1 {
-    font-size: 120px;
+    font-size: 100px;
     line-height: 0.9;
     margin: 0;
 }
@@ -58,7 +58,7 @@ nav a {
 .title-container p {
     max-width: 500px;
     font-family: Arial, sans-serif;
-    font-size: 12px;
+    font-size: 18px;
     margin-top: 20px;
 }
 
@@ -86,7 +86,7 @@ nav a {
 
 .card-bottom {
     left: -500px;
-    top: 300px;
+    top: 400px;
 }
 
 .photo {
