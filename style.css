@@ -147,7 +147,7 @@ nav a {
     width: 50px;
     height: 50px;
     left: 50px;
-    top: 70px;
+    top: 90px;
     align: right;
 }
 
@@ -156,5 +156,5 @@ nav a {
     bottom: -70px;
     left: -200px;
     width: 170px;
-    height: 130px;
+    height: 90px;
 }
