@@ -82,13 +82,13 @@ nav a {
     right: 0;
     top: 0;
     width: 750px;    /* Ancho específico */
-    height: 250px;   /* Alto específico */
+    height: 350px;   /* Alto específico */
 }
 
 .card-bottom {
     left: -500px;
     top: 300px;
-    width: 750px;    /* Ancho específico */
+    width: 450px;    /* Ancho específico */
     height: 160px;
 }
 
