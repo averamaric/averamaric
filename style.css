@@ -139,7 +139,7 @@ body::before {
 }
 
 .vertical-text {
-    font-size: 1.2rem;
+    font-size: 0.5rem;
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     display: inline-block;
