@@ -54,6 +54,8 @@ body {
     font-weight: 900;
     line-height: 0.85;
     letter-spacing: -5px;
+    align-items: center;
+    justify-content: center;
     position: relative;
 }
 
@@ -62,7 +64,6 @@ body {
     display: inline-block;
     width: 140px;
     height: 140px;
-    background-image: url('tu-imagen-aqui.jpg'); /* Reemplaza con la foto de las chicas */
     background-size: cover;
     background-position: center;
     border-radius: 50%;
