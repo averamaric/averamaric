@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANALUCIA V.M. | Robotics & Automation</title>
+    <title>ANALUCIA V.M. | Industrial Automation</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,93 +20,129 @@
     </nav>
 
     <main class="hero">
-        <!-- CONTENEDOR PRINCIPAL CON LOGO CENTRAL -->
-        <div class="main-content">
-            <div class="logo-container">
-                <h1 class="logo-text">
-                    AB<img src="assets/images/Analucia Vera-25935251.jpg" alt="Foto perfil" class="circle-image">UT
-                    <br>
-                    ME<small class="vertical-text">( ANALUCIA V . M . )</small>
-                </h1>
+        <!-- LOGO CENTRAL MÁS MINIMALISTA -->
+        <div class="logo-container">
+            <h1 class="logo-text">
+                <span class="logo-line">AB<img src="assets/images/Analucia Vera-25935251.jpg" alt="Analucia" class="circle-image">UT</span>
+                <span class="logo-line">ME</span>
+            </h1>
+            <div class="logo-subtitle">
+                <span>ANALUCIA VERA M.</span>
+                <span>INDUSTRIAL AUTOMATION ENGINEER</span>
             </div>
-
-            <p class="description">
-                Industrial Engineer specialized in Robotics & Automation.
-                Transforming manufacturing challenges into intelligent automated solutions.
-            </p>
         </div>
 
-        <!-- TARJETAS FLOTANTES AL ESTILO NOTHING -->
-        <div class="floating-cards">
-            <!-- Tarjeta 1 - Posición superior izquierda -->
-            <a href="projects/robotics.html" class="floating-card card-1">
-                <div class="card-media">
-                    <img src="assets/gifs/robot-arm.gif" alt="Robotic Arm">
-                </div>
-                <div class="card-content">
-                    <h3>ROBOTIC SYSTEMS</h3>
-                    <p>Industrial automation & robotic integration</p>
-                    <span class="card-tag">Automation</span>
-                </div>
-            </a>
+        <!-- TEXTO DESCRIPTIVO EN FORMATO "TARJETA" COMO NOTHING -->
+        <div class="description-card">
+            <div class="card-header">
+                <span class="card-tag">PROFILE</span>
+                <span class="card-tag">ENGINEER</span>
+            </div>
+            <div class="card-content">
+                <p class="card-text">Hi, I'm Analucia, an engineer turning industrial challenges into smart, automated solutions. I'm currently deepening my expertise in robotics and automation after falling in love with the logic of PLCs on the factory floor.</p>
+                <p class="card-text">Check out my work or learn more about my skills!</p>
+            </div>
+            <div class="card-footer">
+                <span class="footer-tag">ROBOTICS</span>
+                <span class="footer-tag">AUTOMATION</span>
+                <span class="footer-tag">PLC</span>
+                <span class="footer-tag">INDUSTRY 4.0</span>
+            </div>
+        </div>
 
-            <!-- Tarjeta 2 - Posición superior derecha -->
-            <a href="projects/plc.html" class="floating-card card-2">
-                <div class="card-media">
-                    <img src="assets/images/plc-control.jpg" alt="PLC Control">
+        <!-- TARJETAS ASIMÉTRICAS AL ESTILO NOTHING -->
+        <div class="nothing-cards-container">
+            <!-- Tarjeta 1 (arriba izquierda, grande) -->
+            <a href="projects/robotics.html" class="nothing-card card-large" style="--rotation: -3deg; top: 15%; left: 5%;">
+                <div class="card-image-container">
+                    <img src="assets/gifs/robot-arm.gif" alt="Robotic Systems" class="card-image">
+                    <div class="image-overlay"></div>
                 </div>
-                <div class="card-content">
-                    <h3>PLC PROGRAMMING</h3>
-                    <p>Ladder logic & industrial control</p>
-                    <span class="card-tag">Control Systems</span>
-                </div>
-            </a>
-
-            <!-- Tarjeta 3 - Posición inferior izquierda -->
-            <a href="projects/ai.html" class="floating-card card-3">
-                <div class="card-media">
-                    <video autoplay muted loop playsinline>
-                        <source src="assets/videos/ai-simulation.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="card-content">
-                    <h3>AI INTEGRATION</h3>
-                    <p>Machine learning in manufacturing</p>
-                    <span class="card-tag">Innovation</span>
-                </div>
-            </a>
-
-            <!-- Tarjeta 4 - Posición inferior derecha -->
-            <a href="projects/portfolio.html" class="floating-card card-4">
-                <div class="card-media">
-                    <div class="animated-placeholder">
-                        <div class="grid-lines"></div>
-                        <div class="scan-line"></div>
+                <div class="card-info">
+                    <div class="card-title-line">
+                        <h3>ROBOTIC SYSTEMS</h3>
+                        <span class="card-number">01</span>
+                    </div>
+                    <p class="card-description">Industrial automation & robotic integration for manufacturing</p>
+                    <div class="card-tags">
+                        <span>FANUC</span>
+                        <span>ABB</span>
+                        <span>KUKA</span>
                     </div>
                 </div>
-                <div class="card-content">
-                    <h3>FULL PORTFOLIO</h3>
-                    <p>Complete project showcase</p>
-                    <span class="card-tag">All Projects</span>
+                <div class="card-hover-indicator">→</div>
+            </a>
+
+            <!-- Tarjeta 2 (arriba derecha, mediana) -->
+            <a href="projects/plc.html" class="nothing-card card-medium" style="--rotation: 2deg; top: 20%; right: 8%;">
+                <div class="card-image-container">
+                    <img src="assets/images/plc-control.jpg" alt="PLC Programming" class="card-image">
                 </div>
+                <div class="card-info">
+                    <h3>PLC PROGRAMMING</h3>
+                    <p class="card-description">Ladder logic & industrial control systems</p>
+                    <div class="card-tags">
+                        <span>SIEMENS</span>
+                        <span>ALLEN-BRADLEY</span>
+                    </div>
+                </div>
+                <div class="card-hover-indicator">↗</div>
+            </a>
+
+            <!-- Tarjeta 3 (centro izquierda, pequeña) -->
+            <a href="projects/ai.html" class="nothing-card card-small" style="--rotation: -1deg; top: 50%; left: 10%;">
+                <div class="card-info">
+                    <h3>AI INTEGRATION</h3>
+                    <p class="card-description">Machine learning in industrial applications</p>
+                    <div class="card-tags">
+                        <span>PYTHON</span>
+                        <span>COMPUTER VISION</span>
+                    </div>
+                </div>
+                <div class="card-hover-indicator">↑</div>
+            </a>
+
+            <!-- Tarjeta 4 (abajo derecha, mediana) -->
+            <a href="projects/portfolio.html" class="nothing-card card-medium" style="--rotation: 4deg; bottom: 20%; right: 12%;">
+                <div class="card-image-container">
+                    <div class="animated-grid">
+                        <div class="grid-line"></div>
+                        <div class="grid-line"></div>
+                        <div class="grid-line"></div>
+                        <div class="pulsing-dot"></div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>FULL PORTFOLIO</h3>
+                    <p class="card-description">Complete project showcase & case studies</p>
+                    <div class="card-tags">
+                        <span>20+ PROJECTS</span>
+                        <span>5 INDUSTRIES</span>
+                    </div>
+                </div>
+                <div class="card-hover-indicator">↓</div>
+            </a>
+
+            <!-- Tarjeta 5 (centro abajo, pequeña) -->
+            <a href="projects/skills.html" class="nothing-card card-small" style="--rotation: -2deg; bottom: 25%; left: 15%;">
+                <div class="card-info">
+                    <h3>SKILLS MATRIX</h3>
+                    <p class="card-description">Technical competencies & certifications</p>
+                    <div class="card-tags">
+                        <span>CAD/CAM</span>
+                        <span>SCADA</span>
+                    </div>
+                </div>
+                <div class="card-hover-indicator">←</div>
             </a>
         </div>
 
-        <!-- TEXTO FOOTER ESTILO NOTHING -->
-        <div class="footer-text">
-            <p>INDUSTRIAL AUTOMATION ENGINEER</p>
-            <p class="footer-sub">SPECIALIZING IN SMART MANUFACTURING SOLUTIONS</p>
+        <!-- INDICADOR DE SCROLL -->
+        <div class="scroll-indicator">
+            <span>EXPLORE</span>
+            <div class="indicator-line"></div>
         </div>
     </main>
-
-    <!-- ÍCONO DE SCROLL HINT -->
-    <div class="scroll-hint">
-        <div class="scroll-dots">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-    </div>
 
 </body>
 </html>
