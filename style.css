@@ -1,98 +1,485 @@
-/* Reset básico */
+/* RESET Y BASE */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif; 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-    background-color: #2D5A43; 
-    color: #D4FF5E; 
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+    background-color: #0a1f17; /* Verde más oscuro para contraste */
+    color: #D4FF5E;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
 }
 
-/* Navegación */
+/* EFECTO DE GRADIENTE DE FONDO */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(45, 90, 67, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(212, 255, 94, 0.05) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* NAVBAR (MANTENIENDO TU ESTILO) */
 .navbar {
     display: flex;
     justify-content: space-between;
     padding: 30px 50px;
     align-items: center;
+    position: relative;
+    z-index: 100;
 }
 
 .menu-icon span {
     display: block;
     width: 30px;
-    height: 4px;
+    height: 2px;
     background-color: #D4FF5E;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon:hover span:first-child {
+    transform: translateY(8px);
+}
+
+.menu-icon:hover span:last-child {
+    transform: translateY(-8px);
 }
 
 .nav-links a {
     color: #D4FF5E;
     text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-    font-size: 1.1rem;
+    margin-left: 30px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 5px;
 }
 
-/* Sección Principal */
-.hero {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #D4FF5E;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* CONTENIDO PRINCIPAL CENTRADO */
+.main-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    padding: 0 10%;
+    z-index: 10;
+    width: 90%;
+    max-width: 1000px;
 }
 
+/* LOGO CON EFECTO ESPECIAL */
 .logo-text {
-    font-size: 12rem; /* Tamaño grande para el logo */
+    font-size: 9vw;
     font-weight: 900;
     line-height: 0.85;
-    letter-spacing: -5px;
-    align-items: center;
-    justify-content: center;
+    letter-spacing: -3px;
+    margin-bottom: 40px;
     position: relative;
+    display: inline-block;
 }
 
-/* El círculo con la imagen dentro de la 'O' */
+.logo-text::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 15%;
+    width: 70%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #D4FF5E, transparent);
+}
+
 .circle-image {
     display: inline-block;
-    width: 150px;
-    height: 150px;
+    width: 12vw;
+    height: 12vw;
+    max-width: 120px;
+    max-height: 120px;
+    min-width: 80px;
+    min-height: 80px;
     background-size: cover;
     background-position: center;
-    horizontal-align: middle;
     border-radius: 50%;
     margin: 0 -10px;
+    vertical-align: middle;
+    border: 2px solid #D4FF5E;
+    box-shadow: 0 0 30px rgba(212, 255, 94, 0.3);
+    transition: transform 0.5s ease;
+}
+
+.logo-text:hover .circle-image {
+    transform: rotate(360deg);
 }
 
 .vertical-text {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     display: inline-block;
     vertical-align: middle;
-    margin-right: 10px;
+    margin-left: 10px;
+    letter-spacing: 3px;
+    opacity: 0.8;
 }
 
-/* Descripción inferior */
 .description {
-    max-width: 900px;
-    margin-top: 50px;
-    font-size: 1.5rem;
-    line-height: 1.4;
-    text-align: left;
-    font-weight: 500;
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    font-weight: 300;
+    opacity: 0.9;
+    padding: 0 20px;
 }
 
-/* Responsividad básica */
+/* SECCIÓN DE TARJETAS FLOTANTES */
+.floating-cards {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.floating-card {
+    position: absolute;
+    width: 280px;
+    background: rgba(45, 90, 67, 0.7);
+    border: 1px solid rgba(212, 255, 94, 0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #D4FF5E;
+    pointer-events: all;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    z-index: 5;
+}
+
+/* POSICIONAMIENTO DE TARJETAS (como en Nothing) */
+.card-1 {
+    top: 15%;
+    left: 8%;
+    transform: rotate(-3deg);
+}
+
+.card-2 {
+    top: 12%;
+    right: 10%;
+    transform: rotate(2deg);
+}
+
+.card-3 {
+    bottom: 20%;
+    left: 12%;
+    transform: rotate(-1deg);
+}
+
+.card-4 {
+    bottom: 15%;
+    right: 8%;
+    transform: rotate(4deg);
+}
+
+/* EFECTOS HOVER DE TARJETAS */
+.floating-card:hover {
+    transform: translateY(-10px) scale(1.03) !important;
+    border-color: #D4FF5E;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(212, 255, 94, 0.1),
+        0 0 50px rgba(212, 255, 94, 0.1);
+    z-index: 20;
+}
+
+.floating-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #D4FF5E, transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.floating-card:hover::before {
+    opacity: 1;
+}
+
+/* CONTENIDO DE TARJETAS */
+.card-media {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-media img,
+.card-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.floating-card:hover .card-media img,
+.floating-card:hover .card-media video {
+    transform: scale(1.1);
+}
+
+/* PLACEHOLDER ANIMADO (para la tarjeta 4) */
+.animated-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a3329 0%, #2D5A43 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(212, 255, 94, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 255, 94, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #D4FF5E, transparent);
+    animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* CONTENIDO DE TARJETA */
+.card-content {
+    padding: 20px;
+    position: relative;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    font-weight: 300;
+}
+
+.card-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(212, 255, 94, 0.1);
+    border: 1px solid rgba(212, 255, 94, 0.3);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+/* FOOTER TEXT */
+.footer-text {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.footer-text p {
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    opacity: 0.7;
+}
+
+.footer-sub {
+    font-size: 0.85rem !important;
+    letter-spacing: 8px !important;
+    opacity: 0.5 !important;
+}
+
+/* SCROLL HINT */
+.scroll-hint {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    z-index: 10;
+}
+
+.scroll-dots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #D4FF5E;
+    opacity: 0.5;
+    animation: dotPulse 1.5s infinite ease-in-out;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+    .floating-card {
+        width: 240px;
+    }
+    
+    .card-1 { left: 5%; }
+    .card-2 { right: 5%; }
+    .card-3 { left: 8%; }
+    .card-4 { right: 5%; }
+}
+
+@media (max-width: 992px) {
+    .logo-text {
+        font-size: 11vw;
+    }
+    
+    .floating-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        position: relative;
+        margin-top: 80px;
+        padding: 0 20px;
+        height: auto;
+    }
+    
+    .floating-card {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        width: 100%;
+    }
+    
+    .main-content {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        padding: 40px 20px;
+    }
+    
+    .footer-text {
+        position: relative;
+        bottom: auto;
+        margin-top: 60px;
+    }
+}
+
 @media (max-width: 768px) {
-    .logo-text { font-size: 6rem; }
-    .circle-image { width: 70px; height: 70px; }
-    .description { font-size: 1.1rem; }
+    .logo-text {
+        font-size: 13vw;
+    }
+    
+    .circle-image {
+        width: 15vw;
+        height: 15vw;
+    }
+    
+    .description {
+        font-size: 1.1rem;
+    }
+    
+    .floating-cards {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 60px auto 0;
+    }
+    
+    .navbar {
+        padding: 25px 30px;
+    }
+    
+    .scroll-hint {
+        right: 20px;
+        bottom: 15px;
+    }
+}
+
+/* EFECTO DE PARALLAX SUAVE */
+@media (min-width: 993px) {
+    .floating-card {
+        transition: transform 0.3s ease-out;
+    }
+    
+    body:hover .card-1 {
+        transform: rotate(-3deg) translateY(-5px);
+    }
+    
+    body:hover .card-2 {
+        transform: rotate(2deg) translateY(-8px);
+    }
+    
+    body:hover .card-3 {
+        transform: rotate(-1deg) translateY(5px);
+    }
+    
+    body:hover .card-4 {
+        transform: rotate(4deg) translateY(3px);
+    }
 }
