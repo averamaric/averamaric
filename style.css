@@ -61,7 +61,6 @@ body {
 
 /* El círculo con la imagen dentro de la 'O' */
 .circle-image {
-    display: inline-block;
     width: 180px;
     height: 180px;
     background-size: cover;
