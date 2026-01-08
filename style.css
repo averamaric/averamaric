@@ -1,172 +1,97 @@
-:root {
-    --orange: #FF6B35;
-    --white: #FFFFFF;
-    --black: #000000;
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif; /* Puedes usar una fuente similar como 'Helvetica' o 'Inter' */
 }
 
 body {
-    margin: 0;
-    font-family: 'Arial Black', sans-serif;
-    background-color: var(--orange);
-    color: var(--black);
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 50px;
-    align-items: center;
-}
-
-nav {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--black);
-    font-size: 14px;
-}
-
-.search-bar {
-    background: var(--black);
-    display: flex;
-    padding: 5px;
-}
-
-.search-bar input {
-    background: transparent;
-    border: none;
-    color: white;
-}
-
-/* Hero Section */
-.hero {
-    display: flex;
-    padding: 50px;
-    flex-wrap: wrap;
-}
-
-.title-container h1 {
-    font-size: 120px;
-    line-height: 0.9;
-    margin: 0;
-}
-
-.title-container p {
-    max-width: 500px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    margin-top: 11px;
-}
-
-/* Team Grid and Cards */
-.team-grid {
-    flex: 1;
-    position: relative;
-}
-
-.card {
-    background: var(--white);
-    display: flex;
-    padding: 20px;
-    border-radius: 15px;
-    align-items: center;
-    gap: 15px;
-    position: absolute;
-}
-
-.card-top {
-    right: 0;
-    top: 0;
-    width: 850px;    /* Ancho específico */
-    height: 350px;   /* Alto específico */
-}
-
-.card-bottom {
-    left: -500px;
-    top: 300px;
-    width: 450px;    /* Ancho específico */
-    height: 160px;
-}
-
-.photos-side-by-side {
-    display: flex;
-    gap: 20px; /* Espacio entre fotos */
-    justify-content: center;
-    align-items: center;
-    flex: 1; /* Ocupa espacio disponible */
-    margin: 0 20px; /* Margen a los lados */
-}
-
-.photo-up {
-    width: 290px;
-    height: 320px;
-    background-color: #ddd;
-    border-radius: 20px;
-}
-
-.photo-up, .photo {
-    border: 3px solid var(--black);
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
-
-.photo-up:hover, .photo:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    border-color: #FF6B35; /* Cambia color del borde al hacer hover */
-}
-
-.photo {
-    width: 170px;
-    height: 160px;
-    background-color: #ddd;
-    border-radius: 20px;
-}
-
-.member-info {
+    background-color: #2D5A43; /* El color verde oscuro del fondo */
+    color: #D4FF5E; /* El color verde lima del texto */
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-.member-info h3 {
-    margin-bottom: 5px; 
-    margin-top: 1; 
+/* Navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px;
+    align-items: center;
 }
 
-.member-info .role {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    margin: 4px 0;
-}
-
-.member-info:not(.right) {
-    align-self: flex-start; /* Arriba */
-    text-align: left;
-}
-
-.member-info.right {
-    align-self: flex-end; /* Abajo */
-    text-align: right;
-    margin-top: auto; /* Empuja hacia abajo */
-}
-
-.plus {
+.menu-icon span {
     display: block;
-    width: 50px;
-    height: 50px;
-    left: 50px;
-    top: 90px;
-    align: right;
+    width: 30px;
+    height: 4px;
+    background-color: #D4FF5E;
+    margin-bottom: 5px;
 }
 
-.arrow-icon {
-    position: absolute;
-    bottom: -70px;
-    left: -200px;
-    width: 170px;
-    height: 90px;
+.nav-links a {
+    color: #D4FF5E;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Sección Principal */
+.hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 10%;
+}
+
+.logo-text {
+    font-size: 12rem; /* Tamaño grande para el logo */
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -5px;
+    position: relative;
+}
+
+/* El círculo con la imagen dentro de la 'O' */
+.circle-image {
+    display: inline-block;
+    width: 140px;
+    height: 140px;
+    background-image: url('tu-imagen-aqui.jpg'); /* Reemplaza con la foto de las chicas */
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin: 0 -10px;
+    vertical-align: middle;
+}
+
+.vertical-text {
+    font-size: 1.5rem;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* Descripción inferior */
+.description {
+    max-width: 900px;
+    margin-top: 50px;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    text-align: left;
+    font-weight: 500;
+}
+
+/* Responsividad básica */
+@media (max-width: 768px) {
+    .logo-text { font-size: 6rem; }
+    .circle-image { width: 70px; height: 70px; }
+    .description { font-size: 1.1rem; }
 }
