@@ -68,7 +68,7 @@ body {
     horizontal-align: middle;
     border-radius: 50%;
     margin: 0 -10px;
-    vertical-align: middle;
+    /*vertical-align: middle;
 }
 
 .vertical-text {
