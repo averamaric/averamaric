@@ -61,14 +61,14 @@ body {
 
 /* El círculo con la imagen dentro de la 'O' */
 .circle-image {
-    width: 180px;
-    height: 180px;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
     background-size: cover;
     background-position: center;
     horizontal-align: middle;
     border-radius: 50%;
     margin: 0 -10px;
-    /*vertical-align: middle;
 }
 
 .vertical-text {
