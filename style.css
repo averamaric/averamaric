@@ -3,12 +3,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif; /* Puedes usar una fuente similar como 'Helvetica' o 'Inter' */
+    font-family: 'Arial', sans-serif; 
 }
 
 body {
-    background-color: #2D5A43; /* El color verde oscuro del fondo */
-    color: #D4FF5E; /* El color verde lima del texto */
+    background-color: #2D5A43; 
+    color: #D4FF5E; 
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -62,10 +62,11 @@ body {
 /* El círculo con la imagen dentro de la 'O' */
 .circle-image {
     display: inline-block;
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
     background-size: cover;
     background-position: center;
+    horizontal-align: middle;
     border-radius: 50%;
     margin: 0 -10px;
     vertical-align: middle;
