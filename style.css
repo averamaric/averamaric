@@ -292,6 +292,198 @@ body::after {
     background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.7));
 }
 
+/* ===========================================
+   ESTILOS ESPECÍFICOS PARA VIDEOS EN TARJETAS
+   =========================================== */
+
+/* Asegura que el video herede todos los estilos de .card-image */
+.card-image.video-loop {
+    /* Hereda automáticamente:
+       - width: 100%
+       - height: 100%
+       - object-fit: cover
+       - transition: transform 0.7s ease
+    */
+    background-color: #000; /* Fondo negro mientras carga */
+}
+
+/* Indicador visual de que es un video */
+.card-image-container:hover .video-loop::after {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(212, 255, 94, 0.9);
+    color: #0A0A0A;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(212, 255, 94, 0.5);
+}
+
+.card-image-container:hover .video-loop:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Indicador de hover personalizado para videos */
+.card-image-container .card-hover-indicator {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+.card-image-container:hover .card-hover-indicator {
+    opacity: 0.8;
+    transform: translateY(0);
+}
+
+.card-image-container .card-hover-indicator .play-icon {
+    color: #D4FF5E;
+    font-size: 12px;
+}
+
+.card-image-container .card-hover-indicator .text {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+
+/* Efecto de pausa al hacer hover sobre el video */
+.card-image.video-loop:hover {
+    filter: brightness(1.1);
+}
+
+/* Control de volumen opcional (aparece al hacer hover) */
+.video-loop:hover + .volume-control {
+    opacity: 1;
+}
+
+.volume-control {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.volume-control button {
+    background: none;
+    border: none;
+    color: #D4FF5E;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+/* Estado de carga del video */
+.video-loop::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(212, 255, 94, 0.1) 0%, 
+        rgba(212, 255, 94, 0.2) 50%, 
+        rgba(212, 255, 94, 0.1) 100%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    opacity: 0;
+    z-index: 1;
+}
+
+@keyframes loading {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.video-loop.loading::before {
+    opacity: 1;
+}
+
+/* ===========================================
+   MEJORAS RESPONSIVE PARA VIDEOS
+   =========================================== */
+
+@media (max-width: 768px) {
+    /* Optimización para móviles: reducir calidad de video */
+    .card-image.video-loop {
+        /* En móviles, podrías cargar una versión más ligera del video */
+        object-position: center; /* Asegura que el contenido importante esté centrado */
+    }
+    
+    /* Ocultar algunos efectos en móvil para mejor rendimiento */
+    .card-image-container:hover .video-loop::after {
+        display: none;
+    }
+    
+    .card-image-container .card-hover-indicator {
+        font-size: 10px;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+/* ===========================================
+   EFECTOS DE SONIDO (OPCIONAL)
+   =========================================== */
+/* Si luego quieres añadir control de sonido */
+.video-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+}
+
+.card-image-container:hover .video-controls {
+    opacity: 1;
+}
+
+.video-controls button {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(212, 255, 94, 0.3);
+    color: #D4FF5E;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-controls button:hover {
+    background: rgba(212, 255, 94, 0.2);
+}
+
+
 /* ANIMATED GRID PARA TARJETA 4 */
 .animated-grid {
     width: 100%;
