@@ -53,7 +53,13 @@
             <!-- Tarjeta 1 (arriba izquierda, grande) -->
             <a href="projects/robotics.html" class="nothing-card card-large" style="--rotation: -3deg; top: 15%; left: 5%;">
                 <div class="card-image-container">
-                    <img src="assets/gifs/robot-arm.gif" alt="Robotic Systems" class="card-image">
+                    <!-- REEMPLAZA EL IMG CON VIDEO -->
+                    <video class="card-image video-loop" autoplay muted loop playsinline>
+                        <source src="assets/videos/robotic-system-demo.mp4" type="video/mp4">
+                        <source src="assets/videos/robotic-system-demo.webm" type="video/webm">
+                        <!-- Fallback: Si el video no carga, muestra el GIF original -->
+                        <img src="assets/gifs/robot-arm.gif" alt="Robotic Systems" class="card-image">
+                    </video>
                     <div class="image-overlay"></div>
                 </div>
                 <div class="card-info">
@@ -68,7 +74,11 @@
                         <span>KUKA</span>
                     </div>
                 </div>
-                <div class="card-hover-indicator">→</div>
+                <!-- Indicador especial para video -->
+                <div class="card-hover-indicator">
+                    <span class="play-icon">▶</span>
+                    <span class="text">PLAY VIDEO</span>
+                </div>
             </a>
 
             <!-- Tarjeta 2 (arriba derecha, mediana) -->
