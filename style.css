@@ -159,7 +159,7 @@ body::after {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(212, 255, 94, 0.1);
     border-radius: 12px;
-    padding: 25px 30px;
+    padding: 5px 30px;
     backdrop-filter: blur(10px);
     z-index: 150;
 }
@@ -195,8 +195,8 @@ body::after {
 
 .footer-tag {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(212, 255, 94, 0.1);
+    border: 1px solid rgba(212, 255, 94, 0.3);
     border-radius: 4px;
     padding: 4px 12px;
     margin-right: 10px;
