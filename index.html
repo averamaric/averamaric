@@ -141,50 +141,7 @@
             <div class="indicator-line"></div>
         </div>
     </main>
-    <script>
-    // Scroll: desaparece al bajar, reaparece al subir
-    document.addEventListener('DOMContentLoaded', function() {
-        const descriptionCard = document.getElementById('descriptionCard');
-        let lastScrollY = window.scrollY;
-        let isHidden = false;
-        
-        function handleScroll() {
-            const currentScrollY = window.scrollY;
-            
-            // Scroll hacia ABAJO (más de 50px) → ocultar
-            if (currentScrollY > lastScrollY && currentScrollY > 50) {
-                if (!isHidden) {
-                    descriptionCard.classList.add('hidden');
-                    descriptionCard.classList.remove('visible');
-                    isHidden = true;
-                }
-            } 
-            // Scroll hacia ARRIBA → mostrar
-            else if (currentScrollY < lastScrollY) {
-                if (isHidden) {
-                    descriptionCard.classList.remove('hidden');
-                    descriptionCard.classList.add('visible');
-                    isHidden = false;
-                }
-            }
-            
-            // Si estamos en la parte superior, mostrar siempre
-            if (currentScrollY < 20) {
-                descriptionCard.classList.remove('hidden');
-                descriptionCard.classList.add('visible');
-                isHidden = false;
-            }
-            
-            lastScrollY = currentScrollY;
-        }
-        
-        // Activar el listener de scroll
-        window.addEventListener('scroll', handleScroll);
-        
-        // Para debugging en consola
-        console.log('✅ Scroll detector activado para GitHub Pages');
-    });
-    </script>
+    <script src="script.js"></script>
 
     
 </body>
