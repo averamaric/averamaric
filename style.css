@@ -255,15 +255,15 @@ body::after {
 
 /* TAMAÑOS DE TARJETAS */
 .card-large {
-    width: 320px;
+    width: 220px;
 }
 
 .card-medium {
-    width: 280px;
+    width: 180px;
 }
 
 .card-small {
-    width: 240px;
+    width: 140px;
 }
 
 /* EFECTOS HOVER */
