@@ -176,7 +176,9 @@ body::after {
     padding: 5px 30px;
     backdrop-filter: blur(10px);
     z-index: 150;
-    transition: opacity 0.4s ease, transform 0.4s ease !important;
+    transition: opacity 0.4s ease, 
+                transform 0.4s ease,
+                visibility 0.4s !important;
 }
 
 .card-header {
@@ -667,18 +669,17 @@ body::after {
     100% { left: 100%; }
 }
 .description-card.hidden {
-    opacity: 0;
-    transform: translateX(-50%) translateY(20px);
-    visibility: hidden;
-    pointer-events: none;
+    opacity: 0 !important;
+    transform: translateX(-50%) translateY(30px) !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
 
-/* Estado VISIBLE (cuando haces scroll hacia arriba) */
 .description-card.visible {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    visibility: visible;
-    pointer-events: all;
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) !important;
+    visibility: visible !important;
+    pointer-events: all !important;
 }
 
 /* Efecto especial al reaparecer */
