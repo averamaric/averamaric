@@ -77,12 +77,28 @@
             </a>
 
             <!-- Tarjeta 2 (arriba derecha, mediana) -->
-            <a href="projects/plc.html" class="nothing-card card-medium" style="--rotation: 2deg; top: 20%; right: 12%;">
-                <div class="card-image-container">
-                    <img src="assets/images/plc-control.jpg" alt="PLC Programming" class="card-image">
+            <!-- Tarjeta 2 (arriba derecha, mediana) - MODIFICADA -->
+            <a href="tu-archivo-cv.pdf" download class="nothing-card card-medium" style="--rotation: 2deg; top: 20%; right: 12%;">
+                <div class="card-image-container cv-image-container">
+                    <!-- Imagen principal sin fondo -->
+                    <img src="assets/images/cv-icon.png" alt="CV Download" class="cv-main-image">
+                    
+                    <!-- Puntos pulsantes -->
+                    <div class="pulsing-dots">
+                        <div class="pulsing-dot" style="--delay: 0s"></div>
+                        <div class="pulsing-dot" style="--delay: 0.3s"></div>
+                        <div class="pulsing-dot" style="--delay: 0.6s"></div>
+                    </div>
+                    
+                    <!-- Imagen que aparece después del giro (oculta inicialmente) -->
+                    <img src="assets/images/cv-hover.png" alt="Download Now" class="cv-hover-image">
+                    
+                    <!-- Indicador de download -->
+                    <div class="download-indicator">↓</div>
                 </div>
                 <div class="card-info">
                     <h3>CV - DOWNLOAD</h3>
+                    <p class="card-description">Latest version</p>
                 </div>
                 <div class="card-hover-indicator">↗</div>
             </a>
