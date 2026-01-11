@@ -142,7 +142,7 @@ body::after {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: bottom;
     margin-right: 10px;
     font-size: 0.9rem;
     letter-spacing: 4px;
