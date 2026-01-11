@@ -665,39 +665,6 @@ body::after {
     0% { left: -100%; }
     100% { left: 100%; }
 }
-
-html {
-    height: 100%;
-}
-
-body {
-    min-height: 100vh; /* Ya lo tienes */
-    /* Añade esto para asegurar scroll */
-    position: relative;
-}
-
-/* Para GitHub Pages: asegura que el contenido tenga altura */
-.hero {
-    min-height: 150vh; /* ¡IMPORTANTE! Da espacio para hacer scroll */
-    position: relative;
-}
-
-/* Estados de la tarjeta de descripción */
-.description-card {
-    /* Tus propiedades actuales se mantienen */
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    /* ... */
-    
-    /* Añade transición para animación suave */
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Estado OCULTO (cuando haces scroll hacia abajo) */
 .description-card.hidden {
     opacity: 0;
     transform: translateX(-50%) translateY(20px);
