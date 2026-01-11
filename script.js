@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 top: 100vh;
                 left: 0;
                 width: 100%;
-                height: 2000px;
+                height: 200px;
                 pointer-events: none;
                 z-index: -9999;
                 opacity: 0;
