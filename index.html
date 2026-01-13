@@ -78,30 +78,38 @@
 
             <!-- Tarjeta 2 (arriba derecha, mediana) -->
             <!-- Tarjeta 2 (arriba derecha, mediana) - MODIFICADA -->
-            <a href="tu-archivo-cv.pdf" download class="nothing-card card-medium cv-special-card" style="--rotation: --spin-duration: 0.5s; /* Control de velocidad */
-          --spin-timing: cubic-bezier(0.77, 0, 0.175, 1); 4deg; bottom: 20%; right: 6%; --card-height: 180px">
+            <!-- En tu tarjeta CV-download -->
+            <a href="tu-archivo-cv.pdf" download class="nothing-card card-medium cv-special-card" 
+               style="--rotation: --spin-duration: 0.5s; --spin-timing: cubic-bezier(0.77, 0, 0.175, 1); 4deg; bottom: 20%; right: 6%; --card-height: 180px">
+                
                 <div class="cv-image-wrapper">
                     <div class="cv-image-zoomed-container">
-                        <img src="assets/images/cv-icon.png" alt="CV Download" class="cv-zoomed-image">
+                        <img src="assets/images/Folder.png" alt="CV Download" class="cv-zoomed-image">
                         
-                        <!-- Puntos claramente separados -->
-                        <div class="cv-dots-separated">
-                            <div class="cv-dot dot-1"></div>
-                            <div class="cv-dot dot-2"></div>
-                            <div class="cv-dot dot-3"></div>
+                        <!-- Puntos con posiciones personalizadas en HTML -->
+                        <div class="cv-dots-container">
+                            <!-- Punto 1: Superior izquierdo -->
+                            <div class="cv-dot" style="--dot-left: 20%; --dot-top: 15%; --delay: 0s;"></div>
+                            
+                            <!-- Punto 2: Inferior central -->
+                            <div class="cv-dot" style="--dot-left: 50%; --dot-top: 80%; --delay: 0.3s;"></div>
+                            
+                            <!-- Punto 3: Superior derecho -->
+                            <div class="cv-dot" style="--dot-left: 80%; --dot-top: 15%; --delay: 0.6s;"></div>
                         </div>
                         
-                        <img src="assets/images/cv-hover.png" alt="Download Now" class="cv-zoomed-hover">
+                        <img src="assets/images/Folfer download.png" alt="Download Now" class="cv-zoomed-hover">
                         <div class="cv-border-ring"></div>
                     </div>
                 </div>
+                
                 <div class="card-info">
                     <h3>CV - DOWNLOAD</h3>
                     <p class="card-description">Latest version</p>
                 </div>
+                
                 <div class="card-hover-indicator">↗</div>
             </a>
-
 
             <!-- Tarjeta 4 (abajo derecha, mediana) -->
             <a href="projects/portfolio.html" class="nothing-card card-large" style="--rotation: 2deg; top: 20%; right: 12%; --card-height: 200px">
