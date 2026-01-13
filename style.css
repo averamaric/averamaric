@@ -245,7 +245,7 @@ body::after {
 .nothing-card {
     position: absolute;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(212, 255, 94, 0.15);
+    /*border: 1px solid rgba(212, 255, 94, 0.15);*/
     border-radius: 12px;
     overflow: hidden;
     text-decoration: none;
