@@ -254,6 +254,7 @@ body::after {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     backdrop-filter: blur(10px);
     transform: rotate(var(--rotation, 0deg));
+    height: var(--card-height, auto);
 }
 
 /* TAMAÑOS DE TARJETAS */
@@ -268,6 +269,7 @@ body::after {
 .card-small {
     width: 140px;
 }
+
 
 /* EFECTOS HOVER */
 .nothing-card:hover {
@@ -338,7 +340,7 @@ body::after {
 /* Imagen principal - visible inicialmente */
 .cv-main-image {
     opacity: 1;
-    transform: scale(1) rotate(0deg);
+    transform: scale(1.4) rotate(0deg);
 }
 
 /* Imagen hover - oculta inicialmente */
