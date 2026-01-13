@@ -1002,3 +1002,136 @@ body::after {
 .nothing-card:nth-child(3) { --i: 3; }
 .nothing-card:nth-child(4) { --i: 4; }
 .nothing-card:nth-child(5) { --i: 5; }
+
+
+
+
+
+
+
+.skills-title-simple {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    display: inline-block;
+    
+    /* Transición suave entre estados */
+    transition: all 0.5s ease;
+    
+    /* Animación automática */
+    animation: simpleInvert 4s infinite;
+}
+
+@keyframes simpleInvert {
+    0% {
+        background-color: #ffffff;
+        color: #000000;
+        box-shadow: 
+            inset 0 0 0 1px #000000,
+            0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    45% {
+        background-color: #ffffff;
+        color: #000000;
+    }
+    50% {
+        background-color: #000000;
+        color: #ffffff;
+        box-shadow: 
+            inset 0 0 0 1px #ffffff,
+            0 2px 4px rgba(212, 255, 94, 0.2);
+    }
+    95% {
+        background-color: #000000;
+        color: #ffffff;
+    }
+    100% {
+        background-color: #ffffff;
+        color: #000000;
+        box-shadow: 
+            inset 0 0 0 1px #000000,
+            0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Pausar animación al hacer hover (opcional) */
+.skills-title-simple:hover {
+    animation-play-state: paused;
+    background-color: #D4FF5E !important;
+    color: #000000 !important;
+}
+
+
+
+.skills-title-scan {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    position: relative;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+.skills-title-scan::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    animation: scanLine 3s infinite linear;
+    box-shadow: 0 0 10px #fff;
+}
+
+@keyframes scanLine {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* Efecto de parpadeo del texto */
+.skills-title-scan {
+    animation: textBlink 6s infinite;
+}
+
+@keyframes textBlink {
+    0%, 40% {
+        background: #000;
+        color: #fff;
+    }
+    41%, 44% {
+        background: #fff;
+        color: #000;
+    }
+    45%, 85% {
+        background: #fff;
+        color: #000;
+    }
+    86%, 89% {
+        background: #000;
+        color: #fff;
+    }
+    90%, 100% {
+        background: #000;
+        color: #fff;
+    }
+}
+
+
