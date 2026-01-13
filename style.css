@@ -349,6 +349,110 @@ body::after {
     transform: scale(0.8) rotate(-180deg);
 }
 
+
+
+/* ===========================================
+   SOLUCIÓN COMPLETA: Puntos separados + Rotación rápida
+   =========================================== */
+
+/* 1. PUNTOS EN LÍNEA CON MEJOR VISUAL */
+.cv-orbital-dots {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 2;
+}
+
+.orbital-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #D4FF5E;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(212, 255, 94, 0.8);
+    
+    /* Animación individual con delay */
+    animation: dotPulse 1.5s infinite var(--delay);
+}
+
+/* Cada punto pulsa en momentos diferentes */
+.orbital-dot:nth-child(1) { --delay: 0s; }
+.orbital-dot:nth-child(2) { --delay: 0.5s; }
+.orbital-dot:nth-child(3) { --delay: 1s; }
+
+@keyframes dotPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+        box-shadow: 0 0 5px rgba(212, 255, 94, 0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+        box-shadow: 
+            0 0 15px rgba(212, 255, 94, 1),
+            0 0 30px rgba(212, 255, 94, 0.4);
+    }
+}
+
+/* 2. ROTACIÓN SUPER RÁPIDA - 3 VUELTAS EN 0.5s */
+@keyframes threeFastSpins {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+    /* Primera vuelta muy rápida */
+    20% {
+        transform: scale(1.08) rotate(360deg);
+    }
+    /* Segunda vuelta */
+    40% {
+        transform: scale(1) rotate(720deg);
+    }
+    /* Tercera vuelta */
+    60% {
+        transform: scale(1.08) rotate(1080deg);
+    }
+    /* Desvanecer y reducir */
+    80% {
+        opacity: 0.5;
+        transform: scale(0.3) rotate(1260deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(1440deg); /* 4 vueltas total para efecto dramático */
+    }
+}
+
+/* Aplicar la rotación rápida */
+.cv-special-card:hover .cv-zoomed-image {
+    animation: threeFastSpins 0.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* 3. LA SEGUNDA IMAGEN APARECE INMEDIATAMENTE DESPUÉS */
+.cv-special-card:hover .cv-zoomed-hover {
+    animation: quickAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+}
+
+@keyframes quickAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-90deg);
+    }
+    70% {
+        transform: scale(1.1) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+
+
+
 /* Contenedor de puntos pulsantes */
 .pulsing-dots {
     position: absolute;
