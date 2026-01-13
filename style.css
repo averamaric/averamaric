@@ -430,7 +430,7 @@ body::after {
     align-items: center;
     justify-content: center;
     overflow: visible;
-    background: transparent !important; /* Sin fondo */
+    background: #0A0A0A !important; /* Sin fondo */
 }
 
 /* Contenedor de la imagen con zoom - MODIFICADO */
@@ -458,7 +458,7 @@ body::after {
     z-index: 2;
     /* Sin border, sin background */
     border: none;
-    background: transparent;
+    background: #0A0A0A;
     border-radius: 0;
 }
 
