@@ -590,7 +590,7 @@ body::after {
     
     /* Nuevas propiedades para control de tamaño */
     min-width: 180px; /* ← Ancho mínimo */
-    min-height: 60px; /* ← Altura mínima */
+    min-height: 120px; /* ← Altura mínima */
     width: auto; /* ← Se adapta al contenido pero con mínimo */
     border-radius: 8px; /* ← Bordes redondeados para mejor aspecto */
 }
@@ -660,7 +660,7 @@ body::after {
     
     /* Nuevas propiedades para control de tamaño */
     min-width: 220px; /* ← Ancho mínimo */
-    min-height: 70px; /* ← Altura mínima */
+    min-height: 140px; /* ← Altura mínima */
     width: auto; /* ← Se adapta al contenido */
     border-radius: 8px; /* ← Bordes redondeados */
     border: 1px solid rgba(212, 255, 94, 0.2); /* ← Borde sutil */
