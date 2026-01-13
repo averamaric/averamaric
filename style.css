@@ -477,7 +477,7 @@ body::after {
     z-index: 1;
     /* Sin border, sin background */
     border: none;
-    background: transparent;
+    background: #0A0A0A;
     border-radius: 0;
 }
 
