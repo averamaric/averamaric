@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #0A0A0A; /* Fondo negro puro como Nothing */
+    background-color: #0A0A0A;
     color: #FFFFFF;
     min-height: 100vh;
     overflow-x: hidden;
@@ -47,7 +47,7 @@ body::after {
     opacity: 0.3;
 }
 
-/* NAVBAR - MÁS MINIMALISTA */
+/* NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -95,7 +95,7 @@ body::after {
     opacity: 1;
 }
 
-/* LOGO CENTRAL - ESTILO NOTHING */
+/* LOGO CENTRAL */
 .logo-container {
     position: absolute;
     top: 40%;
@@ -124,10 +124,6 @@ body::after {
     display: inline-block;
     width: 11vw;
     height: 11vw;
-    /*max-width: 80px;
-    max-height: 80px;
-    min-width: 60px;
-    min-height: 60px;*/
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -138,13 +134,12 @@ body::after {
 }
 
 .vertical-text {
-    font-size: 1.5rem;
+    font-size: 0.9rem;
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     display: inline-block;
     vertical-align: bottom;
     margin-right: 10px;
-    font-size: 0.9rem;
     letter-spacing: 4px;
     text-transform: uppercase;
     opacity: 0.7;
@@ -162,7 +157,7 @@ body::after {
     opacity: 0.7;
 }
 
-/* TARJETA DE DESCRIPCIÓN - ESTILO "NUEVA INTERFAZ GLYPH" */
+/* TARJETA DE DESCRIPCIÓN */
 .description-card {
     position: absolute;
     bottom: 5%;
@@ -179,23 +174,6 @@ body::after {
     transition: opacity 0.4s ease, 
                 transform 0.4s ease,
                 visibility 0.4s !important;
-}
-
-.card-header {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.card-tag {
-    background: rgba(212, 255, 94, 0.1);
-    border: 1px solid rgba(212, 255, 94, 0.3);
-    border-radius: 20px;
-    padding: 6px 15px;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #D4FF5E;
 }
 
 .card-content {
@@ -231,6 +209,37 @@ body::after {
     border-color: rgba(212, 255, 94, 0.3);
 }
 
+/* ESTADOS DE LA TARJETA DE DESCRIPCIÓN */
+.description-card.hidden {
+    opacity: 0 !important;
+    transform: translateX(-50%) translateY(30px) !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.description-card.visible {
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) !important;
+    visibility: visible !important;
+    pointer-events: all !important;
+    animation: cardReappear 1s ease;
+}
+
+@keyframes cardReappear {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 255, 94, 0);
+        border-color: rgba(212, 255, 94, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 20px 5px rgba(212, 255, 94, 0.3);
+        border-color: rgba(212, 255, 94, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 255, 94, 0);
+        border-color: rgba(212, 255, 94, 0.1);
+    }
+}
+
 /* CONTENEDOR DE TARJETAS ASIMÉTRICAS */
 .nothing-cards-container {
     position: absolute;
@@ -241,11 +250,10 @@ body::after {
     pointer-events: none;
 }
 
-/* TARJETAS INDIVIDUALES - ESTILO NOTHING */
+/* TARJETAS INDIVIDUALES */
 .nothing-card {
     position: absolute;
     background: rgba(255, 255, 255, 0.03);
-    /*border: 1px solid rgba(212, 255, 94, 0.15);*/
     border-radius: 12px;
     overflow: hidden;
     text-decoration: none;
@@ -255,6 +263,26 @@ body::after {
     backdrop-filter: blur(10px);
     transform: rotate(var(--rotation, 0deg));
     height: var(--card-height, auto);
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: calc(var(--i, 0) * 0.1s);
+    opacity: 0;
+}
+
+/* ASIGNAR RETRASOS DE ANIMACIÓN */
+.nothing-card:nth-child(1) { --i: 1; }
+.nothing-card:nth-child(2) { --i: 2; }
+.nothing-card:nth-child(3) { --i: 3; }
+.nothing-card:nth-child(4) { --i: 4; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* TAMAÑOS DE TARJETAS */
@@ -266,15 +294,10 @@ body::after {
     width: 180px;
 }
 
-.card-small {
-    width: 140px;
-}
-
-
 /* EFECTOS HOVER */
 .nothing-card:hover {
     transform: rotate(0deg) scale(1.05) !important;
-    border-color: #D4FF5E;
+    border: 1px solid #D4FF5E;
     background: rgba(212, 255, 94, 0.05);
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.5),
@@ -283,571 +306,14 @@ body::after {
     z-index: 200;
 }
 
-/* IMÁGENES DE TARJETAS */
-.card-image-container {
-    width: 100%;
-    height: 160px;
-    overflow: hidden;
-    position: relative;
-}
-
-.card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s ease;
-}
-
-.nothing-card:hover .card-image {
-    transform: scale(1.1);
-}
-
-.image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.7));
-}
-
-/* ===========================================
-   ESTILOS ESPECIALES PARA LA TARJETA CV
-   =========================================== */
-
-.cv-image-container {
-    position: relative;
-    width: 100%;
-    height: 160px;
-    overflow: hidden;
-    background: transparent !important; /* Fondo transparente */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Imágenes de CV */
-.cv-main-image,
-.cv-hover-image {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    filter: drop-shadow(0 0 10px rgba(212, 255, 94, 0.3));
-}
-
-/* Imagen principal - visible inicialmente */
-.cv-main-image {
-    opacity: 1;
-    transform: scale(1.4) rotate(0deg);
-}
-
-/* Imagen hover - oculta inicialmente */
-.cv-hover-image {
-    opacity: 0;
-    transform: scale(0.8) rotate(-180deg);
-}
-
-
-
-/* ===========================================
-   SOLUCIÓN COMPLETA: Puntos separados + Rotación rápida
-   =========================================== */
-
-/* 1. PUNTOS EN LÍNEA CON MEJOR VISUAL */
-.cv-orbital-dots {
-    position: absolute;
-    top: 85%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
-    z-index: 2;
-}
-
-.orbital-dot {
-    width: 10px;
-    height: 10px;
-    background-color: #D4FF5E;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(212, 255, 94, 0.8);
-    
-    /* Animación individual con delay */
-    animation: dotPulse 1.5s infinite var(--delay);
-}
-
-/* Cada punto pulsa en momentos diferentes */
-.orbital-dot:nth-child(1) { --delay: 0s; }
-.orbital-dot:nth-child(2) { --delay: 0.5s; }
-.orbital-dot:nth-child(3) { --delay: 1s; }
-
-@keyframes dotPulse {
-    0%, 100% {
-        opacity: 0.3;
-        transform: scale(0.8);
-        box-shadow: 0 0 5px rgba(212, 255, 94, 0.5);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.2);
-        box-shadow: 
-            0 0 15px rgba(212, 255, 94, 1),
-            0 0 30px rgba(212, 255, 94, 0.4);
-    }
-}
-
-/* 2. ROTACIÓN SUPER RÁPIDA - 3 VUELTAS EN 0.5s */
-@keyframes threeFastSpins {
-    0% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-    }
-    /* Primera vuelta muy rápida */
-    20% {
-        transform: scale(1.08) rotate(360deg);
-    }
-    /* Segunda vuelta */
-    40% {
-        transform: scale(1) rotate(720deg);
-    }
-    /* Tercera vuelta */
-    60% {
-        transform: scale(1.08) rotate(1080deg);
-    }
-    /* Desvanecer y reducir */
-    80% {
-        opacity: 0.5;
-        transform: scale(0.3) rotate(1260deg);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0) rotate(1440deg); /* 4 vueltas total para efecto dramático */
-    }
-}
-
-/* Aplicar la rotación rápida */
-.cv-special-card:hover .cv-zoomed-image {
-    animation: threeFastSpins 0.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-}
-
-/* 3. LA SEGUNDA IMAGEN APARECE INMEDIATAMENTE DESPUÉS */
-.cv-special-card:hover .cv-zoomed-hover {
-    animation: quickAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
-}
-
-@keyframes quickAppear {
-    0% {
-        opacity: 0;
-        transform: scale(0.8) rotate(-90deg);
-    }
-    70% {
-        transform: scale(1.1) rotate(10deg);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-    }
-}
-
-
-
-
-/* Contenedor de puntos pulsantes */
-.pulsing-dots {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    gap: 20px;
-    z-index: 2;
-}
-
-/* Puntos individuales */
-.pulsing-dots .pulsing-dot {
-    width: 4px;
-    height: 4px;
-    background-color: #D4FF5E;
-    border-radius: 50%;
-    animation: cascadePulse 1.5s infinite var(--delay);
-    box-shadow: 0 0 10px rgba(212, 255, 94, 0.7);
-}
-
-/* Animación en cascada */
-@keyframes cascadePulse {
-    0%, 100% {
-        opacity: 0.3;
-        transform: scale(0.8);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.2);
-    }
-}
-
-/* Indicador de download */
-.download-indicator {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    color: #D4FF5E;
-    font-size: 20px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    z-index: 3;
-}
-
-/* ===========================================
-   EFECTOS HOVER PARA LA TARJETA CV
-   =========================================== */
-
-.cv-image-container:hover .pulsing-dots {
-    animation: fadeOut 0.3s forwards;
-}
-
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0);
-    }
-}
-
-/* Animación de giro al hacer hover */
-.cv-image-container:hover .cv-main-image {
-    animation: spinAndHide 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-}
-
-@keyframes spinAndHide {
-    0% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-    }
-    20% {
-        transform: scale(1.1) rotate(72deg);   /* 1ra vuelta */
-    }
-    40% {
-        transform: scale(1) rotate(144deg);    /* 2da vuelta */
-    }
-    60% {
-        transform: scale(1.1) rotate(216deg);  /* 3ra vuelta */
-    }
-    80% {
-        transform: scale(1) rotate(288deg);    /* 4ta vuelta */
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0) rotate(360deg);    /* 5ta vuelta */
-    }
-}
-
-/* Revelar imagen hover después del giro */
-.cv-image-container:hover .cv-hover-image {
-    animation: revealAfterSpin 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s forwards;
-}
-
-@keyframes revealAfterSpin {
-    0% {
-        opacity: 0;
-        transform: scale(0.8) rotate(-180deg);
-    }
-    70% {
-        transform: scale(1.1) rotate(10deg);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-    }
-}
-
-/* Mostrar indicador de download */
-.cv-image-container:hover .download-indicator {
-    opacity: 1;
-    transform: translateY(0);
-    animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
-/* Efecto de brillo en el contenedor */
-.cv-image-container:hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(212, 255, 94, 0.1) 0%, transparent 70%);
-    z-index: 1;
-    animation: glowPulse 2s infinite;
-}
-
-@keyframes glowPulse {
-    0%, 100% {
-        opacity: 0.3;
-    }
-    50% {
-        opacity: 0.6;
-    }
-}
-
-/* ===========================================
-   ESTILOS ESPECÍFICOS PARA VIDEOS EN TARJETAS
-   =========================================== */
-
-/* Asegura que el video herede todos los estilos de .card-image */
-.card-image.video-loop {
-    /* Hereda automáticamente:
-       - width: 100%
-       - height: 100%
-       - object-fit: cover
-       - transition: transform 0.7s ease
-    */
-    background-color: #000; /* Fondo negro mientras carga */
-}
-
-/* Indicador visual de que es un video */
-.card-image-container:hover .video-loop::after {
-    content: '▶';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    background: rgba(212, 255, 94, 0.9);
-    color: #0A0A0A;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 2;
-    box-shadow: 0 0 20px rgba(212, 255, 94, 0.5);
-}
-
-.card-image-container:hover .video-loop:hover::after {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-/* Indicador de hover personalizado para videos */
-.card-image-container .card-hover-indicator {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    z-index: 3;
-}
-
-.card-image-container:hover .card-hover-indicator {
-    opacity: 0.8;
-    transform: translateY(0);
-}
-
-.card-image-container .card-hover-indicator .play-icon {
-    color: #D4FF5E;
-    font-size: 12px;
-}
-
-.card-image-container .card-hover-indicator .text {
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #FFFFFF;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 4px 8px;
-    border-radius: 3px;
-}
-
-/* Efecto de pausa al hacer hover sobre el video */
-.card-image.video-loop:hover {
-    filter: brightness(1.1);
-}
-
-/* Control de volumen opcional (aparece al hacer hover) */
-.video-loop:hover + .volume-control {
-    opacity: 1;
-}
-
-.volume-control {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 3;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 5px;
-    border-radius: 4px;
-}
-
-.volume-control button {
-    background: none;
-    border: none;
-    color: #D4FF5E;
-    font-size: 12px;
-    cursor: pointer;
-    padding: 4px 8px;
-}
-
-/* Estado de carga del video */
-.video-loop::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        rgba(212, 255, 94, 0.1) 0%, 
-        rgba(212, 255, 94, 0.2) 50%, 
-        rgba(212, 255, 94, 0.1) 100%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
-    opacity: 0;
-    z-index: 1;
-}
-
-@keyframes loading {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-}
-
-.video-loop.loading::before {
-    opacity: 1;
-}
-
-/* ===========================================
-   MEJORAS RESPONSIVE PARA VIDEOS
-   =========================================== */
-
-@media (max-width: 768px) {
-    /* Optimización para móviles: reducir calidad de video */
-    .card-image.video-loop {
-        /* En móviles, podrías cargar una versión más ligera del video */
-        object-position: center; /* Asegura que el contenido importante esté centrado */
-    }
-    
-    /* Ocultar algunos efectos en móvil para mejor rendimiento */
-    .card-image-container:hover .video-loop::after {
-        display: none;
-    }
-    
-    .card-image-container .card-hover-indicator {
-        font-size: 10px;
-        bottom: 10px;
-        right: 10px;
-    }
-}
-
-/* ===========================================
-   EFECTOS DE SONIDO (OPCIONAL)
-   =========================================== */
-/* Si luego quieres añadir control de sonido */
-.video-controls {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    display: flex;
-    gap: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 3;
-}
-
-.card-image-container:hover .video-controls {
-    opacity: 1;
-}
-
-.video-controls button {
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(212, 255, 94, 0.3);
-    color: #D4FF5E;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.video-controls button:hover {
-    background: rgba(212, 255, 94, 0.2);
-}
-
-
-/* ANIMATED GRID PARA TARJETA 4 */
-.animated-grid {
-    width: 100%;
-    height: 100%;
-    background: #0A0A0A;
-    position: relative;
-}
-
-.grid-line {
-    position: absolute;
-    background: rgba(212, 255, 94, 0.1);
-}
-
-.grid-line:nth-child(1) {
-    top: 33.33%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-}
-
-.grid-line:nth-child(2) {
-    top: 66.66%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-}
-
-.grid-line:nth-child(3) {
-    top: 0;
-    left: 50%;
-    width: 1px;
-    height: 100%;
-    transform: translateX(-50%);
-}
-
-.pulsing-dot {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    gap: 7px;
-    background-color: #D4FF5E;
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-    box-shadow: 0 0 20px rgba(212, 255, 94, 0.5);
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.8); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-}
-
 /* CONTENIDO DE TARJETAS */
 .card-info {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
 }
 
 .card-title-line {
@@ -855,6 +321,7 @@ body::after {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
+    width: 100%;
 }
 
 .card-info h3 {
@@ -883,6 +350,7 @@ body::after {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    justify-content: center;
 }
 
 .card-tags span {
@@ -918,6 +386,389 @@ body::after {
     transform: translateX(0);
 }
 
+/* IMÁGENES DE TARJETAS REGULARES */
+.card-image-container {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.nothing-card:hover .card-image {
+    transform: scale(1.1);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.7));
+}
+
+/* VIDEO EN TARJETAS */
+.card-image.video-loop {
+    background-color: #000;
+}
+
+/* ===========================================
+   TARJETA ESPECIAL CV
+   =========================================== */
+.cv-special-card {
+    overflow: visible !important;
+}
+
+/* Wrapper para la imagen CV */
+.cv-image-wrapper {
+    width: 100%;
+    height: 180px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+/* Contenedor de la imagen con zoom */
+.cv-image-zoomed-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* IMAGEN PRINCIPAL CV - Folder.png */
+.cv-zoomed-image {
+    position: absolute; /* ← Cambiado a absolute para superposición */
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(212, 255, 94, 0.4));
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 1;
+    transform: scale(1.4) rotate(0deg);
+    z-index: 2; /* Folder encima inicialmente */
+}
+
+/* IMAGEN HOVER CV - Folfer download.png - MODIFICADO */
+.cv-zoomed-hover {
+    position: absolute; /* ← Cambiado a absolute para superposición */
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(212, 255, 94, 0.6));
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0; /* ← Oculto inicialmente */
+    transform: scale(0.8) rotate(-180deg);
+    z-index: 1; /* Detrás de Folder inicialmente */
+}
+
+/* ANIMACIÓN DE ROTACIÓN RÁPIDA PARA CV - MODIFICADA */
+.cv-special-card:hover .cv-zoomed-image {
+    animation: threeFastSpins 0.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    z-index: 1; /* Durante la animación, pasa detrás */
+}
+
+@keyframes threeFastSpins {
+    0% {
+        opacity: 1;
+        transform: scale(1.4) rotate(0deg);
+        z-index: 2;
+    }
+    20% {
+        transform: scale(1.5) rotate(360deg);
+    }
+    40% {
+        transform: scale(1.4) rotate(720deg);
+    }
+    60% {
+        transform: scale(1.5) rotate(1080deg);
+    }
+    80% {
+        opacity: 0.5;
+        transform: scale(0.4) rotate(1260deg);
+        z-index: 1;
+    }
+    100% {
+        opacity: 0; /* ← Se hace completamente invisible */
+        transform: scale(0) rotate(1440deg);
+        z-index: 1; /* Queda detrás */
+    }
+}
+
+/* APARICIÓN DE IMAGEN HOVER - MODIFICADA */
+.cv-special-card:hover .cv-zoomed-hover {
+    animation: quickAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+    z-index: 2; /* Aparece encima cuando Folder desaparece */
+}
+
+@keyframes quickAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-90deg);
+        z-index: 1;
+    }
+    40% {
+        opacity: 0; /* Permanece oculto durante la rotación de Folder */
+        z-index: 1;
+    }
+    70% {
+        opacity: 1; /* Comienza a aparecer cuando Folder está desapareciendo */
+        transform: scale(1.1) rotate(10deg);
+        z-index: 2; /* Ahora está encima */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.4) rotate(0deg);
+        z-index: 2; /* Visible y encima */
+    }
+}
+
+/* RESET AL SALIR DEL HOVER - NUEVO */
+.cv-special-card:not(:hover) .cv-zoomed-image {
+    animation: resetFolder 0.5s ease forwards;
+}
+
+.cv-special-card:not(:hover) .cv-zoomed-hover {
+    animation: hideFolderDownload 0.3s ease forwards;
+}
+
+@keyframes resetFolder {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+        z-index: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.4) rotate(0deg);
+        z-index: 2;
+    }
+}
+
+@keyframes hideFolderDownload {
+    0% {
+        opacity: 1;
+        transform: scale(1.4) rotate(0deg);
+        z-index: 2;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-180deg);
+        z-index: 1;
+    }
+}
+
+
+/* ANIMACIONES PARA TÍTULOS */
+.skills-title-simple {
+    font-size: 1.3rem; /* ← Más grande */
+    font-weight: 700;
+    letter-spacing: 2px; /* ← Más espacio entre letras */
+    text-transform: uppercase;
+    padding: 15px 30px; /* ← Más padding para más tamaño */
+    display: inline-flex; /* ← Flex para mejor control */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin: 0 auto 20px auto; /* ← Más margen abajo */
+    transition: all 0.5s ease;
+    animation: simpleInvert 4s infinite;
+    
+    /* Nuevas propiedades para control de tamaño */
+    min-width: 180px; /* ← Ancho mínimo */
+    min-height: 60px; /* ← Altura mínima */
+    width: auto; /* ← Se adapta al contenido pero con mínimo */
+    border-radius: 8px; /* ← Bordes redondeados para mejor aspecto */
+}
+
+@keyframes simpleInvert {
+    0% {
+        background-color: #ffffff;
+        color: #000000;
+        box-shadow: 
+            inset 0 0 0 2px #000000, /* ← Borde más grueso */
+            0 4px 8px rgba(0, 0, 0, 0.15); /* ← Sombra más pronunciada */
+        transform: translateX(-50%) scale(1);
+    }
+    45% {
+        background-color: #ffffff;
+        color: #000000;
+        transform: translateX(-50%) scale(1.02); /* ← Pequeño zoom */
+    }
+    50% {
+        background-color: #000000;
+        color: #ffffff;
+        box-shadow: 
+            inset 0 0 0 2px #ffffff, /* ← Borde más grueso */
+            0 4px 12px rgba(212, 255, 94, 0.3); /* ← Sombra verde */
+        transform: translateX(-50%) scale(1);
+    }
+    95% {
+        background-color: #000000;
+        color: #ffffff;
+        transform: translateX(-50%) scale(1.02); /* ← Pequeño zoom */
+    }
+    100% {
+        background-color: #ffffff;
+        color: #000000;
+        box-shadow: 
+            inset 0 0 0 2px #000000,
+            0 4px 8px rgba(0, 0, 0, 0.15);
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+.skills-title-simple:hover {
+    animation-play-state: paused;
+    background-color: #D4FF5E !important;
+    color: #000000 !important;
+    transform: translateX(-50%) scale(1.05) !important; /* ← Zoom al hover */
+}
+
+.skills-title-scan {
+    font-size: 1.3rem; /* ← Más grande */
+    font-weight: 700;
+    letter-spacing: 2px; /* ← Más espacio entre letras */
+    text-transform: uppercase;
+    padding: 15px 30px; /* ← Más padding */
+    display: inline-flex; /* ← Flex para mejor control */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin: 0 auto 20px auto; /* ← Más margen abajo */
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+    animation: textBlink 6s infinite;
+    
+    /* Nuevas propiedades para control de tamaño */
+    min-width: 220px; /* ← Ancho mínimo */
+    min-height: 70px; /* ← Altura mínima */
+    width: auto; /* ← Se adapta al contenido */
+    border-radius: 8px; /* ← Bordes redondeados */
+    border: 1px solid rgba(212, 255, 94, 0.2); /* ← Borde sutil */
+}
+
+.skills-title-scan::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px; /* ← Línea más gruesa */
+    background: #fff;
+    animation: scanLine 3s infinite linear;
+    box-shadow: 
+        0 0 15px #fff, /* ← Brillo más intenso */
+        0 0 30px rgba(212, 255, 94, 0.5);
+}
+
+@keyframes scanLine {
+    0% {
+        top: 0;
+        opacity: 0;
+        transform: translateX(-100%); /* ← Empieza fuera */
+    }
+    5% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    95% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+        transform: translateX(100%); /* ← Termina fuera */
+    }
+}
+
+@keyframes textBlink {
+    0%, 40% {
+        background: #000;
+        color: #fff;
+        border-color: rgba(212, 255, 94, 0.2);
+        transform: translateX(-50%) scale(1);
+    }
+    41%, 44% {
+        background: #fff;
+        color: #000;
+        border-color: rgba(0, 0, 0, 0.3);
+        transform: translateX(-50%) scale(1.05); /* ← Zoom */
+        box-shadow: 0 0 20px rgba(212, 255, 94, 0.4);
+    }
+    45%, 85% {
+        background: #fff;
+        color: #000;
+        border-color: rgba(0, 0, 0, 0.3);
+        transform: translateX(-50%) scale(1);
+    }
+    86%, 89% {
+        background: #000;
+        color: #fff;
+        border-color: rgba(212, 255, 94, 0.2);
+        transform: translateX(-50%) scale(1.05); /* ← Zoom */
+        box-shadow: 0 0 20px rgba(212, 255, 94, 0.4);
+    }
+    90%, 100% {
+        background: #000;
+        color: #fff;
+        border-color: rgba(212, 255, 94, 0.2);
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* Para controlar el tamaño desde el HTML si es necesario */
+.skills-title-simple.large {
+    min-width: 250px;
+    min-height: 80px;
+    font-size: 1.5rem;
+    padding: 20px 40px;
+}
+
+.skills-title-scan.large {
+    min-width: 250px;
+    min-height: 80px;
+    font-size: 1.5rem;
+    padding: 20px 40px;
+}
+
+/* Ajuste responsive para las animaciones grandes */
+@media (max-width: 768px) {
+    .skills-title-simple,
+    .skills-title-scan {
+        min-width: 180px;
+        min-height: 50px;
+        font-size: 1.1rem;
+        padding: 12px 24px;
+    }
+    
+    .skills-title-simple.large,
+    .skills-title-scan.large {
+        min-width: 200px;
+        min-height: 60px;
+        font-size: 1.3rem;
+        padding: 15px 30px;
+    }
+}
 /* INDICADOR DE SCROLL */
 .scroll-indicator {
     position: absolute;
@@ -959,56 +810,13 @@ body::after {
     0% { left: -100%; }
     100% { left: 100%; }
 }
-.description-card.hidden {
-    opacity: 0 !important;
-    transform: translateX(-50%) translateY(30px) !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-}
-
-.description-card.visible {
-    opacity: 1 !important;
-    transform: translateX(-50%) translateY(0) !important;
-    visibility: visible !important;
-    pointer-events: all !important;
-}
-
-/* Efecto especial al reaparecer */
-@keyframes cardReappear {
-    0% {
-        box-shadow: 0 0 0 0 rgba(212, 255, 94, 0);
-        border-color: rgba(212, 255, 94, 0.1);
-    }
-    50% {
-        box-shadow: 0 0 20px 5px rgba(212, 255, 94, 0.3);
-        border-color: rgba(212, 255, 94, 0.5);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(212, 255, 94, 0);
-        border-color: rgba(212, 255, 94, 0.1);
-    }
-}
-
-.description-card.visible {
-    animation: cardReappear 1s ease;
-}
-
-/* Para el responsive design, ajusta la altura del hero */
-@media (max-width: 1200px) {
-    .hero {
-        min-height: 120vh; /* Menos altura en tablets */
-    }
-}
-
-@media (max-width: 768px) {
-    .hero {
-        min-height: 100vh; /* Altura normal en móviles */
-    }
-}
-
 
 /* RESPONSIVE DESIGN */
 @media (max-width: 1200px) {
+    .hero {
+        min-height: 120vh;
+    }
+    
     .nothing-card {
         position: relative !important;
         top: auto !important;
@@ -1049,6 +857,10 @@ body::after {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        min-height: 100vh;
+    }
+    
     .logo-text {
         font-size: 12vw;
     }
@@ -1080,210 +892,25 @@ body::after {
     .description-card {
         padding: 20px;
     }
-}
-
-/* ANIMACIÓN DE ENTRADA */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.nothing-card {
-    animation: fadeInUp 0.6s ease forwards;
-    animation-delay: calc(var(--i, 0) * 0.1s);
-    opacity: 0;
-}
-
-/* ASIGNAR RETRASOS DE ANIMACIÓN */
-.nothing-card:nth-child(1) { --i: 1; }
-.nothing-card:nth-child(2) { --i: 2; }
-.nothing-card:nth-child(3) { --i: 3; }
-.nothing-card:nth-child(4) { --i: 4; }
-.nothing-card:nth-child(5) { --i: 5; }
-
-
-
-
-
-
-
-.skills-title-simple {
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 8px 16px;
-    display: inline-block;
-    position: relative;
-    text-align: center;
     
-    /* Transición suave entre estados */
-    transition: all 0.5s ease;
+    .cv-image-zoomed-container {
+        width: 120px;
+        height: 120px;
+    }
     
-    /* Animación automática */
-    animation: simpleInvert 4s infinite;
-}
-
-@keyframes simpleInvert {
-    0% {
-        background-color: #ffffff;
-        color: #000000;
-        box-shadow: 
-            inset 0 0 0 1px #000000,
-            0 2px 4px rgba(0, 0, 0, 0.1);
+    .cv-zoomed-image,
+    .cv-zoomed-hover {
+        width: 120px;
+        height: 120px;
     }
-    45% {
-        background-color: #ffffff;
-        color: #000000;
-    }
-    50% {
-        background-color: #000000;
-        color: #ffffff;
-        box-shadow: 
-            inset 0 0 0 1px #ffffff,
-            0 2px 4px rgba(212, 255, 94, 0.2);
-    }
-    95% {
-        background-color: #000000;
-        color: #ffffff;
-    }
-    100% {
-        background-color: #ffffff;
-        color: #000000;
-        box-shadow: 
-            inset 0 0 0 1px #000000,
-            0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-}
-
-/* Pausar animación al hacer hover (opcional) */
-.skills-title-simple:hover {
-    animation-play-state: paused;
-    background-color: #D4FF5E !important;
-    color: #000000 !important;
-}
-
-
-
-.skills-title-scan {
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 8px 16px;
-    position: relative;
-    background: #000;
-    color: #fff;
-    overflow: hidden;
-}
-
-.skills-title-scan::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    animation: scanLine 3s infinite linear;
-    box-shadow: 0 0 10px #fff;
-}
-
-@keyframes scanLine {
-    0% {
-        top: 0;
-        opacity: 0;
-    }
-    5% {
-        opacity: 1;
-    }
-    95% {
-        opacity: 1;
-    }
-    100% {
-        top: 100%;
-        opacity: 0;
-    }
-}
-
-/* Efecto de parpadeo del texto */
-.skills-title-scan {
-    animation: textBlink 6s infinite;
-}
-
-@keyframes textBlink {
-    0%, 40% {
-        background: #000;
-        color: #fff;
-    }
-    41%, 44% {
-        background: #fff;
-        color: #000;
-    }
-    45%, 85% {
-        background: #fff;
-        color: #000;
-    }
-    86%, 89% {
-        background: #000;
-        color: #fff;
-    }
-    90%, 100% {
-        background: #000;
-        color: #fff;
-    }
-}
-
-
-
-
-/* CSS para los puntos posicionables */
-.cv-dots-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.cv-dot {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #D4FF5E;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(212, 255, 94, 0.8);
     
-    /* Usar las variables definidas en el HTML */
-    left: var(--dot-left, 50%);
-    top: var(--dot-top, 50%);
-    transform: translate(-50%, -50%);
+    .cv-border-ring {
+        width: 140px;
+        height: 140px;
+    }
     
-    /* Animación con delay personalizado */
-    animation: dotPulse 2s infinite var(--delay, 0s);
-}
-
-@keyframes dotPulse {
-    0%, 100% {
-        opacity: 0.3;
-        transform: translate(-50%, -50%) scale(0.8);
-        box-shadow: 0 0 5px rgba(212, 255, 94, 0.5);
-    }
-    50% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.3);
-        box-shadow: 
-            0 0 15px rgba(212, 255, 94, 1),
-            0 0 30px rgba(212, 255, 94, 0.4);
+    .cv-special-card:hover .cv-border-ring {
+        width: 150px;
+        height: 150px;
     }
 }
-
