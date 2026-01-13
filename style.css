@@ -959,3 +959,79 @@ body::after {
         height: 150px;
     }
 }
+
+/* ===========================================
+   PUNTOS DEL CV - CLASES QUE FALTAN
+   =========================================== */
+
+.cv-dots-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3; /* Por encima de las imágenes */
+}
+
+.cv-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #D4FF5E;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(212, 255, 94, 0.8);
+    
+    /* Usar las variables definidas en el HTML */
+    left: var(--dot-left, 50%);
+    top: var(--dot-top, 50%);
+    transform: translate(-50%, -50%);
+    
+    /* Animación con delay personalizado */
+    animation: dotPulse 2s infinite var(--delay, 0s);
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(0.8);
+        box-shadow: 0 0 5px rgba(212, 255, 94, 0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.3);
+        box-shadow: 
+            0 0 15px rgba(212, 255, 94, 1),
+            0 0 30px rgba(212, 255, 94, 0.4);
+    }
+}
+
+/* Efecto al hacer hover - los puntos desaparecen */
+.cv-special-card:hover .cv-dots-container {
+    animation: dotsFadeOut 0.4s forwards;
+}
+
+@keyframes dotsFadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+/* Reset al salir del hover */
+.cv-special-card:not(:hover) .cv-dots-container {
+    animation: dotsFadeIn 0.4s forwards;
+}
+
+@keyframes dotsFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
