@@ -1,15 +1,14 @@
-// script.js
+// En tu script.js - MODIFICADO para el efecto de scroll descendente
 document.addEventListener('DOMContentLoaded', function() {
     const descriptionCard = document.getElementById('descriptionCard');
     let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
-    let isHidden = false;
+    let isScrolling = false;
     
     // Asegurarnos de que hay suficiente altura para scroll
     function ensureScrollHeight() {
         const body = document.body;
         const html = document.documentElement;
         
-        // Calcular la altura actual
         const height = Math.max(
             body.scrollHeight, 
             body.offsetHeight,
@@ -18,9 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
             html.offsetHeight
         );
         
-        // Si la altura es menor que la ventana + 500px, agregar espacio
-        if (height < window.innerHeight + 500) {
-            // Crear un div invisible para generar scroll
+        // Si la altura es menor que la ventana + 800px, agregar espacio
+        if (height < window.innerHeight + 800) {
             const scrollSpacer = document.createElement('div');
             scrollSpacer.id = 'scrollSpacer';
             scrollSpacer.style.cssText = `
@@ -28,43 +26,97 @@ document.addEventListener('DOMContentLoaded', function() {
                 top: 100vh;
                 left: 0;
                 width: 100%;
-                height: 150px;
+                height: 130px;
                 pointer-events: none;
                 z-index: -9999;
                 opacity: 0;
             `;
             document.body.appendChild(scrollSpacer);
-            console.log('📏 Espacio de scroll añadido');
         }
     }
     
     function handleScroll() {
         const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollDelta = currentScrollY - lastScrollY;
         
-        // Scroll hacia ABAJO (más de 50px) → ocultar
-        if (currentScrollY > lastScrollY && currentScrollY > 50) {
-            if (!isHidden) {
-                descriptionCard.style.transition = 'all 0.4s ease';
+        // 1. PRIMERA FASE: Scroll entre 0-100px - Tarjeta baja gradualmente
+        if (currentScrollY > 0 && currentScrollY <= 100) {
+            // Calcular porcentaje de desplazamiento (0% a 100%)
+            const scrollPercent = currentScrollY / 100;
+            
+            // Mover la tarjeta hacia abajo gradualmente (de 0px a 50px)
+            const translateY = scrollPercent * 50;
+            
+            // Aplicar transformación
+            descriptionCard.style.transform = `translateX(-50%) translateY(${translateY}px)`;
+            descriptionCard.style.opacity = 1 - (scrollPercent * 0.3); // Ligera desaparición
+            descriptionCard.style.transition = 'transform 0.2s ease, opacity 0.3s ease';
+            
+            // Asegurar que esté visible
+            descriptionCard.classList.remove('hidden');
+            descriptionCard.classList.add('visible');
+        }
+        
+        // 2. SEGUNDA FASE: Scroll entre 100-200px - Tarjeta desaparece gradualmente
+        else if (currentScrollY > 100 && currentScrollY <= 200) {
+            // Calcular porcentaje de desplazamiento (0% a 100%)
+            const scrollPercent = (currentScrollY - 100) / 100;
+            
+            // Continuar moviendo hacia abajo (de 50px a 100px)
+            const translateY = 50 + (scrollPercent * 50);
+            
+            // Desaparecer gradualmente
+            const opacity = 0.7 - (scrollPercent * 0.7);
+            
+            descriptionCard.style.transform = `translateX(-50%) translateY(${translateY}px)`;
+            descriptionCard.style.opacity = opacity;
+            descriptionCard.style.transition = 'transform 0.2s ease, opacity 0.3s ease';
+            
+            // Si la opacidad es muy baja, añadir clase hidden
+            if (opacity < 0.1) {
                 descriptionCard.classList.add('hidden');
                 descriptionCard.classList.remove('visible');
-                isHidden = true;
-            }
-        } 
-        // Scroll hacia ARRIBA → mostrar
-        else if (currentScrollY < lastScrollY) {
-            if (isHidden) {
-                descriptionCard.style.transition = 'all 0.4s ease';
+            } else {
                 descriptionCard.classList.remove('hidden');
                 descriptionCard.classList.add('visible');
-                isHidden = false;
             }
         }
         
-        // Si estamos en la parte superior, mostrar siempre
-        if (currentScrollY < 20) {
+        // 3. TERCERA FASE: Scroll mayor a 200px - Tarjeta completamente oculta
+        else if (currentScrollY > 200) {
+            descriptionCard.classList.add('hidden');
+            descriptionCard.classList.remove('visible');
+            descriptionCard.style.opacity = '0';
+            descriptionCard.style.transform = 'translateX(-50%) translateY(100px)';
+        }
+        
+        // 4. SCROLL HACIA ARRIBA - Mostrar gradualmente
+        else if (scrollDelta < 0 && currentScrollY < 200) {
+            // Si estamos subiendo, mostrar la tarjeta
             descriptionCard.classList.remove('hidden');
             descriptionCard.classList.add('visible');
-            isHidden = false;
+            
+            // Calcular posición basada en el scroll actual
+            if (currentScrollY <= 100) {
+                const scrollPercent = currentScrollY / 100;
+                const translateY = scrollPercent * 50;
+                descriptionCard.style.transform = `translateX(-50%) translateY(${translateY}px)`;
+                descriptionCard.style.opacity = 1 - (scrollPercent * 0.3);
+            } else if (currentScrollY <= 200) {
+                const scrollPercent = (currentScrollY - 100) / 100;
+                const translateY = 50 + (scrollPercent * 50);
+                const opacity = 0.7 - (scrollPercent * 0.7);
+                descriptionCard.style.transform = `translateX(-50%) translateY(${translateY}px)`;
+                descriptionCard.style.opacity = opacity;
+            }
+        }
+        
+        // 5. EN EL TOP (scrollY = 0) - Posición original
+        if (currentScrollY === 0) {
+            descriptionCard.style.transform = 'translateX(-50%) translateY(0px)';
+            descriptionCard.style.opacity = '1';
+            descriptionCard.classList.remove('hidden');
+            descriptionCard.classList.add('visible');
         }
         
         lastScrollY = currentScrollY;
@@ -76,33 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Activar el listener de scroll
     window.addEventListener('scroll', handleScroll);
     
-    // También manejar rueda del mouse para mejor experiencia
-    let wheelTimeout;
-    let wheelDelta = 0;
-    
-    window.addEventListener('wheel', function(e) {
-        clearTimeout(wheelTimeout);
-        wheelDelta += e.deltaY;
-        
-        // Si la rueda va hacia abajo
-        if (wheelDelta > 100 && !isHidden) {
-            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            window.scrollTo(0, currentScroll + 100);
-            
-            descriptionCard.classList.add('hidden');
-            descriptionCard.classList.remove('visible');
-            isHidden = true;
-            wheelDelta = 0;
-        }
-        
-        // Resetear acumulación después de 500ms
-        wheelTimeout = setTimeout(() => {
-            wheelDelta = 0;
-        }, 500);
-    });
-    
     // Para debugging
-    console.log('✅ Script de scroll cargado correctamente');
-    console.log('Altura del documento:', document.documentElement.scrollHeight);
-    console.log('Altura de la ventana:', window.innerHeight);
+    console.log('✅ Scroll detector mejorado activado');
 });
