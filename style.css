@@ -449,9 +449,6 @@ body::after {
     width: 80px; /* Más pequeña para que parezca "flotante" */
     height: 80px;
     object-fit: contain;
-    filter: 
-        drop-shadow(0 0 15px rgba(212, 255, 94, 0.4))
-        drop-shadow(0 0 30px rgba(212, 255, 94, 0.2));
     transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     opacity: 1;
     transform: scale(1.1) rotate(0deg); /* Sin zoom inicial */
@@ -468,9 +465,6 @@ body::after {
     width: 80px;
     height: 80px;
     object-fit: contain;
-    filter: 
-        drop-shadow(0 0 20px rgba(212, 255, 94, 0.6))
-        drop-shadow(0 0 40px rgba(212, 255, 94, 0.3));
     transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     opacity: 0;
     transform: scale(0.8) rotate(-180deg);
