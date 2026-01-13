@@ -970,8 +970,8 @@ body::after {
 
 .cv-dot {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 3px;
+    height: 3px;
     background-color: #D4FF5E;
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(212, 255, 94, 0.8);
