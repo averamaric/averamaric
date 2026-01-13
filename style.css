@@ -360,8 +360,8 @@ body::after {
 
 /* Puntos individuales */
 .pulsing-dots .pulsing-dot {
-    width: 8px;
-    height: 8px;
+    width: 4px;
+    height: 4px;
     background-color: #D4FF5E;
     border-radius: 50%;
     animation: cascadePulse 1.5s infinite var(--delay);
@@ -418,15 +418,21 @@ body::after {
         opacity: 1;
         transform: scale(1) rotate(0deg);
     }
-    33% {
-        transform: scale(1.1) rotate(120deg);
+    20% {
+        transform: scale(1.1) rotate(72deg);   /* 1ra vuelta */
     }
-    66% {
-        transform: scale(1) rotate(240deg);
+    40% {
+        transform: scale(1) rotate(144deg);    /* 2da vuelta */
+    }
+    60% {
+        transform: scale(1.1) rotate(216deg);  /* 3ra vuelta */
+    }
+    80% {
+        transform: scale(1) rotate(288deg);    /* 4ta vuelta */
     }
     100% {
         opacity: 0;
-        transform: scale(0) rotate(360deg);
+        transform: scale(0) rotate(360deg);    /* 5ta vuelta */
     }
 }
 
@@ -721,6 +727,7 @@ body::after {
     transform: translate(-50%, -50%);
     width: 10px;
     height: 10px;
+    gap: 7px;
     background-color: #D4FF5E;
     border-radius: 50%;
     animation: pulse 2s infinite;
