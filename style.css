@@ -1120,6 +1120,8 @@ body::after {
     text-transform: uppercase;
     padding: 8px 16px;
     display: inline-block;
+    position: relative;
+    text-align: center;
     
     /* Transición suave entre estados */
     transition: all 0.5s ease;
@@ -1174,6 +1176,7 @@ body::after {
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
+    text-align: center;
     padding: 8px 16px;
     position: relative;
     background: #000;
