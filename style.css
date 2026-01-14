@@ -674,7 +674,7 @@ body::after {
 
 .skills-title-simple:hover {
     animation-play-state: paused;
-    background-color: #D4FF5E !important;
+    /*background-color: #D4FF5E !important;*/
     color: #000000 !important;
     transform: translateX(-50%) scale(1.05) !important; /* ← Zoom al hover */
 }
@@ -935,13 +935,13 @@ body::after {
     
     .cv-image-zoomed-container {
         width: 120px;
-        height: 120px;
+        height: 140px;
     }
     
     .cv-zoomed-image,
     .cv-zoomed-hover {
         width: 120px;
-        height: 120px;
+        height: 140px;
     }
     
     .cv-border-ring {
