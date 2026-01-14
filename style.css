@@ -455,7 +455,7 @@ body::after {
     z-index: 2;
     /* Sin border, sin background */
     border: none;
-    background: #0A0A0A;
+    background: transparent;
     border-radius: 0;
 }
 
@@ -471,7 +471,7 @@ body::after {
     z-index: 1;
     /* Sin border, sin background */
     border: none;
-    background: #0A0A0A;
+    background: transparent;
     border-radius: 0;
 }
 
