@@ -2202,3 +2202,161 @@ body::after {
         transform: scale(1);
     }
 }
+
+
+
+/* =========================================== */
+/* TÍTULO DE FONDO DETRÁS DE LA TARJETA */
+/* =========================================== */
+
+.profile-title-background {
+    /* Posicionamiento ABSOLUTO respecto al flujo normal */
+    position: absolute;
+    
+    /* Mismas dimensiones y posición que la tarjeta */
+    width: 90%;
+    max-width: 700px;
+    left: 39%;
+    transform: translateX(-50%);
+    
+    /* Ajusta esta distancia desde el top según necesites */
+    /* Esto posiciona el título en el mismo lugar que la tarjeta */
+    top: 80px; /* Ajusta este valor según tu diseño */
+    
+    /* Tipografía comprimida */
+    font-family: 'Oswald', 'Bebas Neue', 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(30rem, 15vw, 12rem);
+    
+  
+    /* Efecto comprimido extremo */
+    letter-spacing: -0.15em;
+    line-height: 0.8;
+    text-transform: uppercase;
+    text-align: center;
+    
+    /* Color sutil - casi invisible */
+   /* color: rgba(255, 255, 255, 0.03);
+    
+    /* Efectos visuales sutiles */
+   /* text-shadow: 
+        0 0 1px rgba(255, 255, 255, 0.05),
+        0 0 2px rgba(212, 255, 94, 0.02);
+    
+    /* Para que esté DETRÁS de la tarjeta */
+    z-index: -1; /* Negative z-index para estar detrás */
+    
+    /* No interfiere con nada */
+    pointer-events: none;
+    user-select: none;
+    
+    /* Transición para efectos */
+    transition: all 0.5s ease;
+    
+    /* Compresión horizontal */
+    transform: translateX(-50%) scaleX(0.3);
+}
+
+/* Estado cuando la tarjeta desaparece - título más visible */
+.profile-title-background.revealed {
+    /*color: rgba(255, 255, 255, 0.1);
+    text-shadow: 
+        0 0 3px rgba(255, 255, 255, 0.15),
+        0 0 8px rgba(212, 255, 94, 0.08),
+        0 0 15px rgba(212, 255, 94, 0.03);
+    
+    /* Efecto de distorsión cuando se revela */
+    transform: translateX(-50%) scaleX(0.25) scaleY(1.1);
+    letter-spacing: -0.18em;
+}
+
+
+
+/* =========================================== */
+/* AJUSTES PARA LA TARJETA DESCRIPTIVA */
+/* =========================================== */
+
+.profile-intro-card {
+    /* Posicionamiento relativo para ser contenedor de referencia */
+    position: relative;
+    margin: 80px auto 120px;
+    max-width: 800px;
+    
+    /* Asegurar que la tarjeta esté POR ENCIMA del título */
+    z-index: 10;
+}
+
+/* La tarjeta necesita fondo para tapar el título */
+.description-card {
+    background: rgba(30, 30, 30, 0.9); /* Fondo opaco */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 255, 94, 0.1);
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    
+    /* Esto es CRUCIAL: la tarjeta debe cubrir completamente el título */
+    position: relative;
+    z-index: 20;
+}
+
+/* Estados para el efecto de scroll de la tarjeta */
+.description-card.scroll-up {
+    opacity: 1;
+    transform: translateY(0);
+    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 10, 0.95);
+}
+
+.description-card.scroll-down {
+    opacity: 0;
+    transform: translateY(-30px);
+    backdrop-filter: blur(5px);
+    background: rgba(10, 10, 10, 0.7);
+}
+
+/* =========================================== */
+/* CONTENEDOR PRINCIPAL - AJUSTE */
+/* =========================================== */
+
+.profile-container {
+    /* Asegurar que el contenedor tenga posición relativa */
+    position: relative;
+    z-index: 5;
+}
+
+/* Ajustar el espaciado para que el título no se vea en otros lugares */
+.page-content {
+    position: relative;
+    z-index: 5;
+}
+
+/* =========================================== */
+/* RESPONSIVE */
+/* =========================================== */
+
+@media (max-width: 768px) {
+    .profile-title-background {
+        top: 60px; /* Ajuste para mobile */
+        font-size: clamp(3rem, 12vw, 10rem);
+        letter-spacing: -0.1em;
+    }
+    
+    .description-card {
+        padding: 25px 20px;
+        backdrop-filter: blur(8px);
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-title-background {
+        top: 40px;
+        font-size: clamp(2.5rem, 10vw, 8rem);
+        letter-spacing: -0.08em;
+    }
+}
+
+
