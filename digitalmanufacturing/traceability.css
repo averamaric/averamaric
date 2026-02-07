@@ -465,6 +465,173 @@ body {
     color: #28a745;
 }
 
+
+/* Tooltip System */
+.help-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: #4a6cf7;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 8px;
+    cursor: help;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.help-icon.small {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    margin-left: 6px;
+}
+
+.help-icon:hover {
+    background: #6a11cb;
+    transform: scale(1.1);
+}
+
+/* Tooltip container */
+.help-icon::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: normal;
+    line-height: 1.4;
+    white-space: pre-line;
+    width: 280px;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.help-icon:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-8px);
+}
+
+/* Tooltip arrow */
+.help-icon::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.help-icon:hover::after {
+    opacity: 1;
+    visibility: visible;
+    top: -12px;
+}
+
+/* Specific positioning for different elements */
+.component-info h3 .help-icon::before {
+    width: 300px;
+    bottom: 100%;
+    left: 0;
+    transform: translateX(0);
+}
+
+.component-info h3 .help-icon:hover::before {
+    transform: translateX(0) translateY(-8px);
+}
+
+.component-info h3 .help-icon::after {
+    left: 9px;
+    transform: translateX(0);
+}
+
+.component-id .help-icon::before {
+    width: 220px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Para que no se solapen con otros elementos */
+.component-info {
+    position: relative;
+    z-index: 1;
+}
+
+/* Tooltip en el ID principal del dispositivo */
+.device-id-container {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.device-help {
+    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: help;
+    position: relative;
+}
+
+.device-help::before {
+    content: "Device ID Format: PT-YYYY-TYPE-SERIAL\A\APT: PhoneTrace Project\AYYYY: Year\ATYPE: 3D = 3D Printed\ASERIAL: Sequential number";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: normal;
+    line-height: 1.5;
+    white-space: pre;
+    width: 280px;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.device-help:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-8px);
+}
+
 /* Footer */
 .footer {
     text-align: center;
