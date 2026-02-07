@@ -1,1 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoneTrace - Device Traceability</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-mobile-alt"></i>
+                <h1>PhoneTrace</h1>
+            </div>
+            <p class="subtitle">3D Printed Phone Assembly Traceability System</p>
+        </header>
 
+        <!-- Device Overview -->
+        <section class="device-overview">
+            <div class="device-info">
+                <h2><i class="fas fa-qrcode"></i> Device Traceability ID: <span class="device-id">PT-2024-3D-0876</span></h2>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-cube"></i> Model Information</h3>
+                        <p><strong>Model:</strong> Phonix 3D v2.1</p>
+                        <p><strong>Variant:</strong> Standard Edition</p>
+                        <p><strong>Designer:</strong> Fusion 360 Project</p>
+                        <p><strong>Assembly Date:</strong> 2024-06-15</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-print"></i> 3D Printing Details</h3>
+                        <p><strong>Material:</strong> PETG Carbon Fiber</p>
+                        <p><strong>Layer Height:</strong> 0.2mm</p>
+                        <p><strong>Infill:</strong> 25% Gyroid</p>
+                        <p><strong>Print Time:</strong> 14h 32m</p>
+                    </div>
+                </div>
+                
+                <div class="status-indicator">
+                    <div class="status active">
+                        <i class="fas fa-check-circle"></i> Assembly Complete
+                    </div>
+                    <div class="status">
+                        <i class="fas fa-battery-three-quarters"></i> Quality Control Passed
+                    </div>
+                </div>
+            </div>
+            
+            <div class="device-visual">
+                <div class="phone-model">
+                    <img src="assets/phone-model.png" alt="3D Printed Phone Model">
+                </div>
+                <div class="qr-display">
+                    <div class="qr-placeholder">
+                        <div class="qr-code">
+                            <!-- QR Code would be generated here -->
+                            <div class="qr-pattern"></div>
+                            <div class="qr-text">PT-2024-3D-0876</div>
+                        </div>
+                        <p class="qr-caption">Scan to verify authenticity</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component Traceability Section -->
+        <section class="components-section">
+            <h2><i class="fas fa-microchip"></i> Component Traceability</h2>
+            <p class="section-description">Click on any component to view its manufacturing history and operations</p>
+            
+            <div class="components-container">
+                <!-- Component 1: Top Case -->
+                <div class="component-card" onclick="showDetails('top-case')">
+                    <div class="component-icon">
+                        <i class="fas fa-square"></i>
+                    </div>
+                    <div class="component-info">
+                        <h3>Top Case Assembly</h3>
+                        <p class="component-id">ID: TC-0876-A</p>
+                        <div class="component-status">
+                            <span class="status-badge completed">Printed</span>
+                            <span class="status-badge completed">Post-processed</span>
+                            <span class="status-badge completed">Assembled</span>
+                        </div>
+                    </div>
+                    <div class="component-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <!-- Component 2: Bottom Case -->
+                <div class="component-card" onclick="showDetails('bottom-case')">
+                    <div class="component-icon">
+                        <i class="fas fa-square"></i>
+                    </div>
+                    <div class="component-info">
+                        <h3>Bottom Case Assembly</h3>
+                        <p class="component-id">ID: BC-0876-B</p>
+                        <div class="component-status">
+                            <span class="status-badge completed">Printed</span>
+                            <span class="status-badge completed">Post-processed</span>
+                            <span class="status-badge completed">Assembled</span>
+                        </div>
+                    </div>
+                    <div class="component-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <!-- Component 3: Internal Frame -->
+                <div class="component-card" onclick="showDetails('internal-frame')">
+                    <div class="component-icon">
+                        <i class="fas fa-th"></i>
+                    </div>
+                    <div class="component-info">
+                        <h3>Internal Reinforcement</h3>
+                        <p class="component-id">ID: IF-0876-C</p>
+                        <div class="component-status">
+                            <span class="status-badge completed">Printed</span>
+                            <span class="status-badge completed">Tapped</span>
+                        </div>
+                    </div>
+                    <div class="component-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <!-- Component 4: Button Set -->
+                <div class="component-card" onclick="showDetails('buttons')">
+                    <div class="component-icon">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <div class="component-info">
+                        <h3>Button Set (4 pcs)</h3>
+                        <p class="component-id">ID: BT-0876-D</p>
+                        <div class="component-status">
+                            <span class="status-badge completed">Printed</span>
+                            <span class="status-badge completed">Sanded</span>
+                            <span class="status-badge completed">Installed</span>
+                        </div>
+                    </div>
+                    <div class="component-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component Details Modal -->
+        <div id="component-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Component Details</h2>
+                    <span class="close-modal" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-section">
+                        <h3><i class="fas fa-info-circle"></i> Basic Information</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <strong>Component ID:</strong> <span id="detail-id">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Creation Date:</strong> <span id="detail-date">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>3D Printer:</strong> <span id="detail-printer">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Print File:</strong> <span id="detail-file">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3><i class="fas fa-history"></i> Manufacturing Operations</h3>
+                        <div class="timeline" id="operations-timeline">
+                            <!-- Timeline items will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3><i class="fas fa-clipboard-check"></i> Quality Checks</h3>
+                        <div class="checks-list" id="quality-checks">
+                            <!-- Quality checks will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>PhoneTrace System v1.0 | Designed for 3D Printed Phone Project</p>
+            <p class="footer-note">This traceability page is linked to QR code on device exterior</p>
+            <div class="footer-links">
+                <a href="qr-generator.html"><i class="fas fa-qrcode"></i> Generate QR Code</a>
+                <a href="#"><i class="fas fa-print"></i> Print Report</a>
+                <a href="#"><i class="fas fa-database"></i> Export Data</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
