@@ -14,20 +14,21 @@
         <header class="header">
             <div class="logo">
                 <i class="fas fa-mobile-alt"></i>
-                <h1>PhoneTrace</h1>
+                <h1>Phone-R-Us</h1>
             </div>
-            <p class="subtitle">3D Printed Phone Assembly Traceability System</p>
+            <p class="subtitle">Phone Assembly Traceability System</p>
         </header>
 
         <!-- Device Overview -->
         <section class="device-overview">
             <div class="device-info">
                 <h2><i class="fas fa-qrcode"></i> Device Traceability ID: <span class="device-id-container">
-                    <span class="device-id">PT-2024-3D-0876</span>
-                    <span class="device-help" data-tooltip="Device ID Format: PT-YYYY-TYPE-SERIAL
-                        PT: PhoneTrace Project
-                        YYYY: Year
-                        TYPE: 3D = 3D Printed
+                    <span class="device-id">C_BB_PLA_3D_26_02_0001</span>
+                    <span class="device-help" data-tooltip="Device ID Format: XX_MMM_MFT_YY_SERIAL
+                        XX: Color top and color bottom (B=black, R=red, G=Green, etc)
+                        MMM: Material (TPU, PLA, etc)
+                        MFT: Manufacturing technique
+                        YY: Year, last two digits
                         SERIAL: Sequential number">?</span>
                     </span></h2>
                 
@@ -35,14 +36,14 @@
                     <div class="info-card">
                         <h3><i class="fas fa-cube"></i> Model Information</h3>
                         <p><strong>Model:</strong> Phonix 3D v2.1</p>
-                        <p><strong>Variant:</strong> Standard Edition</p>
-                        <p><strong>Designer:</strong> Fusion 360 Project</p>
-                        <p><strong>Assembly Date:</strong> 2024-06-15</p>
+                        <p><strong>Variant:</strong> Standard Black Edition</p>
+                        <p><strong>Designer:</strong> Analucia Vera Marich</p>
+                        <p><strong>Assembly Date:</strong> 2026-02-15</p>
                     </div>
                     
                     <div class="info-card">
                         <h3><i class="fas fa-print"></i> 3D Printing Details</h3>
-                        <p><strong>Material:</strong> PETG Carbon Fiber</p>
+                        <p><strong>Material:</strong> PLA</p>
                         <p><strong>Layer Height:</strong> 0.2mm</p>
                         <p><strong>Infill:</strong> 25% Gyroid</p>
                         <p><strong>Print Time:</strong> 14h 32m</p>
@@ -63,15 +64,8 @@
                 <div class="phone-model">
                     <img src="assets/phone-model.png" alt="3D Printed Phone Model">
                 </div>
-                <div class="qr-display">
-                    <div class="qr-placeholder">
-                        <div class="qr-code">
-                            <!-- QR Code would be generated here -->
-                            <div class="qr-pattern"></div>
-                            <div class="qr-text">PT-2024-3D-0876</div>
-                        </div>
-                        <p class="qr-caption">Scan to verify authenticity</p>
-                    </div>
+               <div class="phone-model">
+                    <img src="assets/phone-model.png" alt="3D Printed Phone Model">
                 </div>
             </div>
         </section>
@@ -88,13 +82,14 @@
                         <i class="fas fa-square"></i>
                     </div>
                     <div class="component-info">
-                        <h3>Top Case Assembly<span class="help-icon" data-tooltip="ID Format: TC-YYYY-SERIAL-VERSION
-                        TC = Top Case
-                        YYYY = Year
-                        SERIAL = Sequential number
-                        VERSION = Revision letter">?</span>
+                        <h3>Top Case Assembly
                         </h3>
-                        <p class="component-id">ID: TC-0876-A<span class="help-icon small" data-tooltip="TC: Top Case | 0876: Unit #876 | A: Version A">?</span>
+                        <p class="component-id">ID: TB_PLA_3D_260001<span class="help-icon small" data-tooltip="ID Format: CC-MMM-YYXXXX
+                        CC = Case and color
+                        MMM = Material (TPU, PLA, etc)
+                        MFT = Manufacturing technique
+                        YY = Year                         
+                        XXXX = Sequential number">?</span>
                         </p>
                         <div class="component-status">
                             <span class="status-badge completed">Printed</span>
@@ -113,63 +108,18 @@
                         <i class="fas fa-square"></i>
                     </div>
                     <div class="component-info">
-                        <h3>Bottom Case Assembly<span class="help-icon" data-tooltip="ID Format: TC-YYYY-SERIAL-VERSION
-                        TC = Top Case
-                        YYYY = Year
-                        SERIAL = Sequential number
-                        VERSION = Revision letter">?</span>
+                        <h3>Bottom Case Assembly
                         </h3>
-                        <p class="component-id">ID: BC-0876-B<span class="help-icon small" data-tooltip="TC: Top Case | 0876: Unit #876 | A: Version A">?</span></p>
+                        <p class="component-id">ID: BB_PLA_3D_260001<span class="help-icon small" data-tooltip="ID Format: CC-MMM-YYXXXX
+                        CC = Case and color
+                        MMM = Material (TPU, PLA, etc)
+                        MFT = Manufacturing technique
+                        YY = Year                         
+                        XXXX = Sequential number">?</span></p>
                         <div class="component-status">
                             <span class="status-badge completed">Printed</span>
                             <span class="status-badge completed">Post-processed</span>
                             <span class="status-badge completed">Assembled</span>
-                        </div>
-                    </div>
-                    <div class="component-arrow">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </div>
-
-                <!-- Component 3: Internal Frame -->
-                <div class="component-card" onclick="showDetails('internal-frame')">
-                    <div class="component-icon">
-                        <i class="fas fa-th"></i>
-                    </div>
-                    <div class="component-info">
-                        <h3>Internal Reinforcement<span class="help-icon" data-tooltip="ID Format: TC-YYYY-SERIAL-VERSION
-                        TC = Top Case
-                        YYYY = Year
-                        SERIAL = Sequential number
-                        VERSION = Revision letter">?</span>
-                        </h3>
-                        <p class="component-id">ID: IF-0876-C<span class="help-icon small" data-tooltip="TC: Top Case | 0876: Unit #876 | A: Version A">?</span></p>
-                        <div class="component-status">
-                            <span class="status-badge completed">Printed</span>
-                            <span class="status-badge completed">Tapped</span>
-                        </div>
-                    </div>
-                    <div class="component-arrow">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </div>
-
-                <!-- Component 4: Button Set -->
-                <div class="component-card" onclick="showDetails('buttons')">
-                    <div class="component-icon">
-                        <i class="fas fa-circle"></i>
-                    </div>
-                    <div class="component-info">
-                        <h3>Button Set (4 pcs)<span class="help-icon" data-tooltip="ID Format: TC-YYYY-SERIAL-VERSION
-                        TC = Top Case
-                        YYYY = Year
-                        SERIAL = Sequential number
-                        VERSION = Revision letter">?</span></h3>
-                        <p class="component-id">ID: BT-0876-D<span class="help-icon small" data-tooltip="TC: Top Case | 0876: Unit #876 | A: Version A">?</span></p>
-                        <div class="component-status">
-                            <span class="status-badge completed">Printed</span>
-                            <span class="status-badge completed">Sanded</span>
-                            <span class="status-badge completed">Installed</span>
                         </div>
                     </div>
                     <div class="component-arrow">
