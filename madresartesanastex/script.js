@@ -1,10 +1,21 @@
 // ============================================
-// 1. SLIDER AUTOMÁTICO
+// 1. INICIALIZACIÓN DE AOS (ANIMACIONES)
+// ============================================
+AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100,
+    easing: 'ease-in-out'
+});
+
+// ============================================
+// 2. SLIDER AUTOMÁTICO
 // ============================================
 const sliderWrapper = document.getElementById('sliderWrapper');
 const dots = document.querySelectorAll('.dot');
 let currentSlide = 0;
 const totalSlides = document.querySelectorAll('.slide').length;
+let slideInterval;
 
 function moveToSlide(index) {
     if (index < 0) index = totalSlides - 1;
@@ -19,6 +30,16 @@ function moveToSlide(index) {
     currentSlide = index;
 }
 
+function startSlider() {
+    slideInterval = setInterval(() => moveToSlide(currentSlide + 1), 5000);
+}
+
+function resetInterval() {
+    clearInterval(slideInterval);
+    startSlider();
+}
+
+// Event listeners para los dots
 dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
         moveToSlide(i);
@@ -26,23 +47,15 @@ dots.forEach((dot, i) => {
     });
 });
 
-let slideInterval = setInterval(() => moveToSlide(currentSlide + 1), 4000);
-
-function resetInterval() {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(() => moveToSlide(currentSlide + 1), 4000);
-}
-
+// Pausar slider al hacer hover
 sliderWrapper.addEventListener('mouseenter', () => clearInterval(slideInterval));
-sliderWrapper.addEventListener('mouseleave', () => {
-    slideInterval = setInterval(() => moveToSlide(currentSlide + 1), 4000);
-});
+sliderWrapper.addEventListener('mouseleave', startSlider);
+
+// Iniciar slider
+startSlider();
 
 // ============================================
-// 2. PARALLAX MEJORADO (EFECTO MULTICAPA)
-// ============================================
-// ============================================
-// 2. PARALLAX MEJORADO (con imagen desde HTML)
+// 3. PARALLAX MEJORADO
 // ============================================
 const parallaxImg = document.querySelector('.parallax-img');
 const heroSection = document.getElementById('hero');
@@ -53,16 +66,14 @@ function updateParallax() {
     const scrollPosition = window.scrollY;
     const heroHeight = heroSection.offsetHeight;
     
-    // Efecto parallax: la imagen se mueve más lento que el scroll
     if (scrollPosition <= heroHeight) {
-        const translateY = scrollPosition * 0.4; // 0.4 = velocidad del efecto
+        const translateY = scrollPosition * 0.4;
         parallaxImg.style.transform = `scale(1.1) translateY(${translateY}px)`;
-    
     }
 }
 
 // ============================================
-// 3. LÍNEA DORADA
+// 4. LÍNEA DORADA
 // ============================================
 const goldLine = document.getElementById('connectorLine');
 const aboutSection = document.getElementById('about');
@@ -86,7 +97,7 @@ function updateGoldLine() {
 }
 
 // ============================================
-// 4. ANIMACIÓN DE APARICIÓN DE SECCIONES
+// 5. ANIMACIÓN DE APARICIÓN DE SECCIONES
 // ============================================
 const sections = document.querySelectorAll('section:not(.hero)');
 
@@ -103,27 +114,44 @@ function checkVisibility() {
 }
 
 // ============================================
-// 5. NAVBAR
+// 6. NAVBAR
 // ============================================
 const navbar = document.querySelector('.navbar');
 
 function updateNavbar() {
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-        navbar.style.backdropFilter = 'blur(10px)';
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.background = 'rgba(10, 10, 10, 0.3)';
+        navbar.classList.remove('scrolled');
     }
 }
 
 // ============================================
-// 6. LISTENERS
+// 7. SUAVE SCROLL PARA ENLACES
+// ============================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ============================================
+// 8. LISTENERS
 // ============================================
 window.addEventListener('scroll', () => {
-    updateParallax();
-    updateGoldLine();
-    checkVisibility();
-    updateNavbar();
+    requestAnimationFrame(() => {
+        updateParallax();
+        updateGoldLine();
+        checkVisibility();
+        updateNavbar();
+    });
 });
 
 window.addEventListener('resize', () => {
