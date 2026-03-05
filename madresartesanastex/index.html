@@ -9,47 +9,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Prata&display=swap" rel="stylesheet">
+    <!-- AOS Library CSS para animaciones de scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
     <!-- Barra de navegación (semi-transparente) -->
     <nav class="navbar">
         <div class="nav-container">
-            <!-- Reemplaza con tu logo: <img src="logo-blanco.png" alt="Madres & Artesanas" class="logo"> -->
             <span class="logo-text">M&A TEX</span>
             <ul class="nav-menu">
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">WHO WE ARE</a></li>
-                <li><a href="#">OUR SPECIALTIES</a></li>
-                <li><a href="#">PORTFOLIO</a></li>
-                <li><a href="#">CONTACTO</a></li>
+                <li><a href="#hero">HOME</a></li>
+                <li><a href="#tecnicas">WHO WE ARE</a></li>
+                <li><a href="#tecnicas">OUR SPECIALTIES</a></li>
+                <li><a href="#gallery">PORTFOLIO</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Sección Hero: imagen a pantalla completa -->
-    <!-- HERO CON PARALLAX MEJORADO (imagen en HTML) -->
+    <!-- Sección Hero -->
     <section class="hero parallax" id="hero">
-        <!-- La imagen ahora está en HTML -->
-        <img src="/madresartesanastex/assets/13.png" alt="Taller de artesanas" class="parallax-img">
-       
+        <img src="assets/13.png" alt="Taller de artesanas" class="parallax-img">
         <div class="parallax-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">MADRES & ARTESANAS TEX</h1>
+            <h1 class="hero-title" data-aos="fade-down" data-aos-duration="1500">MADRES & ARTESANAS TEX</h1>
             <div class="gold-line" id="connectorLine"></div>
         </div>
         <div class="scroll-hint">DESCUBRE</div>
     </section>
 
-    <!-- Sección 01: Técnicas Artesanales (CARRUSEL MEJORADO) -->
+    <!-- Sección 01: Técnicas Artesanales (CARRUSEL) -->
     <section class="section-light" id="tecnicas">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
             <span class="number">01</span>
             <h2>OUR ARTISAN TECHNIQUES</h2>
         </div>
 
-        <!-- Slider automático con transiciones CSS -->
-        <div class="slider-container">
+        <!-- Slider automático -->
+        <div class="slider-container" data-aos="fade-up" data-aos-delay="150">
             <div class="slider-wrapper" id="sliderWrapper">
                 <div class="slide">
                     <img src="assets/12.png" alt="Macramé texturas" loading="lazy">
@@ -64,7 +62,6 @@
                     <div class="slide-caption">Telar</div>
                 </div>
             </div>
-            <!-- Puntos de navegación (dots) -->
             <div class="slider-dots" id="sliderDots">
                 <span class="dot active"></span>
                 <span class="dot"></span>
@@ -73,13 +70,44 @@
         </div>
     </section>
 
-    <!-- Sección 02: Sobre Nosotros (fondo beige) -->
+    <!-- === NUEVA SECCIÓN: 3 FOTOS A FULL WIDTH === -->
+    <section class="section-fullwidth-techniques">
+        <div class="section-header" data-aos="fade-up">
+            <span class="number">—</span>
+            <h2>NUESTRO PROCESO</h2>
+        </div>
+        <div class="fullwidth-grid">
+            <div class="fullwidth-item" data-aos="zoom-in" data-aos-duration="800">
+                <img src="assets/12.png" alt="Técnica 1">
+                <div class="fullwidth-caption">
+                    <h3>Diseño</h3>
+                    <p>Crochet de autor</p>
+                </div>
+            </div>
+            <div class="fullwidth-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="150">
+                <img src="assets/5.png" alt="Técnica 2">
+                <div class="fullwidth-caption">
+                    <h3>Confección</h3>
+                    <p>Telar tradicional</p>
+                </div>
+            </div>
+            <div class="fullwidth-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                <img src="assets/8.png" alt="Técnica 3">
+                <div class="fullwidth-caption">
+                    <h3>Acabados</h3>
+                    <p>Macramé y detalle</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección 02: Sobre Nosotros -->
     <section class="section-beige" id="about">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
             <span class="number">02</span>
             <h2>ABOUT US</h2>
         </div>
-        <div class="about-content">
+        <div class="about-content" data-aos="fade-up" data-aos-delay="150">
             <h3 class="about-title">THE ATELIER BEHIND THE ART</h3>
             <p class="about-text">
                 Madres & Artesanas es un colectivo de mujeres líderes en La Paz, Bolivia. 
@@ -90,24 +118,38 @@
         </div>
     </section>
 
-    <!-- Sección 03: Galería/Inspiración (con imágenes de alta costura) -->
+    <!-- Sección 03: Galería/Inspiración -->
     <section class="section-gallery" id="gallery">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
             <span class="number">03</span>
             <h2>ALTA COSTURA</h2>
         </div>
         <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1470&auto=format&fit=crop" alt="Modelo con tejido" loading="lazy">
-            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1470&auto=format&fit=crop" alt="Prenda artesanal detalle" loading="lazy">
-            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1473&auto=format&fit=crop" alt="Pasarela textil" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1470&auto=format&fit=crop" alt="Modelo con tejido" loading="lazy" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1470&auto=format&fit=crop" alt="Prenda artesanal detalle" loading="lazy" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1473&auto=format&fit=crop" alt="Pasarela textil" loading="lazy" data-aos="fade-left">
         </div>
     </section>
 
-    <!-- Pequeño footer para rematar -->
+    <!-- Sección de Contacto -->
+    <section class="section-contact" id="contacto">
+        <div class="section-header" data-aos="fade-up">
+            <span class="number">04</span>
+            <h2>CONTACTO</h2>
+        </div>
+        <div class="contact-content" data-aos="fade-up" data-aos-delay="150">
+            <p>¿Te gustaría conocer más sobre nuestro trabajo?</p>
+            <a href="mailto:info@madresartesanas.com" class="btn-more">ESCRÍBENOS</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <p>© 2025 Madres & Artesanas Tex · Hecho con tradición</p>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
