@@ -1,0 +1,97 @@
+:root {
+    --gold: #c5a044;
+    --beige: #ebe7d1;
+    --dark: #1a1a1a;
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial Narrow', sans-serif; /* Usar Montserrat o Barlow en producción */
+    background-color: #fff;
+}
+
+/* Header */
+.navbar {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('tu-imagen-fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 60px;
+    letter-spacing: 5px;
+    margin-bottom: 50px;
+}
+
+/* La famosa línea dorada conectora */
+.scroll-line {
+    width: 2px;
+    height: 100px;
+    background-color: var(--gold);
+    margin: 0 auto;
+}
+
+/* Estilo de los encabezados de sección (01, 02) */
+.section-header {
+    text-align: center;
+    padding: 60px 0;
+    position: relative;
+}
+
+.section-header .number {
+    color: var(--gold);
+    display: block;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.section-header h2 {
+    font-size: 32px;
+    letter-spacing: 3px;
+    color: #444;
+    margin: 0;
+}
+
+/* Fondos */
+.section-beige { background-color: var(--beige); padding: 80px 20px; text-align: center; }
+
+/* Botón "More" */
+.btn-more {
+    background-color: var(--gold);
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
