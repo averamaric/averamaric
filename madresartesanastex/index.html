@@ -12,9 +12,10 @@
 </head>
 <body>
 
-    <!-- Barra de navegación -->
+    <!-- Barra de navegación (semi-transparente) -->
     <nav class="navbar">
         <div class="nav-container">
+            <!-- Reemplaza con tu logo: <img src="logo-blanco.png" alt="Madres & Artesanas" class="logo"> -->
             <span class="logo-text">M&A TEX</span>
             <ul class="nav-menu">
                 <li><a href="#">HOME</a></li>
@@ -26,25 +27,24 @@
         </div>
     </nav>
 
-    <!-- HERO CON PARALLAX MEJORADO -->
-    <section class="hero parallax" id="hero">
-        <div class="parallax-layer parallax-bg"></div>
-        <div class="parallax-layer parallax-overlay"></div>
-        <div class="hero-content parallax-layer parallax-content">
+    <!-- Sección Hero: imagen a pantalla completa -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
             <h1 class="hero-title">MADRES & ARTESANAS TEX</h1>
+            <!-- La línea dorada que conecta -->
             <div class="gold-line" id="connectorLine"></div>
         </div>
         <div class="scroll-hint">DESCUBRE</div>
     </section>
 
-    <!-- Sección 01: Técnicas Artesanales (CARRUSEL) -->
+    <!-- Sección 01: Técnicas Artesanales (CARRUSEL MEJORADO) -->
     <section class="section-light" id="tecnicas">
         <div class="section-header">
             <span class="number">01</span>
             <h2>OUR ARTISAN TECHNIQUES</h2>
         </div>
 
-        <!-- Slider automático -->
+        <!-- Slider automático con transiciones CSS -->
         <div class="slider-container">
             <div class="slider-wrapper" id="sliderWrapper">
                 <div class="slide">
@@ -60,6 +60,7 @@
                     <div class="slide-caption">Telar</div>
                 </div>
             </div>
+            <!-- Puntos de navegación (dots) -->
             <div class="slider-dots" id="sliderDots">
                 <span class="dot active"></span>
                 <span class="dot"></span>
@@ -68,38 +69,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: 3 FOTOS A LO ANCHO (FULL WIDTH) -->
-    <section class="section-fullwidth-techniques">
-        <div class="section-header">
-            <span class="number">—</span>
-            <h2>TÉCNICAS DESTACADAS</h2>
-        </div>
-        <div class="fullwidth-grid">
-            <div class="fullwidth-item">
-                <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1470&auto=format&fit=crop" alt="Macramé" loading="lazy">
-                <div class="fullwidth-caption">
-                    <h3>Macramé</h3>
-                    <p>Arte en nudos</p>
-                </div>
-            </div>
-            <div class="fullwidth-item">
-                <img src="https://images.unsplash.com/photo-1620794149925-952b4bf459a4?q=80&w=1374&auto=format&fit=crop" alt="Crochet" loading="lazy">
-                <div class="fullwidth-caption">
-                    <h3>Crochet</h3>
-                    <p>Textura y calidez</p>
-                </div>
-            </div>
-            <div class="fullwidth-item">
-                <img src="https://images.unsplash.com/photo-1611485988300-b7530defb8e2?q=80&w=1374&auto=format&fit=crop" alt="Telar" loading="lazy">
-                <div class="fullwidth-caption">
-                    <h3>Telar</h3>
-                    <p>Tradición viva</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección 02: Sobre Nosotros -->
+    <!-- Sección 02: Sobre Nosotros (fondo beige) -->
     <section class="section-beige" id="about">
         <div class="section-header">
             <span class="number">02</span>
@@ -112,52 +82,24 @@
                 Tejemos historias que han viajado a pasarelas internacionales, fusionando 
                 técnicas ancestrales con la alta costura contemporánea.
             </p>
-            <button class="btn-more">More</button>
+            <button class="btn-more" aria-label="Más información">More</button>
         </div>
     </section>
 
-    <!-- NUEVA GALERÍA: COLLAGE A PANTALLA COMPLETA -->
-    <section class="section-masterpiece-gallery" id="gallery">
+    <!-- Sección 03: Galería/Inspiración (con imágenes de alta costura) -->
+    <section class="section-gallery" id="gallery">
         <div class="section-header">
             <span class="number">03</span>
             <h2>ALTA COSTURA</h2>
         </div>
-        
-        <!-- Collage tipo mosaico -->
-        <div class="collage-container">
-            <div class="collage-item collage-item-1">
-                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1470&auto=format&fit=crop" alt="Pasarela 1">
-                <div class="collage-overlay">
-                    <span>Elegancia Textil</span>
-                </div>
-            </div>
-            <div class="collage-item collage-item-2">
-                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1470&auto=format&fit=crop" alt="Detalle Tejido">
-                <div class="collage-overlay">
-                    <span>Detalle Artesanal</span>
-                </div>
-            </div>
-            <div class="collage-item collage-item-3">
-                <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1473&auto=format&fit=crop" alt="Colección">
-                <div class="collage-overlay">
-                    <span>Alta Costura</span>
-                </div>
-            </div>
-            <div class="collage-item collage-item-4">
-                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1471&auto=format&fit=crop" alt="Texturas">
-                <div class="collage-overlay">
-                    <span>Texturas Únicas</span>
-                </div>
-            </div>
-            <div class="collage-item collage-item-5">
-                <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=1374&auto=format&fit=crop" alt="Modelo">
-                <div class="collage-overlay">
-                    <span>Arte en Movimiento</span>
-                </div>
-            </div>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1470&auto=format&fit=crop" alt="Modelo con tejido" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1470&auto=format&fit=crop" alt="Prenda artesanal detalle" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1473&auto=format&fit=crop" alt="Pasarela textil" loading="lazy">
         </div>
     </section>
 
+    <!-- Pequeño footer para rematar -->
     <footer class="footer">
         <p>© 2025 Madres & Artesanas Tex · Hecho con tradición</p>
     </footer>
