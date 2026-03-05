@@ -193,6 +193,12 @@ section.visible {
     transform: translateY(0);
 }
 
+.hero {
+    opacity: 1 !important;
+    transform: none !important;
+    background-color: transparent; /* Opcional: quitar fondo blanco */
+}
+
 .section-header {
     text-align: center;
     padding: 4rem 1rem 2rem;
