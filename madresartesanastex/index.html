@@ -2,39 +2,66 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Madres & Artesanas Tex - Recreación</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madres & Artesanas Tex · El taller del arte</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Fuentes modernas y elegantes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Prata&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Barra de navegación (semi-transparente) -->
     <nav class="navbar">
-        <img src="logo-blanco.png" alt="Logo" class="logo">
-        <ul>
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">WHO WE ARE</a></li>
-            <li><a href="#">OUR SPECIALTIES</a></li>
-            <li><a href="#">PORTFOLIO</a></li>
-            <li><a href="#">CONTACTO</a></li>
-        </ul>
+        <div class="nav-container">
+            <!-- Reemplaza con tu logo: <img src="logo-blanco.png" alt="Madres & Artesanas" class="logo"> -->
+            <span class="logo-text">M&A TEX</span>
+            <ul class="nav-menu">
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">WHO WE ARE</a></li>
+                <li><a href="#">OUR SPECIALTIES</a></li>
+                <li><a href="#">PORTFOLIO</a></li>
+                <li><a href="#">CONTACTO</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <section class="hero">
+    <!-- Sección Hero: imagen a pantalla completa -->
+    <section class="hero" id="hero">
         <div class="hero-content">
-            <h1>MADRES & ARTESANAS <br> TEX</h1>
-            <div class="scroll-line"></div> </div>
+            <h1 class="hero-title">MADRES & ARTESANAS TEX</h1>
+            <!-- La línea dorada que conecta -->
+            <div class="gold-line" id="connectorLine"></div>
+        </div>
+        <div class="scroll-hint">DESCUBRE</div>
     </section>
 
-    <section class="section-light">
+    <!-- Sección 01: Técnicas Artesanales (CARRUSEL MEJORADO) -->
+    <section class="section-light" id="tecnicas">
         <div class="section-header">
             <span class="number">01</span>
             <h2>OUR ARTISAN TECHNIQUES</h2>
         </div>
+
+        <!-- Slider automático con transiciones CSS -->
         <div class="slider-container">
-            <div class="slide">
-                <img src="macrame.jpg" alt="Macramé">
-                <div class="slide-text">Macramé</div>
+            <div class="slider-wrapper" id="sliderWrapper">
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?q=80&w=1470&auto=format&fit=crop" alt="Macramé texturas" loading="lazy">
+                    <div class="slide-caption">Macramé</div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1591189863430-ab87e79db8f1?q=80&w=1469&auto=format&fit=crop" alt="Crochet detalle" loading="lazy">
+                    <div class="slide-caption">Crochet</div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1620794139672-797d6fdb9e6c?q=80&w=1374&auto=format&fit=crop" alt="Telar tradicional" loading="lazy">
+                    <div class="slide-caption">Telar</div>
+                </div>
             </div>
-            <div class="dots">
+            <!-- Puntos de navegación (dots) -->
+            <div class="slider-dots" id="sliderDots">
                 <span class="dot active"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -42,17 +69,41 @@
         </div>
     </section>
 
-    <section class="section-beige">
+    <!-- Sección 02: Sobre Nosotros (fondo beige) -->
+    <section class="section-beige" id="about">
         <div class="section-header">
             <span class="number">02</span>
             <h2>ABOUT US</h2>
         </div>
         <div class="about-content">
-            <h3>THE ATELIER BEHIND THE ART</h3>
-            <p>Madres & Artesanas is more than a textile company...</p>
-            <button class="btn-more">More</button>
+            <h3 class="about-title">THE ATELIER BEHIND THE ART</h3>
+            <p class="about-text">
+                Madres & Artesanas es un colectivo de mujeres líderes en La Paz, Bolivia. 
+                Tejemos historias que han viajado a pasarelas internacionales, fusionando 
+                técnicas ancestrales con la alta costura contemporánea.
+            </p>
+            <button class="btn-more" aria-label="Más información">More</button>
         </div>
     </section>
 
+    <!-- Sección 03: Galería/Inspiración (con imágenes de alta costura) -->
+    <section class="section-gallery" id="gallery">
+        <div class="section-header">
+            <span class="number">03</span>
+            <h2>ALTA COSTURA</h2>
+        </div>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1470&auto=format&fit=crop" alt="Modelo con tejido" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1470&auto=format&fit=crop" alt="Prenda artesanal detalle" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1473&auto=format&fit=crop" alt="Pasarela textil" loading="lazy">
+        </div>
+    </section>
+
+    <!-- Pequeño footer para rematar -->
+    <footer class="footer">
+        <p>© 2025 Madres & Artesanas Tex · Hecho con tradición</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
