@@ -41,21 +41,23 @@ sliderWrapper.addEventListener('mouseleave', () => {
 // ============================================
 // 2. PARALLAX MEJORADO (EFECTO MULTICAPA)
 // ============================================
-const heroBg = document.querySelector('.parallax-bg');
+// ============================================
+// 2. PARALLAX MEJORADO (con imagen desde HTML)
+// ============================================
+const parallaxImg = document.querySelector('.parallax-img');
 const heroSection = document.getElementById('hero');
 
 function updateParallax() {
-    if (!heroBg || !heroSection) return;
+    if (!parallaxImg || !heroSection) return;
     
-    // Calculamos cuánto hemos scrolleado relativo al hero
     const scrollPosition = window.scrollY;
     const heroHeight = heroSection.offsetHeight;
     
-    // Efecto parallax: la bg se mueve más lento
-    // Limitamos el rango para que no se vea feo
+    // Efecto parallax: la imagen se mueve más lento que el scroll
     if (scrollPosition <= heroHeight) {
-        const translateY = scrollPosition * 0.4; // ajusta la velocidad
-        heroBg.style.transform = `scale(1.1) translateY(${translateY}px)`;
+        const translateY = scrollPosition * 0.4; // 0.4 = velocidad del efecto
+        parallaxImg.style.transform = `scale(1.1) translateY(${translateY}px)`;
+    
     }
 }
 
