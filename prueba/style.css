@@ -93,23 +93,29 @@ body {
 /* ===== HERO CON PARALLAX ===== */
 /* ===== HERO CON PARALLAX - CORREGIDO ===== */
 /* ===== HERO - VERSIÓN SIMPLIFICADA ===== */
+/* ===== HERO - VERSIÓN ESTÁTICA ===== */
 .hero {
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background-color: #f0f0f0; /* color de fondo mientras carga */
+    background-color: #1a1a1a; /* color de fondo por si la imagen no carga */
 }
 
-.hero-simple-img {
+.hero-image-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;  /* Esto hace que la imagen cubra todo el espacio */
-    display: block;     /* Asegura que se comporte como bloque */
     z-index: 1;
+}
+
+.hero-static-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .hero-overlay {
@@ -118,7 +124,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* overlay simple */
+    background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%);
     z-index: 2;
 }
 
@@ -135,7 +141,7 @@ body {
 }
 
 .hero-title {
-    font-family: 'Prata', serif;
+    font-family: var(--font-serif);
     font-size: clamp(2.5rem, 8vw, 5rem);
     font-weight: 400;
     letter-spacing: 8px;
@@ -148,7 +154,7 @@ body {
 .gold-line {
     width: 2px;
     height: 80px;
-    background-color: #c5a044;
+    background-color: var(--gold);
     margin: 0 auto;
     box-shadow: 0 0 15px rgba(197, 160, 68, 0.6);
 }
@@ -172,7 +178,6 @@ body {
     40% {transform: translateX(-50%) translateY(-10px);}
     60% {transform: translateX(-50%) translateY(-5px);}
 }
-
 /* ===== SECCIONES GENERALES ===== */
 section {
     opacity: 0;
