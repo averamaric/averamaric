@@ -94,7 +94,7 @@ body {
 }
 
 .parallax-bg {
-    background: url('./assets/13.jpg') center/cover no-repeat;
+    background: url('./assets/13.png') center/cover no-repeat;
     transform: scale(1.1); /* Ligeramente más grande para el efecto */
     will-change: transform;
     z-index: 1;
