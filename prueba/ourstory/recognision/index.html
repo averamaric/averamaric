@@ -599,7 +599,134 @@
             color: #666;
             font-size: 0.95rem;
         }
+        /* ===== CLIENTES Y COLABORADORES ===== */
+        .clients-section {
+            padding: 80px 2rem;
+            background-color: white;
+            border-top: 1px solid rgba(197, 160, 68, 0.1);
+        }
+        
+        .clients-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .clients-header .number {
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 6px;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .clients-header h2 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .clients-header p {
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+        }
+        
+        .client-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .client-logo-wrapper {
+            width: 100%;
+            max-width: 180px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.4s ease;
+        }
+        
+        .client-item:hover .client-logo-wrapper {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        .client-logo-wrapper img {
+            max-width: 100%;
+            max-height: 60px;
+            width: auto;
+            height: auto;
+        }
+        
+        .client-testimonial {
+            max-width: 700px;
+            margin: 60px auto 0;
+            padding: 40px;
+            background-color: var(--beige);
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .client-testimonial::before {
+            content: '"';
+            font-family: var(--font-serif);
+            font-size: 8rem;
+            color: var(--gold);
+            opacity: 0.2;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+        }
+        
+        .testimonial-content p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #4a4a4a;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author strong {
+            display: block;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .testimonial-author span {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .clients-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
+        
         /* ===== FOOTER ===== */
         .footer {
             background-color: #1e1e1e;
@@ -797,7 +924,7 @@
         </div>
     </section>
 
-    <!-- GALERÍA DE PORTADAS -->
+    <!-- GALERÍA DE PORTADAS 
     <section class="covers-gallery">
         <div class="covers-header" data-aos="fade-up">
             <h2>Press Covers</h2>
@@ -834,7 +961,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
     <!-- CITAS DE PRENSA -->
     <section class="quotes-section">
@@ -862,7 +989,7 @@
         </div>
     </section>
 
-    <!-- LOGOS DE MEDIOS -->
+    <!-- LOGOS DE MEDIOS 
     <section class="media-section">
         <div class="media-grid">
             <div class="media-item"><img src="assets/images/cnn-logo.png" alt="CNN"></div>
@@ -871,7 +998,7 @@
             <div class="media-item"><img src="assets/images/tedx-logo.png" alt="TEDx"></div>
             <div class="media-item"><img src="assets/images/bbc-logo.png" alt="BBC"></div>
         </div>
-    </section>
+    </section>-->
 
     <!-- PREMIOS -->
     <section class="awards-section">
@@ -901,7 +1028,70 @@
             </div>
         </div>
     </section>
-
+    <section class="clients-section">
+        <div class="clients-header" data-aos="fade-up">
+            <span class="number">— TRUSTED BY —</span>
+            <h2>Brands That Believe</h2>
+            <p>Leading fashion houses and designers who partner with our artisans</p>
+        </div>
+    
+        <div class="clients-grid">
+            <!-- Fila 1 -->
+            <div class="client-item" data-aos="fade-up">
+                <div class="client-logo-wrapper">
+                    <img src="assets/images/logos/gabriela-hearst-logo.png" alt="Gabriela Hearst">
+                </div>
+            </div>
+            <div class="client-item" data-aos="fade-up" data-aos-delay="50">
+                <div class="client-logo-wrapper">
+                    <img src="assets/images/logos/heirlome-logo.png" alt="Heirlome">
+                </div>
+            </div>
+            <div class="client-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="client-logo-wrapper">
+                    <img src="assets/images/logos/altuzarra-logo.png" alt="Altuzarra">
+                </div>
+            </div>
+            <div class="client-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="client-logo-wrapper">
+                    <img src="assets/images/logos/proenza-logo.png" alt="Proenza Schouler">
+                </div>
+            </div>
+            
+            <!-- Fila 2 -->
+            <div class="client-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="client-logo-wrapper">
+                    <img src="assets/images/logos/the-row-logo.png" alt="The Row">
+                </div>
+            </div>
+            <div class="client-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="client-logo-wrapper">
+                    <img src="assets/images/logos/khaite-logo.png" alt="Khaite">
+                </div>
+            </div>
+            <div class="client-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="client-logo-wrapper">
+                    <img src="assets/images/logos/toteme-logo.png" alt="Toteme">
+                </div>
+            </div>
+            <div class="client-item" data-aos="fade-up" data-aos-delay="350">
+                <div class="client-logo-wrapper">
+                    <img src="assets/images/logos/loewe-logo.png" alt="Loewe">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Testimonial de cliente (opcional) -->
+        <div class="client-testimonial" data-aos="fade-up">
+            <div class="testimonial-content">
+                <p>"Working with Madres & Artesanas Tex has been transformative for our collections. Their craftsmanship is unparalleled, and knowing that each piece empowers women makes it even more special."</p>
+                <div class="testimonial-author">
+                    <strong>Design Director</strong>
+                    <span>Leading Luxury Fashion House</span>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- FOOTER -->
     <footer class="footer">
         <p>© 2025 Madres & Artesanas Tex · Crafted with tradition</p>
