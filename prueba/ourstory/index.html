@@ -213,6 +213,10 @@
             text-align: center;
             background-color: #faf9f6; /* Un fondo muy suave, casi blanco */
             border-bottom: 1px solid rgba(197, 160, 68, 0.2);
+
+             background-image: url('images/Captura de pantalla 2026-03-06 134642.png');
+             background-size: cover;
+             background-position: center;
         }
 
         .page-header .number {
@@ -223,6 +227,11 @@
             margin-bottom: 1rem;
         }
 
+        .page-header * {
+            position: relative;
+            z-index: 1;
+        }
+        
         .page-header h1 {
             font-family: var(--font-serif);
             font-size: clamp(3rem, 8vw, 5rem);
