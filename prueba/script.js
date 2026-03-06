@@ -143,7 +143,7 @@ function updateGoldLine() {
     const aboutTop = aboutSection.offsetTop;
     const scrollY = window.scrollY;
     
-    let newHeight = 80;
+    let newHeight = 180;
     
     if (scrollY > heroBottom - 200) {
         const maxScroll = aboutTop - heroBottom + 200;
