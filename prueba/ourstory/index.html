@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Story · M&A Tex</title>
-    <!-- Estilos globales (compartidos con la landing) -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Estilos específicos para Our Story (pueden ir aquí o en otro archivo) -->
+    
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Prata&display=swap" rel="stylesheet">
+    
     <!-- AOS Library CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        /* ===== ESTILOS ESPECÍFICOS PARA OUR STORY ===== */
-        /* Estos estilos complementan o sobrescriben ligeramente los de style.css para esta página */
-
-        
-    </style>
+    
+    <!-- Nuestro CSS principal (de la landing) -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- CSS específico para Our Story -->
+    <link rel="stylesheet" href="our-story.css">
 </head>
 <body>
-    <!-- Barra de navegación (idéntica a la de la landing) -->
+    <!-- Barra de navegación -->
     <nav class="navbar">
         <div class="nav-container">
             <span class="logo-text">M&A TEX</span>
             <ul class="nav-menu">
-                <li><a href="index.html">HOME</a></li> <!-- Asume que la landing es index.html -->
-                <li><a href="our-story.html" style="border-bottom-color: var(--gold); color: white;">OUR STORY</a></li> <!-- Página actual resaltada -->
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="our-story.html" class="active">OUR STORY</a></li>
                 <li><a href="#craft">CRAFT</a></li>
                 <li><a href="#portfolio">PORTFOLIO</a></li>
                 <li><a href="#contact">CONTACT</a></li>
@@ -34,7 +34,7 @@
         </div>
     </nav>
 
-    <!-- Header de la página "Our Story" -->
+    <!-- Header de la página -->
     <header class="page-header">
         <span class="number" data-aos="fade-down">— OUR LEGACY —</span>
         <h1 data-aos="fade-up" data-aos-delay="100">The Story of<br>Madres & Artesanas</h1>
@@ -43,7 +43,7 @@
         </div>
     </header>
 
-    <!-- PRIMERA PARTE DE LA HISTORIA: LOS INICIOS -->
+    <!-- PRIMERA PARTE DE LA HISTORIA -->
     <section class="story-section">
         <!-- Bloque 1: Imagen Izquierda, Texto Derecha -->
         <div class="story-grid" data-aos="fade-up">
@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <!-- Bloque 2: Imagen Derecha, Texto Izquierda (usando la clase .reverse) -->
+        <!-- Bloque 2: Imagen Derecha, Texto Izquierda -->
         <div class="story-grid reverse" data-aos="fade-up">
             <div class="story-image">
                 <img src="assets/images/11.png" alt="Detalle de bordado a mano" loading="lazy">
@@ -72,8 +72,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE PAUSA: CITA CON IMAGEN FULL-WIDTH -->
-    <!-- IMPORTANTE: CAMBIA LA RUTA DE LA IMAGEN 'assets/images/14.png' POR UNA ADECUADA -->
+    <!-- SECCIÓN DE PAUSA: CITA CON IMAGEN -->
     <div class="full-width-quote" data-aos="fade" style="background-image: url('assets/images/14.png');">
         <div class="overlay"></div>
         <div class="quote-content">
@@ -82,22 +81,22 @@
         </div>
     </div>
 
-    <!-- SEGUNDA PARTE DE LA HISTORIA: CRECIMIENTO Y FILOSOFÍA -->
+    <!-- SEGUNDA PARTE DE LA HISTORIA -->
     <section class="story-section">
-        <!-- Bloque 3: Imagen Izquierda, Texto Derecha (vuelve al orden normal) -->
+        <!-- Bloque 3: Imagen Izquierda, Texto Derecha -->
         <div class="story-grid" data-aos="fade-up">
             <div class="story-image">
                 <img src="assets/images/2.png" alt="Manos tejiendo en telar" loading="lazy">
             </div>
             <div class="story-content">
                 <div class="gold-accent"></div>
-                <h2>A Philosophy of slowness</h2>
+                <h2>A Philosophy of Slowness</h2>
                 <p>In a world obsessed with speed, we choose slowness. A single M&A Tex sweater can take up to a week to complete. This is not inefficiency; it is dedication. It means our artisans work from their homes, at their own pace, without the pressure of an assembly line.</p>
                 <p>This philosophy extends to our environment. We use only natural, locally-sourced fibers and low-impact dyes, ensuring that our craft honors the land that inspires it. Slow fashion is not a trend for us; it is the only way.</p>
             </div>
         </div>
 
-        <!-- Bloque 4: Imagen Derecha, Texto Izquierda (con .reverse) -->
+        <!-- Bloque 4: Imagen Derecha, Texto Izquierda -->
         <div class="story-grid reverse" data-aos="fade-up">
             <div class="story-image">
                 <img src="assets/images/16.png" alt="Prenda terminada en detalle" loading="lazy">
@@ -111,12 +110,12 @@
         </div>
     </section>
 
-    <!-- GALERÍA DE RETRATOS (OPCIONAL) -->
+    <!-- GALERÍA DE RETRATOS -->
     <section class="portrait-gallery">
         <h3 data-aos="fade-up">Meet The Artisans</h3>
         <div class="gallery-grid-portraits">
             <div class="portrait-item" data-aos="zoom-in">
-                <img src="assets/images/6.png" alt="Retrato de artesana 1"> <!-- CAMBIA ESTAS RUTAS -->
+                <img src="assets/images/6.png" alt="Retrato de artesana 1">
                 <p>Juana, master knitter (22 years)</p>
             </div>
             <div class="portrait-item" data-aos="zoom-in" data-aos-delay="50">
@@ -134,17 +133,13 @@
         </div>
     </section>
 
-    <!-- FOOTER (idéntico a la landing) -->
+    <!-- FOOTER -->
     <footer class="footer">
         <p>© 2025 Madres & Artesanas Tex · Crafted with tradition</p>
     </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-    
-    </script>
-    <!-- Puedes incluir tu script.js si tiene funciones genéricas que quieras reutilizar -->
-    <!-- <script src="script.js"></script> -->
+    <script src="our-story.js"></script>
 </body>
 </html>
