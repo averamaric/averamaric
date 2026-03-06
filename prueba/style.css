@@ -186,6 +186,188 @@ body {
     40% {transform: translateX(-50%) translateY(-10px);}
     60% {transform: translateX(-50%) translateY(-5px);}
 }
+
+/* ===== TARJETAS DE VIDEO FLOTANTES ===== */
+.video-cards-container {
+    position: absolute;
+    bottom: 30px;        /* Separación del borde inferior */
+    right: 30px;         /* Separación del borde derecho */
+    z-index: 20;         /* Por encima del overlay pero debajo del menú (z-index:100) */
+    display: flex;
+    flex-direction: column; /* Apilamos las tarjetas verticalmente */
+    gap: 15px;
+    max-width: 280px;    /* Ancho máximo de las tarjetas */
+    pointer-events: none; /* El contenedor no bloquea clicks, pero los enlaces sí */
+}
+
+.video-card {
+    pointer-events: auto;   /* El enlace es clickeable */
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px); /* El mismo efecto del menú */
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 8px;
+    text-decoration: none;
+    color: var(--dark);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-smooth);
+    /* Animación de entrada AOS (ya la tenemos) */
+}
+
+.video-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--gold);
+    box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.3);
+}
+
+.video-card-image {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-right: 12px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.video-card:hover .video-card-image {
+    border-color: var(--gold);
+}
+
+.video-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.video-card:hover .video-card-image img {
+    transform: scale(1.1);
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    background-color: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0.9;
+    transition: var(--transition-smooth);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.play-icon svg {
+    width: 18px;
+    height: 18px;
+    margin-left: 2px; /* Pequeño ajuste para centrar el triángulo */
+}
+
+.video-card:hover .play-icon {
+    background-color: #b38f3b; /* Dorado un poco más oscuro */
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+}
+
+.video-card-info {
+    flex-grow: 1;
+    padding-right: 5px;
+}
+
+.video-card-tag {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.video-card-title {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--dark);
+    margin: 0;
+}
+
+/* ===== RESPONSIVE PARA LAS TARJETAS ===== */
+@media (max-width: 768px) {
+    .video-cards-container {
+        bottom: 15px;
+        right: 15px;
+        max-width: 240px;
+        gap: 10px;
+    }
+
+    .video-card {
+        padding: 6px;
+    }
+
+    .video-card-image {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+    }
+
+    .play-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .play-icon svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .video-card-tag {
+        font-size: 0.6rem;
+    }
+
+    .video-card-title {
+        font-size: 0.8rem;
+    }
+}
+
+/* Ajuste para móviles más pequeños */
+@media (max-width: 480px) {
+    .video-cards-container {
+        position: static; /* Quitamos la posición absoluta */
+        flex-direction: row; /* Las ponemos una al lado de la otra */
+        justify-content: center;
+        max-width: 100%;
+        padding: 15px 15px 0 15px; /* Espacio dentro del hero, debajo del título */
+        margin-top: 20px; /* Separación del contenido superior */
+        background: transparent; /* Fondo transparente */
+        flex-wrap: wrap;
+    }
+
+    .video-card {
+        flex: 1 1 200px; /* Que crezcan pero tengan un ancho base */
+        background: rgba(255, 255, 255, 0.9); /* Fondo un poco más sólido para legibilidad */
+    }
+
+    /* Para que no se superpongan con la línea dorada */
+    .hero-horizontal-group {
+        bottom: 120px; /* Aumentamos el espacio abajo para las tarjetas */
+    }
+}
 /* ===== SECCIONES GENERALES ===== */
 section {
     opacity: 0;
