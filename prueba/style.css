@@ -307,6 +307,38 @@ section.visible {
     box-shadow: 0 0 10px var(--gold);
 }
 
+/* ===== TEXTO DESCRIPTIVO PARA SECCIONES ===== */
+.section-description {
+    max-width: 700px;
+    margin: 1.5rem auto 0;
+    padding: 0 1rem;
+}
+
+.description-text {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #666;
+    letter-spacing: 0.3px;
+    font-style: italic;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.description-text.with-line {
+    border-left: 3px solid var(--gold);
+    padding-left: 1.5rem;
+    text-align: left;
+    font-style: normal;
+}
+
+.description-text.with-line::before,
+.description-text.with-line::after {
+    display: none;
+}
+
+
 /* ===== NUEVA SECCIÓN: 3 FOTOS A FULL WIDTH ===== */
 .section-fullwidth-techniques {
     background-color: var(--light-bg);
