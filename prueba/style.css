@@ -102,6 +102,17 @@ body {
     background-color: #1a1a1a; /* color de fondo por si la imagen no carga */
 }
 
+.hero-horizontal-group {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 80px;  /* Ajusta la altura vertical aquí */
+    display: flex;
+    align-items: center;  /* Centra verticalmente los elementos entre sí */
+    gap: 30px;  /* Espacio entre la línea y el texto */
+    z-index: 4;
+    pointer-events: none;
+}
 .hero-image-container {
     position: absolute;
     top: 0;
@@ -153,26 +164,23 @@ body {
 
 .gold-line {
     width: 2px;
-    height: 220px;
+    height: 220px;  /* Mantiene su largo actual */
     background-color: var(--gold);
     margin: 0 auto;
     box-shadow: 0 0 15px rgba(197, 160, 68, 0.6);
+    /* ELIMINA margin: 0 auto; de aquí */
 }
 
 .scroll-hint {
-    position: absolute;
-    bottom: 30px;
-    left: 51%;
-    transform: translateX(-50%);
     color: rgba(255,255,255,0.7);
     font-size: 0.7rem;
     letter-spacing: 4px;
     writing-mode: vertical-rl;
     text-orientation: upright;
     animation: bounce 2s infinite;
-    z-index: 4;
+    margin-top: 20px;  /* Espacio entre la línea y el texto */
+    /* ELIMINA position, bottom, left, transform de aquí */
 }
-
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
     40% {transform: translateX(-50%) translateY(-10px);}
