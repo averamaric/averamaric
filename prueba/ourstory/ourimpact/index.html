@@ -102,7 +102,116 @@
             color: white;
             border-bottom-color: var(--gold);
         }
-
+        /* ===== DROPDOWN MENU ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-trigger {
+            cursor: pointer;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 180px;
+            border-radius: 4px;
+            padding: 0.5rem 0;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            list-style: none;
+            border: 1px solid rgba(197, 160, 68, 0.2);
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            top: calc(100% + 5px);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: none !important;
+            white-space: nowrap;
+            text-align: left;
+        }
+        
+        .dropdown-menu a:hover {
+            background: rgba(197, 160, 68, 0.1);
+            color: white;
+            padding-left: 2rem;
+        }
+        
+        .dropdown-menu a.active {
+            color: var(--gold);
+            background: rgba(197, 160, 68, 0.05);
+        }
+        
+        /* Flecha indicadora del dropdown */
+        .dropdown-trigger::after {
+            content: '▾';
+            margin-left: 5px;
+            font-size: 0.8rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown:hover .dropdown-trigger::after {
+            transform: rotate(180deg);
+        }
+        
+        /* Responsive para móvil */
+        @media (max-width: 968px) {
+            .dropdown {
+                position: static;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                background: transparent;
+                backdrop-filter: none;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                display: none;
+                padding: 0;
+                margin-top: 0.5rem;
+                border: none;
+            }
+            
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+            
+            .dropdown-menu a {
+                padding: 0.5rem 2rem;
+                font-size: 0.75rem;
+            }
+            
+            .dropdown-menu a:hover {
+                padding-left: 2.5rem;
+            }
+        }
         /* ===== HEADER DE IMPACTO ===== */
         .impact-header {
             height: 70vh;
@@ -580,17 +689,27 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="nav-container">
-            <span class="logo-text">M&A TEX</span>
-            <ul class="nav-menu">
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="our-story.html">OUR STORY</a></li>
-                <li><a href="our-impact.html" class="active">OUR IMPACT</a></li>
-                <li><a href="#craft">CRAFT</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="nav-container">
+        <span class="logo-text">M&A TEX</span>
+        <ul class="nav-menu">
+            <li><a href="../../index.html">HOME</a></li>
+            
+            <!-- Dropdown: Our Story -->
+            <li class="dropdown">
+                <a href="our-story.html" class="dropdown-trigger" >OUR STORY ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="../index.html">Our Story</a></li>
+                    <li><a href="index.html" style="border-bottom-color: var(--gold);">Our Impact</a></li>
+                    <li><a href="../recognision/index.html">Recognitions</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="../../craft/index.html">CRAFT</a></li>
+            <li><a href="../../portfolio/index.html">PORTFOLIO</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+    </div>
+</nav>
 
     <!-- HEADER DE IMPACTO -->
     <header class="impact-header">
