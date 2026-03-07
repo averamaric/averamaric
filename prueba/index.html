@@ -16,16 +16,26 @@
 
     <!-- Barra de navegación (semi-transparente) -->
     <nav class="navbar">
-        <div class="nav-container">
-            <span class="logo-text">M&A TEX</span>
-            <ul class="nav-menu">
-                <li><a href="#hero">HOME</a></li>
-                <li><a href="#tecnicas">OUR STORY</a></li>
-                <li><a href="#tecnicas">CRAFT</a></li>
-                <li><a href="#gallery">PORTFOLIO</a></li>
-                <li><a href="#contacto">CONTACT</a></li>
-            </ul>
-        </div>
+    <div class="nav-container">
+        <span class="logo-text">M&A TEX</span>
+        <ul class="nav-menu">
+            <li><a href="index.html" style="border-bottom-color: var(--gold);">HOME</a></li>
+            
+            <!-- Dropdown: Our Story -->
+            <li class="dropdown">
+                <a href="ourstory/index.html" class="dropdown-trigger" >OUR STORY ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="ourstory/index.html">Our Story</a></li>
+                    <li><a href="ourstory/ourimpact/index.html">Our Impact</a></li>
+                    <li><a href="ourstory/recognition/index.html">Recognitions</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="craft/index.html">CRAFT</a></li>
+            <li><a href="portfolio/index.html">PORTFOLIO</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+    </div>
     </nav>
 
     <!-- Sección Hero -->
