@@ -209,16 +209,15 @@
         }
         /* Ajuste para el header de la página (no es un hero, es un encabezado) */
         .page-header {
-            padding: 180px 2rem 80px; /* Mucho padding superior por el nav fijo */
+            padding: 180px 2rem 80px;
             text-align: center;
-            background-color: #faf9f6; /* Un fondo muy suave, casi blanco */
+            background-color: #faf9f6;
             border-bottom: 1px solid rgba(197, 160, 68, 0.2);
-
             background-image: url('images/Presentation2.jpg');
-             
-            height: 60vh;
-    
-            
+            background-size: cover;
+            background-position: center;
+            position: relative; /* necesario para el overlay */
+            color: white; /* texto blanco sobre la imagen */
            
         }
 
