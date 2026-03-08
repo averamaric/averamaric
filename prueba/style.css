@@ -283,7 +283,7 @@ body {
 .scroll-hint {
     color: rgba(255,255,255,0.7);
     font-size: 0.7rem;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     writing-mode: vertical-rl;
     text-orientation: upright;
     animation: bounce 2s infinite;
