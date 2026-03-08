@@ -273,7 +273,7 @@ body {
 
 .gold-line {
     width: 2px;
-    height: 220px;  /* Mantiene su largo actual */
+    height: 190px;  /* Mantiene su largo actual */
     background-color: var(--gold);
     margin: 0 auto;
     box-shadow: 0 0 15px rgba(197, 160, 68, 0.6);
