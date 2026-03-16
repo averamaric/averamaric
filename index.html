@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,12 @@
 </head>
 <body>
 
+    <!-- CURSOR PERSONALIZADO -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-dot" id="cursorDot"></div>
+
     <nav class="navbar">
-        <div class="menu-icon">
+        <div class="menu-icon" id="menuIcon">
             <span></span>
             <span></span>
         </div>
@@ -20,21 +24,20 @@
     </nav>
 
     <main class="hero">
-        <!-- LOGO CENTRAL MÁS MINIMALISTA -->
+
+        <!-- LOGO CENTRAL -->
         <div class="logo-container">
             <h1 class="logo-text">
                 <span class="logo-line">AB<img src="assets/images/Analucia Vera-25935251.jpg" alt="Analucia" class="circle-image">UT</span>
-                <span class="logo-line">ME<small class="vertical-text">  (ANALUCIA V.M)</small></span>
+                <span class="logo-line">ME<small class="vertical-text">(ANALUCIA V.M)</small></small></span>
             </h1>
             <div class="logo-subtitle">
                 <span>INDUSTRIAL ELECTRONIC ENGINEER</span>
             </div>
         </div>
 
-        <!-- TEXTO DESCRIPTIVO EN FORMATO "TARJETA" COMO NOTHING -->
+        <!-- TEXTO DESCRIPTIVO -->
         <div class="description-card" id="descriptionCard">
-            <div class="card-header">
-            </div>
             <div class="card-content">
                 <p class="card-text">Hi, I'm Analucia, an engineer turning industrial challenges into smart, automated solutions. I'm currently deepening my expertise in robotics and automation after falling in love with the logic of PLCs on the factory floor.</p>
                 <p class="card-text">Check out my work or learn more about my skills!</p>
@@ -47,16 +50,15 @@
             </div>
         </div>
 
-        <!-- TARJETAS ASIMÉTRICAS AL ESTILO NOTHING -->
+        <!-- TARJETAS: layout grid en desktop, carrusel en mobile -->
         <div class="nothing-cards-container">
-            <!-- Tarjeta 1 (arriba izquierda, grande) -->
-            <a href="projects/robotics.html" class="nothing-card card-large" style="--rotation: -3deg; top: 15%; left: 5%; --card-height: 280px">
+
+            <!-- Tarjeta 1: PROJECTS (arriba izquierda) -->
+            <a href="projects/robotics.html" class="nothing-card card-projects" data-area="projects">
                 <div class="card-image-container">
-                    <!-- REEMPLAZA EL IMG CON VIDEO -->
                     <video class="card-image video-loop" autoplay muted loop playsinline>
                         <source src="assets/videos/Proyecto de vídeo 7.mp4" type="video/mp4">
                         <source src="assets/videos/Proyecto de vídeo 7.webm" type="video/webm">
-                        <!-- Fallback: Si el video no carga, muestra el GIF original -->
                         <img src="assets/gifs/robot-arm.gif" alt="Robotic Systems" class="card-image">
                     </video>
                     <div class="image-overlay"></div>
@@ -71,46 +73,31 @@
                         <span>Robotics</span>
                     </div>
                 </div>
-                <!-- Indicador especial para video -->
                 <div class="card-hover-indicator">→</div>
             </a>
 
-            <!-- Tarjeta 2 (arriba derecha, mediana) -->
-            <!-- Tarjeta 2 (arriba derecha, mediana) - MODIFICADA -->
-            <!-- En tu tarjeta CV-download -->
-            <a href="tu-archivo-cv.pdf" download class="nothing-card card-medium cv-special-card" 
-               style="--rotation: --spin-duration: 0.5s; --spin-timing: cubic-bezier(0.77, 0, 0.175, 1); 4deg; bottom: 15%; right: 6%; --card-height: 180px">
-                
+            <!-- Tarjeta 2: CV DOWNLOAD (abajo derecha) -->
+            <a href="tu-archivo-cv.pdf" download class="nothing-card card-medium cv-special-card" data-area="cv">
                 <div class="cv-image-wrapper">
                     <div class="cv-image-zoomed-container">
                         <img src="assets/images/Folder.png" alt="CV Download" class="cv-zoomed-image">
-                        
-                        <!-- Puntos con posiciones personalizadas en HTML -->
                         <div class="cv-dots-container">
-                            <!-- Punto 1: Superior izquierdo -->
                             <div class="cv-dot" style="--dot-left: 45%; --dot-top: 60%; --delay: 0s;"></div>
-                            
-                            <!-- Punto 2: Inferior central -->
                             <div class="cv-dot" style="--dot-left: 60%; --dot-top: 60%; --delay: 0.3s;"></div>
-                            
-                            <!-- Punto 3: Superior derecho -->
                             <div class="cv-dot" style="--dot-left: 75%; --dot-top: 60%; --delay: 0.6s;"></div>
                         </div>
-                        
                         <img src="assets/images/Folfer download.png" alt="Download Now" class="cv-zoomed-hover">
                         <div class="cv-border-ring"></div>
                     </div>
                 </div>
-                
                 <div class="card-info">
                     <h3>CV - DOWNLOAD</h3>
                 </div>
-                
                 <div class="card-hover-indicator">↗</div>
             </a>
 
-            <!-- Tarjeta 4 (abajo derecha, mediana) -->
-            <a href="projects/portfolio.html" class="nothing-card card-large" style="--rotation: 2deg; top: 20%; right: 10%; --card-height: 280px">
+            <!-- Tarjeta 3: PROFILE (arriba derecha) -->
+            <a href="projects/portfolio.html" class="nothing-card card-profile" data-area="profile">
                 <div class="card-info">
                     <div class="flipping-title">
                         <h3 class="skills-title-scan">PROFILE</h3>
@@ -124,10 +111,9 @@
                 <div class="card-hover-indicator">↓</div>
             </a>
 
-            <!-- Tarjeta 5 (centro abajo, pequeña) -->
-            <a href="projects/skills.html" class="nothing-card card-medium" style="--rotation: -2deg; bottom: 5%; left: 10%; --card-height: 240px">
+            <!-- Tarjeta 4: SKILLS (abajo izquierda) -->
+            <a href="projects/skills.html" class="nothing-card card-skills" data-area="skills">
                 <div class="card-info">
-                    <!-- Contenedor especial para la animación -->
                     <div class="flipping-title">
                         <h3 class="skills-title-simple">SKILLS</h3>
                     </div>
@@ -147,9 +133,9 @@
             <span>EXPLORE</span>
             <div class="indicator-line"></div>
         </div>
-    </main>
-    <script src="script.js"></script>
 
-    
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
