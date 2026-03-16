@@ -241,6 +241,7 @@ body::after {
 }
 
 /* CONTENEDOR DE TARJETAS ASIMÉTRICAS */
+/* CONTENEDOR DE TARJETAS */
 .nothing-cards-container {
     position: absolute;
     top: 0;
@@ -248,31 +249,93 @@ body::after {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        ". projects projects . profile"
+        ". projects projects . profile"
+        "skills . . . cv"
+        "skills . . . cv";
+    padding: clamp(20px, 3vw, 50px);
+    gap: clamp(8px, 1.5vw, 20px);
+    box-sizing: border-box;
 }
+
+/* Posición de cada tarjeta en el grid */
+.card-projects   { grid-area: projects; }
+.card-profile    { grid-area: profile;  }
+.card-skills     { grid-area: skills;   }
+.cv-special-card { grid-area: cv;       }
 
 /* TARJETAS INDIVIDUALES */
 .nothing-card {
-    position: absolute;
+    position: relative;
     background: rgba(255, 255, 255, 0.03);
     border-radius: 12px;
     overflow: hidden;
     text-decoration: none;
     color: #FFFFFF;
     pointer-events: all;
+    display: flex;
+    flex-direction: column;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     backdrop-filter: blur(10px);
     transform: rotate(var(--rotation, 0deg));
-    height: var(--card-height, auto);
+    min-height: 0;
+    opacity: 0;
     animation: fadeInUp 0.6s ease forwards;
     animation-delay: calc(var(--i, 0) * 0.1s);
-    opacity: 0;
 }
 
-/* ASIGNAR RETRASOS DE ANIMACIÓN */
 .nothing-card:nth-child(1) { --i: 1; }
 .nothing-card:nth-child(2) { --i: 2; }
 .nothing-card:nth-child(3) { --i: 3; }
 .nothing-card:nth-child(4) { --i: 4; }
+
+.card-projects   { --rotation: -2deg; }
+.card-profile    { --rotation:  2deg; }
+.card-skills     { --rotation: -1.5deg; }
+.cv-special-card { --rotation:  1.5deg; }
+
+/* Breakpoint tablet — 2 columnas */
+@media (max-width: 1200px) {
+    .nothing-cards-container {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        grid-template-areas:
+            "projects profile"
+            "skills   cv";
+        height: auto;
+        pointer-events: all;
+        padding: 0 24px;
+        margin-top: 40px;
+    }
+}
+
+/* Breakpoint mobile — carrusel horizontal */
+@media (max-width: 768px) {
+    .nothing-cards-container {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        grid-template-areas: none;
+        gap: 12px;
+        padding: 8px 20px 24px;
+        height: auto;
+        margin-top: 20px;
+    }
+    .nothing-cards-container::-webkit-scrollbar { display: none; }
+    .nothing-card {
+        flex: 0 0 160px;
+        min-height: 200px;
+        transform: none !important;
+    }
+}
 
 @keyframes fadeInUp {
     from {
