@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sanders & Young — Auto Repair</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #E8440A;
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray: #EFEFEF;
+      --gray-dark: #C8C8C8;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+      --font-condensed: 'Barlow Condensed', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      background: var(--white);
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .nav-logo {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0;
+    }
+    .nav-links li a {
+      display: block;
+      padding: 0 1.4rem;
+      height: 60px;
+      line-height: 60px;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-links li a:hover { background: var(--orange); color: var(--white); }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 0 1.5rem;
+      height: 60px;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--orange); }
+    .nav-cta .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+    .nav-cta:hover .dot { background: var(--white); }
+
+    /* ── HERO ── */
+    #hero {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 60px);
+    }
+    .hero-left {
+      position: relative;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+    .hero-left img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      display: block;
+    }
+    .hero-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-40%, -50%);
+      background: var(--orange);
+      padding: 2.5rem 2rem;
+      width: 280px;
+    }
+    .hero-badge h1 {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      line-height: 0.9;
+      color: var(--black);
+      text-transform: uppercase;
+    }
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 4rem 3rem;
+      background: var(--white);
+    }
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.6;
+      max-width: 320px;
+      margin-top: auto;
+      margin-bottom: 2rem;
+    }
+    .hero-img-bottom {
+      position: relative;
+      flex: 1;
+      min-height: 300px;
+      overflow: hidden;
+    }
+    .hero-img-bottom img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 1rem 1.5rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+      position: absolute;
+      bottom: 0; right: 0;
+    }
+    .btn-cta .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+    .btn-cta:hover { background: var(--orange); }
+    .btn-cta:hover .dot { background: var(--white); }
+
+    /* ── ABOUT STRIP ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+    }
+    .about-left {
+      padding: 5rem 4rem;
+    }
+    .about-left h2 {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+    .about-img {
+      overflow: hidden;
+      max-height: 320px;
+    }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .stat-card {
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stat-card.dark { background: var(--black); color: var(--white); }
+    .stat-card.light { background: var(--gray); color: var(--black); }
+    .stat-card h3 {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+    .stat-card p {
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-top: 1rem;
+    }
+    .stat-card.dark p { color: var(--gray-dark); }
+
+    /* ── SERVICES ── */
+    #services { padding: 5rem 4rem; }
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+    .services-header h2 {
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+    .services-header p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      max-width: 320px;
+      justify-self: end;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 0;
+    }
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+    }
+    .service-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover img { transform: scale(1.04); }
+    .service-info {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 1.5rem;
+    }
+    .service-card.orange { background: var(--orange); }
+    .service-card.dark { background: var(--black); }
+    .service-card.light { background: var(--gray); }
+    .service-card.orange .service-info h3 { color: var(--black); }
+    .service-card.dark .service-info h3,
+    .service-card.dark .service-info p { color: var(--white); }
+    .service-card.light .service-info h3,
+    .service-card.light .service-info p { color: var(--black); }
+    .service-info h3 {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .service-info p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      opacity: 0.85;
+    }
+
+    /* bottom row services */
+    .services-row2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2fr;
+      margin-top: 0;
+    }
+
+    .explore-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 2rem;
+    }
+    .btn-explore {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 1rem 2rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+    .btn-explore .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+    .btn-explore:hover { background: var(--orange); }
+
+    /* ── WHY US ── */
+    #why {
+      padding: 5rem 4rem;
+      background: var(--white);
+    }
+    #why h2 {
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 4rem;
+    }
+    .why-table { width: 100%; border-collapse: collapse; }
+    .why-table tr {
+      border-bottom: 1px solid #ccc;
+    }
+    .why-table tr:first-child { border-top: 1px solid #ccc; }
+    .why-table td {
+      padding: 1.5rem 2rem;
+      vertical-align: middle;
+    }
+    .why-table tr:nth-child(odd) { background: var(--black); color: var(--white); }
+    .why-table tr:nth-child(even) { background: var(--gray); color: var(--black); }
+    .why-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      white-space: nowrap;
+      width: 100px;
+    }
+    .why-title {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.3rem;
+      width: 220px;
+    }
+    .why-desc {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      opacity: 0.85;
+    }
+    .why-footer {
+      margin-top: 2rem;
+    }
+    .btn-who {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+    .btn-who .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+    .btn-who:hover { background: var(--orange); }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials {
+      position: relative;
+      background: var(--black);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 500px;
+    }
+    .testimonials-left {
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonials-left img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.6;
+    }
+    .testimonials-left h2 {
+      position: absolute;
+      top: 2.5rem; left: 2.5rem;
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .testimonials-right {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--gray);
+    }
+    .review {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #bbb;
+    }
+    .review:last-child { border-bottom: none; }
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .review-name {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .review-score {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+    .review-text {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* ── CONTACT / SCHEDULE ── */
+    #contact {
+      padding: 5rem 4rem;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    #contact h2 {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    #contact p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .contact-info p { margin-bottom: 0.5rem; color: #333; font-size: 0.95rem; }
+    .contact-info strong { color: var(--black); }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1.5px solid #ccc;
+      background: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus { border-color: var(--orange); }
+    .contact-form textarea { resize: vertical; min-height: 100px; }
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--orange);
+      color: var(--white);
+      padding: 1rem 2rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+    .btn-submit:hover { background: var(--black); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .footer-logo {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .footer-copy { font-size: 0.8rem; color: #888; margin-top: 0.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-dark);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--orange); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero, #about, #contact, #testimonials { grid-template-columns: 1fr; }
+      .services-grid, .services-row2 { grid-template-columns: 1fr; }
+      #services { padding: 3rem 1.5rem; }
+      #why { padding: 3rem 1.5rem; }
+      #contact { padding: 3rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+      .hero-badge h1 { font-size: 3.5rem; }
+      .hero-badge { width: 200px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Sanders & Young</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">
+    Schedule Service <span class="dot"></span>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <!-- Placeholder gradient simulating car on lift -->
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 50%,#111 100%);display:flex;align-items:center;justify-content:center;">
+      <svg width="220" height="300" viewBox="0 0 220 300" fill="none" opacity="0.3">
+        <!-- lift pillars -->
+        <rect x="20" y="50" width="18" height="250" fill="#888"/>
+        <rect x="182" y="50" width="18" height="250" fill="#888"/>
+        <!-- car body simplified -->
+        <rect x="40" y="140" width="140" height="55" rx="12" fill="#555"/>
+        <rect x="60" y="115" width="100" height="40" rx="8" fill="#444"/>
+        <!-- wheels -->
+        <circle cx="68" cy="200" r="22" fill="#333" stroke="#666" stroke-width="4"/>
+        <circle cx="152" cy="200" r="22" fill="#333" stroke="#666" stroke-width="4"/>
+        <!-- headlights -->
+        <rect x="42" y="155" width="18" height="10" rx="2" fill="#aaa"/>
+        <rect x="160" y="155" width="18" height="10" rx="2" fill="#aaa"/>
+      </svg>
+    </div>
+    <div class="hero-badge">
+      <h1>AUTO<br>REPAIR<br>YOU<br>CAN<br>TRUST</h1>
+    </div>
+  </div>
+  <div class="hero-right">
+    <p class="hero-tagline">We keep your vehicle running strong with honest service and fair prices.</p>
+    <div class="hero-img-bottom">
+      <!-- Placeholder for red car detail image -->
+      <div style="width:100%;height:100%;background:linear-gradient(120deg,#C0392B,#E8440A,#8B1A1A);min-height:280px;display:flex;align-items:center;justify-content:center;">
+        <svg width="180" height="120" viewBox="0 0 180 120" fill="none" opacity="0.5">
+          <ellipse cx="90" cy="60" rx="80" ry="45" fill="#ff6b3d" opacity="0.6"/>
+          <ellipse cx="110" cy="50" rx="50" ry="28" fill="#ff9966" opacity="0.4"/>
+        </svg>
+      </div>
+      <a href="#contact" class="btn-cta">Schedule Service <span class="dot"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left fade-up">
+    <h2>The Region's<br>Best Auto Shop</h2>
+    <div class="about-img">
+      <!-- Placeholder garage image -->
+      <div style="width:100%;height:220px;background:linear-gradient(180deg,#d0d0d0,#b0b0b0);display:flex;align-items:center;justify-content:center;">
+        <div style="display:flex;gap:12px;">
+          <div style="width:80px;height:140px;background:var(--orange);border-radius:4px 4px 0 0;"></div>
+          <div style="width:80px;height:140px;background:var(--orange);border-radius:4px 4px 0 0;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-right fade-up">
+    <div class="stat-card light">
+      <h3>15 Years</h3>
+      <p>Serving Your Region</p>
+    </div>
+    <div class="stat-card dark">
+      <h3>ASE<br>Certified</h3>
+      <p>Serving Your Region</p>
+    </div>
+    <div class="stat-card dark">
+      <h3>24-Month<br>24,000-<br>Mile</h3>
+      <p>Warranty</p>
+    </div>
+    <div class="stat-card light">
+      <h3>Local</h3>
+      <p>Family-Owned &<br>Operated</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header fade-up">
+    <h2>Complete Auto<br>Repair Services</h2>
+    <p>From routine maintenance to major repairs, we handle it all.</p>
+  </div>
+
+  <div class="services-grid fade-up">
+    <!-- Oil Change — orange large card -->
+    <div class="service-card orange" style="min-height:400px;">
+      <div class="service-info">
+        <h3>Oil Change</h3>
+        <p>Quick, thorough service to keep your engine healthy.</p>
+      </div>
+      <div style="position:absolute;bottom:0;right:0;width:70%;height:70%;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <!-- Oil bubble SVG illustration -->
+        <svg viewBox="0 0 300 300" width="100%" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.55">
+          <circle cx="180" cy="160" r="90" fill="#C0330A"/>
+          <circle cx="100" cy="200" r="55" fill="#C0330A"/>
+          <circle cx="200" cy="90" r="40" fill="#C0330A"/>
+          <circle cx="80" cy="120" r="28" fill="#C0330A"/>
+          <circle cx="240" cy="200" r="22" fill="#C0330A"/>
+          <circle cx="140" cy="240" r="18" fill="#C0330A"/>
+          <circle cx="60" cy="230" r="14" fill="#C0330A"/>
+          <circle cx="260" cy="130" r="12" fill="#C0330A"/>
+        </svg>
+      </div>
+    </div>
+    <!-- Engine Check -->
+    <div class="service-card dark">
+      <div class="service-info">
+        <h3>Engine Check</h3>
+        <p>Advanced tools to find and fix the problem fast.</p>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:65%;display:flex;align-items:flex-end;justify-content:center;padding-bottom:1rem;">
+        <svg viewBox="0 0 120 100" width="80%" fill="none" opacity="0.7">
+          <rect x="20" y="20" width="80" height="60" rx="6" fill="#555"/>
+          <rect x="35" y="5" width="15" height="20" rx="3" fill="#888"/>
+          <rect x="70" y="5" width="15" height="20" rx="3" fill="#888"/>
+          <rect x="35" y="75" width="15" height="20" rx="3" fill="#888"/>
+          <rect x="70" y="75" width="15" height="20" rx="3" fill="#888"/>
+          <circle cx="60" cy="50" r="18" fill="#333" stroke="#999" stroke-width="3"/>
+          <circle cx="60" cy="50" r="8" fill="#777"/>
+        </svg>
+      </div>
+    </div>
+    <!-- Brake Repair -->
+    <div class="service-card dark">
+      <div class="service-info">
+        <h3>Brake Repair</h3>
+        <p>Safe, reliable stopping power you can count on.</p>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:65%;display:flex;align-items:flex-end;justify-content:center;padding-bottom:1rem;">
+        <svg viewBox="0 0 120 120" width="80%" fill="none" opacity="0.7">
+          <circle cx="60" cy="60" r="50" fill="#333" stroke="#666" stroke-width="3"/>
+          <circle cx="60" cy="60" r="28" fill="#222"/>
+          <circle cx="60" cy="60" r="10" fill="#888"/>
+          <rect x="78" y="20" width="22" height="80" rx="4" fill="#C8A000"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="services-row2 fade-up">
+    <!-- Air Conditioning -->
+    <div class="service-card dark" style="min-height:300px;">
+      <div class="service-info">
+        <h3>Air Conditioning</h3>
+        <p>Stay comfortable in any weather, year-round.</p>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:60%;display:flex;align-items:flex-end;justify-content:center;">
+        <svg viewBox="0 0 120 60" width="100%" fill="none" opacity="0.5">
+          <rect x="5" y="10" width="110" height="35" rx="4" fill="#333"/>
+          <rect x="10" y="20" width="100" height="2" fill="#777"/>
+          <rect x="10" y="28" width="100" height="2" fill="#777"/>
+          <rect x="10" y="36" width="100" height="2" fill="#777"/>
+          <rect x="50" y="42" width="20" height="10" rx="2" fill="#555"/>
+        </svg>
+      </div>
+    </div>
+    <!-- Transmission -->
+    <div class="service-card dark" style="min-height:300px;">
+      <div class="service-info">
+        <h3>Transmission</h3>
+        <p>Expert care for smooth shifting and long life.</p>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:65%;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 100 100" width="70%" fill="none" opacity="0.7">
+          <circle cx="50" cy="50" r="42" fill="#222" stroke="#666" stroke-width="4"/>
+          <circle cx="50" cy="50" r="22" fill="#111" stroke="#888" stroke-width="3"/>
+          <line x1="50" y1="8" x2="50" y2="28" stroke="#aaa" stroke-width="4" stroke-linecap="round"/>
+          <line x1="50" y1="72" x2="50" y2="92" stroke="#aaa" stroke-width="4" stroke-linecap="round"/>
+          <line x1="8" y1="50" x2="28" y2="50" stroke="#aaa" stroke-width="4" stroke-linecap="round"/>
+          <line x1="72" y1="50" x2="92" y2="50" stroke="#aaa" stroke-width="4" stroke-linecap="round"/>
+          <text x="38" y="55" fill="white" font-size="12" font-family="sans-serif">H</text>
+        </svg>
+      </div>
+    </div>
+    <!-- Electrical -->
+    <div class="service-card light" style="min-height:300px;">
+      <div class="service-info" style="position:static;padding:1.5rem;">
+        <h3 style="color:var(--black);">Electrical Systems</h3>
+        <p style="color:#333;">From batteries to starters, we've got you covered.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Last row: Tires + Inspections -->
+  <div style="display:grid;grid-template-columns:2fr 1fr;margin-top:0;" class="fade-up">
+    <div class="service-card dark" style="min-height:400px;">
+      <div class="service-info">
+        <h3>Tire Service & Alignment</h3>
+        <p>Proper alignment and quality tires for safer driving.</p>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:75%;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 200 200" width="60%" fill="none" opacity="0.7">
+          <circle cx="100" cy="100" r="90" fill="#1a1a1a" stroke="#666" stroke-width="6"/>
+          <circle cx="100" cy="100" r="45" fill="#111" stroke="#999" stroke-width="4"/>
+          <circle cx="100" cy="100" r="15" fill="#888"/>
+          <line x1="100" y1="10" x2="100" y2="55" stroke="#555" stroke-width="8"/>
+          <line x1="100" y1="145" x2="100" y2="190" stroke="#555" stroke-width="8"/>
+          <line x1="10" y1="100" x2="55" y2="100" stroke="#555" stroke-width="8"/>
+          <line x1="145" y1="100" x2="190" y2="100" stroke="#555" stroke-width="8"/>
+          <line x1="36" y1="36" x2="68" y2="68" stroke="#555" stroke-width="6"/>
+          <line x1="132" y1="132" x2="164" y2="164" stroke="#555" stroke-width="6"/>
+          <line x1="164" y1="36" x2="132" y2="68" stroke="#555" stroke-width="6"/>
+          <line x1="68" y1="132" x2="36" y2="164" stroke="#555" stroke-width="6"/>
+        </svg>
+      </div>
+    </div>
+    <div class="service-card light" style="min-height:400px;">
+      <div class="service-info" style="position:static;padding:1.5rem;">
+        <h3>State Inspections</h3>
+        <p>Get inspected and back on the road quickly.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="explore-bar fade-up">
+    <a href="#" class="btn-explore">Explore All Services <span class="dot"></span></a>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <h2 class="fade-up">Why Folks<br>Choose Us</h2>
+  <table class="why-table fade-up">
+    <tr>
+      <td class="why-num">'01</td>
+      <td class="why-title">Honest & Upfront</td>
+      <td class="why-desc">We explain what's wrong, what it costs, and only fix what's needed. No surprises, no upselling.</td>
+    </tr>
+    <tr>
+      <td class="why-num">'02</td>
+      <td class="why-title">Experienced Team</td>
+      <td class="why-desc">Our ASE-certified mechanics have decades of combined experience working on every type of vehicle.</td>
+    </tr>
+    <tr>
+      <td class="why-num">'03</td>
+      <td class="why-title">Quality Parts Warranty</td>
+      <td class="why-desc">We use quality parts and back our work with a 24-month/24,000-mile warranty for your peace of mind.</td>
+    </tr>
+    <tr>
+      <td class="why-num">'04</td>
+      <td class="why-title">Local & Reliable</td>
+      <td class="why-desc">For 15 years, we've been your trusted local auto shop, committed to providing top-notch service right here in the community.</td>
+    </tr>
+  </table>
+  <div class="why-footer fade-up">
+    <a href="#about" class="btn-who">Who We Are <span class="dot"></span></a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-left">
+    <div style="width:100%;height:100%;background:linear-gradient(180deg,#0a0a0a,#1a1a1a);display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 300 200" width="80%" fill="none" opacity="0.4">
+        <ellipse cx="150" cy="100" rx="120" ry="60" fill="#333"/>
+        <rect x="50" y="60" width="200" height="10" rx="3" fill="#555"/>
+        <rect x="80" y="85" width="140" height="10" rx="3" fill="#555"/>
+        <ellipse cx="80" cy="120" rx="25" ry="10" fill="#222"/>
+        <ellipse cx="220" cy="120" rx="25" ry="10" fill="#222"/>
+      </svg>
+    </div>
+    <h2>What Our<br>Customers<br>Say</h2>
+  </div>
+  <div class="testimonials-right fade-up">
+    <div class="review">
+      <div class="review-header">
+        <span class="review-name">Mike T.</span>
+        <span class="review-score">5.0 ★</span>
+      </div>
+      <p class="review-text">"Sanders & Young fixed my truck right the first time. Fair price, honest work. That's all I need."</p>
+    </div>
+    <div class="review">
+      <div class="review-header">
+        <span class="review-name">Barbara R.</span>
+        <span class="review-score">5.0 ★</span>
+      </div>
+      <p class="review-text">"I've been bringing my cars here for years. They treat you like family and never try to sell you something you don't need."</p>
+    </div>
+    <div class="review">
+      <div class="review-header">
+        <span class="review-name">James L.</span>
+        <span class="review-score">5.0 ★</span>
+      </div>
+      <p class="review-text">"Best mechanic shop around. They explained everything in plain English and got me back on the road fast."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-up">
+    <h2>Schedule Your Service</h2>
+    <p>Ready to bring your vehicle in? Book an appointment or give us a call — we'll take care of the rest.</p>
+    <div class="contact-info">
+      <p><strong>Phone:</strong> (555) 123-4567</p>
+      <p><strong>Hours:</strong> Mon–Fri 7:30am–6pm · Sat 8am–4pm</p>
+      <p><strong>Address:</strong> 1200 Main Street, Your City, ST 00000</p>
+    </div>
+  </div>
+  <div class="contact-form fade-up">
+    <div class="form-row">
+      <input type="text" placeholder="First Name" />
+      <input type="text" placeholder="Last Name" />
+    </div>
+    <input type="email" placeholder="Email Address" />
+    <input type="tel" placeholder="Phone Number" />
+    <select>
+      <option value="" disabled selected>Select a Service</option>
+      <option>Oil Change</option>
+      <option>Engine Check</option>
+      <option>Brake Repair</option>
+      <option>Air Conditioning</option>
+      <option>Transmission</option>
+      <option>Electrical Systems</option>
+      <option>Tire Service & Alignment</option>
+      <option>State Inspection</option>
+      <option>Other</option>
+    </select>
+    <textarea placeholder="Additional notes or questions..."></textarea>
+    <button class="btn-submit" type="button">Request Appointment →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Sanders & Young</div>
+    <p class="footer-copy">© 2026 Sanders & Young Auto Repair. All rights reserved.</p>
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#why">Why Us</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Smooth active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.background = '';
+      a.style.color = '';
+      if (a.getAttribute('href') === '#' + current) {
+        a.style.background = 'var(--orange)';
+        a.style.color = 'var(--white)';
+      }
+    });
+  });
+</script>
+</body>
+</html>
