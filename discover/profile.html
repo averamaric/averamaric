@@ -1,17 +1,18 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANALUCIA V.M. | Professional Profile</title>
-    <!-- <link rel="stylesheet" href="style.css">-->
     <link rel="stylesheet" href="profile.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="profile-page">
-    
-    <!-- NAVBAR COHERENTE CON ABOUT ME -->
+
+    <!-- BOTÓN SKIP -->
+    <button class="skip-btn" id="skipBtn">Skip intro ↓</button>
+
+    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="menu-icon">
             <span></span>
@@ -24,42 +25,26 @@
         </div>
     </nav>
 
-    <!-- Título de fondo comprimido -->
-<div class="profile-title-background" id="profileTitleBackground">
-    PROFILE
-</div>
-    
-    <!-- ANIMACIÓN INICIAL "PROFILE" -->
+    <!-- ANIMACIÓN INICIAL -->
     <div class="animation-container" id="animationContainer">
-    <div class="white-rectangle" id="whiteRectangle">
-        <div class="profile-word-black" id="blackWord">PROFILE</div>
+        <div class="white-rectangle" id="whiteRectangle">
+            <div class="profile-word-black" id="blackWord">PROFILE</div>
+        </div>
+        <div class="typing-cursor" id="typingCursor"></div>
+        <div class="typing-text" id="typingText">
+            <span class="letter">P</span>
+            <span class="letter">R</span>
+            <span class="letter">O</span>
+            <span class="letter">F</span>
+            <span class="letter">I</span>
+            <span class="letter">L</span>
+            <span class="letter">E</span>
+        </div>
     </div>
-    
-    <!-- CURSOR MÓVIL -->
-    <div class="typing-cursor" id="typingCursor"></div>
-    
-    <!-- TEXTO TYPING -->
-    <div class="typing-text" id="typingText">
-        <span class="letter">P</span>
-        <span class="letter">R</span>
-        <span class="letter">O</span>
-        <span class="letter">F</span>
-        <span class="letter">I</span>
-        <span class="letter">L</span>
-        <span class="letter">E</span>
-    </div>
-</div>
-<!-- ANIMACIÓN FINAL: TÍTULO COMPRIMIDO -->
-<div class="final-title-container" id="finalTitleContainer" style="display: none;">
-    <div class="final-title" id="finalTitle">PROFILE</div>
-</div>
-
 
     <main class="profile-container">
-        
-        <!-- ==================== -->
-        <!-- TARJETA DESCRIPTIVA (similar a about me) -->
-        <!-- ==================== -->
+
+        <!-- TARJETA INTRO con línea decorativa -->
         <section class="profile-intro-card" id="intro">
             <div class="description-card profile-description">
                 <div class="card-content">
@@ -73,14 +58,17 @@
                     <span class="footer-tag">SYSTEM DESIGN</span>
                 </div>
             </div>
+            <!-- Línea decorativa sutil en lugar del texto gigante de fondo -->
+            <div class="intro-decorative-line">
+                <span class="decorative-label">PROFILE</span>
+                <div class="decorative-rule"></div>
+            </div>
         </section>
 
-        <!-- ==================== -->
-        <!-- SECCIÓN DE ACORDEONES -->
-        <!-- ==================== -->
+        <!-- ACORDEONES -->
         <section class="accordions-section">
-            
-          
+
+            <!-- ACORDEÓN: LANGUAGES -->
             <div class="accordion" id="languages">
                 <div class="accordion-header">
                     <h2 class="accordion-title">LANGUAGES</h2>
@@ -90,69 +78,96 @@
                     </div>
                 </div>
                 <div class="accordion-content">
-                    
-                    <div class="languages-container">
-                        <!-- Gráfico de araña -->
+                    <div class="languages-layout">
+                        <!-- Gráfico radar central -->
                         <div class="spider-chart-container">
-                            <canvas id="languagesChart" width="400" height="400"></canvas>
+                            <canvas id="languagesChart" width="340" height="340"></canvas>
                         </div>
-                        
-                        <!-- Lista de idiomas con certificados -->
-                        <div class="languages-list">
-                            <div class="language-item" data-language="spanish">
-                                <div class="language-header">
-                                    <h3 class="language-name">Spanish</h3>
-                                    <span class="language-level">Native</span>
+                        <!-- Tarjetas de idioma con certificado inline -->
+                        <div class="languages-cards">
+
+                            <div class="language-card" data-language="spanish">
+                                <div class="language-card-top">
+                                    <div class="lang-info">
+                                        <h3 class="language-name">Spanish</h3>
+                                        <span class="language-level">Native · C2</span>
+                                    </div>
+                                    <div class="lang-bar-wrap">
+                                        <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
+                                    </div>
                                 </div>
-                                <button class="certificate-btn" data-cert="dele">View DELE Certificate</button>
-                                <div class="certificate-info">
-                                    <p><strong>DELE C2:</strong> Diploma de Español Nivel C2 (Mastery)</p>
-                                    <p class="cert-date">Issued: 2018 | Institution: Instituto Cervantes</p>
-                                </div>
-                            </div>
-                            
-                            <div class="language-item" data-language="english">
-                                <div class="language-header">
-                                    <h3 class="language-name">English</h3>
-                                    <span class="language-level">Fluent (C1)</span>
-                                </div>
-                                <button class="certificate-btn" data-cert="ielts">View IELTS Certificate</button>
-                                <div class="certificate-info">
-                                    <p><strong>IELTS Academic:</strong> Overall Band 8.0 (C1 Level)</p>
-                                    <p class="cert-date">Issued: 2020 | Score: Listening 8.5, Reading 8.0, Writing 7.5, Speaking 8.0</p>
+                                <div class="cert-toggle-row">
+                                    <button class="certificate-btn" data-cert="dele">View DELE Certificate ↓</button>
+                                    <div class="certificate-info">
+                                        <p><strong>DELE C2</strong> — Diploma de Español Nivel C2 (Mastery)</p>
+                                        <p class="cert-date">2018 · Instituto Cervantes</p>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <div class="language-item" data-language="french">
-                                <div class="language-header">
-                                    <h3 class="language-name">French</h3>
-                                    <span class="language-level">Fluent (C1)</span>
+
+                            <div class="language-card" data-language="english">
+                                <div class="language-card-top">
+                                    <div class="lang-info">
+                                        <h3 class="language-name">English</h3>
+                                        <span class="language-level">Fluent · C1</span>
+                                    </div>
+                                    <div class="lang-bar-wrap">
+                                        <div class="lang-bar"><div class="lang-bar-fill" style="width:80%"></div></div>
+                                    </div>
                                 </div>
-                                <button class="certificate-btn" data-cert="goethe">View Goethe Certificate</button>
-                                <div class="certificate-info">
-                                    <p><strong>Goethe-Zertifikat B1:</strong> German Language Diploma</p>
-                                    <p class="cert-date">Issued: 2021 | Institution: Goethe-Institut</p>
-                                </div>
-                            </div>
-                            
-                            <div class="language-item" data-language="italian">
-                                <div class="language-header">
-                                    <h3 class="language-name">Italian</h3>
-                                    <span class="language-level">Intermediate (B2)</span>
-                                </div>
-                                <button class="certificate-btn" data-cert="delf">View DELF Certificate</button>
-                                <div class="certificate-info">
-                                    <p><strong>DELF A2:</strong> Diplôme d'Études en Langue Française</p>
-                                    <p class="cert-date">Issued: 2019 | Institution: CIEP</p>
+                                <div class="cert-toggle-row">
+                                    <button class="certificate-btn" data-cert="ielts">View IELTS Certificate ↓</button>
+                                    <div class="certificate-info">
+                                        <p><strong>IELTS Academic</strong> — Overall Band 8.0</p>
+                                        <p class="cert-date">2020 · Listening 8.5 · Reading 8.0 · Writing 7.5 · Speaking 8.0</p>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="language-card" data-language="french">
+                                <div class="language-card-top">
+                                    <div class="lang-info">
+                                        <h3 class="language-name">French</h3>
+                                        <span class="language-level">Fluent · C1</span>
+                                    </div>
+                                    <div class="lang-bar-wrap">
+                                        <div class="lang-bar"><div class="lang-bar-fill" style="width:80%"></div></div>
+                                    </div>
+                                </div>
+                                <div class="cert-toggle-row">
+                                    <button class="certificate-btn" data-cert="delf">View DELF Certificate ↓</button>
+                                    <div class="certificate-info">
+                                        <p><strong>DELF B2</strong> — Diplôme d'Études en Langue Française</p>
+                                        <p class="cert-date">2019 · CIEP</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="language-card" data-language="italian">
+                                <div class="language-card-top">
+                                    <div class="lang-info">
+                                        <h3 class="language-name">Italian</h3>
+                                        <span class="language-level">Intermediate · B2</span>
+                                    </div>
+                                    <div class="lang-bar-wrap">
+                                        <div class="lang-bar"><div class="lang-bar-fill" style="width:60%"></div></div>
+                                    </div>
+                                </div>
+                                <div class="cert-toggle-row">
+                                    <button class="certificate-btn" data-cert="cils">View Certificate ↓</button>
+                                    <div class="certificate-info">
+                                        <p><strong>CILS B2</strong> — Certificazione di Italiano come Lingua Straniera</p>
+                                        <p class="cert-date">2021 · Università per Stranieri di Siena</p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    
                 </div>
             </div>
-            
-            <!-- ACORDEÓN 1: EXPERIENCIA -->
+
+            <!-- ACORDEÓN: EXPERIENCE -->
             <div class="accordion" id="experience">
                 <div class="accordion-header">
                     <h2 class="accordion-title">EXPERIENCE</h2>
@@ -162,201 +177,189 @@
                     </div>
                 </div>
                 <div class="accordion-content">
-                    
-                    <!-- Experiencia 1 -->
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div class="experience-title-row">
-                                <h3 class="experience-title">Research Assistant - AI and Cyber-physical security</h3>
-                                <span class="experience-period">Dec 2025 - Present</span>
-                            </div>
-                            <p class="experience-company">Manchester Metropolitan Univeristy</p>
-                        </div>
-                        
-                        <div class="experience-summary" id="summary-1">
-                            <p class="summary-text">As a Research Assistant in AI and Cyber-Physical Security, I'm contributing to a university project focused on protecting smart energy systems. My role centers on studying, collaborating in developing and testing innovative security solutions within local networks in operational technology (OT) with artificial intelligence. </p>
-                            <div class="experience-tags">
-                                <span class="exp-tag">Team Leadership</span>
-                                <span class="exp-tag">Project Management</span>
-                                <span class="exp-tag">Industry 4.0</span>
-                            </div>
-                        </div>
-                        
-                        <div class="experience-details" id="details-1" style="display: none;">
-                            <div class="details-content">
-                                <h4>Key Responsibilities & Achievements</h4>
-                                <ul class="details-list">
-                                    <li>Studying how to deploy the connection between the OPAL-RT simulators with the SEL-3555 controller.</li>
-                                    <li>Researching different architectures and cybersecurity solutions/methods for local real-time monitoring systems.</li>
-                                    <li>Implementing the connection between the network simulator and the SEL-3555 controller.</li>
-                                    <li> Setting up and configuring SCADA communication networks for research and data collection.</li>
-                                    <li> Disecting and understanding the messages/packets being sent between the two devices to identify threats and validate security models.</li>
-                                  <li> Applying machine learning techniques to detect and mitigate cyber threats in critical energy infrastructure.</li>
-                                  <li>  Proactively planning and prioritizing my research activities to meet project objectives and deadlines.</li>
-                                </ul>
-                                <div class="technologies-used">
-                                    <h4>Technologies & Tools</h4>
-                                    <div class="tech-tags">
-                                        <span>Siemens S7-1500</span>
-                                        <span>Fanuc Robots</span>
-                                        <span>Universal Robots Cobots</span>
-                                        <span>Node-RED</span>
-                                        <span>SQL Databases</span>
-                                        <span>AutoCAD Electrical</span>
+                    <div class="timeline">
+
+                        <!-- Exp 1 -->
+                        <div class="timeline-item experience-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-body">
+                                <div class="experience-header">
+                                    <div class="experience-title-row">
+                                        <h3 class="experience-title">Research Assistant — AI & Cyber-Physical Security</h3>
+                                        <span class="experience-period">Dec 2025 – Present</span>
+                                    </div>
+                                    <p class="experience-company">Manchester Metropolitan University</p>
+                                </div>
+                                <div class="experience-summary" id="summary-1">
+                                    <p class="summary-text">Contributing to a university project protecting smart energy systems. Focused on developing and testing security solutions for operational technology (OT) networks using artificial intelligence.</p>
+                                    <div class="experience-tags">
+                                        <span class="exp-tag">Cybersecurity</span>
+                                        <span class="exp-tag">OT Networks</span>
+                                        <span class="exp-tag">Machine Learning</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <button class="toggle-details-btn" data-target="1">View Full Details</button>
-                    </div>
-                    
-                    <!-- Experiencia 2 -->
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div class="experience-title-row">
-                                <h3 class="experience-title">IoT Project Manager</h3>
-                                <span class="experience-period">Sept 2024 - Jun 2025</span>
-                            </div>
-                            <p class="experience-company">Alhona</p>
-                        </div>
-                        
-                        <div class="experience-summary" id="summary-2">
-                            <p class="summary-text">As a Project Manager, my team and I led the deployment of Industry 4.0 projects, focusing on integrating devices and machines into IoT platforms for data analysis.</p>
-                            <div class="experience-tags">
-                                <span class="exp-tag">PLC Programming</span>
-                                <span class="exp-tag">Commissioning</span>
-                                <span class="exp-tag">SCADA</span>
-                            </div>
-                        </div>
-                        
-                        <div class="experience-details" id="details-2" style="display: none;">
-                            <div class="details-content">
-                                <h4>Key Responsibilities & Achievements</h4>
-                                <ul class="details-list">
-                                    <li>Supporting project planning and client follow-up.</li>
-                                    <li>Identifying and assessing potential devices for connectivity. </li>
-                                    <li>Researching and selecting the best communication protocols or standards for connecting the selected devices.</li>
-                                    <li>Deploying selected devices within a data acquisition software.</li>
-                                    <li>Developing a standardized taxonomy for signal listings. </li>
-                                  <li>Analyzing and selecting signals to be acquired from each device. </li>
-                                  <li>Validating selected signals per device. </li>
-                                  <li>Deploying rules and conducting studies based on acquired data. </li>
-                                  <li>Writing deliverables for knowledge transfer tailored for both technical and non-technical audiences.</li>
-                                </ul>
-                                <div class="technologies-used">
-                                    <h4>Technologies & Tools</h4>
-                                    <div class="tech-tags">
-                                        <span>Allen-Bradley PLC</span>
-                                        <span>Studio 5000</span>
-                                        <span>Ignition SCADA</span>
-                                        <span>PID Control</span>
-                                        <span>HMI Design</span>
+                                <div class="experience-details" id="details-1">
+                                    <div class="details-content">
+                                        <h4>Key Responsibilities & Achievements</h4>
+                                        <ul class="details-list">
+                                            <li>Studying the connection between OPAL-RT simulators and the SEL-3555 controller.</li>
+                                            <li>Researching cybersecurity architectures and solutions for real-time monitoring systems.</li>
+                                            <li>Implementing the network simulator–controller connection.</li>
+                                            <li>Setting up and configuring SCADA communication networks for research and data collection.</li>
+                                            <li>Dissecting packets sent between devices to identify threats and validate security models.</li>
+                                            <li>Applying machine learning to detect and mitigate cyber threats in critical energy infrastructure.</li>
+                                        </ul>
+                                        <div class="technologies-used">
+                                            <h4>Technologies & Tools</h4>
+                                            <div class="tech-tags">
+                                                <span>OPAL-RT</span>
+                                                <span>SEL-3555</span>
+                                                <span>SCADA</span>
+                                                <span>Machine Learning</span>
+                                                <span>Python</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <button class="toggle-details-btn" data-target="1">View Full Details</button>
                             </div>
                         </div>
-                      
-                      
-                        
-                        <button class="toggle-details-btn" data-target="2">View Full Details</button>
-                    </div>
-                    
-                  <!-- Experiencia 3 -->
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div class="experience-title-row">
-                                <h3 class="experience-title">IoT Project Manager Junior</h3>
-                                <span class="experience-period">Sept 2023 - Aug 2024</span>
-                            </div>
-                            <p class="experience-company">Alhona</p>
-                        </div>
-                        
-                        <div class="experience-summary" id="summary-2">
-                            <p class="summary-text">As a Junior IoT Project Manager, I collaborated on the deployment of Industry 4.0 projects, focusing on integrating devices and machines into IoT platforms for data analysis</p>
-                            <div class="experience-tags">
-                                <span class="exp-tag">PLC Programming</span>
-                                <span class="exp-tag">Commissioning</span>
-                                <span class="exp-tag">SCADA</span>
-                            </div>
-                        </div>
-                        
-                        <div class="experience-details" id="details-2" style="display: none;">
-                            <div class="details-content">
-                                <h4>Key Responsibilities & Achievements</h4>
-                                <ul class="details-list">
-                                    <li>Assisting in project planning and client follow-up.</li>
-                                    <li>Identifying and evaluating potential devices for connectivity. </li>
-                                    <li> Implementing selected devices into data acquisition software</li>
-                                    <li>Preparing deliverables for knowledge transfer, tailored for both technical and non-technical audiences</li>
-                                </ul>
-                                <div class="technologies-used">
-                                    <h4>Technologies & Tools</h4>
-                                    <div class="tech-tags">
-                                        <span>Allen-Bradley PLC</span>
-                                        <span>Studio 5000</span>
-                                        <span>Ignition SCADA</span>
-                                        <span>PID Control</span>
-                                        <span>HMI Design</span>
+
+                        <!-- Exp 2 -->
+                        <div class="timeline-item experience-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-body">
+                                <div class="experience-header">
+                                    <div class="experience-title-row">
+                                        <h3 class="experience-title">IoT Project Manager</h3>
+                                        <span class="experience-period">Sept 2024 – Jun 2025</span>
+                                    </div>
+                                    <p class="experience-company">Alhona</p>
+                                </div>
+                                <div class="experience-summary" id="summary-2">
+                                    <p class="summary-text">Led the deployment of Industry 4.0 projects, integrating devices and machines into IoT platforms for data analysis.</p>
+                                    <div class="experience-tags">
+                                        <span class="exp-tag">IoT</span>
+                                        <span class="exp-tag">Project Management</span>
+                                        <span class="exp-tag">Industry 4.0</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                      
-                      
-                        
-                        <button class="toggle-details-btn" data-target="2">View Full Details</button>
-                    </div>
-                  
-                  <!-- Experiencia 4 -->
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div class="experience-title-row">
-                                <h3 class="experience-title">Internship</h3>
-                                <span class="experience-period">Sept 2022 - Dec 2022</span>
-                            </div>
-                            <p class="experience-company">CEIT</p>
-                        </div>
-                        
-                        <div class="experience-summary" id="summary-2">
-                            <p class="summary-text">I had the opportunity to develop my final degree project at the CEIT research center. The project was based on programming the TM5 Omron robot, achieving a project and defense grade of 10/10 with honours. </p>
-                            <div class="experience-tags">
-                                <span class="exp-tag">PLC Programming</span>
-                                <span class="exp-tag">Commissioning</span>
-                                <span class="exp-tag">SCADA</span>
-                            </div>
-                        </div>
-                        
-                        <div class="experience-details" id="details-2" style="display: none;">
-                            <div class="details-content">
-                                <h4>Key Responsibilities & Achievements</h4>
-                                <ul class="details-list">
-                                    <li> Learning and mastering the TMFlow programming language: This was essential for developing complex robotic tasks and interactions with the TM5 Omron robot.</li>
-                                    <li>Programming a robotic arm with an integrated camera to play tic-tac-toe against a user: I implemented a strategic algorithm simulating artificial intelligence to ensure the robot would never lose against a user.</li>
-                                    <li>Programming a robotic arm with an integrated camera to sketch user portraits: I designed and implemented a system where the robot could capture facial features and reproduce them as a sketch. This required careful calibration of the camera and advanced programming skills to process the images and translate them into graphical representations.</li>
-                                </ul>
-                                <div class="technologies-used">
-                                    <h4>Technologies & Tools</h4>
-                                    <div class="tech-tags">
-                                        <span>Allen-Bradley PLC</span>
-                                        <span>Studio 5000</span>
-                                        <span>Ignition SCADA</span>
-                                        <span>PID Control</span>
-                                        <span>HMI Design</span>
+                                <div class="experience-details" id="details-2">
+                                    <div class="details-content">
+                                        <h4>Key Responsibilities & Achievements</h4>
+                                        <ul class="details-list">
+                                            <li>Supporting project planning and client follow-up.</li>
+                                            <li>Identifying and assessing potential devices for connectivity.</li>
+                                            <li>Researching and selecting communication protocols for connecting devices.</li>
+                                            <li>Deploying selected devices within data acquisition software.</li>
+                                            <li>Developing a standardized taxonomy for signal listings.</li>
+                                            <li>Writing deliverables for knowledge transfer for both technical and non-technical audiences.</li>
+                                        </ul>
+                                        <div class="technologies-used">
+                                            <h4>Technologies & Tools</h4>
+                                            <div class="tech-tags">
+                                                <span>Allen-Bradley PLC</span>
+                                                <span>Studio 5000</span>
+                                                <span>Ignition SCADA</span>
+                                                <span>Node-RED</span>
+                                                <span>SQL</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <button class="toggle-details-btn" data-target="2">View Full Details</button>
                             </div>
                         </div>
-                      
-                      
-                        
-                        <button class="toggle-details-btn" data-target="2">View Full Details</button>
-                    </div>
-                  
+
+                        <!-- Exp 3 -->
+                        <div class="timeline-item experience-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-body">
+                                <div class="experience-header">
+                                    <div class="experience-title-row">
+                                        <h3 class="experience-title">IoT Project Manager Junior</h3>
+                                        <span class="experience-period">Sept 2023 – Aug 2024</span>
+                                    </div>
+                                    <p class="experience-company">Alhona</p>
+                                </div>
+                                <div class="experience-summary" id="summary-3">
+                                    <p class="summary-text">Collaborated on Industry 4.0 projects, focusing on integrating devices and machines into IoT platforms for data analysis.</p>
+                                    <div class="experience-tags">
+                                        <span class="exp-tag">IoT</span>
+                                        <span class="exp-tag">Commissioning</span>
+                                        <span class="exp-tag">SCADA</span>
+                                    </div>
+                                </div>
+                                <div class="experience-details" id="details-3">
+                                    <div class="details-content">
+                                        <h4>Key Responsibilities & Achievements</h4>
+                                        <ul class="details-list">
+                                            <li>Assisting in project planning and client follow-up.</li>
+                                            <li>Identifying and evaluating potential devices for connectivity.</li>
+                                            <li>Implementing selected devices into data acquisition software.</li>
+                                            <li>Preparing deliverables for knowledge transfer.</li>
+                                        </ul>
+                                        <div class="technologies-used">
+                                            <h4>Technologies & Tools</h4>
+                                            <div class="tech-tags">
+                                                <span>Allen-Bradley PLC</span>
+                                                <span>Ignition SCADA</span>
+                                                <span>HMI Design</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="toggle-details-btn" data-target="3">View Full Details</button>
+                            </div>
+                        </div>
+
+                        <!-- Exp 4 -->
+                        <div class="timeline-item experience-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-body">
+                                <div class="experience-header">
+                                    <div class="experience-title-row">
+                                        <h3 class="experience-title">Robotics Research Intern</h3>
+                                        <span class="experience-period">Sept 2022 – Dec 2022</span>
+                                    </div>
+                                    <p class="experience-company">CEIT Research Center</p>
+                                </div>
+                                <div class="experience-summary" id="summary-4">
+                                    <p class="summary-text">Developed final degree project at CEIT, programming the TM5 Omron robot to play tic-tac-toe and sketch user portraits. Achieved 10/10 with honours.</p>
+                                    <div class="experience-tags">
+                                        <span class="exp-tag">Robotics</span>
+                                        <span class="exp-tag">Computer Vision</span>
+                                        <span class="exp-tag">AI Algorithms</span>
+                                    </div>
+                                </div>
+                                <div class="experience-details" id="details-4">
+                                    <div class="details-content">
+                                        <h4>Key Responsibilities & Achievements</h4>
+                                        <ul class="details-list">
+                                            <li>Mastering the TMFlow programming language for complex robotic tasks with the TM5 Omron robot.</li>
+                                            <li>Programming a robot arm + integrated camera to play tic-tac-toe using a strategic AI algorithm that never loses.</li>
+                                            <li>Designing a system where the robot captures facial features and reproduces them as a sketch — requiring advanced image processing and camera calibration.</li>
+                                        </ul>
+                                        <div class="technologies-used">
+                                            <h4>Technologies & Tools</h4>
+                                            <div class="tech-tags">
+                                                <span>TM5 Omron Robot</span>
+                                                <span>TMFlow</span>
+                                                <span>Computer Vision</span>
+                                                <span>Python</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="toggle-details-btn" data-target="4">View Full Details</button>
+                            </div>
+                        </div>
+
+                    </div><!-- /timeline -->
                 </div>
             </div>
-            
-            <!-- ACORDEÓN 2: EDUCACIÓN -->
+
+            <!-- ACORDEÓN: EDUCATION -->
             <div class="accordion" id="education">
                 <div class="accordion-header">
                     <h2 class="accordion-title">EDUCATION</h2>
@@ -366,204 +369,151 @@
                     </div>
                 </div>
                 <div class="accordion-content">
-                    
-                    <!-- Educación 1 -->
-                    <div class="education-item">
-                        <div class="education-header">
-                            <div class="education-title-row">
-                                <h3 class="education-title">MSc Robotics and Automation</h3>
-                                <span class="education-period">2025 - 2026</span>
-                            </div>
-                            <p class="education-institution">The Manchester Metropolitan University</p>
-                        </div>
-                        
-                        <div class="education-summary" id="edu-summary-1">
-                            <p class="summary-text">A specialized program focused on core Industry 4.0 technologies, including robotics, artificial intelligence, digital manufacturing, and industrial IoT. The curriculum provided advanced training in systems integration, cyber-physical systems, industrial programming, and project management. Culminated in an individual engineering research project to apply expertise in a professional setting. This master's equips graduates for technical leadership roles in global automation and smart manufacturing.</p>
-                            <div class="education-highlights">
-                                <span class="highlight">PLC Programming</span>
-                                <span class="highlight">IIoT - Insights Hub</span>
-                                <span class="highlight">Digital Twins</span>
-                            </div>
-                        </div>
-                        
-                        <div class="education-details" id="edu-details-1" style="display: none;">
-                            <div class="details-content">
-                                <h4>Relevant Coursework & Projects</h4>
-                                <ul class="details-list">
-                                    <li><strong>Batch mixing plant project:</strong> Designed automated sorting system using computer vision and PLC control</li>
-                                    <li><strong>Search Algorithms:</strong> Published paper on "IoT-enabled Predictive Maintenance in Manufacturing"</li>
-                                </ul>
-                                <div class="courses">
-                                    <h4>Key Courses</h4>
-                                    <div class="course-tags">
-                                        <span>Programming and virtual commissioning</span>
-                                        <span>Sensors and IoT</span>
-                                        <span>AI principles</span>
+                    <div class="timeline">
+
+                        <!-- Edu 1 -->
+                        <div class="timeline-item education-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-body">
+                                <div class="education-header">
+                                    <div class="education-title-row">
+                                        <h3 class="education-title">MSc Robotics and Automation</h3>
+                                        <span class="education-period">2025 – 2026</span>
+                                    </div>
+                                    <p class="education-institution">Manchester Metropolitan University</p>
+                                </div>
+                                <div class="education-summary" id="edu-summary-1">
+                                    <p class="summary-text">Specialized program in Industry 4.0 technologies including robotics, AI, digital manufacturing, and industrial IoT. Advanced training in systems integration, cyber-physical systems, and industrial programming.</p>
+                                    <div class="education-highlights">
+                                        <span class="highlight">PLC Programming</span>
+                                        <span class="highlight">IIoT</span>
+                                        <span class="highlight">Digital Twins</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <button class="toggle-details-btn" data-target="edu-1">View Full Details</button>
-                    </div>
-                    
-                    <!-- Certificaciones -->
-                    
-                  <!-- Educación 2 -->
-                    <div class="education-item">
-                        <div class="education-header">
-                            <div class="education-title-row">
-                                <h3 class="education-title">Business Initiation Program</h3>
-                                <span class="education-period">2023 - 2024</span>
-                            </div>
-                            <p class="education-institution">The University of Navarra - Tecnun</p>
-                        </div>
-                        
-                        <div class="education-summary" id="edu-summary-1">
-                            <p class="summary-text">A proprietary degree from the University of Navarra designed to support students in developing their professional careers. Its goal is to facilitate the transition of young graduates into the business world and their professional practice through training in key skills and competencies, combining hands-on learning in a company with a structured academic plan.</p>
-                            <div class="education-highlights">
-                                <span class="highlight">Project management</span>
-                                <span class="highlight">Industry 4.0</span>
-                                <span class="highlight">IIoT</span>
-                            </div>
-                        </div>
-                        
-                        <div class="education-details" id="edu-details-1" style="display: none;">
-                            <div class="details-content">
-                                <h4>Relevant Coursework & Projects</h4>
-                                <ul class="details-list">
-                                    <li><strong>Batch mixing plant project:</strong> Designed automated sorting system using computer vision and PLC control</li>
-                                    <li><strong>Search Algorithms:</strong> Published paper on "IoT-enabled Predictive Maintenance in Manufacturing"</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <button class="toggle-details-btn" data-target="edu-1">View Full Details</button>
-                    </div>
-                    
-                  <!-- Educación 3 -->
-                    <div class="education-item">
-                        <div class="education-header">
-                            <div class="education-title-row">
-                                <h3 class="education-title">BCs Industrial Electronic Engineer</h3>
-                                <span class="education-period">2019 - 2023</span>
-                            </div>
-                            <p class="education-institution">The University of Navarra - Tecnun</p>
-                        </div>
-                        
-                        <div class="education-summary" id="edu-summary-1">
-                            <p class="summary-text">The Industrial Electronic Engineering degree at Tecnun provides a comprehensive education in the fields of electronics, automation, control systems, and power electronics. This program equips students with both theoretical knowledge and practical skills, preparing them to address real-world engineering challenges across various industries. The curriculum focuses on developing problem-solving abilities, technical expertise, and leadership skills, fostering professionals capable of working in multidisciplinary environments and contributing to technological innovation.</p>
-                            <div class="education-highlights">
-                                <span class="highlight">PLC Programming</span>
-                                <span class="highlight">IIoT - Insights Hub</span>
-                                <span class="highlight">Digital Twins</span>
-                            </div>
-                        </div>
-                        
-                        <div class="education-details" id="edu-details-1" style="display: none;">
-                            <div class="details-content">
-                                <h4>Relevant Coursework & Projects</h4>
-                                <ul class="details-list">
-                                    <li><strong>Batch mixing plant project:</strong> Designed automated sorting system using computer vision and PLC control</li>
-                                    <li><strong>Search Algorithms:</strong> Published paper on "IoT-enabled Predictive Maintenance in Manufacturing"</li>
-                                </ul>
-                                <div class="courses">
-                                    <h4>Key Courses</h4>
-                                    <div class="course-tags">
-                                        <span>Electronic Properties of Materials</span>
-                                        <span>Electromagnetic Compatibility</span>
-                                        <span>Microprocessors and Microcontrollers</span>
-                                        <span>Digital systems</span>
+                                <div class="education-details" id="edu-details-1">
+                                    <div class="details-content">
+                                        <h4>Relevant Coursework & Projects</h4>
+                                        <ul class="details-list">
+                                            <li><strong>Batch mixing plant project:</strong> Designed automated sorting system using computer vision and PLC control.</li>
+                                        </ul>
+                                        <div class="courses">
+                                            <h4>Key Courses</h4>
+                                            <div class="course-tags">
+                                                <span>Programming and virtual commissioning</span>
+                                                <span>Sensors and IoT</span>
+                                                <span>AI Principles</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <button class="toggle-details-btn" data-target="edu-1">View Full Details</button>
                             </div>
                         </div>
-                        
-                        <button class="toggle-details-btn" data-target="edu-1">View Full Details</button>
-                    </div>
-                    
-                  
-                  <!-- Educación 4 -->
-                    <div class="education-item">
-                        <div class="education-header">
-                            <div class="education-title-row">
-                                <h3 class="education-title">Electrical and Electronic Engineering (ERASMUS:Exchange)</h3>
-                                <span class="education-period">2023 - 2023</span>
-                            </div>
-                            <p class="education-institution">The Polytechnic University of Milan</p>
-                        </div>
-                        
-                        <div class="education-summary" id="edu-summary-1">
-                            <p class="summary-text">An enriching academic exchange focused on advanced engineering principles at a leading European technical university. The curriculum provided in-depth knowledge in key areas including Production Systems Control, Power Electronics, Dynamics of Electrical Machines and Drives, and Materials for Electronics. This international experience enhanced both technical expertise and adaptability within a global academic environment.</p>
-                            <div class="education-highlights">
-                                <span class="highlight">International Environment</span>
-                                <span class="highlight">IIoT - Insights Hub</span>
-                                <span class="highlight">Digital Twins</span>
-                            </div>
-                        </div>
-                        
-                        <div class="education-details" id="edu-details-1" style="display: none;">
-                            <div class="details-content">
-                                <h4>Relevant Coursework & Projects</h4>
-                                <ul class="details-list">
-                                    <li><strong>Batch mixing plant project:</strong> Designed automated sorting system using computer vision and PLC control</li>
-                                    <li><strong>Search Algorithms:</strong> Published paper on "IoT-enabled Predictive Maintenance in Manufacturing"</li>
-                                </ul>
-                                <div class="courses">
-                                    <h4>Key Courses</h4>
-                                    <div class="course-tags">
-                                        <span>Programming and virtual commissioning</span>
-                                        <span>Sensors and IoT</span>
-                                        <span>AI principles</span>
+
+                        <!-- Edu 2 -->
+                        <div class="timeline-item education-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-body">
+                                <div class="education-header">
+                                    <div class="education-title-row">
+                                        <h3 class="education-title">Electrical & Electronic Engineering (ERASMUS Exchange)</h3>
+                                        <span class="education-period">2022 – 2023</span>
+                                    </div>
+                                    <p class="education-institution">Politecnico di Milano</p>
+                                </div>
+                                <div class="education-summary" id="edu-summary-2">
+                                    <p class="summary-text">Academic exchange at a leading European technical university. Coursework in Production Systems Control, Power Electronics, Dynamics of Electrical Machines, and Materials for Electronics.</p>
+                                    <div class="education-highlights">
+                                        <span class="highlight">International Environment</span>
+                                        <span class="highlight">Power Electronics</span>
+                                        <span class="highlight">Production Systems</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <button class="toggle-details-btn" data-target="edu-1">View Full Details</button>
-                    </div>
-                    
-                  <!-- Educación 5 -->
-                    <div class="education-item">
-                        <div class="education-header">
-                            <div class="education-title-row">
-                                <h3 class="education-title">Mathematical French Baccalaureat </h3>
-                                <span class="education-period">2006 - 2018</span>
-                            </div>
-                            <p class="education-institution">Franco-Bolivian School</p>
-                        </div>
-                        
-                        <div class="education-summary" id="edu-summary-1">
-                            <p class="summary-text">Completed a rigorous bilingual French international baccalaureate with a focus on the Scientific (S) stream. This intensive program provided an advanced foundation in pure and applied mathematics, reinforced by a strong curriculum in physics and chemistry. The education fostered analytical rigor, structured problem-solving, and the ability to work effectively in a multicultural, bilingual academic environment.</p>
-                            <div class="education-highlights">
-                                <span class="highlight">Scientific specific</span>
-                                <span class="highlight">Specialized in Maths</span>
-                                
-                            </div>
-                        </div>
-                        
-                        <div class="education-details" id="edu-details-1" style="display: none;">
-                            <div class="details-content">
-                                <h4>Relevant Coursework & Projects</h4>
-                                <ul class="details-list">
-                                    <li><strong>Batch mixing plant project:</strong> Designed automated sorting system using computer vision and PLC control</li>
-                                    <li><strong>Search Algorithms:</strong> Published paper on "IoT-enabled Predictive Maintenance in Manufacturing"</li>
-                                </ul>
-                                <div class="courses">
-                                    <h4>Key Courses</h4>
-                                    <div class="course-tags">
-                                        <span>Programming and virtual commissioning</span>
-                                        <span>Sensors and IoT</span>
-                                        <span>AI principles</span>
+                                <div class="education-details" id="edu-details-2">
+                                    <div class="details-content">
+                                        <h4>Key Courses</h4>
+                                        <div class="course-tags">
+                                            <span>Production Systems Control</span>
+                                            <span>Power Electronics</span>
+                                            <span>Dynamics of Electrical Machines</span>
+                                            <span>Materials for Electronics</span>
+                                        </div>
                                     </div>
                                 </div>
+                                <button class="toggle-details-btn" data-target="edu-2">View Full Details</button>
                             </div>
                         </div>
-                        
-                        <button class="toggle-details-btn" data-target="edu-1">View Full Details</button>
-                    </div>
-                    
-                  <div class="certifications-section">
+
+                        <!-- Edu 3 -->
+                        <div class="timeline-item education-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-body">
+                                <div class="education-header">
+                                    <div class="education-title-row">
+                                        <h3 class="education-title">BEng Industrial Electronic Engineering</h3>
+                                        <span class="education-period">2019 – 2023</span>
+                                    </div>
+                                    <p class="education-institution">University of Navarra — Tecnun</p>
+                                </div>
+                                <div class="education-summary" id="edu-summary-3">
+                                    <p class="summary-text">Comprehensive education in electronics, automation, control systems, and power electronics. Emphasis on problem-solving, technical expertise, and multidisciplinary collaboration.</p>
+                                    <div class="education-highlights">
+                                        <span class="highlight">Control Systems</span>
+                                        <span class="highlight">Automation</span>
+                                        <span class="highlight">Power Electronics</span>
+                                    </div>
+                                </div>
+                                <div class="education-details" id="edu-details-3">
+                                    <div class="details-content">
+                                        <h4>Key Courses</h4>
+                                        <div class="course-tags">
+                                            <span>Electronic Properties of Materials</span>
+                                            <span>Electromagnetic Compatibility</span>
+                                            <span>Microprocessors and Microcontrollers</span>
+                                            <span>Digital Systems</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="toggle-details-btn" data-target="edu-3">View Full Details</button>
+                            </div>
+                        </div>
+
+                        <!-- Edu 4 -->
+                        <div class="timeline-item education-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-body">
+                                <div class="education-header">
+                                    <div class="education-title-row">
+                                        <h3 class="education-title">Mathematical French Baccalauréat</h3>
+                                        <span class="education-period">2006 – 2018</span>
+                                    </div>
+                                    <p class="education-institution">Franco-Bolivian School</p>
+                                </div>
+                                <div class="education-summary" id="edu-summary-4">
+                                    <p class="summary-text">Rigorous bilingual French international baccalaureate, Scientific (S) stream. Advanced foundation in pure and applied mathematics, physics, and chemistry in a multicultural environment.</p>
+                                    <div class="education-highlights">
+                                        <span class="highlight">Scientific Stream</span>
+                                        <span class="highlight">Bilingual French</span>
+                                    </div>
+                                </div>
+                                <div class="education-details" id="edu-details-4">
+                                    <div class="details-content">
+                                        <h4>Key Subjects</h4>
+                                        <div class="course-tags">
+                                            <span>Advanced Mathematics</span>
+                                            <span>Physics & Chemistry</span>
+                                            <span>French Language</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="toggle-details-btn" data-target="edu-4">View Full Details</button>
+                            </div>
+                        </div>
+
+                    </div><!-- /timeline -->
+
+                    <!-- CERTIFICATIONS -->
+                    <div class="certifications-section">
                         <h3 class="certifications-title">CERTIFICATIONS</h3>
                         <div class="certifications-grid">
                             <div class="certification-card">
@@ -574,7 +524,6 @@
                                 <p class="cert-issuer">Siemens Certified</p>
                                 <button class="view-cert-btn" data-cert="siemens">View Certificate</button>
                             </div>
-                            
                             <div class="certification-card">
                                 <div class="certification-header">
                                     <h4>Fanuc Robot Programming</h4>
@@ -583,7 +532,6 @@
                                 <p class="cert-issuer">Fanuc America</p>
                                 <button class="view-cert-btn" data-cert="fanuc">View Certificate</button>
                             </div>
-                            
                             <div class="certification-card">
                                 <div class="certification-header">
                                     <h4>Industrial IoT Specialist</h4>
@@ -594,13 +542,11 @@
                             </div>
                         </div>
                     </div>
-                  
-                  
-                  
+
                 </div>
             </div>
-            
-            <!-- ACORDEÓN 3: HERRAMIENTAS -->
+
+            <!-- ACORDEÓN: TOOLS & TECHNOLOGIES -->
             <div class="accordion" id="tools">
                 <div class="accordion-header">
                     <h2 class="accordion-title">TOOLS & TECHNOLOGIES</h2>
@@ -610,9 +556,8 @@
                     </div>
                 </div>
                 <div class="accordion-content">
-                    
                     <div class="tools-categories">
-                        <!-- Categoría 1 -->
+
                         <div class="tools-category">
                             <h3 class="category-title">PLC & Control Systems</h3>
                             <div class="skills-grid">
@@ -621,34 +566,25 @@
                                         <span class="skill-name">Siemens TIA Portal</span>
                                         <span class="skill-level">Expert</span>
                                     </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 95%"></div>
-                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
                                 </div>
-                                
                                 <div class="skill-item">
                                     <div class="skill-header">
                                         <span class="skill-name">Allen-Bradley Studio 5000</span>
                                         <span class="skill-level">Advanced</span>
                                     </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
-                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
                                 </div>
-                                
                                 <div class="skill-item">
                                     <div class="skill-header">
                                         <span class="skill-name">SCADA Systems</span>
                                         <span class="skill-level">Expert</span>
                                     </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 90%"></div>
-                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Categoría 2 -->
+
                         <div class="tools-category">
                             <h3 class="category-title">Robotics & Automation</h3>
                             <div class="skills-grid">
@@ -657,80 +593,81 @@
                                         <span class="skill-name">Fanuc Robotics</span>
                                         <span class="skill-level">Advanced</span>
                                     </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 88%"></div>
-                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:88%"></div></div>
                                 </div>
-                                
                                 <div class="skill-item">
                                     <div class="skill-header">
-                                        <span class="skill-name">Universal Robots</span>
-                                        <span class="skill-level">Intermediate</span>
+                                        <span class="skill-name">Universal Robots (Cobots)</span>
+                                        <span class="skill-level">Advanced</span>
                                     </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 75%"></div>
-                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:82%"></div></div>
                                 </div>
-                                
                                 <div class="skill-item">
                                     <div class="skill-header">
                                         <span class="skill-name">Vision Systems (Cognex)</span>
                                         <span class="skill-level">Intermediate</span>
                                     </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 70%"></div>
-                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Categoría 3 -->
+
+                        <!-- Software: ahora también usa skill-bar en lugar de puntos -->
                         <div class="tools-category">
                             <h3 class="category-title">Software & Programming</h3>
-                            <div class="skills-list">
-                                <div class="software-item">
-                                    <span class="software-name">AutoCAD Electrical</span>
-                                    <span class="software-level">●●●●○</span>
+                            <div class="skills-grid">
+                                <div class="skill-item">
+                                    <div class="skill-header">
+                                        <span class="skill-name">AutoCAD Electrical</span>
+                                        <span class="skill-level">Advanced</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
                                 </div>
-                                <div class="software-item">
-                                    <span class="software-name">MATLAB/Simulink</span>
-                                    <span class="software-level">●●●●○</span>
+                                <div class="skill-item">
+                                    <div class="skill-header">
+                                        <span class="skill-name">MATLAB / Simulink</span>
+                                        <span class="skill-level">Advanced</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
                                 </div>
-                                <div class="software-item">
-                                    <span class="software-name">Python</span>
-                                    <span class="software-level">●●●○○</span>
+                                <div class="skill-item">
+                                    <div class="skill-header">
+                                        <span class="skill-name">Python</span>
+                                        <span class="skill-level">Intermediate</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:65%"></div></div>
                                 </div>
-                                <div class="software-item">
-                                    <span class="software-name">SQL</span>
-                                    <span class="software-level">●●●●○</span>
+                                <div class="skill-item">
+                                    <div class="skill-header">
+                                        <span class="skill-name">SQL</span>
+                                        <span class="skill-level">Advanced</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
                                 </div>
-                                <div class="software-item">
-                                    <span class="software-name">Node-RED</span>
-                                    <span class="software-level">●●●●○</span>
+                                <div class="skill-item">
+                                    <div class="skill-header">
+                                        <span class="skill-name">Node-RED</span>
+                                        <span class="skill-level">Advanced</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                    
                 </div>
             </div>
-            
-            <!-- ACORDEÓN 4: IDIOMAS -->
-            
-            
+
         </section>
 
-        <!-- ==================== -->
-        <!-- SECCIÓN CONTACTO -->
-        <!-- ==================== -->
+        <!-- CONTACTO -->
         <section class="contact-section" id="contact">
             <div class="contact-card">
                 <div class="contact-content">
                     <h2 class="contact-title">GET IN TOUCH</h2>
                     <p class="contact-description">Interested in discussing automation solutions or potential collaborations?</p>
-                    
                     <div class="contact-actions">
-                        <a href="mailto:analucia@example.com" class="contact-button">
+                        <a href="mailto:your@email.com" class="contact-button">
                             <span>Send Email</span>
                             <div class="button-icon">↗</div>
                         </a>
@@ -739,7 +676,6 @@
                             <div class="button-icon">↓</div>
                         </a>
                     </div>
-                    
                     <div class="contact-info">
                         <div class="info-item">
                             <div class="info-label">Availability</div>
@@ -751,7 +687,7 @@
                         </div>
                         <div class="info-item">
                             <div class="info-label">Location</div>
-                            <div class="info-value">Based in Tech Innovation Hub</div>
+                            <div class="info-value">Manchester, UK</div>
                         </div>
                     </div>
                 </div>
@@ -759,49 +695,40 @@
         </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="profile-footer">
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">AVM</div>
                 <p class="footer-tagline">Industrial Automation Engineering</p>
             </div>
-            
             <div class="footer-links">
                 <a href="index.html">Home</a>
-                <a href="about.html">About</a>
                 <a href="#experience">Experience</a>
                 <a href="#contact">Contact</a>
             </div>
-            
             <div class="footer-copyright">
-                <p>© 2024 Analucia V.M. All systems operational.</p>
-                <p class="footer-note">Professional Profile</p>
+                <p>© 2025 Analucia V.M. All systems operational.</p>
             </div>
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
     <script src="profile.js"></script>
     <script>
-        // Inicializar gráfico de araña para idiomas
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const ctx = document.getElementById('languagesChart').getContext('2d');
-            
-            const languagesChart = new Chart(ctx, {
+            new Chart(ctx, {
                 type: 'radar',
                 data: {
                     labels: ['Spanish', 'English', 'French', 'Italian'],
                     datasets: [{
-                        label: 'Language Proficiency',
-                        data: [100, 80, 80, 60], // Niveles en porcentaje
-                        backgroundColor: 'rgba(212, 255, 94, 0.2)',
+                        data: [100, 80, 80, 60],
+                        backgroundColor: 'rgba(212, 255, 94, 0.15)',
                         borderColor: 'rgba(212, 255, 94, 0.8)',
                         borderWidth: 2,
-                        pointBackgroundColor: 'rgba(212, 255, 94, 1)',
-                        pointBorderColor: '#fff',
+                        pointBackgroundColor: '#D4FF5E',
+                        pointBorderColor: '#0A0A0A',
                         pointBorderWidth: 2,
-                        pointRadius: 6
+                        pointRadius: 5
                     }]
                 },
                 options: {
@@ -809,31 +736,17 @@
                         r: {
                             beginAtZero: true,
                             max: 100,
-                            ticks: {
-                                display: false
-                            },
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            angleLines: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            },
+                            ticks: { display: false },
+                            grid: { color: 'rgba(255,255,255,0.08)' },
+                            angleLines: { color: 'rgba(255,255,255,0.08)' },
                             pointLabels: {
                                 color: '#FFFFFF',
-                                font: {
-                                    size: 14,
-                                    weight: '600'
-                                }
+                                font: { size: 13, weight: '500' }
                             }
                         }
                     },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    responsive: true,
-                    maintainAspectRatio: true
+                    plugins: { legend: { display: false } },
+                    animation: { duration: 1200, easing: 'easeInOutQuart' }
                 }
             });
         });
