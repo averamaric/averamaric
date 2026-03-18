@@ -10,7 +10,7 @@ body {
     background-color: #0A0A0A;
     color: #FFFFFF;
     min-height: 100vh;
-    overflow-x: hidden;
+    cursor: none;
     position: relative;
 }
 
@@ -317,10 +317,15 @@ body::after {
     }
 }
 
+@media (min-width: 769px) {
+    body { overflow-x: hidden; }
+}
+
 /* Breakpoint mobile — carrusel horizontal */
 @media (max-width: 768px) {
     .nothing-cards-container {
         display: flex;
+        position: static; 
         flex-direction: row;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
