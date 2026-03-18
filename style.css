@@ -251,12 +251,14 @@ body::after {
     pointer-events: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
+        ". . . . ."
         "projects . . . profile"
         "projects . . . profile"
         "skills . . . cv"
         "skills . . . cv";
+        ". . . . ."
     padding: clamp(20px, 3vw, 50px);
     gap: clamp(8px, 1.5vw, 20px);
     box-sizing: border-box;
