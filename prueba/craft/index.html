@@ -519,135 +519,17 @@
         }
 
         .detail-description {
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .detail-description p {
             color: #4a4a4a;
             line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .characteristics {
-            background: var(--beige);
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-        }
-
-        .characteristics h4 {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            color: var(--dark);
             margin-bottom: 1rem;
         }
 
-        .characteristics ul {
-            list-style: none;
-        }
-
-        .characteristics li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-            color: #555;
-        }
-
-        .characteristics li::before {
-            content: '✦';
-            color: var(--gold);
-            font-size: 1rem;
-        }
-
-        .technique-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            text-align: center;
-        }
-
-        .stat {
-            padding: 1rem;
-        }
-
-        .stat-number {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 0.3rem;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ===== MATERIALES ===== */
-        .materials-section {
-            padding: 80px 2rem;
-            background-color: var(--beige);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
-        }
-
-        .materials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .material-card {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .material-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .material-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1.5rem;
-            background: var(--beige);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: var(--gold);
-        }
-
-        .material-card h3 {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .material-card p {
-            color: #666;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
+        /* ===== MATERIALES (SECCIÓN COMENTADA EN EL HTML) ===== */
+        /* ... estilos de materiales si se llegaran a usar ... */
 
         /* ===== FOOTER ===== */
         .footer {
@@ -680,17 +562,10 @@
                 grid-template-columns: 1fr;
             }
 
-            .materials-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         @media (max-width: 600px) {
             .techniques-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .materials-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -812,32 +687,6 @@
         </div>
     </div>
 
-    <!-- 
-    <section class="materials-section">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Natural Materials</h2>
-            <p>Sourced from the Andean highlands</p>
-        </div>
-
-        <div class="materials-grid">
-            <div class="material-card" data-aos="fade-up">
-                <div class="material-icon">🦙</div>
-                <h3>Alpaca Wool</h3>
-                <p>Softer than cashmere, warmer than sheep's wool, and hypoallergenic. Sourced from free-roaming herds in the Bolivian altiplano.</p>
-            </div>
-            <div class="material-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="material-icon">🐑</div>
-                <h3>Merino Wool</h3>
-                <p>Fine, soft wool from Merino sheep. Naturally breathable and moisture-wicking, perfect for year-round garments.</p>
-            </div>
-            <div class="material-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="material-icon">🌿</div>
-                <h3>Organic Cotton</h3>
-                <p>Grown without pesticides or chemicals. Used for lighter garments and as the base for our natural dye experiments.</p>
-            </div>
-        </div>
-    </section>
-MATERIALES -->
     <!-- FOOTER -->
     <footer class="footer">
         <p>© 2025 Madres & Artesanas Tex · Crafted with tradition</p>
@@ -847,7 +696,7 @@ MATERIALES -->
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Datos de las técnicas
+        // Datos de las técnicas - Se han simplificado eliminando características y stats
         const techniquesData = {
             macrame: {
                 name: 'Macramé',
@@ -858,13 +707,7 @@ MATERIALES -->
                     'images/macrame/HEIRLOME RESORT 2026.jpg',
                     'images/macrame/THE ROW SPRING 2014 READY TO WEAR (3).jpg',
                     'images/macrame/00027-Gabriela-Hearst-Fall-22-RTW-New-York-credit-Isidore-Montag-Gorunway.webp'
-                ],
-                //characteristics: [
-                //    'Uses natural cotton or wool cords',
-                //    'Square knots, half hitches, and chenille techniques',
-                //    'Creates bohemian textures and tassels',
-                //    'Perfect for statement pieces and details'
-              //  ],
+                ]
             },
             crochet: {
                 name: 'Crochet',
@@ -875,7 +718,7 @@ MATERIALES -->
                     'images/crochet/1 The-Row-SPRING 2018 READY TO WEAR (14).webp',
                     'images/crochet/1 The-Row-SPRING 2018 READY TO WEAR (7).webp',
                     'images/crochet/1 The-Row-SPRING 2018 READY TO WEAR (9).webp'
-                ],
+                ]
             },
             weaving: {
                 name: 'Hand Weaving',
@@ -886,7 +729,7 @@ MATERIALES -->
                     'images/handweaving/BECKEN, FALL 2013.jpg',
                     'images/handweaving/MPATMOS FALL 2014.jpg',
                     'images/handweaving/TRADEMARK FALL 2016 (2).jpg'
-                ],
+                ]
             },
             knitting: {
                 name: 'Hand Knitting',
@@ -897,7 +740,7 @@ MATERIALES -->
                     'images/handknitting/00016-prabal-gurung-spring-2026-ready-to-wear-credit-gorunway.webp',
                     'images/handknitting/00022-heirlome-pre-fall-2026-credit-brand.webp',
                     'images/handknitting/SALLY LAPOINTE FALL 2016 (1).jpg'
-                ],
+                ]
             },
             machine: {
                 name: 'Manual Machine Knitting',
@@ -908,40 +751,34 @@ MATERIALES -->
                     'images/handlooming/00001-ZERO-MARIA-CORNEJO-Fall-20-RTW 1.jpg',
                     'images/handlooming/NARCISO RODRIGUEZ SPRING 2018.jpg',
                     'images/handlooming/THE ROW SPRING 2015 READY TO WEAR (2).jpg'
-                ],
+                ]
             },
             embroidery: {
                 name: 'Embroidery',
                 subtitle: 'Stories in Thread',
                 description: 'Embroidery is the art of decorating fabric with needle and thread. Our artisans use dozens of stitches to create intricate patterns, from traditional Andean motifs to contemporary designs for high-end fashion.',
-                longDescription: 'Each embroidered piece can take weeks to complete, with thousands of individual stitches. The technique allows for incredible detail - from delicate floral patterns to bold geometric designs. Many of our embroiderers specialize in specific stitches passed down through their families.',
                 mainImage: 'images/embroidery/00021-heirlome-fall-2026-ready-to-wear-credit-brand.webp',
                 gallery: [
                     'images/embroidery/00005-heirlome-pre-fall-2026-credit-brand.jpg',
                     'images/embroidery/00016-Puppets-and-Puppets-Fall-21-Jody-Rogac.jpg',
                     'images/embroidery/PROENZA SCHOULER SPRING 2017.jpg'
-                ],
-                characteristics: [
-                    'Hand-stitched details',
-                    'Dozens of stitch types',
-                    'Traditional Andean motifs',
-                    'Can take weeks to complete'
-                ],
-                stats: {
-                    time: '30-80 hrs',
-                    artisans: '20 specialists',
-                    heritage: 'Ancient'
-                }
+                ]
             }
         };
 
         // Abrir técnica
         function openTechnique(techniqueId) {
             const data = techniquesData[techniqueId];
+            // Verificar si los datos existen
+            if (!data) {
+                console.error('Técnica no encontrada:', techniqueId);
+                return;
+            }
+
             const detailView = document.getElementById('techniqueDetail');
             const container = document.getElementById('detailContainer');
             
-            // Generar HTML
+            // Generar HTML para la galería
             let galleryHTML = '';
             data.gallery.forEach((img, index) => {
                 galleryHTML += `
@@ -951,11 +788,7 @@ MATERIALES -->
                 `;
             });
 
-            let characteristicsHTML = '';
-            data.characteristics.forEach(char => {
-                characteristicsHTML += `<li>${char}</li>`;
-            });
-
+            // Construir el HTML del modal solo con la información básica
             container.innerHTML = `
                 <div class="detail-grid">
                     <div class="detail-gallery">
@@ -972,30 +805,10 @@ MATERIALES -->
                         
                         <div class="detail-description">
                             <p>${data.description}</p>
-                            <p>${data.longDescription}</p>
                         </div>
                         
-                        <div class="characteristics">
-                            <h4>Chacteristics</h4>
-                            <ul>
-                                ${characteristicsHTML}
-                            </ul>
-                        </div>
+                        <!-- Las secciones de características y estadísticas han sido eliminadas -->
                         
-                        <div class="technique-stats">
-                            <div class="stat">
-                                <div class="stat-number">${data.stats.time}</div>
-                                <div class="stat-label">Tiempo por pieza</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">${data.stats.artisans}</div>
-                                <div class="stat-label">Artesanas</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">${data.stats.heritage}</div>
-                                <div class="stat-label">Tradición</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             `;
