@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANALUCIA V.M. | Projects</title>
+    <link rel="stylesheet" href="projects.css">
+</head>
+<body class="projects-page">
+
+    <!-- BOTÓN SKIP -->
+    <button class="skip-btn" id="skipBtn">Skip intro ↓</button>
+
+    <!-- ANIMACIÓN INICIAL -->
+    <div class="animation-container" id="animationContainer">
+        <div class="white-rectangle" id="whiteRectangle">
+            <div class="profile-word-black" id="blackWord">PROJECTS</div>
+        </div>
+        <div class="typing-cursor" id="typingCursor"></div>
+        <div class="typing-text" id="typingText">
+            <span class="letter">P</span>
+            <span class="letter">R</span>
+            <span class="letter">O</span>
+            <span class="letter">J</span>
+            <span class="letter">E</span>
+            <span class="letter">C</span>
+            <span class="letter">T</span>
+            <span class="letter">S</span>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="projects/portfolio.html">PROFILE</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+    </nav>
+
+    <main class="projects-container">
+
+        <!-- INTRO -->
+        <section class="projects-intro">
+            <div class="intro-text-block">
+                <h1 class="projects-title">SELECTED<br>WORK</h1>
+                <div class="intro-decorative-line">
+                    <span class="decorative-label">PROJECTS</span>
+                    <div class="decorative-rule"></div>
+                </div>
+            </div>
+            <p class="projects-subtitle">A collection of engineering projects spanning robotics, industrial automation, IoT, and cyber-physical systems.</p>
+        </section>
+
+        <!-- FILTROS -->
+        <div class="filters-bar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="robotics">Robotics</button>
+            <button class="filter-btn" data-filter="plc">PLC / SCADA</button>
+            <button class="filter-btn" data-filter="iot">IoT</button>
+            <button class="filter-btn" data-filter="research">Research</button>
+        </div>
+
+        <!-- GRID DE PROYECTOS -->
+        <div class="projects-grid" id="projectsGrid">
+
+            <!-- Proyecto 1 -->
+            <article class="project-card" data-category="robotics" data-id="1">
+                <div class="project-media">
+                    <div class="project-media-placeholder" style="--accent: #D4FF5E;">
+                        <span class="media-icon">⟳</span>
+                    </div>
+                    <!-- Cuando tengas imagen: <img src="assets/images/project1.jpg" alt="Tic-tac-toe robot"> -->
+                    <div class="project-year-badge">2022</div>
+                </div>
+                <div class="project-card-body">
+                    <div class="project-meta">
+                        <span class="project-category-tag">Robotics</span>
+                        <span class="project-date">Sept – Dec 2022</span>
+                    </div>
+                    <h2 class="project-name">AI Tic-tac-toe Robot</h2>
+                    <p class="project-summary">TM5 Omron robotic arm programmed to play tic-tac-toe against users using a strategic AI algorithm — and a portrait-sketching system. Achieved 10/10 with honours.</p>
+                    <div class="project-tags">
+                        <span>TMFlow</span>
+                        <span>TM5 Omron</span>
+                        <span>Computer Vision</span>
+                        <span>Python</span>
+                    </div>
+                    <button class="expand-btn" data-target="1">View Details →</button>
+                </div>
+            </article>
+
+            <!-- Proyecto 2 -->
+            <article class="project-card" data-category="plc" data-id="2">
+                <div class="project-media">
+                    <div class="project-media-placeholder" style="--accent: rgba(212,255,94,0.5);">
+                        <span class="media-icon">⚙</span>
+                    </div>
+                    <div class="project-year-badge">2023</div>
+                </div>
+                <div class="project-card-body">
+                    <div class="project-meta">
+                        <span class="project-category-tag">PLC / SCADA</span>
+                        <span class="project-date">2023</span>
+                    </div>
+                    <h2 class="project-name">Batch Mixing Plant Automation</h2>
+                    <p class="project-summary">Designed and implemented a fully automated batch mixing plant using PLC control and computer vision for product sorting and quality inspection.</p>
+                    <div class="project-tags">
+                        <span>Siemens TIA Portal</span>
+                        <span>SCADA</span>
+                        <span>HMI</span>
+                        <span>Computer Vision</span>
+                    </div>
+                    <button class="expand-btn" data-target="2">View Details →</button>
+                </div>
+            </article>
+
+            <!-- Proyecto 3 -->
+            <article class="project-card" data-category="iot" data-id="3">
+                <div class="project-media">
+                    <div class="project-media-placeholder" style="--accent: rgba(212,255,94,0.3);">
+                        <span class="media-icon">◎</span>
+                    </div>
+                    <div class="project-year-badge">2024</div>
+                </div>
+                <div class="project-card-body">
+                    <div class="project-meta">
+                        <span class="project-category-tag">IoT</span>
+                        <span class="project-date">2024</span>
+                    </div>
+                    <h2 class="project-name">Industry 4.0 Device Integration</h2>
+                    <p class="project-summary">Led the connectivity deployment of industrial machines into IoT platforms for real-time data acquisition and analytics, developing a standardized taxonomy for signal management.</p>
+                    <div class="project-tags">
+                        <span>Node-RED</span>
+                        <span>SQL</span>
+                        <span>Allen-Bradley</span>
+                        <span>Ignition SCADA</span>
+                    </div>
+                    <button class="expand-btn" data-target="3">View Details →</button>
+                </div>
+            </article>
+
+            <!-- Proyecto 4 -->
+            <article class="project-card" data-category="research" data-id="4">
+                <div class="project-media">
+                    <div class="project-media-placeholder" style="--accent: rgba(212,255,94,0.7);">
+                        <span class="media-icon">⬡</span>
+                    </div>
+                    <div class="project-year-badge">2025</div>
+                </div>
+                <div class="project-card-body">
+                    <div class="project-meta">
+                        <span class="project-category-tag">Research</span>
+                        <span class="project-date">Dec 2025 – Present</span>
+                    </div>
+                    <h2 class="project-name">Cybersecurity in Smart Energy OT Networks</h2>
+                    <p class="project-summary">Research on detecting and mitigating cyber threats in operational technology networks using machine learning, with real-time monitoring of SCADA communications between OPAL-RT and SEL-3555.</p>
+                    <div class="project-tags">
+                        <span>OPAL-RT</span>
+                        <span>SEL-3555</span>
+                        <span>Machine Learning</span>
+                        <span>SCADA</span>
+                        <span>Python</span>
+                    </div>
+                    <button class="expand-btn" data-target="4">View Details →</button>
+                </div>
+            </article>
+
+            <!-- Proyecto 5 -->
+            <article class="project-card" data-category="robotics" data-id="5">
+                <div class="project-media">
+                    <div class="project-media-placeholder" style="--accent: rgba(212,255,94,0.4);">
+                        <span class="media-icon">✦</span>
+                    </div>
+                    <div class="project-year-badge">2023</div>
+                </div>
+                <div class="project-card-body">
+                    <div class="project-meta">
+                        <span class="project-category-tag">Robotics</span>
+                        <span class="project-date">2023</span>
+                    </div>
+                    <h2 class="project-name">Portrait Sketching Robot</h2>
+                    <p class="project-summary">Extended the TM5 Omron robot with an integrated camera system capable of capturing facial features and reproducing them as line sketches — combining image processing, calibration, and robotic motion planning.</p>
+                    <div class="project-tags">
+                        <span>TMFlow</span>
+                        <span>Image Processing</span>
+                        <span>Camera Calibration</span>
+                        <span>Python</span>
+                    </div>
+                    <button class="expand-btn" data-target="5">View Details →</button>
+                </div>
+            </article>
+
+            <!-- Proyecto 6 -->
+            <article class="project-card" data-category="iot" data-id="6">
+                <div class="project-media">
+                    <div class="project-media-placeholder" style="--accent: rgba(212,255,94,0.2);">
+                        <span class="media-icon">⊕</span>
+                    </div>
+                    <div class="project-year-badge">2024</div>
+                </div>
+                <div class="project-card-body">
+                    <div class="project-meta">
+                        <span class="project-category-tag">IoT</span>
+                        <span class="project-date">2024</span>
+                    </div>
+                    <h2 class="project-name">Predictive Maintenance Platform</h2>
+                    <p class="project-summary">Designed a data pipeline and rule engine for predictive maintenance, acquiring signals from industrial equipment and deploying anomaly detection rules to anticipate failures before they occur.</p>
+                    <div class="project-tags">
+                        <span>SQL</span>
+                        <span>Node-RED</span>
+                        <span>Ignition</span>
+                        <span>Data Analysis</span>
+                    </div>
+                    <button class="expand-btn" data-target="6">View Details →</button>
+                </div>
+            </article>
+
+        </div><!-- /projects-grid -->
+
+        <!-- PANEL DE DETALLE (overlay que se abre en la misma página) -->
+        <div class="detail-overlay" id="detailOverlay">
+            <div class="detail-panel" id="detailPanel">
+                <button class="detail-close" id="detailClose">✕ Close</button>
+
+                <div class="detail-media" id="detailMedia">
+                    <!-- imagen/video del proyecto -->
+                </div>
+
+                <div class="detail-content">
+                    <div class="detail-meta" id="detailMeta"></div>
+                    <h2 class="detail-title" id="detailTitle"></h2>
+                    <p class="detail-description" id="detailDescription"></p>
+
+                    <div class="detail-section">
+                        <h3 class="detail-section-title">Key Highlights</h3>
+                        <ul class="detail-highlights" id="detailHighlights"></ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3 class="detail-section-title">Technologies Used</h3>
+                        <div class="detail-tags" id="detailTags"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="projects-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">AVM</div>
+                <p class="footer-tagline">Industrial Automation Engineering</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="projects/portfolio.html">Profile</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2025 Analucia V.M. All systems operational.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+</body>
+</html>
