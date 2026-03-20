@@ -689,6 +689,81 @@
             .contact-form {
                 padding: 1.5rem;
             }
+            /* ===== HEADER CON IMAGEN ===== */
+            .contact-header {
+                height: 70vh;
+                min-height: 500px;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: white;
+                padding: 0;
+            }
+            
+            .contact-header-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('WhatsApp Image 2026-03-06 at 16.22.33.jpeg'); 
+                background-size: cover;
+                background-position: center;
+                transform: scale(1.1);
+                animation: slowZoom 20s infinite alternate ease-in-out;
+                z-index: 0;
+            }
+            
+            @keyframes slowZoom {
+                0% { transform: scale(1.1); }
+                100% { transform: scale(1.2); }
+            }
+            
+            .contact-header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+                z-index: 1;
+            }
+            
+            .contact-header-content {
+                position: relative;
+                z-index: 2;
+                max-width: 900px;
+                padding: 0 2rem;
+            }
+            
+            .contact-header .number {
+                color: var(--gold);
+                font-size: 1rem;
+                letter-spacing: 8px;
+                display: block;
+                margin-bottom: 1.5rem;
+                text-transform: uppercase;
+            }
+            
+            .contact-header h1 {
+                font-family: var(--font-serif);
+                font-size: clamp(2.5rem, 6vw, 4rem);
+                font-weight: 400;
+                color: white;
+                margin-bottom: 1rem;
+            }
+            
+            .contact-header .subhead {
+                font-size: 1.1rem;
+                font-weight: 300;
+                color: rgba(255, 255, 255, 0.9);
+                max-width: 600px;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -717,14 +792,17 @@
         </div>
     </nav>
 
-    <!-- HEADER -->
+    
     <header class="contact-header">
-        <span class="number" data-aos="fade-down">— GET IN TOUCH —</span>
-        <h1 data-aos="fade-up" data-aos-delay="100">Contact Us</h1>
-        <div class="subhead" data-aos="fade-up" data-aos-delay="200">
-            We collaborate with designers and brands seeking exceptional handcrafted textile development.
-            <p>Please reach out with your ideas.</p>
-            <p>We would love to explore them with you.</p>
+        <div class="contact-header-image"></div>
+        <div class="contact-header-content" data-aos="fade-up">
+            <span class="number" data-aos="fade-down">— GET IN TOUCH —</span>
+            <h1 data-aos="fade-up" data-aos-delay="100">Contact Us</h1>
+            <div class="subhead" data-aos="fade-up" data-aos-delay="200">
+                We collaborate with designers and brands seeking exceptional handcrafted textile development.
+                <p>Please reach out with your ideas.</p>
+                <p>We would love to explore them with you.</p>
+            </div>
         </div>
     </header>
 
