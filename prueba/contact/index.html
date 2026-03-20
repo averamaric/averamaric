@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/4.png">
     <title>Contact · M&A Tex</title>
     
     <!-- Fuentes -->
@@ -106,6 +107,58 @@
         .nav-menu a.active {
             color: white;
             border-bottom-color: var(--gold);
+        }
+
+        /* ===== LOGO CON IMAGEN ===== */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-image {
+            height: 40px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+        
+        /* Para cuando el navbar está en estado normal (transparente) */
+        .navbar:not(.scrolled) .logo-image {
+            filter: brightness(0) invert(1); /* Hace el logo blanco si es oscuro */
+        }
+        
+        /* Para cuando el navbar está scrolled (fondo oscuro) */
+        .navbar.scrolled .logo-image {
+            filter: none; /* Mantiene los colores originales del logo */
+        }
+        
+        .logo-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            transition: var(--transition-smooth);
+        }
+        
+        .logo-text:hover {
+            letter-spacing: 6px;
+        }
+        
+        /* Si quieres que el texto también cambie de color cuando scrollea */
+        .navbar.scrolled .logo-text {
+            color: white; /* Mantiene el texto blanco */
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .logo-image {
+                height: 35px;
+            }
+            
+            .logo-text {
+                font-size: 1.1rem;
+                letter-spacing: 3px;
+            }
         }
         
         /* ===== DROPDOWN MENU ===== */
@@ -771,6 +824,7 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-container">
+            <img src="../assets/images/4.png" alt="M&A Tex Logo" class="logo-image">
             <span class="logo-text">M&A TEX</span>
             <ul class="nav-menu">
                 <li><a href="../index.html">HOME</a></li>
