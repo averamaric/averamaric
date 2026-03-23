@@ -1,4 +1,3 @@
-// projects.js
 document.addEventListener('DOMContentLoaded', function () {
 
     // ============================================
@@ -122,10 +121,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let animationDone   = false;
     let rainAnimId      = null;
     let scrambleTimers  = [];
+    let activeRandomize = []; // Para controlar qué letras siguen randomizando
 
     function wait(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+    
     function randChar() {
         return CHARS[Math.floor(Math.random() * CHARS.length)];
     }
@@ -134,45 +135,61 @@ document.addEventListener('DOMContentLoaded', function () {
     // LLUVIA DE FONDO (canvas)
     // ============================================
     function startMatrixRain() {
+        if (!matrixCanvas) return;
+        
         const ctx = matrixCanvas.getContext('2d');
-        matrixCanvas.width  = window.innerWidth;
-        matrixCanvas.height = window.innerHeight;
+        
+        function resizeCanvas() {
+            matrixCanvas.width  = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
         const cols    = Math.floor(matrixCanvas.width / 20);
         const drops   = Array(cols).fill(1);
         const rainChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ'.split('');
 
         function drawRain() {
+            if (!animationContainer || animationContainer.style.display === 'none') return;
+            
             ctx.fillStyle = 'rgba(10, 10, 10, 0.07)';
             ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
             ctx.fillStyle = 'rgba(212, 255, 94, 0.85)';
-            ctx.font = '14px Courier New';
+            ctx.font = '14px "Courier New", monospace';
 
-            drops.forEach((y, i) => {
+            for (let i = 0; i < drops.length; i++) {
                 const char = rainChars[Math.floor(Math.random() * rainChars.length)];
-                ctx.fillText(char, i * 20, y * 20);
-                if (y * 20 > matrixCanvas.height && Math.random() > 0.975) drops[i] = 0;
+                const x = i * 20;
+                const y = drops[i] * 20;
+                ctx.fillText(char, x, y);
+                if (y > matrixCanvas.height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
-            });
+            }
             rainAnimId = requestAnimationFrame(drawRain);
         }
+        
         drawRain();
     }
 
     function stopMatrixRain() {
-        if (rainAnimId) cancelAnimationFrame(rainAnimId);
+        if (rainAnimId) {
+            cancelAnimationFrame(rainAnimId);
+            rainAnimId = null;
+        }
     }
 
     // ============================================
     // SCRAMBLE DE UN CARÁCTER
-    // Cicla chars random durante `duration` ms,
-    // luego fija el carácter final
     // ============================================
     function scrambleChar(el, finalChar, duration) {
         return new Promise(resolve => {
             const start    = performance.now();
-            const interval = 60; // ms entre cambios
+            const interval = 40;
+            
             el.classList.add('scrambling');
+            el.classList.remove('resolved');
 
             function tick() {
                 const elapsed = performance.now() - start;
@@ -196,77 +213,77 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================================
     async function startAnimation() {
         try {
+            // Inicializar el estado
+            if (!scrambleChars.length) {
+                console.error('No scramble characters found');
+                skipAnimation();
+                return;
+            }
+            
+            // Asegurar que el contenedor es visible
+            if (animationContainer) {
+                animationContainer.style.display = 'flex';
+                animationContainer.style.opacity = '1';
+            }
+            
             startMatrixRain();
-
-            // Flag de control por letra — evita race condition entre fase 1 y fase 2
-            const active = Array(scrambleChars.length).fill(true);
-
-            // Fase 1 — todos los chars scrambleando al mismo tiempo
+            
+            // Configurar los caracteres iniciales
             scrambleChars.forEach((ch, idx) => {
+                ch.textContent = randChar();
                 ch.classList.add('scrambling');
-                ch.textContent = randChar(); // asegurar que nunca esté vacío
-                function randomize() {
-                    if (!active[idx]) return; // parar cuando la fase 2 tome el control
-                    ch.textContent = randChar();
-                    const t = setTimeout(randomize, 60);
-                    scrambleTimers.push(t);
-                }
-                const t = setTimeout(randomize, 60);
-                scrambleTimers.push(t);
+                ch.classList.remove('resolved');
             });
-
-            await wait(800);
-
-            // Fase 2 — resolver letra a letra con progreso
-            const labels = [
-                'INITIALIZING', 'LOADING DATA', 'DECODING...', 'RESOLVING', 'ACCESS GRANTED'
-            ];
-
+            
+            await wait(600);
+            
+            // Resolver letra por letra
+            const labels = ['INITIALIZING', 'LOADING DATA', 'DECODING...', 'RESOLVING', 'ACCESS GRANTED'];
+            
             for (let i = 0; i < scrambleChars.length; i++) {
                 const ch = scrambleChars[i];
-
-                // Detener el loop de fase 1 para esta letra
-                active[i] = false;
-                ch.classList.remove('scrambling');
-                // Poner un char visible mientras arranca el scrambleChar
-                ch.textContent = randChar();
-
-                // Actualizar label y barra
-                const labelIdx = Math.floor((i / scrambleChars.length) * (labels.length - 1));
-                scrambleLabel.textContent   = labels[labelIdx];
+                
+                // Actualizar label y barra de progreso
+                const labelIdx = Math.min(Math.floor((i / scrambleChars.length) * labels.length), labels.length - 1);
+                if (scrambleLabel) scrambleLabel.textContent = labels[labelIdx];
+                
                 const pct = Math.round(((i + 1) / scrambleChars.length) * 100);
-                scrambleBarFill.style.width = pct + '%';
-                scrambleStatus.textContent  = `${pct}% COMPLETE`;
-
-                // Resolver este caracter con scramble rápido
-                await scrambleChar(ch, WORD[i], 300);
-                await wait(60);
+                if (scrambleBarFill) scrambleBarFill.style.width = pct + '%';
+                if (scrambleStatus) scrambleStatus.textContent = `${pct}% COMPLETE`;
+                
+                // Resolver este caracter
+                await scrambleChar(ch, WORD[i], 280);
+                await wait(50);
             }
-
-            // Fase 3 — estado final
-            scrambleLabel.textContent  = 'ACCESS GRANTED';
-            scrambleBarFill.style.width = '100%';
-            scrambleStatus.textContent  = '100% COMPLETE';
-
-            await wait(500);
-
-            // Fase 4 — flash de salida y revelar contenido
+            
+            // Estado final
+            if (scrambleLabel) scrambleLabel.textContent = 'ACCESS GRANTED';
+            if (scrambleBarFill) scrambleBarFill.style.width = '100%';
+            if (scrambleStatus) scrambleStatus.textContent = '100% COMPLETE';
+            
+            await wait(600);
+            
+            // Ocultar animación y mostrar contenido
             stopMatrixRain();
-
-            animationContainer.style.transition = 'opacity 0.5s ease';
-            animationContainer.style.opacity    = '0';
-            await wait(500);
-
-            animationContainer.style.display = 'none';
-            skipBtn.style.display = 'none';
+            
+            if (animationContainer) {
+                animationContainer.style.transition = 'opacity 0.5s ease';
+                animationContainer.style.opacity = '0';
+                await wait(500);
+                animationContainer.style.display = 'none';
+            }
+            
+            if (skipBtn) skipBtn.style.display = 'none';
             animationDone = true;
-
-            projectsContainer.style.transition = 'opacity 0.5s ease';
-            projectsContainer.style.opacity    = '1';
+            
+            if (projectsContainer) {
+                projectsContainer.style.transition = 'opacity 0.6s ease';
+                projectsContainer.style.opacity = '1';
+            }
+            
             await wait(400);
-
             initPage();
-
+            
         } catch (err) {
             console.error('Animation error:', err);
             skipAnimation();
@@ -274,30 +291,53 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ============================================
-    // SKIP
+    // SKIP ANIMATION
     // ============================================
     function skipAnimation() {
         if (animationDone) return;
         animationDone = true;
-        scrambleTimers.forEach(clearTimeout);
+        
+        // Limpiar todos los timers
+        scrambleTimers.forEach(timer => clearTimeout(timer));
+        scrambleTimers = [];
+        
         stopMatrixRain();
-        animationContainer.style.transition = 'opacity 0.3s ease';
-        animationContainer.style.opacity    = '0';
+        
+        if (animationContainer) {
+            animationContainer.style.transition = 'opacity 0.3s ease';
+            animationContainer.style.opacity = '0';
+            setTimeout(() => {
+                if (animationContainer) animationContainer.style.display = 'none';
+            }, 300);
+        }
+        
+        if (skipBtn) skipBtn.style.display = 'none';
+        
+        if (projectsContainer) {
+            projectsContainer.style.opacity = '1';
+            projectsContainer.style.transition = 'opacity 0.3s ease';
+        }
+        
         setTimeout(() => {
-            animationContainer.style.display = 'none';
-            skipBtn.style.display            = 'none';
-            projectsContainer.style.opacity  = '1';
             initPage();
         }, 300);
     }
 
-    skipBtn.addEventListener('click', skipAnimation);
-    document.addEventListener('keydown', function onKey() {
-        skipAnimation();
-        document.removeEventListener('keydown', onKey);
+    // Configurar eventos de skip
+    if (skipBtn) {
+        skipBtn.addEventListener('click', skipAnimation);
+    }
+    
+    document.addEventListener('keydown', function onKey(e) {
+        if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+            skipAnimation();
+            document.removeEventListener('keydown', onKey);
+        }
     }, { once: true });
 
-    // Referencias del panel de detalle
+    // ============================================
+    // REFERENCIAS DEL PANEL DE DETALLE
+    // ============================================
     const detailOverlay = document.getElementById('detailOverlay');
     const detailPanel   = document.getElementById('detailPanel');
     const detailClose   = document.getElementById('detailClose');
@@ -306,7 +346,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // INIT — filtros, cards, detalle
     // ============================================
     function initPage() {
-
+        if (!projectsContainer) return;
+        
         // --- Intersection observer: animar tarjetas al entrar ---
         const cards = document.querySelectorAll('.project-card');
         const observer = new IntersectionObserver(entries => {
@@ -320,43 +361,56 @@ document.addEventListener('DOMContentLoaded', function () {
         cards.forEach(card => observer.observe(card));
 
         // --- FILTROS ---
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        if (filterBtns.length) {
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
 
-                const filter = this.getAttribute('data-filter');
-                document.querySelectorAll('.project-card').forEach(card => {
-                    const match = filter === 'all' || card.getAttribute('data-category') === filter;
-                    if (match) {
-                        card.classList.remove('hidden-card');
-                        // Reanimar al aparecer
-                        card.classList.remove('animated');
-                        setTimeout(() => card.classList.add('animated'), 50);
-                    } else {
-                        card.classList.add('hidden-card');
-                    }
+                    const filter = this.getAttribute('data-filter');
+                    cards.forEach(card => {
+                        const match = filter === 'all' || card.getAttribute('data-category') === filter;
+                        if (match) {
+                            card.classList.remove('hidden-card');
+                            card.classList.remove('animated');
+                            setTimeout(() => card.classList.add('animated'), 50);
+                        } else {
+                            card.classList.add('hidden-card');
+                        }
+                    });
                 });
             });
-        });
+        }
 
         // --- ABRIR DETALLE ---
-        document.querySelectorAll('.project-card, .expand-btn').forEach(el => {
-            el.addEventListener('click', function (e) {
-                // Evitar doble disparo si click en el botón dentro de la tarjeta
-                if (e.target.classList.contains('expand-btn') && el.classList.contains('project-card')) return;
-
-                const card = el.classList.contains('project-card') ? el : el.closest('.project-card');
-                const id   = card.getAttribute('data-id');
-                openDetail(id);
+        cards.forEach(card => {
+            card.addEventListener('click', function (e) {
+                if (e.target.classList.contains('expand-btn')) return;
+                const id = this.getAttribute('data-id');
+                if (id) openDetail(id);
+            });
+        });
+        
+        // Botones expand dentro de las tarjetas
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const card = this.closest('.project-card');
+                const id = card ? card.getAttribute('data-id') : null;
+                if (id) openDetail(id);
             });
         });
 
         // --- CERRAR DETALLE ---
-        detailClose.addEventListener('click', closeDetail);
-        detailOverlay.addEventListener('click', function (e) {
-            if (e.target === detailOverlay) closeDetail();
-        });
+        if (detailClose) {
+            detailClose.addEventListener('click', closeDetail);
+        }
+        if (detailOverlay) {
+            detailOverlay.addEventListener('click', function (e) {
+                if (e.target === detailOverlay) closeDetail();
+            });
+        }
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeDetail();
         });
@@ -369,46 +423,54 @@ document.addEventListener('DOMContentLoaded', function () {
         const data = projectsData[id];
         if (!data) return;
 
-        // Media
         const mediaEl = document.getElementById('detailMedia');
-        mediaEl.innerHTML = `
-            <div class="detail-media-placeholder" style="--accent: ${data.accent}">
-                <span class="detail-media-icon">${data.icon}</span>
-            </div>
-        `;
-        // Si en el futuro tienes imagen: mediaEl.innerHTML = `<img src="..." alt="${data.title}">`
+        if (mediaEl) {
+            mediaEl.innerHTML = `
+                <div class="detail-media-placeholder" style="--accent: ${data.accent}">
+                    <span class="detail-media-icon">${data.icon}</span>
+                </div>
+            `;
+        }
 
-        // Meta
-        document.getElementById('detailMeta').innerHTML = `
-            <span class="detail-category">${data.category}</span>
-            <span class="detail-year">${data.year}</span>
-        `;
+        const detailMeta = document.getElementById('detailMeta');
+        if (detailMeta) {
+            detailMeta.innerHTML = `
+                <span class="detail-category">${data.category}</span>
+                <span class="detail-year">${data.year}</span>
+            `;
+        }
 
-        // Título y descripción
-        document.getElementById('detailTitle').textContent       = data.title;
-        document.getElementById('detailDescription').textContent = data.description;
+        const detailTitle = document.getElementById('detailTitle');
+        if (detailTitle) detailTitle.textContent = data.title;
+        
+        const detailDescription = document.getElementById('detailDescription');
+        if (detailDescription) detailDescription.textContent = data.description;
 
-        // Highlights
-        const hl = document.getElementById('detailHighlights');
-        hl.innerHTML = data.highlights.map(h => `<li>${h}</li>`).join('');
+        const detailHighlights = document.getElementById('detailHighlights');
+        if (detailHighlights) {
+            detailHighlights.innerHTML = data.highlights.map(h => `<li>${h}</li>`).join('');
+        }
 
-        // Tags
-        const tags = document.getElementById('detailTags');
-        tags.innerHTML = data.tags.map(t => `<span>${t}</span>`).join('');
+        const detailTags = document.getElementById('detailTags');
+        if (detailTags) {
+            detailTags.innerHTML = data.tags.map(t => `<span>${t}</span>`).join('');
+        }
 
-        // Abrir
-        detailPanel.scrollTop = 0;
-        detailOverlay.classList.add('open');
+        if (detailPanel) detailPanel.scrollTop = 0;
+        if (detailOverlay) detailOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
 
     function closeDetail() {
-        detailOverlay.classList.remove('open');
+        if (detailOverlay) detailOverlay.classList.remove('open');
         document.body.style.overflow = '';
     }
 
     // ============================================
-    // ARRANCAR
+    // INICIAR ANIMACIÓN (con pequeño delay)
     // ============================================
-    setTimeout(() => startAnimation(), config.initialDelay);
+    // Pequeño delay para asegurar que todo está cargado
+    setTimeout(() => {
+        startAnimation();
+    }, 100);
 });
