@@ -198,17 +198,21 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             startMatrixRain();
 
+            // Flag de control por letra — evita race condition entre fase 1 y fase 2
+            const active = Array(scrambleChars.length).fill(true);
+
             // Fase 1 — todos los chars scrambleando al mismo tiempo
-            scrambleChars.forEach(ch => {
+            scrambleChars.forEach((ch, idx) => {
                 ch.classList.add('scrambling');
+                ch.textContent = randChar(); // asegurar que nunca esté vacío
                 function randomize() {
-                    if (ch.classList.contains('scrambling')) {
-                        ch.textContent = randChar();
-                        const t = setTimeout(randomize, 60);
-                        scrambleTimers.push(t);
-                    }
+                    if (!active[idx]) return; // parar cuando la fase 2 tome el control
+                    ch.textContent = randChar();
+                    const t = setTimeout(randomize, 60);
+                    scrambleTimers.push(t);
                 }
-                randomize();
+                const t = setTimeout(randomize, 60);
+                scrambleTimers.push(t);
             });
 
             await wait(800);
@@ -220,14 +224,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
             for (let i = 0; i < scrambleChars.length; i++) {
                 const ch = scrambleChars[i];
-                ch.classList.remove('scrambling'); // detiene el loop de arriba
+
+                // Detener el loop de fase 1 para esta letra
+                active[i] = false;
+                ch.classList.remove('scrambling');
+                // Poner un char visible mientras arranca el scrambleChar
+                ch.textContent = randChar();
 
                 // Actualizar label y barra
                 const labelIdx = Math.floor((i / scrambleChars.length) * (labels.length - 1));
-                scrambleLabel.textContent    = labels[labelIdx];
+                scrambleLabel.textContent   = labels[labelIdx];
                 const pct = Math.round(((i + 1) / scrambleChars.length) * 100);
-                scrambleBarFill.style.width  = pct + '%';
-                scrambleStatus.textContent   = `${pct}% COMPLETE`;
+                scrambleBarFill.style.width = pct + '%';
+                scrambleStatus.textContent  = `${pct}% COMPLETE`;
 
                 // Resolver este caracter con scramble rápido
                 await scrambleChar(ch, WORD[i], 300);
