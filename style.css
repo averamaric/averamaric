@@ -156,7 +156,9 @@ body::after {
     text-transform: uppercase;
     opacity: 0.7;
 }
-
+.logo-container-mobile {
+    display: none;
+}
 /* TARJETA DE DESCRIPCIÓN */
 .description-card {
     position: absolute;
@@ -336,125 +338,83 @@ body::after {
     }
     
      .logo-container {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
+        display: none;
+    }
+    
+    .logo-container-mobile {
+        display: block;
+        text-align: center;
         padding: 40px 20px 20px;
         width: 100%;
-        max-width: 100%;
-        text-align: center;
-    }
-
-    /* Ocultamos el texto original pero mantenemos la estructura */
-    .logo-text {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-        margin-bottom: 20px;
-        font-size: 0; /* Ocultamos el tamaño de fuente original */
-    }
-
-    /* Primera línea: ABOUT con la foto como O */
-    .logo-line:first-child {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        font-size: 0; /* Ocultamos el texto original */
-        position: relative;
-    }
-
-    /* Reconstruimos las letras A, B, U, T manteniendo la imagen en medio */
-    .logo-line:first-child::before {
-        content: "A";
-        font-size: 15vw;
-        font-weight: 900;
-        letter-spacing: -2px;
-        display: inline-block;
-    }
-
-    /* Añadimos la letra B después de la A */
-    .logo-line:first-child {
-        counter-reset: letter;
     }
     
-    /* Usamos un span virtual para la B */
-    .logo-line:first-child::after {
-        content: "B";
+    .logo-text-mobile {
+        margin-bottom: 20px;
+    }
+    
+    .logo-line-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    /* Primera línea: A B [FOTO] U T */
+    .about-line {
+        margin-bottom: 15px;
+    }
+    
+    .letter {
         font-size: 15vw;
         font-weight: 900;
-        letter-spacing: -2px;
+        text-transform: uppercase;
+        line-height: 1;
         display: inline-block;
-        margin-right: 5px;
     }
-
-    /* La imagen (que ya está en el HTML) se mantiene como la O */
-    .circle-image {
+    
+    .circle-image-mobile {
         width: 15vw;
         height: 15vw;
-        display: inline-block;
-        margin: 0;
+        border-radius: 50%;
+        object-fit: cover;
         border: 2px solid rgba(212, 255, 94, 0.6);
         box-shadow: 0 0 20px rgba(212, 255, 94, 0.3);
-        position: relative;
-        z-index: 2;
-    }
-
-    /* Añadimos las letras U y T después de la imagen */
-    .logo-line:first-child {
-        position: relative;
+        display: inline-block;
     }
     
-    /* Para agregar U y T necesitamos un pequeño truco con spans adicionales */
-    /* Esta es la parte que requiere modificar mínimamente el HTML */
-
-    /* Segunda línea: ME + Analucia V.M horizontal */
-    .logo-line:last-child {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        font-size: 0; /* Ocultamos el texto original */
+    /* Segunda línea: ME + nombre horizontal */
+    .me-line {
+        gap: 12px;
+        margin-top: 5px;
     }
-
-    /* Reconstruimos ME */
-    .logo-line:last-child::before {
-        content: "ME";
+    
+    .me-text {
         font-size: 12vw;
         font-weight: 900;
-        letter-spacing: -1px;
         text-transform: uppercase;
-        display: block;
-    }
-
-    /* Convertimos el texto vertical a horizontal */
-    .vertical-text {
-        writing-mode: horizontal-tb;
-        transform: none;
-        font-size: 0.9rem;
-        letter-spacing: 2px;
-        margin: 0;
-        opacity: 0.9;
-        font-weight: 500;
-        display: inline-block;
-        position: relative;
-        top: auto;
-    }
-
-    /* Ajustamos el subtítulo */
-    .logo-subtitle {
-        margin-top: 10px;
-        text-align: center;
+        line-height: 1;
     }
     
-    .logo-subtitle span {
-        font-size: 0.75rem;
+    .name-horizontal {
+        font-size: 1rem;
         letter-spacing: 2px;
+        opacity: 0.9;
+        font-weight: 500;
+    }
+    
+    .logo-subtitle-mobile {
+        text-align: center;
+        margin-top: 15px;
+    }
+    
+    .logo-subtitle-mobile span {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        opacity: 0.7;
         display: block;
-    }    
+    }
     /* ===========================================
        ESTILO CARRUSEL HORIZONTAL PARA MÓVIL
        =========================================== */
