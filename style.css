@@ -451,34 +451,22 @@ body::after {
        ESTILO CARRUSEL HORIZONTAL PARA MÓVIL
        =========================================== */
     .nothing-cards-container {
-        display: flex !important;          /* Fuerza el modo flex */
-        flex-direction: row !important;    /* Dirección horizontal */
-        overflow-x: auto !important;       /* Permite scroll horizontal */
-        -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
-        scrollbar-width: thin;             /* Scrollbar delgada */
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
         gap: 16px;
-        padding: 20px 20px 30px 20px;
-        margin: 20px 0 0 0;
+        padding: 10px 20px 30px 20px;
+        margin: 0 0 20px 0;
         width: 100%;
-        grid-template-columns: none !important; /* Anula el grid */
+        grid-template-columns: none !important;
         grid-template-areas: none !important;
         position: relative !important;
         height: auto !important;
-    }
-
-    .nothing-cards-container::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 40px;
-        height: 100%;
-        background: linear-gradient(to right, transparent, rgba(10, 10, 10, 0.8));
-        pointer-events: none;
-        z-index: 2;
+        align-items: stretch; /* Hace que todas las tarjetas tengan la misma altura */
     }
     
-    /* Estilo de la barra de scroll (opcional, pero se ve mejor) */
     .nothing-cards-container::-webkit-scrollbar {
         height: 4px;
     }
@@ -491,87 +479,207 @@ body::after {
         border-radius: 10px;
     }
 
-    /* Cada tarjeta en el carrusel */
-    .nothing-card {
-        flex: 0 0 260px !important;       /* Ancho fijo para cada tarjeta */
-        min-height: 320px !important;
-        margin: 0 !important;
-        transform: none !important;
-        pointer-events: auto;
+    /* ===========================================
+       TARJETA PROJECTS - SE MANTIENE IGUAL
+       =========================================== */
+    .card-projects {
+        flex: 0 0 280px !important;
+        min-height: 380px !important;
     }
-
-    /* Ajustes específicos para la tarjeta CV para que no se vea extraña */
-    .cv-image-wrapper {
+    
+    .card-projects .card-image-container {
+        height: 200px;
+    }
+    
+    /* ===========================================
+       TARJETA PROFILE - MÁS COMPACTA Y EQUILIBRADA
+       =========================================== */
+    .card-profile {
+        flex: 0 0 260px !important;
+        min-height: 320px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .card-profile .card-info {
+        padding: 20px 15px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .card-profile .skills-title-scan {
+        font-size: 1.3rem !important;
+        padding: 10px 15px !important;
+        margin: 0 auto 12px auto !important;
+        min-height: auto !important;
+    }
+    
+    .card-profile .card-description {
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    
+    .card-profile .card-tags {
+        justify-content: center;
+        gap: 6px;
+    }
+    
+    .card-profile .card-tags span {
+        font-size: 0.65rem;
+        padding: 3px 8px;
+    }
+    
+    /* ===========================================
+       TARJETA SKILLS - MÁS COMPACTA Y EQUILIBRADA
+       =========================================== */
+    .card-skills {
+        flex: 0 0 260px !important;
+        min-height: 320px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .card-skills .card-info {
+        padding: 20px 15px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .card-skills .skills-title-simple {
+        font-size: 1.3rem !important;
+        padding: 10px 15px !important;
+        margin: 0 auto 12px auto !important;
+        min-height: auto !important;
+    }
+    
+    .card-skills .card-description {
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    
+    .card-skills .card-tags {
+        justify-content: center;
+        gap: 6px;
+    }
+    
+    .card-skills .card-tags span {
+        font-size: 0.65rem;
+        padding: 3px 8px;
+    }
+    
+    /* ===========================================
+       TARJETA CV - REDISEÑADA MÁS COMPACTA
+       =========================================== */
+    .cv-special-card {
+        flex: 0 0 260px !important;
+        min-height: 320px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .cv-special-card .cv-image-wrapper {
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.2);
+        margin-top: 15px;
+    }
+    
+    .cv-special-card .cv-image-zoomed-container {
+        width: 100px;
         height: 100px;
     }
-    .cv-image-zoomed-container {
-        width: 80px;
-        height: 80px;
+    
+    .cv-special-card .cv-zoomed-image,
+    .cv-special-card .cv-zoomed-hover {
+        width: 85px;
+        height: 85px;
     }
-    .cv-zoomed-image, .cv-zoomed-hover {
-        width: 70px;
-        height: 70px;
+    
+    .cv-special-card .card-info {
+        padding: 15px 20px 20px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+    
+    .cv-special-card .card-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    
+    /* Añadimos un pequeño texto descriptivo para equilibrar */
+    .cv-special-card .card-info::after {
+        content: "Download my CV";
+        display: block;
+        font-size: 0.7rem;
+        opacity: 0.6;
+        letter-spacing: 1px;
+        margin-top: 8px;
+    }
+    
+    /* Ajustamos los puntos del CV */
+    .cv-dots-container {
+        display: block;
+    }
+    
+    .cv-dot {
+        width: 4px;
+        height: 4px;
     }
 
     /* ===========================================
-       ARREGLO DE TÍTULOS "PROFILE" Y "SKILLS"
+       AJUSTES GENERALES DE TARJETAS
+       =========================================== */
+    .nothing-card {
+        margin: 0 !important;
+        transform: none !important;
+        pointer-events: auto;
+        transition: transform 0.2s ease;
+    }
+    
+    .nothing-card:active {
+        transform: scale(0.98) !important;
+    }
+    
+    .card-hover-indicator {
+        opacity: 0.6;
+        transform: translateX(0);
+        bottom: 12px;
+        right: 12px;
+        font-size: 1rem;
+    }
+    
+    /* Ajuste para que todos los títulos de tarjetas sean consistentes */
+    .card-info h3 {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+    
+    /* ===========================================
+       TÍTULOS DE TARJETAS PROFILE Y SKILLS
        =========================================== */
     .skills-title-simple,
     .skills-title-scan {
-        font-size: 1.2rem !important;      /* Tamaño más pequeño pero legible */
+        font-size: 1.2rem !important;
         min-width: auto !important;
         min-height: auto !important;
         width: auto !important;
         padding: 12px 20px !important;
-        white-space: normal !important;     /* Permite que el texto se divida en 2 líneas si es necesario */
-        word-break: break-word;             /* Rompe palabras largas */
-        line-height: 1.3;                  /* Mejora el espaciado entre líneas */
+        white-space: normal !important;
+        word-break: break-word;
+        line-height: 1.3;
         margin: 0 auto 15px auto !important;
-        letter-spacing: 1px;               /* Reduce un poco el espacio entre letras */
-    }
-    
-    /* Si quieres que los títulos ocupen menos espacio horizontal */
-    .card-info {
-        padding: 15px;
-    }
-    .card-info h3 {
-        font-size: 1rem;
-    }
-    
-    /* Ajuste para la descripción de las tarjetas en móvil */
-    .card-description {
-        font-size: 0.8rem;
-        margin-bottom: 10px;
-    }
-    
-    /* Otros ajustes generales */
-    .navbar {
-        padding: 25px 30px;
-    }
-    
-    .nav-links a {
-        margin-left: 25px;
-    }
-    
-    .scroll-indicator {
-        display: none; /* Oculta el indicador de scroll en móvil porque ya no es necesario */
-    }
-    
-    .description-card {
-        padding: 20px;
-        margin: 30px auto;
-        position: relative;
-        transform: none;
-        bottom: auto;
-        left: auto;
-        width: 90%;
-    }
-    
-    /* Asegura que la tarjeta de descripción no tenga problemas de visibilidad */
-    .description-card.hidden {
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: none !important;
+        letter-spacing: 1px;
     }
 }
 
