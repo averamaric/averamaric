@@ -335,65 +335,63 @@ body::after {
         padding-bottom: 40px;
     }
     
-    .logo-text {
-        font-size: 12vw;
-    }
-    
-    .circle-image {
-        width: 12vw;
-        height: 12vw;
-    }
-
-
-    .logo-container {
+     .logo-container {
         position: relative;
         top: auto;
         left: auto;
         transform: none;
-        padding: 40px 20px 30px;
+        padding: 40px 20px 20px;
         width: 100%;
         max-width: 100%;
+        text-align: center;
     }
 
+    /* Ocultamos el texto original pero mantenemos la estructura */
     .logo-text {
-        font-size: 0; /* Ocultamos el texto original para reemplazarlo */
-        line-height: normal;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
         margin-bottom: 20px;
+        font-size: 0; /* Ocultamos el tamaño de fuente original */
     }
 
-    /* Reconstruimos el título con flexbox */
-    .logo-line {
+    /* Primera línea: ABOUT con la foto como O */
+    .logo-line:first-child {
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    /* Primera línea: ABOUT + Foto */
-    .logo-line:first-child {
-        font-size: 15vw;
-        font-weight: 900;
-        text-transform: uppercase;
-        gap: 15px;
-    }
-
-    /* Extraemos el texto "ABOUT" */
-    .logo-line:first-child {
+        gap: 5px;
         font-size: 0; /* Ocultamos el texto original */
         position: relative;
     }
 
+    /* Reconstruimos las letras A, B, U, T manteniendo la imagen en medio */
     .logo-line:first-child::before {
-        content: "ABOUT";
+        content: "A";
         font-size: 15vw;
         font-weight: 900;
         letter-spacing: -2px;
+        display: inline-block;
     }
 
+    /* Añadimos la letra B después de la A */
+    .logo-line:first-child {
+        counter-reset: letter;
+    }
+    
+    /* Usamos un span virtual para la B */
+    .logo-line:first-child::after {
+        content: "B";
+        font-size: 15vw;
+        font-weight: 900;
+        letter-spacing: -2px;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    /* La imagen (que ya está en el HTML) se mantiene como la O */
     .circle-image {
         width: 15vw;
         height: 15vw;
@@ -401,52 +399,62 @@ body::after {
         margin: 0;
         border: 2px solid rgba(212, 255, 94, 0.6);
         box-shadow: 0 0 20px rgba(212, 255, 94, 0.3);
+        position: relative;
+        z-index: 2;
     }
 
-    /* Segunda línea: ME + texto vertical (lo modificamos) */
+    /* Añadimos las letras U y T después de la imagen */
+    .logo-line:first-child {
+        position: relative;
+    }
+    
+    /* Para agregar U y T necesitamos un pequeño truco con spans adicionales */
+    /* Esta es la parte que requiere modificar mínimamente el HTML */
+
+    /* Segunda línea: ME + Analucia V.M horizontal */
     .logo-line:last-child {
-        font-size: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px;
-        margin-top: 10px;
+        gap: 8px;
+        font-size: 0; /* Ocultamos el texto original */
     }
 
-    /* Reconstruimos "ME" */
+    /* Reconstruimos ME */
     .logo-line:last-child::before {
         content: "ME";
         font-size: 12vw;
         font-weight: 900;
         letter-spacing: -1px;
         text-transform: uppercase;
+        display: block;
     }
 
-    /* Analucia V.M en horizontal (reemplazando el vertical-text) */
+    /* Convertimos el texto vertical a horizontal */
     .vertical-text {
         writing-mode: horizontal-tb;
         transform: none;
-        font-size: 1rem;
+        font-size: 0.9rem;
         letter-spacing: 2px;
-        margin: 5px 0 0 0;
+        margin: 0;
         opacity: 0.9;
         font-weight: 500;
         display: inline-block;
+        position: relative;
+        top: auto;
     }
 
     /* Ajustamos el subtítulo */
     .logo-subtitle {
-        margin-top: 15px;
-        gap: 8px;
-        font-size: 0.8rem;
-        letter-spacing: 2px;
-    }
-
-    .logo-subtitle span {
-        display: block;
+        margin-top: 10px;
         text-align: center;
     }
     
+    .logo-subtitle span {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        display: block;
+    }    
     /* ===========================================
        ESTILO CARRUSEL HORIZONTAL PARA MÓVIL
        =========================================== */
