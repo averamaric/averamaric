@@ -323,23 +323,139 @@ body::after {
 
 /* Breakpoint mobile — carrusel horizontal */
 @media (max-width: 768px) {
-    .nothing-cards-container {
-        display: flex;
-        position: static; 
-        flex-direction: row;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        grid-template-areas: none;
-        gap: 12px;
-        padding: 8px 20px 24px;
-        height: auto;
-        margin-top: 20px;
+    body {
+        cursor: auto; /* Desactiva el cursor personalizado en móvil */
     }
-    .nothing-cards-container::-webkit-scrollbar { display: none; }
+    .custom-cursor, .custom-cursor-dot {
+        display: none; /* Oculta los cursores personalizados */
+    }
+
+    .hero {
+        min-height: auto;
+        padding-bottom: 40px;
+    }
+    
+    .logo-text {
+        font-size: 12vw;
+    }
+    
+    .circle-image {
+        width: 12vw;
+        height: 12vw;
+    }
+    
+    /* ===========================================
+       ESTILO CARRUSEL HORIZONTAL PARA MÓVIL
+       =========================================== */
+    .nothing-cards-container {
+        display: flex !important;          /* Fuerza el modo flex */
+        flex-direction: row !important;    /* Dirección horizontal */
+        overflow-x: auto !important;       /* Permite scroll horizontal */
+        -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+        scrollbar-width: thin;             /* Scrollbar delgada */
+        gap: 16px;
+        padding: 20px 20px 30px 20px;
+        margin: 20px 0 0 0;
+        width: 100%;
+        grid-template-columns: none !important; /* Anula el grid */
+        grid-template-areas: none !important;
+        position: relative !important;
+        height: auto !important;
+    }
+    
+    /* Estilo de la barra de scroll (opcional, pero se ve mejor) */
+    .nothing-cards-container::-webkit-scrollbar {
+        height: 4px;
+    }
+    .nothing-cards-container::-webkit-scrollbar-track {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+    }
+    .nothing-cards-container::-webkit-scrollbar-thumb {
+        background: #D4FF5E;
+        border-radius: 10px;
+    }
+
+    /* Cada tarjeta en el carrusel */
     .nothing-card {
-        flex: 0 0 160px;
-        min-height: 200px;
+        flex: 0 0 260px !important;       /* Ancho fijo para cada tarjeta */
+        min-height: 320px !important;
+        margin: 0 !important;
+        transform: none !important;
+        pointer-events: auto;
+    }
+
+    /* Ajustes específicos para la tarjeta CV para que no se vea extraña */
+    .cv-image-wrapper {
+        height: 100px;
+    }
+    .cv-image-zoomed-container {
+        width: 80px;
+        height: 80px;
+    }
+    .cv-zoomed-image, .cv-zoomed-hover {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* ===========================================
+       ARREGLO DE TÍTULOS "PROFILE" Y "SKILLS"
+       =========================================== */
+    .skills-title-simple,
+    .skills-title-scan {
+        font-size: 1.2rem !important;      /* Tamaño más pequeño pero legible */
+        min-width: auto !important;
+        min-height: auto !important;
+        width: auto !important;
+        padding: 12px 20px !important;
+        white-space: normal !important;     /* Permite que el texto se divida en 2 líneas si es necesario */
+        word-break: break-word;             /* Rompe palabras largas */
+        line-height: 1.3;                  /* Mejora el espaciado entre líneas */
+        margin: 0 auto 15px auto !important;
+        letter-spacing: 1px;               /* Reduce un poco el espacio entre letras */
+    }
+    
+    /* Si quieres que los títulos ocupen menos espacio horizontal */
+    .card-info {
+        padding: 15px;
+    }
+    .card-info h3 {
+        font-size: 1rem;
+    }
+    
+    /* Ajuste para la descripción de las tarjetas en móvil */
+    .card-description {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+    
+    /* Otros ajustes generales */
+    .navbar {
+        padding: 25px 30px;
+    }
+    
+    .nav-links a {
+        margin-left: 25px;
+    }
+    
+    .scroll-indicator {
+        display: none; /* Oculta el indicador de scroll en móvil porque ya no es necesario */
+    }
+    
+    .description-card {
+        padding: 20px;
+        margin: 30px auto;
+        position: relative;
+        transform: none;
+        bottom: auto;
+        left: auto;
+        width: 90%;
+    }
+    
+    /* Asegura que la tarjeta de descripción no tenga problemas de visibilidad */
+    .description-card.hidden {
+        opacity: 1 !important;
+        visibility: visible !important;
         transform: none !important;
     }
 }
