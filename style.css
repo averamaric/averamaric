@@ -343,6 +343,109 @@ body::after {
         width: 12vw;
         height: 12vw;
     }
+
+
+    .logo-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        padding: 40px 20px 30px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .logo-text {
+        font-size: 0; /* Ocultamos el texto original para reemplazarlo */
+        line-height: normal;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Reconstruimos el título con flexbox */
+    .logo-line {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    /* Primera línea: ABOUT + Foto */
+    .logo-line:first-child {
+        font-size: 15vw;
+        font-weight: 900;
+        text-transform: uppercase;
+        gap: 15px;
+    }
+
+    /* Extraemos el texto "ABOUT" */
+    .logo-line:first-child {
+        font-size: 0; /* Ocultamos el texto original */
+        position: relative;
+    }
+
+    .logo-line:first-child::before {
+        content: "ABOUT";
+        font-size: 15vw;
+        font-weight: 900;
+        letter-spacing: -2px;
+    }
+
+    .circle-image {
+        width: 15vw;
+        height: 15vw;
+        display: inline-block;
+        margin: 0;
+        border: 2px solid rgba(212, 255, 94, 0.6);
+        box-shadow: 0 0 20px rgba(212, 255, 94, 0.3);
+    }
+
+    /* Segunda línea: ME + texto vertical (lo modificamos) */
+    .logo-line:last-child {
+        font-size: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    /* Reconstruimos "ME" */
+    .logo-line:last-child::before {
+        content: "ME";
+        font-size: 12vw;
+        font-weight: 900;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+    }
+
+    /* Analucia V.M en horizontal (reemplazando el vertical-text) */
+    .vertical-text {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        margin: 5px 0 0 0;
+        opacity: 0.9;
+        font-weight: 500;
+        display: inline-block;
+    }
+
+    /* Ajustamos el subtítulo */
+    .logo-subtitle {
+        margin-top: 15px;
+        gap: 8px;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+
+    .logo-subtitle span {
+        display: block;
+        text-align: center;
+    }
     
     /* ===========================================
        ESTILO CARRUSEL HORIZONTAL PARA MÓVIL
@@ -361,6 +464,18 @@ body::after {
         grid-template-areas: none !important;
         position: relative !important;
         height: auto !important;
+    }
+
+    .nothing-cards-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(10, 10, 10, 0.8));
+        pointer-events: none;
+        z-index: 2;
     }
     
     /* Estilo de la barra de scroll (opcional, pero se ve mejor) */
