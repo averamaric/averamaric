@@ -104,112 +104,149 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================================
     // REFERENCIAS
     // ============================================
-    const animationContainer  = document.getElementById('animationContainer');
-    const whiteRectangle      = document.getElementById('whiteRectangle');
-    const blackWord           = document.getElementById('blackWord');
-    const typingCursor        = document.getElementById('typingCursor');
-    const typingText          = document.getElementById('typingText');
-    const letters             = document.querySelectorAll('.typing-text .letter');
-    const skipBtn             = document.getElementById('skipBtn');
-    const projectsContainer   = document.querySelector('.projects-container');
-    const detailOverlay       = document.getElementById('detailOverlay');
-    const detailPanel         = document.getElementById('detailPanel');
-    const detailClose         = document.getElementById('detailClose');
+    const animationContainer = document.getElementById('animationContainer');
+    const scrambleChars      = document.querySelectorAll('.scramble-char');
+    const scrambleLabel      = document.getElementById('scrambleLabel');
+    const scrambleBarFill    = document.getElementById('scrambleBarFill');
+    const scrambleStatus     = document.getElementById('scrambleStatus');
+    const matrixCanvas       = document.getElementById('matrixRain');
+    const skipBtn            = document.getElementById('skipBtn');
+    const projectsContainer  = document.querySelector('.projects-container');
 
     // ============================================
-    // CONFIGURACIÓN ANIMACIÓN
+    // CONFIGURACIÓN
     // ============================================
-    const config = {
-        initialDelay:       100,
-        rectangleTransform: 550,
-        typingStartDelay:   180,
-        letterDelay:        90,
-        fadeOutDuration:    380,
-        startPosition:      80,
-        textMoveAmount:     7,
-    };
+    const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&*<>[]{}!/\\|^~';
+    const WORD  = 'PROJECTS';
 
-    let animationDone = false;
+    let animationDone   = false;
+    let rainAnimId      = null;
+    let scrambleTimers  = [];
 
     function wait(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-
-    // ============================================
-    // SKIP
-    // ============================================
-    function skipAnimation() {
-        if (animationDone) return;
-        animationDone = true;
-        animationContainer.style.transition = 'opacity 0.3s ease';
-        animationContainer.style.opacity = '0';
-        setTimeout(() => {
-            animationContainer.style.display = 'none';
-            skipBtn.style.display = 'none';
-            projectsContainer.style.opacity = '1';
-            initPage();
-        }, 300);
+    function randChar() {
+        return CHARS[Math.floor(Math.random() * CHARS.length)];
     }
 
-    skipBtn.addEventListener('click', skipAnimation);
-    document.addEventListener('keydown', function onKey() {
-        skipAnimation();
-        document.removeEventListener('keydown', onKey);
-    }, { once: true });
+    // ============================================
+    // LLUVIA DE FONDO (canvas)
+    // ============================================
+    function startMatrixRain() {
+        const ctx = matrixCanvas.getContext('2d');
+        matrixCanvas.width  = window.innerWidth;
+        matrixCanvas.height = window.innerHeight;
+
+        const cols    = Math.floor(matrixCanvas.width / 20);
+        const drops   = Array(cols).fill(1);
+        const rainChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ'.split('');
+
+        function drawRain() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.07)';
+            ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+            ctx.fillStyle = 'rgba(212, 255, 94, 0.85)';
+            ctx.font = '14px Courier New';
+
+            drops.forEach((y, i) => {
+                const char = rainChars[Math.floor(Math.random() * rainChars.length)];
+                ctx.fillText(char, i * 20, y * 20);
+                if (y * 20 > matrixCanvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            });
+            rainAnimId = requestAnimationFrame(drawRain);
+        }
+        drawRain();
+    }
+
+    function stopMatrixRain() {
+        if (rainAnimId) cancelAnimationFrame(rainAnimId);
+    }
+
+    // ============================================
+    // SCRAMBLE DE UN CARÁCTER
+    // Cicla chars random durante `duration` ms,
+    // luego fija el carácter final
+    // ============================================
+    function scrambleChar(el, finalChar, duration) {
+        return new Promise(resolve => {
+            const start    = performance.now();
+            const interval = 60; // ms entre cambios
+            el.classList.add('scrambling');
+
+            function tick() {
+                const elapsed = performance.now() - start;
+                if (elapsed >= duration) {
+                    el.textContent = finalChar;
+                    el.classList.remove('scrambling');
+                    el.classList.add('resolved');
+                    resolve();
+                    return;
+                }
+                el.textContent = randChar();
+                const timer = setTimeout(tick, interval);
+                scrambleTimers.push(timer);
+            }
+            tick();
+        });
+    }
 
     // ============================================
     // ANIMACIÓN PRINCIPAL
     // ============================================
     async function startAnimation() {
         try {
-            blackWord.style.opacity = '1';
-            await wait(450);
+            startMatrixRain();
 
-            blackWord.style.opacity = '0';
-            whiteRectangle.style.transition = `all ${config.rectangleTransform}ms cubic-bezier(0.77, 0, 0.175, 1)`;
-            whiteRectangle.style.width       = '6px';
-            whiteRectangle.style.height      = '18vh';
-            whiteRectangle.style.left        = `${config.startPosition}%`;
-            whiteRectangle.style.top         = '50%';
-            whiteRectangle.style.transform   = 'translate(-50%, -50%)';
-            whiteRectangle.style.borderRadius = '3px';
-            await wait(config.rectangleTransform);
-
-            typingCursor.style.opacity = '1';
-            typingCursor.style.left    = `${config.startPosition}%`;
-            await wait(config.typingStartDelay);
-
-            typingText.style.opacity = '1';
-            typingText.style.left    = '80%';
-
-            let pos = 80;
-            for (let i = 0; i < letters.length; i++) {
-                letters[i].style.opacity   = '1';
-                letters[i].style.transform = 'translateX(0)';
-                if (i > 0) {
-                    pos -= config.textMoveAmount;
-                    typingText.style.transition = 'left 0.18s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                    typingText.style.left = `${pos}%`;
-                    letters[i].style.transform = 'translateX(10px)';
-                    setTimeout(() => { letters[i].style.transform = 'translateX(0)'; }, 90);
+            // Fase 1 — todos los chars scrambleando al mismo tiempo
+            scrambleChars.forEach(ch => {
+                ch.classList.add('scrambling');
+                function randomize() {
+                    if (ch.classList.contains('scrambling')) {
+                        ch.textContent = randChar();
+                        const t = setTimeout(randomize, 60);
+                        scrambleTimers.push(t);
+                    }
                 }
-                if (i < letters.length - 1) {
-                    typingCursor.style.opacity = '0.2';
-                    setTimeout(() => { typingCursor.style.opacity = '1'; }, 55);
-                    await wait(config.letterDelay);
-                }
+                randomize();
+            });
+
+            await wait(800);
+
+            // Fase 2 — resolver letra a letra con progreso
+            const labels = [
+                'INITIALIZING', 'LOADING DATA', 'DECODING...', 'RESOLVING', 'ACCESS GRANTED'
+            ];
+
+            for (let i = 0; i < scrambleChars.length; i++) {
+                const ch = scrambleChars[i];
+                ch.classList.remove('scrambling'); // detiene el loop de arriba
+
+                // Actualizar label y barra
+                const labelIdx = Math.floor((i / scrambleChars.length) * (labels.length - 1));
+                scrambleLabel.textContent    = labels[labelIdx];
+                const pct = Math.round(((i + 1) / scrambleChars.length) * 100);
+                scrambleBarFill.style.width  = pct + '%';
+                scrambleStatus.textContent   = `${pct}% COMPLETE`;
+
+                // Resolver este caracter con scramble rápido
+                await scrambleChar(ch, WORD[i], 300);
+                await wait(60);
             }
 
-            for (let p = 0; p < 2; p++) {
-                typingCursor.style.opacity = '0.3';
-                await wait(110);
-                typingCursor.style.opacity = '1';
-                await wait(110);
-            }
+            // Fase 3 — estado final
+            scrambleLabel.textContent  = 'ACCESS GRANTED';
+            scrambleBarFill.style.width = '100%';
+            scrambleStatus.textContent  = '100% COMPLETE';
 
-            animationContainer.style.transition = `opacity ${config.fadeOutDuration}ms ease`;
+            await wait(500);
+
+            // Fase 4 — flash de salida y revelar contenido
+            stopMatrixRain();
+
+            animationContainer.style.transition = 'opacity 0.5s ease';
             animationContainer.style.opacity    = '0';
-            await wait(config.fadeOutDuration);
+            await wait(500);
 
             animationContainer.style.display = 'none';
             skipBtn.style.display = 'none';
@@ -226,6 +263,35 @@ document.addEventListener('DOMContentLoaded', function () {
             skipAnimation();
         }
     }
+
+    // ============================================
+    // SKIP
+    // ============================================
+    function skipAnimation() {
+        if (animationDone) return;
+        animationDone = true;
+        scrambleTimers.forEach(clearTimeout);
+        stopMatrixRain();
+        animationContainer.style.transition = 'opacity 0.3s ease';
+        animationContainer.style.opacity    = '0';
+        setTimeout(() => {
+            animationContainer.style.display = 'none';
+            skipBtn.style.display            = 'none';
+            projectsContainer.style.opacity  = '1';
+            initPage();
+        }, 300);
+    }
+
+    skipBtn.addEventListener('click', skipAnimation);
+    document.addEventListener('keydown', function onKey() {
+        skipAnimation();
+        document.removeEventListener('keydown', onKey);
+    }, { once: true });
+
+    // Referencias del panel de detalle
+    const detailOverlay = document.getElementById('detailOverlay');
+    const detailPanel   = document.getElementById('detailPanel');
+    const detailClose   = document.getElementById('detailClose');
 
     // ============================================
     // INIT — filtros, cards, detalle
