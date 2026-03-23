@@ -11,21 +11,27 @@
     <!-- BOTÓN SKIP -->
     <button class="skip-btn" id="skipBtn">Skip intro ↓</button>
 
-    <!-- ANIMACIÓN INICIAL -->
+    <!-- ANIMACIÓN INICIAL: MATRIX SCRAMBLE -->
     <div class="animation-container" id="animationContainer">
-        <div class="white-rectangle" id="whiteRectangle">
-            <div class="profile-word-black" id="blackWord">PROJECTS</div>
-        </div>
-        <div class="typing-cursor" id="typingCursor"></div>
-        <div class="typing-text" id="typingText">
-            <span class="letter">P</span>
-            <span class="letter">R</span>
-            <span class="letter">O</span>
-            <span class="letter">J</span>
-            <span class="letter">E</span>
-            <span class="letter">C</span>
-            <span class="letter">T</span>
-            <span class="letter">S</span>
+        <!-- Lluvia de caracteres de fondo -->
+        <canvas class="matrix-rain" id="matrixRain"></canvas>
+        <!-- Texto principal que se decodifica -->
+        <div class="scramble-wrapper">
+            <div class="scramble-label" id="scrambleLabel">INITIALIZING</div>
+            <div class="scramble-text" id="scrambleText">
+                <span class="scramble-char" data-final="P">_</span>
+                <span class="scramble-char" data-final="R">_</span>
+                <span class="scramble-char" data-final="O">_</span>
+                <span class="scramble-char" data-final="J">_</span>
+                <span class="scramble-char" data-final="E">_</span>
+                <span class="scramble-char" data-final="C">_</span>
+                <span class="scramble-char" data-final="T">_</span>
+                <span class="scramble-char" data-final="S">_</span>
+            </div>
+            <div class="scramble-bar" id="scrambleBar">
+                <div class="scramble-bar-fill" id="scrambleBarFill"></div>
+            </div>
+            <div class="scramble-status" id="scrambleStatus">DECODING...</div>
         </div>
     </div>
 
