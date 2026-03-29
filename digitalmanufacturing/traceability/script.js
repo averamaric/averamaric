@@ -1,17 +1,17 @@
 // Component data - In a real implementation, this would come from a database
 const componentData = {
     'top-case': {
-        id: 'TC-0876-A',
-        name: 'Top Case Assembly',
-        date: '2024-06-10',
+        id: 'TW_PLA_3D_260001',
+        name: 'Top Case',
+        date: '03/24/2026',
         printer: 'Creality Ender 3 V2',
-        file: 'phone_top_v2.1.gcode',
+        file: 'phone_top_white_v2.1',
         operations: [
-            { date: '2024-06-10 09:30', operation: '3D Printing started', duration: '7h 15m' },
-            { date: '2024-06-10 16:45', operation: 'Print completed', duration: null },
-            { date: '2024-06-11 10:00', operation: 'Support removal', duration: '45m' },
-            { date: '2024-06-11 11:30', operation: 'Sanding and smoothing', duration: '2h' },
-            { date: '2024-06-12 14:00', operation: 'Assembly with components', duration: '1h 30m' }
+            { date: '03/24/2026 09:30', operation: '3D Printing started', duration: '3h 15m' },
+            { date: '03/24/2026 12:05', operation: 'Print completed', duration: null },
+            { date: '03/24/2026', operation: 'Support removal', duration: '0m - No support needed' },
+            { date: '03/24/2026', operation: 'Sanding and smoothing', duration: '0 - No post-processing' },
+            { date: '03/26/2026 14:00', operation: 'Assembly with components', duration: '2m 14s - Assembly line' }
         ],
         qualityChecks: [
             { check: 'Dimensional accuracy', status: 'Pass', inspector: 'QC-01' },
@@ -21,17 +21,17 @@ const componentData = {
         ]
     },
     'bottom-case': {
-        id: 'BC-0876-B',
+        id: 'BW_PLA_3D_260002',
         name: 'Bottom Case Assembly',
-        date: '2024-06-11',
+        date: '03/24/2026',
         printer: 'Prusa i3 MK3S+',
         file: 'phone_bottom_v2.1.gcode',
         operations: [
-            { date: '2024-06-11 14:00', operation: '3D Printing started', duration: '6h 45m' },
-            { date: '2024-06-11 20:45', operation: 'Print completed', duration: null },
-            { date: '2024-06-12 09:00', operation: 'Support removal', duration: '30m' },
-            { date: '2024-06-12 10:30', operation: 'Sanding and smoothing', duration: '1h 45m' },
-            { date: '2024-06-12 14:30', operation: 'Assembly with components', duration: '2h' }
+            { date: '03/24/2026 12:15', operation: '3D Printing started', duration: '3h 05m' },
+            { date: '03/24/2026 15:20', operation: 'Print completed', duration: null },
+            { date: '03/24/2026', operation: 'Support removal', duration: '0m - No support needed' },
+            { date: '03/24/2026', operation: 'Sanding and smoothing', duration: '0 - No post-processing' },
+            { date: '03/26/2026 14:30', operation: 'Assembly with components', duration: '2m 14s - Assembly line' }
         ],
         qualityChecks: [
             { check: 'Dimensional accuracy', status: 'Pass', inspector: 'QC-01' },
