@@ -255,7 +255,7 @@ body::after {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-        ". . . . ."
+        ". . . . . ."
         ". projects . . . profile"
         ". projects . . . profile"
         "skills . . . . cv"
