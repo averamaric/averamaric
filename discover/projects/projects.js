@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             tags: ['CODESYS', 'IEC-61131-3', 'HMI Design'],
             media: [
                 { type: 'image', src: 'assets/images/Captura de pantalla 2026-03-29 173405.png', alt: 'Batch mixing plant' },
+                { type: 'video', src: 'assets/video/codesys.mp4', poster: 'assets/images/virtual-poster.jpg' }
             ]
         },
         3: {
@@ -57,7 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
             tags: ['TIA Portal', 'PLC Programming (FBD and SCT)', 'NX Siemens', 'HMI Design'],
             media: [
                 { type: 'image', src: 'assets/images/Screenshot 2025-12-06 221243.png', alt: 'Virtual Commissioning' },
-                //{ type: 'video', src: 'assets/virtual-commissioning-demo.mp4', poster: 'assets/images/virtual-poster.jpg' }
+                { type: 'image', src: 'Screenshot 2026-01-19 134744.png' },
+                { type: 'image', src: 'Screenshot 2026-01-20 192355.png' },
+                { type: 'image', src: 'Screenshot 2026-01-19 175337.png' },
+                { type: 'video', src: 'assets/video/Video Project.mp4', poster: 'assets/images/virtual-poster.jpg' }
             ]
         },
         4: {
@@ -75,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ],
             tags: ['OPAL-RT', 'SEL-3555', 'NodeRed', 'SCADA', 'DNP3/Modbus TCP/IEC-61850'],
             media: [
-                { type: 'image', src: 'assets/images/research-lab.jpg', alt: 'Research Lab Setup' },
+                { type: 'image', src: 'assets/images/Captura de pantalla 2026-03-31 001553.png', alt: 'Research Lab Setup' },
                 //{ type: 'image', src: 'assets/images/opal-rt-setup.jpg', alt: 'OPAL-RT Simulator' }
             ]
         },
