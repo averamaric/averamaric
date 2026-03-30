@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // ============================================
-    // DATOS DE PROYECTOS
-    // Edita aquí para cambiar el contenido del panel de detalle
+    // DATOS DE PROYECTOS CON MÚLTIPLES MEDIOS
     // ============================================
     const projectsData = {
         1: {
@@ -19,6 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 'Project defended with a grade of 10/10 with honours at University of Navarra.',
             ],
             tags: ['TMFlow', 'TM5 Omron', 'Computer Vision', 'Python', 'AI Algorithms', 'CEIT'],
+            // Array de medios para el carrusel
+            media: [
+                { type: 'video', src: 'assets/video/29_3_2026, 14_34_10 - Screen - Proyecto de vídeo 1.webm', poster: null },
+                { type: 'image', src: 'assets/images/robot-sketch.jpg', alt: 'Robot sketching' },
+                { type: 'image', src: 'assets/images/tic-tac-toe-board.jpg', alt: 'Game board' }
+            ]
         },
         2: {
             title: 'Batch Mixing Plant Automation',
@@ -34,69 +39,87 @@ document.addEventListener('DOMContentLoaded', function () {
                 'Implemented HMI screens for operator interaction and process parameter adjustment.',
             ],
             tags: ['Siemens TIA Portal', 'SCADA', 'HMI Design', 'Computer Vision', 'PLC Ladder Logic'],
+            media: [
+                { type: 'image', src: 'assets/images/Captura de pantalla 2026-03-29 173405.png', alt: 'Batch mixing plant' },
+                { type: 'image', src: 'assets/images/plc-interface.jpg', alt: 'PLC Interface' },
+                { type: 'video', src: 'assets/video/batch-plant-demo.mp4', poster: 'assets/images/batch-poster.jpg' }
+            ]
         },
         3: {
-            title: 'Industry 4.0 Device Integration',
+            title: 'Virtual Commissioning',
             category: 'IoT',
-            year: '2024',
+            year: '2025',
             accent: 'rgba(212,255,94,0.3)',
             icon: '◎',
-            description: 'As IoT Project Manager at Alhona, led the full connectivity deployment of industrial machines into IoT data platforms. Responsible for protocol selection, device onboarding, signal taxonomy design, and analytics rule development — delivering knowledge transfer documentation for both technical and non-technical stakeholders.',
+            description: 'Configured the digital twin of a Pick&Place station in Siemens NX, programmed the PLC control and HMI design of the system and setup the virtual commisioning environment for the validation of the project.',
             highlights: [
-                'Identified and evaluated industrial devices for connectivity across multiple client sites.',
-                'Researched and selected optimal communication protocols (OPC-UA, Modbus, MQTT) per device.',
-                'Developed a standardized signal taxonomy used across all company projects.',
-                'Deployed anomaly detection rules and conducted data-driven studies on acquired signals.',
-                'Wrote technical and non-technical deliverables for client knowledge transfer.',
+                'Configured digital twin in Siemens NX for Pick&Place station',
+                'Programmed PLC control using TIA Portal (FBD and SCT)',
+                'Designed HMI interface for operator interaction',
+                'Validated system behavior through virtual commissioning',
             ],
-            tags: ['Node-RED', 'SQL', 'Allen-Bradley', 'Ignition SCADA', 'OPC-UA', 'MQTT', 'Modbus'],
+            tags: ['TIA Portal', 'PLC Programming (FBD and SCT)', 'NX Siemens', 'HMI Design'],
+            media: [
+                { type: 'image', src: 'assets/images/Screenshot 2025-12-06 221243.png', alt: 'Virtual Commissioning' },
+                { type: 'video', src: 'assets/virtual-commissioning-demo.mp4', poster: 'assets/images/virtual-poster.jpg' }
+            ]
         },
         4: {
-            title: 'Cybersecurity in Smart Energy OT Networks',
+            title: 'Experimental validation connectivity for controls',
             category: 'Research',
             year: '2025 – Present',
             accent: 'rgba(212,255,94,0.7)',
             icon: '⬡',
-            description: 'Research project at Manchester Metropolitan University focused on protecting smart energy infrastructure from cyber threats. Working on deploying and testing AI-based security solutions within local operational technology (OT) networks, using real-time hardware-in-the-loop simulation.',
+            description: 'working on integrating a real-time automation controller, a PLC and the OPAL-RT simulator, to enable bidirectional communication and demonstrate hierarchical control of microgrids.',
             highlights: [
-                'Studying the OPAL-RT simulator to SEL-3555 controller communication architecture.',
-                'Implementing and analysing SCADA network packet flows to identify threat patterns.',
-                'Applying machine learning models for anomaly detection in critical energy infrastructure.',
-                'Researching cybersecurity frameworks and architectures for OT environments.',
-                'Proactively planning research activities to meet project objectives and publication deadlines.',
+                'Integrating real-time automation controller with OPAL-RT simulator',
+                'Implementing bidirectional communication protocols',
+                'Demonstrating hierarchical control of microgrids',
+                'Testing DNP3/Modbus TCP/IEC-61850 protocols',
             ],
-            tags: ['OPAL-RT', 'SEL-3555', 'SCADA', 'Machine Learning', 'Python', 'Cybersecurity', 'OT Networks'],
+            tags: ['OPAL-RT', 'SEL-3555', 'NodeRed', 'SCADA', 'DNP3/Modbus TCP/IEC-61850'],
+            media: [
+                { type: 'image', src: 'assets/images/research-lab.jpg', alt: 'Research Lab Setup' },
+                { type: 'image', src: 'assets/images/opal-rt-setup.jpg', alt: 'OPAL-RT Simulator' }
+            ]
         },
         5: {
-            title: 'Portrait Sketching Robot',
+            title: 'Designing and simulating a robotic solution',
             category: 'Robotics',
-            year: '2023',
+            year: '2026 – on going',
             accent: 'rgba(212,255,94,0.4)',
             icon: '✦',
-            description: 'An extension of the TM5 Omron robot system developed at CEIT, this project adds a portrait-sketching capability. The robot captures a user\'s face with its integrated camera, processes the image to extract key facial features, and translates them into a line sketch reproduced through robotic arm motion.',
+            description: 'Designed, programmed and validated a robotic solution using LUA in Coppeliasim following the production line\'s requirements',
             highlights: [
-                'Designed image processing pipeline to detect and simplify facial contours.',
-                'Performed precise camera-to-robot-frame calibration for accurate sketch reproduction.',
-                'Implemented motion planning to translate pixel coordinates into robot tool-path trajectories.',
-                'Integrated sketch generation with the existing TMFlow robot control programme.',
+                'Designed robotic cell layout in Coppeliasim',
+                'Programmed robot movements using LUA scripting',
+                'Validated cycle times and collision detection',
+                'Integrated with MATLAB for data analysis',
             ],
-            tags: ['TMFlow', 'TM5 Omron', 'Image Processing', 'Camera Calibration', 'Python', 'Path Planning'],
+            tags: ['LUA', 'Coppeliasim', 'MATLAB'],
+            media: [
+                { type: 'image', src: 'assets/images/Captura de pantalla 2026-03-29 173311.png', alt: 'Robotic Simulation' },
+                { type: 'video', src: 'assets/robotic-simulation.mp4', poster: 'assets/images/simulation-poster.jpg' }
+            ]
         },
         6: {
-            title: 'Predictive Maintenance Platform',
-            category: 'IoT',
-            year: '2024',
+            title: 'Industrial A-frame for order fulfillment',
+            category: 'PLC',
+            year: '2026 – on going',
             accent: 'rgba(212,255,94,0.2)',
             icon: '⊕',
-            description: 'Designed and deployed a data pipeline and rule engine for predictive maintenance across industrial equipment. The platform continuously acquires signals from machines, applies data-driven rules to detect early failure indicators, and generates alerts to enable proactive maintenance interventions.',
+            description: 'Desgined, built, programmed and validated an automation solution for order fulfilment based on client\'s requirements.',
             highlights: [
-                'Built a signal acquisition pipeline from industrial PLCs to a centralised SQL database.',
-                'Defined and validated key performance indicators and health signals per machine type.',
-                'Deployed anomaly detection and threshold-based rules to flag early degradation signs.',
-                'Conducted data studies to correlate signal patterns with known failure modes.',
-                'Delivered client-facing reports with actionable maintenance recommendations.',
+                'Designed complete A-frame system architecture',
+                'Programmed WAGO PLC for order fulfillment logic',
+                'Designed HMI interface for operator control',
+                'Created CAD models and electronic schematics',
             ],
-            tags: ['SQL', 'Node-RED', 'Ignition SCADA', 'Data Analysis', 'Allen-Bradley', 'Predictive Analytics'],
+            tags: ['WAGO PLC', 'HMI design', 'CAD design', 'Schematic design', 'Electronic circuitry'],
+            media: [
+                { type: 'image', src: 'assets/images/Captura de pantalla 2026-03-29 172456.png', alt: 'A-frame Design' },
+                { type: 'image', src: 'assets/images/a-frame-cad.jpg', alt: 'CAD Model' }
+            ]
         },
     };
 
@@ -121,7 +144,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let animationDone   = false;
     let rainAnimId      = null;
     let scrambleTimers  = [];
-    let activeRandomize = []; // Para controlar qué letras siguen randomizando
+    
+    // Almacenar instancias de carruseles
+    const carousels = new Map();
+    const detailCarousels = new Map();
 
     function wait(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -129,6 +155,164 @@ document.addEventListener('DOMContentLoaded', function () {
     
     function randChar() {
         return CHARS[Math.floor(Math.random() * CHARS.length)];
+    }
+
+    // ============================================
+    // CLASE CARRUSEL
+    // ============================================
+    class MediaCarousel {
+        constructor(container, mediaItems, options = {}) {
+            this.container = container;
+            this.mediaItems = mediaItems;
+            this.currentIndex = 0;
+            this.autoPlayInterval = null;
+            this.autoPlayDelay = options.autoPlayDelay || 4000;
+            this.enableAutoPlay = options.enableAutoPlay !== false;
+            
+            this.init();
+        }
+        
+        init() {
+            if (!this.mediaItems || this.mediaItems.length === 0) return;
+            
+            // Crear estructura del carrusel
+            this.slidesContainer = this.container.querySelector('.carousel-slides, .detail-carousel-slides');
+            this.prevBtn = this.container.querySelector('.carousel-btn-prev, .detail-carousel-btn-prev');
+            this.nextBtn = this.container.querySelector('.carousel-btn-next, .detail-carousel-btn-next');
+            this.dotsContainer = this.container.querySelector('.carousel-dots, .detail-carousel-dots');
+            
+            // Renderizar slides
+            this.renderSlides();
+            
+            // Configurar eventos
+            if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.prev());
+            if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.next());
+            
+            // Iniciar auto-reproducción si hay más de 1 slide
+            if (this.enableAutoPlay && this.mediaItems.length > 1) {
+                this.startAutoPlay();
+                
+                // Pausar auto-reproducción al hover
+                this.container.addEventListener('mouseenter', () => this.stopAutoPlay());
+                this.container.addEventListener('mouseleave', () => this.startAutoPlay());
+            }
+        }
+        
+        renderSlides() {
+            if (!this.slidesContainer) return;
+            
+            // Limpiar y crear nuevos slides
+            this.slidesContainer.innerHTML = '';
+            this.mediaItems.forEach((item, idx) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                if (this.container.classList.contains('detail-carousel-container')) {
+                    slide.className = 'detail-carousel-slide';
+                }
+                
+                if (item.type === 'video') {
+                    const video = document.createElement('video');
+                    video.src = item.src;
+                    if (item.poster) video.poster = item.poster;
+                    video.loop = true;
+                    video.muted = true;
+                    video.playsInline = true;
+                    
+                    // Autoplay solo si es el slide activo
+                    if (idx === this.currentIndex) {
+                        video.autoplay = true;
+                        setTimeout(() => video.play().catch(e => console.log('Autoplay prevented:', e)), 100);
+                    }
+                    
+                    slide.appendChild(video);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    img.alt = item.alt || 'Project media';
+                    slide.appendChild(img);
+                }
+                
+                this.slidesContainer.appendChild(slide);
+            });
+            
+            // Actualizar dots
+            this.updateDots();
+            this.updateSlidePosition();
+        }
+        
+        updateSlidePosition() {
+            if (!this.slidesContainer) return;
+            const offset = -this.currentIndex * 100;
+            this.slidesContainer.style.transform = `translateX(${offset}%)`;
+            
+            // Controlar reproducción de videos
+            const slides = this.slidesContainer.children;
+            for (let i = 0; i < slides.length; i++) {
+                const video = slides[i].querySelector('video');
+                if (video) {
+                    if (i === this.currentIndex) {
+                        video.play().catch(e => console.log('Video play error:', e));
+                    } else {
+                        video.pause();
+                    }
+                }
+            }
+            
+            this.updateDots();
+        }
+        
+        updateDots() {
+            if (!this.dotsContainer) return;
+            
+            const dots = this.dotsContainer.querySelectorAll('.carousel-dot, .detail-carousel-dot');
+            dots.forEach((dot, idx) => {
+                if (idx === this.currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        goTo(index) {
+            if (index < 0) index = this.mediaItems.length - 1;
+            if (index >= this.mediaItems.length) index = 0;
+            this.currentIndex = index;
+            this.updateSlidePosition();
+        }
+        
+        next() {
+            this.goTo(this.currentIndex + 1);
+            this.resetAutoPlay();
+        }
+        
+        prev() {
+            this.goTo(this.currentIndex - 1);
+            this.resetAutoPlay();
+        }
+        
+        startAutoPlay() {
+            if (!this.enableAutoPlay || this.mediaItems.length <= 1) return;
+            if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = setInterval(() => this.next(), this.autoPlayDelay);
+        }
+        
+        stopAutoPlay() {
+            if (this.autoPlayInterval) {
+                clearInterval(this.autoPlayInterval);
+                this.autoPlayInterval = null;
+            }
+        }
+        
+        resetAutoPlay() {
+            if (!this.enableAutoPlay) return;
+            this.stopAutoPlay();
+            this.startAutoPlay();
+        }
+        
+        destroy() {
+            this.stopAutoPlay();
+        }
     }
 
     // ============================================
@@ -213,14 +397,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================================
     async function startAnimation() {
         try {
-            // Inicializar el estado
             if (!scrambleChars.length) {
-                console.error('No scramble characters found');
                 skipAnimation();
                 return;
             }
             
-            // Asegurar que el contenedor es visible
             if (animationContainer) {
                 animationContainer.style.display = 'flex';
                 animationContainer.style.opacity = '1';
@@ -228,7 +409,6 @@ document.addEventListener('DOMContentLoaded', function () {
             
             startMatrixRain();
             
-            // Configurar los caracteres iniciales
             scrambleChars.forEach((ch, idx) => {
                 ch.textContent = randChar();
                 ch.classList.add('scrambling');
@@ -237,13 +417,11 @@ document.addEventListener('DOMContentLoaded', function () {
             
             await wait(600);
             
-            // Resolver letra por letra
             const labels = ['INITIALIZING', 'LOADING DATA', 'DECODING...', 'RESOLVING', 'ACCESS GRANTED'];
             
             for (let i = 0; i < scrambleChars.length; i++) {
                 const ch = scrambleChars[i];
                 
-                // Actualizar label y barra de progreso
                 const labelIdx = Math.min(Math.floor((i / scrambleChars.length) * labels.length), labels.length - 1);
                 if (scrambleLabel) scrambleLabel.textContent = labels[labelIdx];
                 
@@ -251,19 +429,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (scrambleBarFill) scrambleBarFill.style.width = pct + '%';
                 if (scrambleStatus) scrambleStatus.textContent = `${pct}% COMPLETE`;
                 
-                // Resolver este caracter
                 await scrambleChar(ch, WORD[i], 280);
                 await wait(50);
             }
             
-            // Estado final
             if (scrambleLabel) scrambleLabel.textContent = 'ACCESS GRANTED';
             if (scrambleBarFill) scrambleBarFill.style.width = '100%';
             if (scrambleStatus) scrambleStatus.textContent = '100% COMPLETE';
             
             await wait(600);
             
-            // Ocultar animación y mostrar contenido
             stopMatrixRain();
             
             if (animationContainer) {
@@ -297,7 +472,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (animationDone) return;
         animationDone = true;
         
-        // Limpiar todos los timers
         scrambleTimers.forEach(timer => clearTimeout(timer));
         scrambleTimers = [];
         
@@ -323,7 +497,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 300);
     }
 
-    // Configurar eventos de skip
     if (skipBtn) {
         skipBtn.addEventListener('click', skipAnimation);
     }
@@ -336,6 +509,43 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { once: true });
 
     // ============================================
+    // FUNCIÓN PARA CREAR CARRUSEL EN TARJETA
+    // ============================================
+    function createCardCarousel(cardElement, mediaItems, cardId) {
+        // Encontrar o crear el contenedor de medios
+        let mediaContainer = cardElement.querySelector('.project-media');
+        if (!mediaContainer) return null;
+        
+        // Guardar el badge de año si existe
+        const yearBadge = mediaContainer.querySelector('.project-year-badge');
+        const badgeHTML = yearBadge ? yearBadge.outerHTML : '';
+        
+        // Crear estructura del carrusel
+        const carouselHTML = `
+            <div class="carousel-container">
+                <div class="carousel-slides"></div>
+                ${mediaItems.length > 1 ? `
+                    <button class="carousel-btn carousel-btn-prev">‹</button>
+                    <button class="carousel-btn carousel-btn-next">›</button>
+                    <div class="carousel-dots"></div>
+                ` : ''}
+            </div>
+        `;
+        
+        mediaContainer.innerHTML = carouselHTML + (yearBadge ? yearBadge : '');
+        
+        const carouselContainer = mediaContainer.querySelector('.carousel-container');
+        
+        // Crear instancia del carrusel
+        const carousel = new MediaCarousel(carouselContainer, mediaItems, {
+            autoPlayDelay: 4000,
+            enableAutoPlay: mediaItems.length > 1
+        });
+        
+        return carousel;
+    }
+
+    // ============================================
     // REFERENCIAS DEL PANEL DE DETALLE
     // ============================================
     const detailOverlay = document.getElementById('detailOverlay');
@@ -343,13 +553,67 @@ document.addEventListener('DOMContentLoaded', function () {
     const detailClose   = document.getElementById('detailClose');
 
     // ============================================
+    // FUNCIÓN PARA ACTUALIZAR MEDIA EN DETAIL
+    // ============================================
+    function updateDetailMedia(projectId) {
+        const data = projectsData[projectId];
+        if (!data || !data.media) return null;
+        
+        const mediaContainer = document.querySelector('.detail-media');
+        if (!mediaContainer) return null;
+        
+        // Guardar el carrusel anterior si existe
+        if (detailCarousels.has(projectId)) {
+            const oldCarousel = detailCarousels.get(projectId);
+            if (oldCarousel) oldCarousel.destroy();
+            detailCarousels.delete(projectId);
+        }
+        
+        // Crear estructura del carrusel
+        const carouselHTML = `
+            <div class="detail-carousel-container">
+                <div class="detail-carousel-slides"></div>
+                ${data.media.length > 1 ? `
+                    <button class="detail-carousel-btn detail-carousel-btn-prev">‹</button>
+                    <button class="detail-carousel-btn detail-carousel-btn-next">›</button>
+                    <div class="detail-carousel-dots"></div>
+                ` : ''}
+            </div>
+        `;
+        
+        mediaContainer.innerHTML = carouselHTML;
+        
+        const carouselContainer = mediaContainer.querySelector('.detail-carousel-container');
+        
+        // Crear instancia del carrusel
+        const carousel = new MediaCarousel(carouselContainer, data.media, {
+            autoPlayDelay: 5000,
+            enableAutoPlay: data.media.length > 1
+        });
+        
+        detailCarousels.set(projectId, carousel);
+        
+        return carousel;
+    }
+
+    // ============================================
     // INIT — filtros, cards, detalle
     // ============================================
     function initPage() {
         if (!projectsContainer) return;
         
-        // --- Intersection observer: animar tarjetas al entrar ---
+        // --- Crear carruseles para todas las tarjetas ---
         const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+            const id = card.getAttribute('data-id');
+            const data = projectsData[id];
+            if (data && data.media && data.media.length > 0) {
+                const carousel = createCardCarousel(card, data.media, id);
+                if (carousel) carousels.set(id, carousel);
+            }
+        });
+        
+        // --- Intersection observer: animar tarjetas al entrar ---
         const observer = new IntersectionObserver(entries => {
             entries.forEach((entry, i) => {
                 if (entry.isIntersecting) {
@@ -386,7 +650,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // --- ABRIR DETALLE ---
         cards.forEach(card => {
             card.addEventListener('click', function (e) {
-                if (e.target.classList.contains('expand-btn')) return;
+                if (e.target.classList.contains('expand-btn') || 
+                    e.target.classList.contains('carousel-btn') ||
+                    e.target.classList.contains('carousel-dot')) {
+                    return;
+                }
                 const id = this.getAttribute('data-id');
                 if (id) openDetail(id);
             });
@@ -423,14 +691,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const data = projectsData[id];
         if (!data) return;
 
-        const mediaEl = document.getElementById('detailMedia');
-        if (mediaEl) {
-            mediaEl.innerHTML = `
-                <div class="detail-media-placeholder" style="--accent: ${data.accent}">
-                    <span class="detail-media-icon">${data.icon}</span>
-                </div>
-            `;
-        }
+        // Actualizar el carrusel de medios
+        updateDetailMedia(id);
 
         const detailMeta = document.getElementById('detailMeta');
         if (detailMeta) {
@@ -464,13 +726,16 @@ document.addEventListener('DOMContentLoaded', function () {
     function closeDetail() {
         if (detailOverlay) detailOverlay.classList.remove('open');
         document.body.style.overflow = '';
+        
+        // Limpiar carruseles del detalle
+        detailCarousels.forEach(carousel => {
+            if (carousel) carousel.destroy();
+        });
+        detailCarousels.clear();
     }
 
     // ============================================
-    // INICIAR ANIMACIÓN (con pequeño delay)
+    // INICIAR ANIMACIÓN
     // ============================================
-    // Pequeño delay para asegurar que todo está cargado
     setTimeout(() => {
-        startAnimation();
-    }, 100);
-});
+       
