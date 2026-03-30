@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
             tags: ['TIA Portal', 'PLC Programming (FBD and SCT)', 'NX Siemens', 'HMI Design'],
             media: [
                 { type: 'image', src: 'assets/images/Screenshot 2025-12-06 221243.png', alt: 'Virtual Commissioning' },
-                { type: 'image', src: 'Screenshot 2026-01-19 134744.png',alt: 'Virtual Commissioning' },
-                { type: 'image', src: 'Screenshot 2026-01-20 192355.png', alt: 'Virtual Commissioning' },
-                { type: 'image', src: 'Screenshot 2026-01-19 175337.png', alt: 'Virtual Commissioning' },
+                { type: 'image', src: 'assets/images/Screenshot 2026-01-19 134744.png',alt: 'Virtual Commissioning' },
+                { type: 'image', src: 'assets/images/Screenshot 2026-01-20 192355.png', alt: 'Virtual Commissioning' },
+                { type: 'image', src: 'assets/images/Screenshot 2026-01-19 175337.png', alt: 'Virtual Commissioning' },
                 { type: 'video', src: 'assets/video/Video Project.mp4', poster: 'assets/images/virtual-poster.jpg' }
             ]
         },
