@@ -738,4 +738,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // INICIAR ANIMACIÓN
     // ============================================
     setTimeout(() => {
-       
+        startAnimation();
+    }, 100);
+});
