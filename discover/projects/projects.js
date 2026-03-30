@@ -13,16 +13,15 @@ document.addEventListener('DOMContentLoaded', function () {
             description: 'Developed as a final degree project at CEIT Research Center, this project involved programming the TM5 Omron collaborative robot to play tic-tac-toe against human users. The robot uses an integrated camera and a minimax AI algorithm to ensure it never loses — while also being able to sketch user portraits from camera captures.',
             highlights: [
                 'Mastered the TMFlow programming language for complex robotic task sequencing.',
-                'Implemented a minimax AI algorithm ensuring optimal play in every game state.',
-                'Integrated camera system for real-time board recognition and move validation.',
                 'Project defended with a grade of 10/10 with honours at University of Navarra.',
+                'Used an integrated camera system for real-time board recognition and move validation.',
+                'Successfully developed a program that ensured either a win or a tie for the robot',
+                'Developed a portrait sketching application to draw user portraits.',
             ],
             tags: ['TMFlow', 'TM5 Omron', 'Computer Vision', 'Python', 'AI Algorithms', 'CEIT'],
             // Array de medios para el carrusel
             media: [
                 { type: 'video', src: 'assets/video/29_3_2026, 14_34_10 - Screen - Proyecto de vídeo 1.webm', poster: null },
-                { type: 'image', src: 'assets/images/robot-sketch.jpg', alt: 'Robot sketching' },
-                { type: 'image', src: 'assets/images/tic-tac-toe-board.jpg', alt: 'Game board' }
             ]
         },
         2: {
@@ -34,20 +33,17 @@ document.addEventListener('DOMContentLoaded', function () {
             description: 'Designed and implemented a fully automated batch mixing plant control system as part of the MSc programme. The system integrates PLC control, SCADA supervision, and computer vision for product sorting and quality inspection across the production line.',
             highlights: [
                 'Designed ladder logic for sequential batch control with interlocking safety conditions.',
-                'Configured SCADA interface for real-time process monitoring and alarm management.',
-                'Integrated computer vision module for automated product classification and rejection.',
-                'Implemented HMI screens for operator interaction and process parameter adjustment.',
+                'Configured an HMI (visualization) interface for real-time process monitoring and alarm management.',
+                'Used for programming languages from the IEC-61131-3 standard (ST, LD, FBD and SFC).',
             ],
-            tags: ['Siemens TIA Portal', 'SCADA', 'HMI Design', 'Computer Vision', 'PLC Ladder Logic'],
+            tags: ['CODESYS', 'IEC-61131-3', 'HMI Design'],
             media: [
                 { type: 'image', src: 'assets/images/Captura de pantalla 2026-03-29 173405.png', alt: 'Batch mixing plant' },
-                { type: 'image', src: 'assets/images/plc-interface.jpg', alt: 'PLC Interface' },
-                { type: 'video', src: 'assets/video/batch-plant-demo.mp4', poster: 'assets/images/batch-poster.jpg' }
             ]
         },
         3: {
             title: 'Virtual Commissioning',
-            category: 'IoT',
+            category: 'PLC/SCADA',
             year: '2025',
             accent: 'rgba(212,255,94,0.3)',
             icon: '◎',
@@ -61,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
             tags: ['TIA Portal', 'PLC Programming (FBD and SCT)', 'NX Siemens', 'HMI Design'],
             media: [
                 { type: 'image', src: 'assets/images/Screenshot 2025-12-06 221243.png', alt: 'Virtual Commissioning' },
-                { type: 'video', src: 'assets/virtual-commissioning-demo.mp4', poster: 'assets/images/virtual-poster.jpg' }
+                //{ type: 'video', src: 'assets/virtual-commissioning-demo.mp4', poster: 'assets/images/virtual-poster.jpg' }
             ]
         },
         4: {
@@ -75,12 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 'Integrating real-time automation controller with OPAL-RT simulator',
                 'Implementing bidirectional communication protocols',
                 'Demonstrating hierarchical control of microgrids',
-                'Testing DNP3/Modbus TCP/IEC-61850 protocols',
+                'Programming a SCADA using NodeRed',
             ],
             tags: ['OPAL-RT', 'SEL-3555', 'NodeRed', 'SCADA', 'DNP3/Modbus TCP/IEC-61850'],
             media: [
                 { type: 'image', src: 'assets/images/research-lab.jpg', alt: 'Research Lab Setup' },
-                { type: 'image', src: 'assets/images/opal-rt-setup.jpg', alt: 'OPAL-RT Simulator' }
+                //{ type: 'image', src: 'assets/images/opal-rt-setup.jpg', alt: 'OPAL-RT Simulator' }
             ]
         },
         5: {
@@ -93,13 +89,12 @@ document.addEventListener('DOMContentLoaded', function () {
             highlights: [
                 'Designed robotic cell layout in Coppeliasim',
                 'Programmed robot movements using LUA scripting',
-                'Validated cycle times and collision detection',
-                'Integrated with MATLAB for data analysis',
+                'Used MATLAB for kinematics calculation and validation',
             ],
             tags: ['LUA', 'Coppeliasim', 'MATLAB'],
             media: [
                 { type: 'image', src: 'assets/images/Captura de pantalla 2026-03-29 173311.png', alt: 'Robotic Simulation' },
-                { type: 'video', src: 'assets/robotic-simulation.mp4', poster: 'assets/images/simulation-poster.jpg' }
+               // { type: 'video', src: 'assets/robotic-simulation.mp4', poster: 'assets/images/simulation-poster.jpg' }
             ]
         },
         6: {
@@ -118,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
             tags: ['WAGO PLC', 'HMI design', 'CAD design', 'Schematic design', 'Electronic circuitry'],
             media: [
                 { type: 'image', src: 'assets/images/Captura de pantalla 2026-03-29 172456.png', alt: 'A-frame Design' },
-                { type: 'image', src: 'assets/images/a-frame-cad.jpg', alt: 'CAD Model' }
+               // { type: 'image', src: 'assets/images/a-frame-cad.jpg', alt: 'CAD Model' }
             ]
         },
     };
