@@ -256,9 +256,9 @@ body::after {
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
         ". . . . . ."
-        "projects . . . . profile"
-        "projects . . . . profile"
-        "projects . . . . cv"
+        ". . . . . profile"
+        "projects projects . . . profile"
+        "projects projects . . . cv"
         ". . . . . cv";
         ". . . . . ."
     padding: clamp(20px, 3vw, 50px);
