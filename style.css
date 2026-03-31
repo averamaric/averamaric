@@ -245,118 +245,181 @@ body::after {
 /* CONTENEDOR DE TARJETAS ASIMÉTRICAS */
 /* CONTENEDOR DE TARJETAS */
 .nothing-cards-container {
-   position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    /* Nuevo sistema: grid dinámico */
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-    gap: clamp(12px, 2vw, 28px);
-    padding: clamp(20px, 5vh, 60px);
-    box-sizing: border-box;
 }
 
-/* Posición de cada tarjeta en el grid */
-.card-projects { 
-    grid-column: 1 / span 5;
-    grid-row: 3 / span 4;
-}
-
-.card-profile { 
-    grid-column: 8 / span 4;
-    grid-row: 2 / span 4;
-}
-
-.card-skills { 
-    grid-column: 2 / span 4;
-    grid-row: 7 / span 4;
-}
-
-.cv-special-card { 
-    grid-column: 8 / span 4;
-    grid-row: 7 / span 4;
-}
-
-/* TARJETAS INDIVIDUALES */
+/* TARJETAS INDIVIDUALES - Posicionadas con porcentajes relativos al viewport */
 .nothing-card {
-    position: relative;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    overflow: hidden;
-    text-decoration: none;
-    color: #FFFFFF;
+    position: absolute;
     pointer-events: all;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center;
+    /* Tamaño basado en porcentaje del viewport, no en grid */
+    width: min(28vw, 380px, 100%);
+    min-width: 260px;
+    max-width: 420px;
+    
+    /* Altura proporcional al ancho (mantiene proporción) */
+    height: auto;
+    min-height: 280px;
+    
+    /* Flex para contenido interno */
     display: flex;
     flex-direction: column;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    backdrop-filter: blur(10px);
-    transform: rotate(var(--rotation, 0deg));
-    min-height: 0;
-    opacity: 0;
-    animation: fadeInUp 0.6s ease forwards;
-    animation-delay: calc(var(--i, 0) * 0.1s);
 }
 
-.nothing-card:nth-child(1) { --i: 1; }
-.nothing-card:nth-child(2) { --i: 2; }
-.nothing-card:nth-child(3) { --i: 3; }
-.nothing-card:nth-child(4) { --i: 4; }
+/* ============================================
+   POSICIONAMIENTO PROPORCIONAL - CADA TARJETA EN PORCENTAJES
+   ============================================ */
 
-.card-projects   { --rotation: -2deg; }
-.card-profile    { --rotation:  2deg; }
-.card-skills     { --rotation: -1.5deg; }
-.cv-special-card { --rotation:  1.5deg; }
-@media (min-width: 1600px) {
-    .card-projects { 
-        grid-column: 2 / span 4;
-        grid-row: 3 / span 4;
-    }
-    
-    .card-profile { 
-        grid-column: 9 / span 3;
-        grid-row: 2 / span 4;
-    }
-    
-    .card-skills { 
-        grid-column: 3 / span 3;
-        grid-row: 7 / span 4;
-    }
-    
-    .cv-special-card { 
-        grid-column: 9 / span 3;
-        grid-row: 7 / span 4;
-    }
+/* Tarjeta PROJECTS (arriba izquierda) */
+.card-projects {
+    top: 25%;
+    left: 5%;
+    /* Desplazamiento sutil para efecto asimétrico */
+    transform: rotate(-2deg);
 }
 
-/* Breakpoint tablet — 2 columnas */
-@media (max-width: 1200px) {
-    .card-projects { 
-        grid-column: 1 / span 5;
-        grid-row: 3 / span 4;
-    }
+/* Tarjeta PROFILE (arriba derecha) */
+.card-profile {
+    top: 15%;
+    right: 5%;
+    transform: rotate(2deg);
+}
+
+/* Tarjeta SKILLS (abajo izquierda) */
+.card-skills {
+    bottom: 20%;
+    left: 5%;
+    transform: rotate(-1.5deg);
+}
+
+/* Tarjeta CV (abajo derecha) */
+.cv-special-card {
+    bottom: 20%;
+    right: 5%;
+    transform: rotate(1.5deg);
+}
+
+/* ============================================
+   AJUSTES POR PROPORCIÓN DE PANTALLA
+   ============================================ */
+
+/* Pantallas muy anchas (ultrawide > 21:9) */
+@media (min-aspect-ratio: 21/9) {
+    .card-projects { top: 30%; left: 8%; }
+    .card-profile { top: 18%; right: 8%; }
+    .card-skills { bottom: 25%; left: 8%; }
+    .cv-special-card { bottom: 25%; right: 8%; }
     
-    .card-profile { 
-        grid-column: 8 / span 4;
-        grid-row: 2 / span 4;
-    }
-    
-    .card-skills { 
-        grid-column: 2 / span 4;
-        grid-row: 7 / span 4;
-    }
-    
-    .cv-special-card { 
-        grid-column: 8 / span 4;
-        grid-row: 7 / span 4;
+    .nothing-card {
+        width: min(24vw, 400px);
     }
 }
 
-@media (min-width: 769px) {
-    body { overflow-x: hidden; }
+/* Pantallas panorámicas (16:9) */
+@media (min-aspect-ratio: 16/9) and (max-aspect-ratio: 21/9) {
+    .card-projects { top: 28%; left: 6%; }
+    .card-profile { top: 16%; right: 6%; }
+    .card-skills { bottom: 22%; left: 6%; }
+    .cv-special-card { bottom: 22%; right: 6%; }
+    
+    .nothing-card {
+        width: min(26vw, 380px);
+    }
+}
+
+/* Pantallas estándar (4:3, 16:10) */
+@media (min-aspect-ratio: 4/3) and (max-aspect-ratio: 16/9) {
+    .card-projects { top: 25%; left: 5%; }
+    .card-profile { top: 15%; right: 5%; }
+    .card-skills { bottom: 20%; left: 5%; }
+    .cv-special-card { bottom: 20%; right: 5%; }
+    
+    .nothing-card {
+        width: min(28vw, 360px);
+    }
+}
+
+/* Pantallas casi cuadradas (1:1, 4:5) */
+@media (max-aspect-ratio: 4/3) {
+    .card-projects { top: 22%; left: 4%; }
+    .card-profile { top: 12%; right: 4%; }
+    .card-skills { bottom: 18%; left: 4%; }
+    .cv-special-card { bottom: 18%; right: 4%; }
+    
+    .nothing-card {
+        width: min(32vw, 340px);
+    }
+}
+
+/* ============================================
+   AJUSTES POR ALTURA DE PANTALLA
+   ============================================ */
+
+/* Pantallas muy altas */
+@media (min-height: 1000px) {
+    .card-projects { top: 28%; }
+    .card-profile { top: 18%; }
+    .card-skills { bottom: 25%; }
+    .cv-special-card { bottom: 25%; }
+}
+
+/* Pantallas bajas (laptops pequeñas) */
+@media (max-height: 700px) {
+    .card-projects { top: 20%; }
+    .card-profile { top: 12%; }
+    .card-skills { bottom: 15%; }
+    .cv-special-card { bottom: 15%; }
+    
+    .nothing-card {
+        min-height: 240px;
+    }
+}
+
+/* ============================================
+   EFECTOS HOVER MANTENIENDO PROPORCIONES
+   ============================================ */
+.nothing-card:hover {
+    transform: rotate(0deg) scale(1.05) !important;
+    z-index: 200;
+}
+
+/* ============================================
+   TABLET (768px - 1024px) - LAYOUT DE 2 COLUMNAS
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nothing-cards-container {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        padding: 80px 40px 40px;
+        height: auto;
+    }
+    
+    .nothing-card {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        min-width: auto !important;
+        transform: none !important;
+        margin: 0;
+    }
+    
+    /* Reordenar para mejor flujo */
+    .card-projects { order: 1; }
+    .card-profile { order: 2; }
+    .card-skills { order: 3; }
+    .cv-special-card { order: 4; }
 }
 
 /* Breakpoint mobile — carrusel horizontal */
