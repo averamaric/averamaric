@@ -245,32 +245,41 @@ body::after {
 /* CONTENEDOR DE TARJETAS ASIMÉTRICAS */
 /* CONTENEDOR DE TARJETAS */
 .nothing-cards-container {
-    position: absolute;
+   position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
+    /* Nuevo sistema: grid dinámico */
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas:
-        ". . . . . ."
-        ". . . . . profile"
-        "projects projects . . . profile"
-        "projects projects . . . cv"
-        ". . . . . cv";
-        ". . . . . ."
-    padding: clamp(20px, 3vw, 50px);
-    gap: clamp(8px, 1.5vw, 20px);
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: clamp(12px, 2vw, 28px);
+    padding: clamp(20px, 5vh, 60px);
     box-sizing: border-box;
 }
 
 /* Posición de cada tarjeta en el grid */
-.card-projects   { grid-area: projects; }
-.card-profile    { grid-area: profile;  }
-.card-skills     { grid-area: skills;   }
-.cv-special-card { grid-area: cv;       }
+.card-projects { 
+    grid-column: 1 / span 5;
+    grid-row: 3 / span 4;
+}
+
+.card-profile { 
+    grid-column: 8 / span 4;
+    grid-row: 2 / span 4;
+}
+
+.card-skills { 
+    grid-column: 2 / span 4;
+    grid-row: 7 / span 4;
+}
+
+.cv-special-card { 
+    grid-column: 8 / span 4;
+    grid-row: 7 / span 4;
+}
 
 /* TARJETAS INDIVIDUALES */
 .nothing-card {
@@ -301,21 +310,48 @@ body::after {
 .card-profile    { --rotation:  2deg; }
 .card-skills     { --rotation: -1.5deg; }
 .cv-special-card { --rotation:  1.5deg; }
+@media (min-width: 1600px) {
+    .card-projects { 
+        grid-column: 2 / span 4;
+        grid-row: 3 / span 4;
+    }
+    
+    .card-profile { 
+        grid-column: 9 / span 3;
+        grid-row: 2 / span 4;
+    }
+    
+    .card-skills { 
+        grid-column: 3 / span 3;
+        grid-row: 7 / span 4;
+    }
+    
+    .cv-special-card { 
+        grid-column: 9 / span 3;
+        grid-row: 7 / span 4;
+    }
+}
 
 /* Breakpoint tablet — 2 columnas */
 @media (max-width: 1200px) {
-    .nothing-cards-container {
-        position: relative;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-        grid-template-areas:
-            "projects profile"
-            "skills   cv";
-        height: auto;
-        pointer-events: all;
-        padding: 0 24px;
-        margin-top: 40px;
+    .card-projects { 
+        grid-column: 1 / span 5;
+        grid-row: 3 / span 4;
+    }
+    
+    .card-profile { 
+        grid-column: 8 / span 4;
+        grid-row: 2 / span 4;
+    }
+    
+    .card-skills { 
+        grid-column: 2 / span 4;
+        grid-row: 7 / span 4;
+    }
+    
+    .cv-special-card { 
+        grid-column: 8 / span 4;
+        grid-row: 7 / span 4;
     }
 }
 
