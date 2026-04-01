@@ -669,8 +669,8 @@ body::after {
     
     .cv-special-card .cv-zoomed-image,
     .cv-special-card .cv-zoomed-hover {
-        width: 85px;
-        height: 85px;
+        width: 65px;
+        height: 45px;
     }
     
     .cv-special-card .card-info {
