@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         4: {
             title: 'Experimental validation connectivity for controls',
             category: 'Research',
-            year: '2025 – Present',
+            year: '2025 – on going',
             accent: 'rgba(212,255,94,0.7)',
             icon: '⬡',
             description: 'working on integrating a real-time automation controller, a PLC and the OPAL-RT simulator, to enable bidirectional communication and demonstrate hierarchical control of microgrids.',
