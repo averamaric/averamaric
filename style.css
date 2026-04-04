@@ -373,7 +373,7 @@ body::after {
 .card-profile:hover,
 .card-skills:hover,
 .cv-special-card:hover {
-    transform: rotate(0deg) scale(1.04) !important;
+    transform: rotate(0deg) scale(1.01) !important;
     border: 1px solid rgba(212, 255, 94, 0.7) !important;
     background: rgba(212, 255, 94, 0.04) !important;
     box-shadow:
@@ -767,24 +767,26 @@ body::after {
 }
 
 /* PROJECTS: gradiente pero mismo tamaño */
-.card-projects .card-info h3 {
-    font-size: 1.1rem;
+.card-info h3,
+.card-projects .card-info h3,
+.card-profile .card-info h3,
+.card-skills .card-info h3,
+.cv-special-card .card-info h3 {
+    font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 2px;
-    background: linear-gradient(135deg, #FFFFFF 0%, #D4FF5E 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    text-transform: uppercase;
+    color: #FFFFFF; /* Blanco sólido, sin degradado */
+    margin-bottom: 12px;
+    text-decoration: none; /* Sin subrayado */
+    background: none; /* Sin fondo degradado */
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
 }
 
 /* CV: mismo tamaño */
-.cv-special-card .card-info h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #FFFFFF;
-    margin-bottom: 0;
-}
+
 
 .card-number {
     font-size: 0.9rem;
