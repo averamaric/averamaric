@@ -909,6 +909,111 @@
 }
 
 /* ============================================
+   GROWTH MINDSET CARD - Al final de Tools
+   ============================================ */
+.growth-mindset-card {
+    display: flex;
+    gap: 24px;
+    background: linear-gradient(135deg, rgba(212, 255, 94, 0.03) 0%, rgba(212, 255, 94, 0.01) 100%);
+    border: 1px solid rgba(212, 255, 94, 0.12);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-top: 48px;
+    transition: all 0.3s ease;
+}
+
+.growth-mindset-card:hover {
+    border-color: rgba(212, 255, 94, 0.25);
+    background: linear-gradient(135deg, rgba(212, 255, 94, 0.06) 0%, rgba(212, 255, 94, 0.02) 100%);
+    transform: translateY(-2px);
+}
+
+.growth-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 8px rgba(212, 255, 94, 0.3));
+}
+
+.growth-content {
+    flex: 1;
+}
+
+.growth-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #D4FF5E;
+    margin-bottom: 12px;
+}
+
+.growth-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 16px;
+}
+
+.growth-text strong {
+    color: #D4FF5E;
+    font-weight: 600;
+}
+
+.growth-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.growth-tags span {
+    background: rgba(212, 255, 94, 0.08);
+    border: 1px solid rgba(212, 255, 94, 0.2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: rgba(212, 255, 94, 0.9);
+    transition: all 0.2s ease;
+}
+
+.growth-tags span:hover {
+    background: rgba(212, 255, 94, 0.15);
+    border-color: rgba(212, 255, 94, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Versión responsive */
+@media (max-width: 768px) {
+    .growth-mindset-card {
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px 20px;
+        margin-top: 32px;
+    }
+    
+    .growth-icon {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .growth-title {
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+    .growth-text {
+        font-size: 0.85rem;
+        text-align: center;
+    }
+    
+    .growth-tags {
+        justify-content: center;
+    }
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 900px) {
