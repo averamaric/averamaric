@@ -4,7 +4,7 @@ const componentData = {
         id: 'TW_PLA_3D_260001',
         name: 'Top Case',
         date: '03/24/2026',
-        printer: 'Creality Ender 3 V2',
+        printer: 'ELEGOO Centauri Carbon 2',
         file: 'phone_top_white_v2.1',
         operations: [
             { date: '03/24/2026 09:30', operation: '3D Printing started', duration: '3h 15m' },
@@ -24,7 +24,7 @@ const componentData = {
         id: 'BW_PLA_3D_260002',
         name: 'Bottom Case Assembly',
         date: '03/24/2026',
-        printer: 'Prusa i3 MK3S+',
+        printer: 'ELEGOO Centauri Carbon 2',
         file: 'phone_bottom_v2.1.gcode',
         operations: [
             { date: '03/24/2026 12:15', operation: '3D Printing started', duration: '3h 05m' },
