@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ANALUCIA V.M. | Industrial Automation</title>
     <style>
         /* RESET Y BASE - ESTILO NOTHING */
@@ -18,32 +18,6 @@
             color: #FFFFFF;
             min-height: 100vh;
             position: relative;
-        }
-
-        /* CURSOR PERSONALIZADO - VISIBLE */
-        
-
-        .custom-cursor-dot {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background-color: #D4FF5E;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            transition: transform 0.1s ease;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-        }
-
-        body.has-custom-cursor .custom-cursor,
-        body.has-custom-cursor .custom-cursor-dot {
-            opacity: 1;
-        }
-
-        .cursor-hover {
-            transform: translate(-50%, -50%) scale(1.5);
-            background-color: rgba(212, 255, 94, 0.1);
         }
 
         /* EFECTO DE PUNTOS DE LUZ AL ESTILO NOTHING */
@@ -89,6 +63,12 @@
             z-index: 1000;
         }
 
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 20px 24px;
+            }
+        }
+
         .menu-icon {
             cursor: pointer;
             padding: 10px;
@@ -127,7 +107,14 @@
             opacity: 1;
         }
 
-        /* LOGO CENTRAL */
+        @media (max-width: 768px) {
+            .nav-links a {
+                margin-left: 24px;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* LOGO CENTRAL - Desktop */
         .logo-container {
             position: absolute;
             top: 40%;
@@ -163,6 +150,7 @@
             vertical-align: middle;
             border: 1px solid rgba(212, 255, 94, 0.5);
             box-shadow: 0 0 20px rgba(212, 255, 94, 0.2);
+            object-fit: cover;
         }
 
         .vertical-text {
@@ -286,7 +274,7 @@
             pointer-events: none;
         }
 
-        /* TARJETAS INDIVIDUALES */
+        /* TARJETAS INDIVIDUALES - Desktop */
         .nothing-card {
             position: absolute;
             background: rgba(255, 255, 255, 0.03);
@@ -307,10 +295,7 @@
             flex-direction: column;
         }
 
-        /* ============================================
-           POSICIONAMIENTO PROPORCIONAL
-           ============================================ */
-
+        /* POSICIONAMIENTO PROPORCIONAL Desktop */
         .card-projects {
             top: 25%;
             left: 5%;
@@ -321,30 +306,28 @@
             top: 15%;
             right: 5%;
             transform: rotate(-2deg);
+            width: 260px !important;
+            min-width: 220px !important;
+            max-width: 300px !important;
+            min-height: 160px !important;
+            max-height: 340px !important;
         }
-      .card-profile {
-    width: 260px !important;
-    min-width: 220px !important;
-    max-width: 300px !important;
-    min-height: 160px !important;
-    max-height: 340px !important;
-}
 
-.card-profile .card-info {
-    padding: 15px !important;
-}
+        .card-profile .card-info {
+            padding: 15px !important;
+        }
 
-.card-profile .skills-title-scan {
-    font-size: 1rem !important;
-    padding: 10px 20px !important;
-    min-width: 140px !important;
-    margin-bottom: 10px !important;
-}
+        .card-profile .skills-title-scan {
+            font-size: 1rem !important;
+            padding: 10px 20px !important;
+            min-width: 140px !important;
+            margin-bottom: 10px !important;
+        }
 
-.card-profile .card-tags span {
-    font-size: 0.65rem !important;
-    padding: 3px 8px !important;
-}
+        .card-profile .card-tags span {
+            font-size: 0.65rem !important;
+            padding: 3px 8px !important;
+        }
 
         .card-skills {
             bottom: 20%;
@@ -356,113 +339,38 @@
             bottom: 20%;
             right: 5%;
             transform: rotate(1.5deg);
-        }
-      
-      .cv-special-card {
-    width: 180px !important;  /* Cambia este valor para ancho */
-    min-width: 160px !important;
-    max-width: 280px !important;
-    min-height: 140px !important;  /* Cambia para altura */
-    max-height: 260px !important;
-}
-
-.cv-special-card .cv-image-wrapper {
-    height: 80px !important;  /* Reduce la altura del área de la imagen */
-}
-
-.cv-special-card .cv-image-zoomed-container {
-    width: 60px !important;
-    height: 60px !important;
-}
-
-.cv-special-card .cv-zoomed-image,
-.cv-special-card .cv-zoomed-hover {
-    width: 45px !important;
-    height: 45px !important;
-}
-
-.cv-special-card .card-info {
-    padding: 10px 15px !important;
-}
-
-.cv-special-card .card-info h3 {
-    font-size: 0.9rem !important;
-    margin-bottom: 5px !important;
-}
-
-        /* ============================================
-           AJUSTES POR PROPORCIÓN DE PANTALLA
-           ============================================ */
-
-        @media (min-aspect-ratio: 21/9) {
-            .card-projects { top: 30%; left: 8%; }
-            .card-profile { top: 18%; right: 8%; }
-            .card-skills { bottom: 25%; left: 8%; }
-            .cv-special-card { bottom: 25%; right: 8%; }
-            
-            .nothing-card {
-                width: min(24vw, 400px);
-            }
+            width: 180px !important;
+            min-width: 160px !important;
+            max-width: 280px !important;
+            min-height: 140px !important;
+            max-height: 260px !important;
         }
 
-        @media (min-aspect-ratio: 16/9) and (max-aspect-ratio: 21/9) {
-            .card-projects { top: 28%; left: 6%; }
-            .card-profile { top: 16%; right: 6%; }
-            .card-skills { bottom: 22%; left: 6%; }
-            .cv-special-card { bottom: 22%; right: 6%; }
-            
-            .nothing-card {
-                width: min(26vw, 380px);
-            }
+        .cv-special-card .cv-image-wrapper {
+            height: 80px !important;
         }
 
-        @media (min-aspect-ratio: 4/3) and (max-aspect-ratio: 16/9) {
-            .card-projects { top: 25%; left: 5%; }
-            .card-profile { top: 15%; right: 5%; }
-            .card-skills { bottom: 20%; left: 5%; }
-            .cv-special-card { bottom: 20%; right: 5%; }
-            
-            .nothing-card {
-                width: min(28vw, 360px);
-            }
+        .cv-special-card .cv-image-zoomed-container {
+            width: 60px !important;
+            height: 60px !important;
         }
 
-        @media (max-aspect-ratio: 4/3) {
-            .card-projects { top: 22%; left: 4%; }
-            .card-profile { top: 12%; right: 4%; }
-            .card-skills { bottom: 18%; left: 4%; }
-            .cv-special-card { bottom: 18%; right: 4%; }
-            
-            .nothing-card {
-                width: min(32vw, 340px);
-            }
+        .cv-special-card .cv-zoomed-image,
+        .cv-special-card .cv-zoomed-hover {
+            width: 45px !important;
+            height: 45px !important;
         }
 
-        /* ============================================
-           AJUSTES POR ALTURA DE PANTALLA
-           ============================================ */
-
-        @media (min-height: 1000px) {
-            .card-projects { top: 28%; }
-            .card-profile { top: 18%; }
-            .card-skills { bottom: 25%; }
-            .cv-special-card { bottom: 25%; }
+        .cv-special-card .card-info {
+            padding: 10px 15px !important;
         }
 
-        @media (max-height: 700px) {
-            .card-projects { top: 20%; }
-            .card-profile { top: 12%; }
-            .card-skills { bottom: 15%; }
-            .cv-special-card { bottom: 15%; }
-            
-            .nothing-card {
-                min-height: 240px;
-            }
+        .cv-special-card .card-info h3 {
+            font-size: 0.9rem !important;
+            margin-bottom: 5px !important;
         }
 
-        /* ============================================
-           HOVER MEJORADO - Fusión de ambos estilos
-           ============================================ */
+        /* HOVER MEJORADO Desktop */
         .nothing-card:hover,
         .card-projects:hover,
         .card-profile:hover,
@@ -479,7 +387,7 @@
         }
 
         /* ============================================
-           TABLET (768px - 1024px)
+           TABLET (768px - 1024px) - Grid layout
            ============================================ */
         @media (min-width: 769px) and (max-width: 1024px) {
             .nothing-cards-container {
@@ -487,7 +395,7 @@
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 24px;
-                padding: 80px 40px 40px;
+                padding: 100px 40px 60px;
                 height: auto;
             }
             
@@ -509,26 +417,37 @@
             
             .card-projects { order: 1; }
             .card-profile { order: 2; }
-            .card-skills { order: 3; }
-            .cv-special-card { order: 4; }
+            .cv-special-card { order: 3; }
+            
+            /* Ajustes específicos para tablet */
+            .card-profile {
+                width: 100% !important;
+                min-height: auto !important;
+                max-height: none !important;
+            }
+            
+            .cv-special-card {
+                width: 100% !important;
+                min-height: auto !important;
+                max-height: none !important;
+            }
+            
+            .cv-special-card .cv-image-wrapper {
+                height: 110px !important;
+            }
         }
 
         /* ============================================
-           MOBILE — carrusel horizontal
+           MOBILE — Carrusel horizontal CORREGIDO
            ============================================ */
         @media (max-width: 768px) {
-            body {
-                cursor: auto;
-            }
-            .custom-cursor, .custom-cursor-dot {
-                display: none;
-            }
-
             .hero {
                 min-height: auto;
                 padding-bottom: 40px;
+                overflow-x: hidden;
             }
             
+            /* Logo móvil */
             .logo-container {
                 display: none;
             }
@@ -606,20 +525,22 @@
                 display: block;
             }
 
+            /* Contenedor de tarjetas - CARRUSEL HORIZONTAL FUNCIONAL */
             .nothing-cards-container {
+                position: relative !important;
                 display: flex !important;
                 flex-direction: row !important;
                 overflow-x: auto !important;
+                overflow-y: visible !important;
                 -webkit-overflow-scrolling: touch;
-                scrollbar-width: thin;
-                gap: 16px;
-                padding: 10px 20px 30px 20px;
-                margin: 0 0 20px 0;
+                scroll-snap-type: x mandatory;
+                gap: 20px;
+                padding: 20px 24px 40px 24px;
+                margin: 0;
                 width: 100%;
-                grid-template-columns: none !important;
-                position: relative !important;
                 height: auto !important;
-                align-items: stretch;
+                pointer-events: auto;
+                scrollbar-width: thin;
             }
             
             .nothing-cards-container::-webkit-scrollbar {
@@ -634,17 +555,50 @@
                 border-radius: 10px;
             }
 
+            /* Cada tarjeta en el carrusel */
             .nothing-card {
+                position: relative !important;
                 flex: 0 0 280px !important;
+                width: 280px !important;
+                min-width: 280px !important;
+                max-width: 280px !important;
                 margin: 0 !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
                 transform: none !important;
                 pointer-events: auto;
-                transition: transform 0.2s ease;
+                transition: transform 0.2s ease, opacity 0.3s ease;
                 min-height: 380px !important;
+                scroll-snap-align: start;
             }
             
             .nothing-card:active {
                 transform: scale(0.97) !important;
+            }
+            
+            /* Ajustes específicos para móvil */
+            .card-profile {
+                width: 280px !important;
+                min-width: 280px !important;
+                max-width: 280px !important;
+                min-height: 380px !important;
+            }
+            
+            .cv-special-card {
+                width: 280px !important;
+                min-width: 280px !important;
+                max-width: 280px !important;
+                min-height: 380px !important;
+            }
+            
+            .cv-special-card .cv-image-wrapper {
+                height: 110px !important;
+            }
+            
+            .cv-special-card .card-info h3 {
+                font-size: 1rem !important;
             }
             
             .card-hover-indicator {
@@ -658,6 +612,21 @@
             .card-info h3 {
                 font-size: 1rem;
                 letter-spacing: 1px;
+            }
+            
+            /* Descripción card móvil */
+            .description-card {
+                position: relative;
+                margin: 20px auto 30px;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                width: calc(100% - 48px);
+            }
+            
+            /* Scroll indicator oculto en móvil */
+            .scroll-indicator {
+                display: none;
             }
         }
 
@@ -690,9 +659,6 @@
             width: 100%;
         }
 
-        /* ============================================
-           TÍTULOS DE TARJETAS — estilo del diseño anterior (más grandes)
-           ============================================ */
         .nothing-card .card-info h3,
         .nothing-card h3 {
             font-size: 1.3rem;
@@ -742,7 +708,6 @@
             border-color: rgba(212, 255, 94, 0.3);
         }
 
-        /* INDICADOR HOVER */
         .card-hover-indicator {
             position: absolute;
             bottom: 15px;
@@ -791,9 +756,7 @@
             background-color: #000;
         }
 
-        /* ============================================
-           TARJETA PROJECTS
-           ============================================ */
+        /* TARJETA PROJECTS */
         .card-projects {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.07);
@@ -814,9 +777,7 @@
             background: rgba(0, 0, 0, 0.2);
         }
 
-        /* ============================================
-           TARJETA ESPECIAL CV
-           ============================================ */
+        /* TARJETA ESPECIAL CV */
         .cv-image-wrapper {
             width: 100%;
             height: 110px;
@@ -937,9 +898,7 @@
             100% { opacity: 0; transform: scale(0.6) rotate(-45deg); }
         }
 
-        /* ============================================
-           ANIMACIONES PARA TÍTULOS (PROFILE / SKILLS) - ESTILO ANTERIOR
-           ============================================ */
+        /* ANIMACIONES PARA TÍTULOS */
         .skills-title-simple {
             font-size: 1.3rem;
             font-weight: 700;
@@ -1143,9 +1102,7 @@
             100% { left: 100%; }
         }
 
-        /* ============================================
-           PUNTOS DEL CV
-           ============================================ */
+        /* PUNTOS DEL CV */
         .cv-dots-container {
             position: absolute;
             top: 0;
@@ -1213,10 +1170,6 @@
 </head>
 <body>
 
-    <!-- CURSOR PERSONALIZADO - VISIBLE -->
-    <div class="custom-cursor" id="cursor"></div>
-    <div class="custom-cursor-dot" id="cursorDot"></div>
-
     <nav class="navbar">
         <div class="menu-icon" id="menuIcon">
             <span></span>
@@ -1235,7 +1188,7 @@
                 <div class="logo-line-mobile about-line">
                     <span class="letter">A</span>
                     <span class="letter">B</span>
-                    <img src="assets/images/Analucia Vera-25935251.jpg" alt="Analucia" class="circle-image-mobile">
+                    <img src="assets/images/Analucia Vera-25935251.jpg" alt="Analucia" class="circle-image-mobile" onerror="this.src='https://via.placeholder.com/60?text=AV'">
                     <span class="letter">U</span>
                     <span class="letter">T</span>
                 </div>
@@ -1249,10 +1202,10 @@
             </div>
         </div>
 
-        <!-- LOGO CENTRAL -->
+        <!-- LOGO CENTRAL Desktop -->
         <div class="logo-container">
             <h1 class="logo-text">
-                <span class="logo-line">AB<img src="assets/images/Analucia Vera-25935251.jpg" alt="Analucia" class="circle-image">UT</span>
+                <span class="logo-line">AB<img src="assets/images/Analucia Vera-25935251.jpg" alt="Analucia" class="circle-image" onerror="this.src='https://via.placeholder.com/80?text=AV'">UT</span>
                 <span class="logo-line">ME<small class="vertical-text">(ANALUCIA V.M)</small></span>
             </h1>
             <div class="logo-subtitle">
@@ -1260,7 +1213,7 @@
             </div>
         </div>
 
-        <!-- TEXTO DESCRIPTIVO CON SCROLL HIDE/SHOW -->
+        <!-- TEXTO DESCRIPTIVO -->
         <div class="description-card" id="descriptionCard">
             <div class="card-content">
                 <p class="card-text">Hi, I'm Analucia, an engineer turning industrial challenges into smart, automated solutions. I'm currently deepening my expertise in robotics and automation after falling in love with the logic of PLCs on the factory floor.</p>
@@ -1274,10 +1227,10 @@
             </div>
         </div>
 
-        <!-- TARJETAS: layout grid en desktop, carrusel en mobile -->
+        <!-- TARJETAS -->
         <div class="nothing-cards-container">
 
-            <!-- Tarjeta 1: PROJECTS (arriba izquierda) -->
+            <!-- Tarjeta 1: PROJECTS -->
             <a href="discover/projects/projects.html" class="nothing-card card-projects" data-area="projects">
                 <div class="card-image-container">
                     <video class="card-image video-loop" autoplay muted loop playsinline>
@@ -1301,17 +1254,17 @@
                 <div class="card-hover-indicator">→</div>
             </a>
 
-            <!-- Tarjeta 2: CV DOWNLOAD (abajo derecha) -->
+            <!-- Tarjeta 2: CV DOWNLOAD -->
             <a href="assets/Analucía Vera Maric.pdf" download class="nothing-card cv-special-card" data-area="cv">
                 <div class="cv-image-wrapper">
                     <div class="cv-image-zoomed-container">
-                        <img src="assets/images/Folder.png" alt="CV Download" class="cv-zoomed-image">
+                        <img src="assets/images/Folder.png" alt="CV Download" class="cv-zoomed-image" onerror="this.src='https://via.placeholder.com/60?text=CV'">
                         <div class="cv-dots-container">
                             <div class="cv-dot" style="--dot-left: 45%; --dot-top: 60%; --delay: 0s;"></div>
                             <div class="cv-dot" style="--dot-left: 60%; --dot-top: 60%; --delay: 0.3s;"></div>
                             <div class="cv-dot" style="--dot-left: 75%; --dot-top: 60%; --delay: 0.6s;"></div>
                         </div>
-                        <img src="assets/images/Folfer download.png" alt="Download Now" class="cv-zoomed-hover">
+                        <img src="assets/images/Folfer download.png" alt="Download Now" class="cv-zoomed-hover" onerror="this.src='https://via.placeholder.com/60?text=↓'">
                         <div class="cv-border-ring"></div>
                     </div>
                 </div>
@@ -1321,7 +1274,7 @@
                 <div class="card-hover-indicator">↗</div>
             </a>
 
-            <!-- Tarjeta 3: PROFILE (arriba derecha) -->
+            <!-- Tarjeta 3: PROFILE -->
             <a href="discover/profile.html" class="nothing-card card-profile" data-area="profile">
                 <div class="card-info">
                     <div class="flipping-title">
@@ -1335,24 +1288,9 @@
                 <div class="card-hover-indicator">↓</div>
             </a>
 
-            <!-- Tarjeta 4: SKILLS (abajo izquierda) 
-            <a href="projects/skills.html" class="nothing-card card-skills" data-area="skills">
-                <div class="card-info">
-                    <div class="flipping-title">
-                        <h3 class="skills-title-simple">SKILLS</h3>
-                    </div>
-                    <p class="card-description">Technical and personal competencies</p>
-                    <div class="card-tags">
-                        <span>SOFT</span>
-                        <span>HARD</span>
-                    </div>
-                </div>
-                <div class="card-hover-indicator">←</div>
-            </a> -->
-
         </div>
 
-        <!-- INDICADOR DE SCROLL -->
+        <!-- INDICADOR DE SCROLL Desktop -->
         <div class="scroll-indicator">
             <span>EXPLORE</span>
             <div class="indicator-line"></div>
@@ -1364,46 +1302,11 @@
         document.addEventListener('DOMContentLoaded', function () {
 
             // ============================================
-            // CURSOR PERSONALIZADO - VISIBLE
-            // ============================================
-            const cursor = document.getElementById('cursor');
-            const cursorDot = document.getElementById('cursorDot');
-
-            if (cursor && cursorDot) {
-                let mouseX = 0, mouseY = 0;
-                let cursorX = 0, cursorY = 0;
-
-                document.addEventListener('mousemove', function (e) {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    cursorDot.style.left = mouseX + 'px';
-                    cursorDot.style.top = mouseY + 'px';
-                });
-
-                function animateCursor() {
-                    cursorX += (mouseX - cursorX) * 0.12;
-                    cursorY += (mouseY - cursorY) * 0.12;
-                    cursor.style.left = cursorX + 'px';
-                    cursor.style.top = cursorY + 'px';
-                    requestAnimationFrame(animateCursor);
-                }
-                animateCursor();
-
-                const hoverTargets = document.querySelectorAll('a, button, .menu-icon, .nothing-card');
-                hoverTargets.forEach(el => {
-                    el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-                    el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
-                });
-
-                document.body.classList.add('has-custom-cursor');
-            }
-
-            // ============================================
-            // DESCRIPCIÓN CARD — hide/show con scroll
+            // DESCRIPCIÓN CARD — hide/show con scroll (solo desktop)
             // ============================================
             const descriptionCard = document.getElementById('descriptionCard');
 
-            if (descriptionCard && window.innerWidth > 120) {
+            if (descriptionCard && window.innerWidth > 768) {
                 let lastScrollY = window.pageYOffset;
                 let isHidden = false;
                 let ticking = false;
@@ -1443,16 +1346,29 @@
             // ANIMACIÓN DE ENTRADA ESCALONADA
             // ============================================
             const logo = document.querySelector('.logo-container');
+            const logoMobile = document.querySelector('.logo-container-mobile');
             const cards = document.querySelectorAll('.nothing-card');
             const desc = document.getElementById('descriptionCard');
             const scrollIndicator = document.querySelector('.scroll-indicator');
 
-            if (logo) logo.style.opacity = '0';
+            const isMobile = window.innerWidth <= 768;
+            
+            if (!isMobile && logo) logo.style.opacity = '0';
             if (desc) desc.style.opacity = '0';
-            if (scrollIndicator) scrollIndicator.style.opacity = '0';
+            if (!isMobile && scrollIndicator) scrollIndicator.style.opacity = '0';
             cards.forEach(card => card.style.opacity = '0');
 
-            setTimeout(() => { if (logo) logo.style.transition = 'opacity 0.6s ease'; logo.style.opacity = '1'; }, 100);
+            setTimeout(() => { 
+                if (!isMobile && logo) {
+                    logo.style.transition = 'opacity 0.6s ease';
+                    logo.style.opacity = '1';
+                }
+                if (isMobile && logoMobile) {
+                    logoMobile.style.transition = 'opacity 0.6s ease';
+                    logoMobile.style.opacity = '1';
+                }
+            }, 100);
+            
             setTimeout(() => {
                 cards.forEach((card, i) => {
                     setTimeout(() => {
@@ -1461,11 +1377,23 @@
                     }, i * 120);
                 });
             }, 400);
-            setTimeout(() => { if (desc) { desc.style.transition = 'opacity 0.6s ease'; desc.style.opacity = '1'; } }, 900);
-            setTimeout(() => { if (scrollIndicator) { scrollIndicator.style.transition = 'opacity 0.6s ease'; scrollIndicator.style.opacity = '1'; } }, 1100);
+            
+            setTimeout(() => { 
+                if (desc) { 
+                    desc.style.transition = 'opacity 0.6s ease';
+                    desc.style.opacity = '1'; 
+                }
+            }, 900);
+            
+            setTimeout(() => { 
+                if (!isMobile && scrollIndicator) { 
+                    scrollIndicator.style.transition = 'opacity 0.6s ease';
+                    scrollIndicator.style.opacity = '1'; 
+                }
+            }, 1100);
 
             // ============================================
-            // MENÚ — preparado para cuando lo conectes
+            // MENÚ
             // ============================================
             const menuIcon = document.getElementById('menuIcon');
             if (menuIcon) {
@@ -1474,7 +1402,7 @@
                 });
             }
 
-            console.log('✅ Script cargado correctamente - Versión fusionada');
+            console.log('✅ Script cargado correctamente - Versión móvil corregida');
         });
     </script>
 </body>
