@@ -1,1 +1,1401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sanders & Young — Diseño 3D</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --orange: #E8440A;
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray: #EFEFEF;
+      --gray-dark: #C8C8C8;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+      --font-condensed: 'Barlow Condensed', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      background: var(--white);
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .nav-logo {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0;
+    }
+    .nav-links li a {
+      display: block;
+      padding: 0 1.4rem;
+      height: 60px;
+      line-height: 60px;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active { background: var(--orange); color: var(--white); }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 0 1.5rem;
+      height: 60px;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--orange); }
+    .nav-cta .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+    .nav-cta:hover .dot { background: var(--white); }
+
+    /* ── PAGE HERO ── */
+    #page-hero {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 400px;
+    }
+    .page-hero-left {
+      background: var(--black);
+      padding: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .page-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.5rem;
+    }
+    .page-hero-left h1 {
+      font-family: var(--font-display);
+      font-size: 5.5rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .page-hero-right {
+      background: var(--orange);
+      padding: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .page-hero-right p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--black);
+      max-width: 340px;
+      margin-top: auto;
+    }
+    .page-hero-right .breadcrumb {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      margin-top: 0;
+    }
+    .breadcrumb a { color: rgba(0,0,0,0.5); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--black); }
+
+    /* ── SECTION HEADER ── */
+    .section-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+
+    /* ── INTRO CONCEPT ── */
+    #concept {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 500px;
+    }
+    .concept-text {
+      padding: 5rem 4rem;
+      background: var(--white);
+    }
+    .concept-text h2 {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .concept-text p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      max-width: 420px;
+    }
+    .concept-visual {
+      background: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 500px;
+      position: relative;
+      overflow: hidden;
+    }
+    .concept-visual .visual-placeholder {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .concept-visual .upload-hint {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #aaa;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    /* placeholder SVG box */
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      background: var(--gray);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      border: 2px dashed #ccc;
+    }
+    .img-placeholder span {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+
+    /* ── SOFTWARE / TOOLS STRIP ── */
+    #tools {
+      background: var(--black);
+      padding: 3rem 4rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+    }
+    .tools-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      white-space: nowrap;
+      margin-right: 3rem;
+    }
+    .tool-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.5rem;
+      border: 1.5px solid #333;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-dark);
+      white-space: nowrap;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+    .tool-pill .dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
+
+    /* ── DEVELOPMENT PHASES ── */
+    #development {
+      padding: 5rem 4rem;
+      background: var(--white);
+    }
+    #development h2 {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 4rem;
+    }
+    .phases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .phase-card {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .phase-card:nth-child(3n) { border-right: none; }
+    .phase-card:nth-last-child(-n+3) { border-bottom: none; }
+    .phase-card.accent { background: var(--orange); }
+    .phase-card.dark { background: var(--black); color: var(--white); }
+    .phase-num {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+    .phase-card.accent .phase-num { color: var(--black); }
+    .phase-card.dark .phase-num { color: var(--orange); }
+    .phase-card h3 {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .phase-card.dark h3 { color: var(--white); }
+    .phase-card.accent h3 { color: var(--black); }
+    .phase-card p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #555;
+    }
+    .phase-card.dark p { color: var(--gray-dark); }
+    .phase-card.accent p { color: rgba(0,0,0,0.7); }
+    .phase-img {
+      margin-top: 1.5rem;
+      width: 100%;
+      height: 160px;
+    }
+
+    /* ── VIEWS GALLERY ── */
+    #views {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      min-height: 500px;
+    }
+    .view-panel {
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+    }
+    .view-panel:first-child { grid-column: span 2; }
+    .view-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    }
+    .view-info h3 {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    .view-info p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .view-tag {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--orange);
+      padding: 0.3rem 0.75rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* ── PARAMETRIZATION TIMELINE ── */
+    #parametrization {
+      padding: 5rem 4rem;
+      background: var(--black);
+      color: var(--white);
+    }
+    #parametrization h2 {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    #parametrization .intro {
+      font-size: 1rem;
+      color: #888;
+      line-height: 1.6;
+      max-width: 500px;
+      margin-bottom: 4rem;
+    }
+
+    /* Horizontal timeline */
+    .timeline-track {
+      position: relative;
+      overflow-x: auto;
+      padding-bottom: 2rem;
+    }
+    .timeline-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      min-width: max-content;
+      padding-bottom: 1rem;
+    }
+    .timeline-line {
+      position: absolute;
+      top: 24px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #222;
+      z-index: 0;
+    }
+    .timeline-line-fill {
+      height: 100%;
+      background: var(--orange);
+      width: 0%;
+      transition: width 1.5s ease;
+    }
+    .timeline-line-fill.animated { width: 100%; }
+
+    .config-node {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 220px;
+      flex-shrink: 0;
+    }
+    .config-dot {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 3px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: #666;
+      transition: border-color 0.3s, color 0.3s;
+      cursor: default;
+    }
+    .config-node.active .config-dot {
+      border-color: var(--orange);
+      background: var(--orange);
+      color: var(--white);
+    }
+    .config-node.done .config-dot {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+    .config-card {
+      margin-top: 1.5rem;
+      background: #111;
+      border: 1px solid #222;
+      padding: 1.5rem;
+      width: 200px;
+      transition: border-color 0.3s;
+    }
+    .config-node.active .config-card {
+      border-color: var(--orange);
+    }
+    .config-card-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+    .config-card h4 {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .config-param {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .config-param:last-child { border-bottom: none; }
+    .config-param .param-name {
+      font-size: 0.72rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .config-param .param-val {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--gray-dark);
+    }
+    .config-node.active .param-val { color: var(--white); }
+
+    /* ── ERRORS & FAILURES ── */
+    #errors {
+      padding: 5rem 4rem;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .errors-left h2 {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .failure-counter {
+      display: flex;
+      gap: 0;
+      margin-bottom: 3rem;
+    }
+    .failure-box {
+      padding: 2rem 2.5rem;
+      flex: 1;
+    }
+    .failure-box.dark { background: var(--black); color: var(--white); }
+    .failure-box.orange { background: var(--orange); }
+    .failure-box h3 {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 1;
+    }
+    .failure-box p {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      opacity: 0.8;
+    }
+    .failure-box.dark p { color: var(--gray-dark); }
+    .failure-box.orange h3 { color: var(--black); }
+    .failure-box.orange p { color: rgba(0,0,0,0.7); }
+
+    .errors-table { width: 100%; border-collapse: collapse; }
+    .errors-table tr { border-bottom: 1px solid #e0e0e0; }
+    .errors-table tr:first-child { border-top: 1px solid #e0e0e0; }
+    .errors-table td { padding: 1rem 0.75rem; vertical-align: top; }
+    .errors-table tr:nth-child(odd) { background: var(--gray); }
+    .err-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--orange);
+      width: 60px;
+    }
+    .err-type {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+    .err-desc {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .err-tag {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .err-tag.warning { background: var(--orange); color: var(--white); }
+    .err-tag.critical { background: var(--black); color: var(--white); }
+    .err-tag.minor { background: var(--gray-dark); color: var(--black); }
+
+    .errors-right h3 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    /* Failure gallery */
+    .failure-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .fail-img {
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+    }
+    .fail-img-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.7);
+      padding: 0.5rem 0.75rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* ── RESULTS ── */
+    #results {
+      padding: 5rem 4rem;
+      background: var(--gray);
+    }
+    .results-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+    .results-header h2 {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+    .results-header p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      max-width: 340px;
+      justify-self: end;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 0;
+    }
+    .result-card {
+      padding: 2.5rem;
+      border: 1px solid #ddd;
+      background: var(--white);
+    }
+    .result-card.dark { background: var(--black); border-color: var(--black); color: var(--white); }
+    .result-card.orange { background: var(--orange); border-color: var(--orange); }
+    .result-card h3 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .result-card.dark h3 { color: var(--orange); }
+    .result-card.orange h3 { color: var(--black); }
+    .result-card p {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .result-card.dark p { color: #888; }
+    .result-card.orange p { color: rgba(0,0,0,0.7); }
+    .result-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+    .result-card.dark .result-label { color: var(--orange); }
+    .result-card.orange .result-label { color: rgba(0,0,0,0.5); }
+    .result-img {
+      margin-top: 1.5rem;
+      width: 100%;
+      height: 200px;
+    }
+
+    /* Evaluation comparison table */
+    .eval-table-wrap {
+      margin-top: 3rem;
+    }
+    .eval-table-wrap h3 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .eval-table { width: 100%; border-collapse: collapse; }
+    .eval-table th {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 1.5rem;
+      text-align: left;
+    }
+    .eval-table th.highlight { background: var(--orange); }
+    .eval-table td {
+      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #ddd;
+      vertical-align: middle;
+      background: var(--white);
+    }
+    .eval-table tr:nth-child(even) td { background: #f9f9f9; }
+    .eval-table td.metric {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .score-bar-wrap { display: flex; align-items: center; gap: 0.75rem; }
+    .score-bar {
+      flex: 1;
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 0;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      background: var(--orange);
+      border-radius: 0;
+      transition: width 1s ease;
+    }
+    .score-val {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .footer-logo {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .footer-copy { font-size: 0.8rem; color: #888; margin-top: 0.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-dark);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--orange); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #page-hero, #concept, #errors { grid-template-columns: 1fr; }
+      .phases-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+      .results-header { grid-template-columns: 1fr; }
+      .failure-gallery { grid-template-columns: 1fr; }
+      #parametrization { padding: 3rem 1.5rem; }
+      #errors, #results, #development, #concept { padding: 3rem 1.5rem; }
+      .page-hero-left h1 { font-size: 3.5rem; }
+      .nav-links { display: none; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">Sanders & Young</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Resumen</a></li>
+    <li><a href="#" class="active">Diseño 3D</a></li>
+    <li><a href="impresion.html">Impresión</a></li>
+  </ul>
+  <a class="nav-cta" href="index.html#contact">
+    Contacto <span class="dot"></span>
+  </a>
+</nav>
+
+<!-- PAGE HERO -->
+<section id="page-hero">
+  <div class="page-hero-left">
+    <p class="page-label">Blog del Proyecto · Entrada 01</p>
+    <h1>Diseño<br>3D</h1>
+  </div>
+  <div class="page-hero-right">
+    <p class="breadcrumb"><a href="index.html">Inicio</a> &nbsp;/&nbsp; Diseño 3D</p>
+    <p>Proceso completo de modelado, desde el concepto inicial hasta el archivo listo para imprimir. Aquí documentamos cada decisión de diseño y las iteraciones realizadas.</p>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section id="concept">
+  <div class="concept-text fade-up">
+    <p class="section-label">01 — Concepto inicial</p>
+    <h2>De la Idea<br>al Modelo</h2>
+    <p>Todo diseño comienza con un problema. Describe aquí cuál fue el punto de partida de tu proyecto: qué necesitabais crear, para qué función y con qué restricciones de tamaño o material.</p>
+    <p>Esta sección puede incluir los bocetos a mano iniciales, referencias visuales y los requisitos técnicos que guiaron el diseño desde el principio.</p>
+  </div>
+  <div class="concept-visual">
+    <div class="visual-placeholder">
+      <!-- Placeholder: reemplazar con imagen del boceto o render inicial -->
+      <svg viewBox="0 0 300 300" width="200" fill="none" opacity="0.15">
+        <rect x="40" y="40" width="220" height="220" stroke="#000" stroke-width="3" stroke-dasharray="12 6"/>
+        <line x1="40" y1="40" x2="260" y2="260" stroke="#000" stroke-width="2"/>
+        <line x1="260" y1="40" x2="40" y2="260" stroke="#000" stroke-width="2"/>
+        <circle cx="150" cy="150" r="60" stroke="#000" stroke-width="3"/>
+      </svg>
+      <span class="upload-hint">Insertar boceto o imagen de referencia inicial</span>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS STRIP -->
+<div id="tools">
+  <span class="tools-label">Software utilizado</span>
+  <div class="tool-pill"><span class="dot"></span> Fusion 360</div>
+  <div class="tool-pill"><span class="dot"></span> Blender</div>
+  <div class="tool-pill"><span class="dot"></span> TinkerCAD</div>
+  <div class="tool-pill"><span class="dot"></span> PrusaSlicer</div>
+  <div class="tool-pill"><span class="dot"></span> Cura</div>
+</div>
+
+<!-- DEVELOPMENT PHASES -->
+<section id="development">
+  <p class="section-label fade-up">02 — Desarrollo del diseño</p>
+  <h2 class="fade-up">Fases del<br>Modelado</h2>
+
+  <div class="phases-grid fade-up">
+    <!-- Fase 1 -->
+    <div class="phase-card dark">
+      <div class="phase-num">01</div>
+      <h3>Geometría Base</h3>
+      <p>Creación de las formas primitivas y la estructura general del objeto. Definición de cotas principales y proporciones.</p>
+      <div class="phase-img img-placeholder">
+        <svg viewBox="0 0 60 60" width="40" fill="none" opacity="0.4">
+          <rect x="10" y="10" width="40" height="40" stroke="#888" stroke-width="2"/>
+          <line x1="10" y1="10" x2="25" y2="25" stroke="#888" stroke-width="1.5"/>
+          <rect x="25" y="25" width="25" height="25" stroke="#888" stroke-width="2"/>
+        </svg>
+        <span>Imagen fase 1</span>
+      </div>
+    </div>
+
+    <!-- Fase 2 — accent -->
+    <div class="phase-card accent">
+      <div class="phase-num">02</div>
+      <h3>Refinamiento</h3>
+      <p>Ajuste de radios, chaflanes y detalles que facilitan la impresión y mejoran la estética del modelo final.</p>
+      <div class="phase-img img-placeholder" style="background:#C0330A;border-color:rgba(0,0,0,0.2);">
+        <svg viewBox="0 0 60 60" width="40" fill="none" opacity="0.4">
+          <circle cx="30" cy="30" r="22" stroke="#000" stroke-width="2"/>
+          <circle cx="30" cy="30" r="10" stroke="#000" stroke-width="2"/>
+          <line x1="30" y1="8" x2="30" y2="52" stroke="#000" stroke-width="1.5"/>
+          <line x1="8" y1="30" x2="52" y2="30" stroke="#000" stroke-width="1.5"/>
+        </svg>
+        <span style="color:rgba(0,0,0,0.4);">Imagen fase 2</span>
+      </div>
+    </div>
+
+    <!-- Fase 3 -->
+    <div class="phase-card">
+      <div class="phase-num" style="color:var(--orange);">03</div>
+      <h3>Análisis de Imprimibilidad</h3>
+      <p>Revisión de voladizos, paredes mínimas, tolerancias y orientación óptima para la impresión FDM.</p>
+      <div class="phase-img img-placeholder">
+        <svg viewBox="0 0 60 60" width="40" fill="none" opacity="0.25">
+          <polygon points="30,5 55,50 5,50" stroke="#000" stroke-width="2" fill="none"/>
+          <line x1="30" y1="20" x2="30" y2="35" stroke="#000" stroke-width="2"/>
+          <circle cx="30" cy="42" r="3" fill="#000"/>
+        </svg>
+        <span>Imagen fase 3</span>
+      </div>
+    </div>
+
+    <!-- Fase 4 -->
+    <div class="phase-card">
+      <div class="phase-num" style="color:var(--orange);">04</div>
+      <h3>Ensamblaje de Piezas</h3>
+      <p>Diseño de las uniones, encajes y tolerancias entre componentes cuando el objeto es multi-pieza.</p>
+      <div class="phase-img img-placeholder">
+        <svg viewBox="0 0 60 60" width="40" fill="none" opacity="0.25">
+          <rect x="5" y="20" width="22" height="20" stroke="#000" stroke-width="2"/>
+          <rect x="33" y="20" width="22" height="20" stroke="#000" stroke-width="2"/>
+          <line x1="27" y1="30" x2="33" y2="30" stroke="#000" stroke-width="2" stroke-dasharray="3 2"/>
+        </svg>
+        <span>Imagen fase 4</span>
+      </div>
+    </div>
+
+    <!-- Fase 5 -->
+    <div class="phase-card dark">
+      <div class="phase-num">05</div>
+      <h3>Exportación STL</h3>
+      <p>Verificación de la malla, reparación de errores de geometría y exportación en formato STL con la resolución adecuada.</p>
+      <div class="phase-img img-placeholder" style="background:#1a1a1a;border-color:#333;">
+        <svg viewBox="0 0 60 60" width="40" fill="none" opacity="0.4">
+          <polygon points="30,5 50,45 10,45" stroke="#888" stroke-width="1.5" fill="none"/>
+          <polygon points="10,45 30,5 30,45" stroke="#888" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+          <polygon points="50,45 30,5 30,45" stroke="#888" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+        </svg>
+        <span>Imagen fase 5</span>
+      </div>
+    </div>
+
+    <!-- Fase 6 -->
+    <div class="phase-card">
+      <div class="phase-num" style="color:var(--orange);">06</div>
+      <h3>Revisión Final</h3>
+      <p>Comprobación de medidas con calibre digital y validación frente a los requisitos iniciales del proyecto.</p>
+      <div class="phase-img img-placeholder">
+        <svg viewBox="0 0 60 60" width="40" fill="none" opacity="0.25">
+          <circle cx="30" cy="28" r="18" stroke="#000" stroke-width="2"/>
+          <line x1="43" y1="41" x2="55" y2="53" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+          <polyline points="22,28 27,33 38,22" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Imagen fase 6</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIEWS GALLERY -->
+<section id="views">
+  <!-- Vista principal grande -->
+  <div class="view-panel" style="background:linear-gradient(135deg,#1a1a1a,#2d2d2d);">
+    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;min-height:420px;">
+      <svg viewBox="0 0 400 300" width="70%" fill="none" opacity="0.25">
+        <rect x="80" y="80" width="240" height="140" rx="8" stroke="#888" stroke-width="2"/>
+        <line x1="80" y1="80" x2="140" y2="30" stroke="#888" stroke-width="1.5"/>
+        <line x1="320" y1="80" x2="380" y2="30" stroke="#888" stroke-width="1.5"/>
+        <line x1="80" y1="220" x2="140" y2="170" stroke="#888" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <line x1="320" y1="220" x2="380" y2="170" stroke="#888" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <rect x="140" y="30" width="240" height="140" rx="8" stroke="#555" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <text x="170" y="160" fill="#666" font-size="14" font-family="sans-serif">Vista 3D — Reemplazar imagen</text>
+      </svg>
+    </div>
+    <span class="view-tag">Vista 3D principal</span>
+    <div class="view-info">
+      <h3>Render Vista Isométrica</h3>
+      <p>Modelo completo con materiales y acabado final</p>
+    </div>
+  </div>
+
+  <!-- Vista lateral -->
+  <div class="view-panel" style="background:#f0f0f0;">
+    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;min-height:210px;">
+      <svg viewBox="0 0 200 200" width="60%" fill="none" opacity="0.2">
+        <rect x="40" y="40" width="120" height="120" stroke="#000" stroke-width="2"/>
+        <line x1="40" y1="150" x2="40" y2="170" stroke="#000" stroke-width="1.5"/>
+        <line x1="160" y1="150" x2="160" y2="170" stroke="#000" stroke-width="1.5"/>
+        <line x1="40" y1="162" x2="160" y2="162" stroke="#000" stroke-width="1"/>
+        <text x="85" y="188" fill="#000" font-size="10" font-family="sans-serif">120 mm</text>
+      </svg>
+    </div>
+    <span class="view-tag" style="background:var(--black);">Planta</span>
+    <div class="view-info" style="background:linear-gradient(transparent,rgba(0,0,0,0.5));">
+      <h3>Vista en Planta</h3>
+      <p>Cotas principales en milímetros</p>
+    </div>
+  </div>
+
+  <!-- Vista frontal -->
+  <div class="view-panel" style="background:#1a1a1a;">
+    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;min-height:210px;">
+      <svg viewBox="0 0 200 200" width="60%" fill="none" opacity="0.3">
+        <ellipse cx="100" cy="100" rx="70" ry="70" stroke="#888" stroke-width="2"/>
+        <ellipse cx="100" cy="100" rx="30" ry="30" stroke="#888" stroke-width="2"/>
+        <line x1="100" y1="30" x2="100" y2="170" stroke="#555" stroke-width="1" stroke-dasharray="5 3"/>
+        <line x1="30" y1="100" x2="170" y2="100" stroke="#555" stroke-width="1" stroke-dasharray="5 3"/>
+      </svg>
+    </div>
+    <span class="view-tag">Alzado</span>
+    <div class="view-info">
+      <h3>Vista de Alzado</h3>
+      <p>Perfil lateral del modelo final</p>
+    </div>
+  </div>
+</section>
+
+<!-- PARAMETRIZATION TIMELINE -->
+<section id="parametrization">
+  <p class="section-label">03 — Parametrización de la impresora 3D</p>
+  <h2 class="fade-up">Configuraciones<br>de Impresión</h2>
+  <p class="intro fade-up">Cada intento de impresión llevó a ajustar los parámetros del slicer. Esta línea de tiempo muestra la evolución de las configuraciones utilizadas.</p>
+
+  <div class="timeline-track fade-up">
+    <div class="timeline-line">
+      <div class="timeline-line-fill" id="timelineFill"></div>
+    </div>
+    <div class="timeline-inner">
+
+      <div class="config-node done">
+        <div class="config-dot">C1</div>
+        <div class="config-card">
+          <div class="config-card-label">Configuración 1</div>
+          <h4>Prueba Inicial</h4>
+          <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.3 mm</span></div>
+          <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">15%</span></div>
+          <div class="config-param"><span class="param-name">Temp. boquilla</span><span class="param-val">210 °C</span></div>
+          <div class="config-param"><span class="param-name">Temp. cama</span><span class="param-val">60 °C</span></div>
+          <div class="config-param"><span class="param-name">Velocidad</span><span class="param-val">60 mm/s</span></div>
+          <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#E8440A;">❌ Fallo</span></div>
+        </div>
+      </div>
+
+      <div class="config-node done">
+        <div class="config-dot">C2</div>
+        <div class="config-card">
+          <div class="config-card-label">Configuración 2</div>
+          <h4>Ajuste de Adherencia</h4>
+          <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.2 mm</span></div>
+          <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">20%</span></div>
+          <div class="config-param"><span class="param-name">Temp. boquilla</span><span class="param-val">215 °C</span></div>
+          <div class="config-param"><span class="param-name">Temp. cama</span><span class="param-val">65 °C</span></div>
+          <div class="config-param"><span class="param-name">Velocidad</span><span class="param-val">50 mm/s</span></div>
+          <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#E8440A;">❌ Fallo</span></div>
+        </div>
+      </div>
+
+      <div class="config-node active">
+        <div class="config-dot">C3</div>
+        <div class="config-card">
+          <div class="config-card-label">Configuración 3</div>
+          <h4>Optimización de Calidad</h4>
+          <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.15 mm</span></div>
+          <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">25%</span></div>
+          <div class="config-param"><span class="param-name">Temp. boquilla</span><span class="param-val">205 °C</span></div>
+          <div class="config-param"><span class="param-name">Temp. cama</span><span class="param-val">60 °C</span></div>
+          <div class="config-param"><span class="param-name">Velocidad</span><span class="param-val">40 mm/s</span></div>
+          <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#4CAF50;">✓ Éxito</span></div>
+        </div>
+      </div>
+
+      <div class="config-node">
+        <div class="config-dot">C4</div>
+        <div class="config-card">
+          <div class="config-card-label">Configuración 4</div>
+          <h4>Añadir aquí</h4>
+          <div class="config-param"><span class="param-name">Capa</span><span class="param-val">— mm</span></div>
+          <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">— %</span></div>
+          <div class="config-param"><span class="param-name">Temp. boquilla</span><span class="param-val">— °C</span></div>
+          <div class="config-param"><span class="param-name">Temp. cama</span><span class="param-val">— °C</span></div>
+          <div class="config-param"><span class="param-name">Velocidad</span><span class="param-val">— mm/s</span></div>
+          <div class="config-param"><span class="param-name">Resultado</span><span class="param-val">Pendiente</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ERRORS & FAILURES -->
+<section id="errors">
+  <div class="errors-left fade-up">
+    <p class="section-label">04 — Errores</p>
+    <h2>Fallos de<br>Impresión</h2>
+
+    <div class="failure-counter">
+      <div class="failure-box dark">
+        <h3>7</h3>
+        <p>Fallos totales</p>
+      </div>
+      <div class="failure-box orange">
+        <h3>3</h3>
+        <p>Tipos distintos de error</p>
+      </div>
+    </div>
+
+    <table class="errors-table">
+      <tr>
+        <td class="err-num">01</td>
+        <td>
+          <div class="err-type">Warping / Deformación</div>
+          <div class="err-desc">Las esquinas de la pieza se despegan de la cama de impresión durante el proceso, causando deformaciones.</div>
+          <span class="err-tag critical">Crítico</span>
+        </td>
+        <td style="width:60px;text-align:right;">×3</td>
+      </tr>
+      <tr>
+        <td class="err-num">02</td>
+        <td>
+          <div class="err-type">Stringing / Hilos</div>
+          <div class="err-desc">Formación de hilos finos entre partes separadas de la pieza por retracción insuficiente del filamento.</div>
+          <span class="err-tag warning">Aviso</span>
+        </td>
+        <td style="width:60px;text-align:right;">×2</td>
+      </tr>
+      <tr>
+        <td class="err-num">03</td>
+        <td>
+          <div class="err-type">Layer Shifting</div>
+          <div class="err-desc">Desplazamiento de capas por vibración o velocidad excesiva que desalinea el modelo a mitad de impresión.</div>
+          <span class="err-tag critical">Crítico</span>
+        </td>
+        <td style="width:60px;text-align:right;">×2</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="errors-right fade-up">
+    <p class="section-label">Galería de fallos</p>
+    <h3>Registro<br>Visual</h3>
+    <div class="failure-gallery">
+      <div class="fail-img" style="background:linear-gradient(135deg,#1a1a1a,#2a2a2a);min-height:200px;">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 100 80" width="70" fill="none" opacity="0.3">
+            <rect x="10" y="30" width="80" height="40" rx="4" stroke="#888" stroke-width="2"/>
+            <path d="M 10 50 Q 30 70 50 50 Q 70 30 90 50" stroke="#E8440A" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div class="fail-img-label">Warping — Conf. 1</div>
+      </div>
+      <div class="fail-img" style="background:#e8e8e8;min-height:200px;">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 100 80" width="70" fill="none" opacity="0.3">
+            <rect x="10" y="20" width="80" height="50" rx="4" stroke="#000" stroke-width="2"/>
+            <line x1="35" y1="20" x2="40" y2="5" stroke="#000" stroke-width="1" stroke-dasharray="2 2"/>
+            <line x1="55" y1="20" x2="60" y2="5" stroke="#000" stroke-width="1" stroke-dasharray="2 2"/>
+            <line x1="65" y1="25" x2="75" y2="8" stroke="#000" stroke-width="1" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+        <div class="fail-img-label" style="color:#000;background:rgba(0,0,0,0.1);">Stringing — Conf. 1</div>
+      </div>
+      <div class="fail-img" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a);min-height:200px;">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 100 80" width="70" fill="none" opacity="0.3">
+            <rect x="10" y="40" width="80" height="30" rx="2" stroke="#888" stroke-width="2"/>
+            <rect x="18" y="20" width="80" height="25" rx="2" stroke="#888" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="fail-img-label">Layer shift — Conf. 2</div>
+      </div>
+      <div class="fail-img" style="background:var(--orange);min-height:200px;">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 100 80" width="70" fill="none" opacity="0.4">
+            <polygon points="50,10 90,70 10,70" stroke="#000" stroke-width="2" fill="none"/>
+            <line x1="50" y1="30" x2="50" y2="50" stroke="#000" stroke-width="2"/>
+            <circle cx="50" cy="58" r="4" fill="#000"/>
+          </svg>
+        </div>
+        <div class="fail-img-label" style="background:rgba(0,0,0,0.35);">Añadir imagen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="results-header fade-up">
+    <div>
+      <p class="section-label">05 — Resultados</p>
+      <h2>Evaluación<br>Final</h2>
+    </div>
+    <p>Comparativa de las impresiones obtenidas con cada configuración y evaluación de la calidad del resultado definitivo.</p>
+  </div>
+
+  <div class="results-grid fade-up">
+    <div class="result-card dark">
+      <div class="result-label">Resultado final</div>
+      <h3>Config.<br>3</h3>
+      <p>La configuración 3 fue la que produjo el mejor resultado en términos de calidad superficial, precisión dimensional y tiempo de impresión.</p>
+      <div class="result-img img-placeholder" style="background:#111;border-color:#333;">
+        <svg viewBox="0 0 60 60" width="40" fill="none" opacity="0.3">
+          <circle cx="30" cy="28" r="18" stroke="#888" stroke-width="2"/>
+          <line x1="43" y1="41" x2="55" y2="53" stroke="#888" stroke-width="3" stroke-linecap="round"/>
+          <polyline points="22,28 27,33 38,22" stroke="#E8440A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Foto pieza final</span>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">Tiempo total</div>
+      <h3>4h<br>32m</h3>
+      <p>Duración de la impresión final exitosa con la configuración optimizada.</p>
+    </div>
+    <div class="result-card orange">
+      <div class="result-label">Filamento usado</div>
+      <h3>18g</h3>
+      <p>Cantidad de filamento PLA consumido en la impresión definitiva.</p>
+    </div>
+  </div>
+
+  <!-- Evaluation table -->
+  <div class="eval-table-wrap fade-up">
+    <h3>Comparativa de Configuraciones</h3>
+    <table class="eval-table">
+      <thead>
+        <tr>
+          <th>Criterio</th>
+          <th>Conf. 1</th>
+          <th>Conf. 2</th>
+          <th class="highlight">Conf. 3 ✓</th>
+          <th>Conf. 4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="metric">Adhesión a cama</td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:20%"></div></div>
+              <span class="score-val">2/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:50%"></div></div>
+              <span class="score-val">5/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:90%"></div></div>
+              <span class="score-val">9/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div>
+              <span class="score-val">—</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="metric">Calidad superficial</td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:30%"></div></div>
+              <span class="score-val">3/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+              <span class="score-val">6/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:85%"></div></div>
+              <span class="score-val">8.5/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div>
+              <span class="score-val">—</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="metric">Precisión dimensional</td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:40%"></div></div>
+              <span class="score-val">4/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:55%"></div></div>
+              <span class="score-val">5.5/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+              <span class="score-val">8/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div>
+              <span class="score-val">—</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="metric">Resistencia mecánica</td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:35%"></div></div>
+              <span class="score-val">3.5/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:65%"></div></div>
+              <span class="score-val">6.5/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:90%"></div></div>
+              <span class="score-val">9/10</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-bar-wrap">
+              <div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div>
+              <span class="score-val">—</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Sanders & Young</div>
+    <p class="footer-copy">© 2026 Sanders & Young Auto Repair. Blog del Proyecto.</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Resumen</a>
+    <a href="#">Diseño 3D</a>
+    <a href="impresion.html">Impresión</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Animate timeline fill on scroll
+  const timelineFill = document.getElementById('timelineFill');
+  const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        timelineFill.classList.add('animated');
+      }
+    });
+  }, { threshold: 0.3 });
+  if (timelineFill) timelineObserver.observe(timelineFill.parentElement);
+
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.background = '';
+      a.style.color = '';
+    });
+  });
+</script>
+</body>
+</html>
