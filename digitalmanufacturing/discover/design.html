@@ -26,12 +26,7 @@
       background: var(--white);
       color: var(--black);
       overflow-x: hidden;
-    }
-
-    /* Container para limitar ancho en pantallas grandes */
-    .container {
-      max-width: 1600px;
-      margin: 0 auto;
+      width: 100%;
     }
 
     /* ── NAV ── */
@@ -42,7 +37,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 2rem;
+      padding: 0 5%;
       height: 60px;
       background: var(--white);
       border-bottom: 1px solid #e0e0e0;
@@ -100,11 +95,12 @@
     /* ── PAGE HERO (CENTRADO) ── */
     #page-hero {
       margin-top: 60px;
-      padding: 4rem 2rem;
+      padding: 8% 5%;
       text-align: center;
       background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%);
       position: relative;
       overflow: hidden;
+      width: 100%;
     }
     #page-hero::before {
       content: '';
@@ -124,7 +120,7 @@
     }
     #page-hero h1 {
       font-family: var(--font-display);
-      font-size: 6rem;
+      font-size: clamp(3rem, 8vw, 6rem);
       line-height: 0.9;
       text-transform: uppercase;
       color: var(--white);
@@ -132,9 +128,9 @@
       letter-spacing: 0.02em;
     }
     #page-hero p {
-      font-size: 1.1rem;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
       color: #aaa;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
     }
 
@@ -153,17 +149,16 @@
     #concept {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      padding: 4rem;
-      max-width: 1600px;
-      margin: 0 auto;
+      gap: 5%;
+      padding: 5%;
+      width: 100%;
     }
     .concept-text {
       background: var(--white);
     }
     .concept-text h2 {
       font-family: var(--font-display);
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3.5rem);
       line-height: 0.95;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
@@ -181,7 +176,7 @@
       background: var(--gray);
       border-radius: 12px;
       overflow: hidden;
-      min-height: 450px;
+      min-height: 400px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -190,7 +185,7 @@
       position: relative;
       width: 100%;
       height: 100%;
-      min-height: 450px;
+      min-height: 400px;
     }
     .slide {
       position: absolute;
@@ -264,13 +259,14 @@
     /* ── TOOLS ── */
     #tools {
       background: var(--black);
-      padding: 2rem 4rem;
+      padding: 2rem 5%;
       display: flex;
       align-items: center;
-      gap: 0;
+      gap: 1rem;
       overflow-x: auto;
       flex-wrap: wrap;
       justify-content: center;
+      width: 100%;
     }
     .tools-label {
       font-family: var(--font-condensed);
@@ -280,7 +276,6 @@
       text-transform: uppercase;
       color: var(--orange);
       white-space: nowrap;
-      margin-right: 2rem;
     }
     .tool-pill {
       display: flex;
@@ -295,7 +290,6 @@
       text-transform: uppercase;
       color: var(--gray-dark);
       white-space: nowrap;
-      margin: 0.25rem;
     }
     .tool-pill .dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
 
@@ -305,6 +299,7 @@
       justify-content: center;
       gap: 1rem;
       margin-bottom: 2rem;
+      flex-wrap: wrap;
     }
     .case-btn {
       padding: 0.75rem 2rem;
@@ -329,14 +324,13 @@
 
     /* ── DEVELOPMENT PHASES ── */
     #development {
-      padding: 4rem;
+      padding: 5%;
       background: var(--white);
-      max-width: 1600px;
-      margin: 0 auto;
+      width: 100%;
     }
     #development > h2 {
       font-family: var(--font-display);
-      font-size: 3.5rem;
+      font-size: clamp(2rem, 5vw, 3.5rem);
       line-height: 0.9;
       text-transform: uppercase;
       margin-bottom: 2rem;
@@ -384,14 +378,13 @@
 
     /* ── GALLERY WITH CASE SELECTOR ── */
     #gallery-section {
-      padding: 4rem;
+      padding: 5%;
       background: var(--gray);
-      max-width: 1600px;
-      margin: 0 auto;
+      width: 100%;
     }
     #gallery-section h2 {
       font-family: var(--font-display);
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3rem);
       text-transform: uppercase;
       text-align: center;
       margin-bottom: 2rem;
@@ -445,6 +438,292 @@
       transform: scale(1.05);
     }
 
+    /* ── PARAMETRIZATION TIMELINE ── */
+    #parametrization {
+      padding: 5%;
+      background: var(--black);
+      color: var(--white);
+      width: 100%;
+    }
+    #parametrization h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    #parametrization .intro {
+      font-size: 1rem;
+      color: #888;
+      line-height: 1.6;
+      max-width: 500px;
+      margin-bottom: 4rem;
+    }
+    .timeline-track {
+      position: relative;
+      overflow-x: auto;
+      padding-bottom: 2rem;
+    }
+    .timeline-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      min-width: max-content;
+      padding-bottom: 1rem;
+    }
+    .config-node {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 220px;
+      flex-shrink: 0;
+    }
+    .config-dot {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 3px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: #666;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .config-node.active .config-dot {
+      border-color: var(--orange);
+      background: var(--orange);
+      color: var(--white);
+    }
+    .config-card {
+      margin-top: 1.5rem;
+      background: #111;
+      border: 1px solid #222;
+      padding: 1.5rem;
+      width: 200px;
+    }
+    .config-node.active .config-card {
+      border-color: var(--orange);
+    }
+    .config-card-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+    .config-card h4 {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .config-param {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .config-param:last-child { border-bottom: none; }
+    .config-param .param-name {
+      font-size: 0.72rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .config-param .param-val {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--gray-dark);
+    }
+
+    /* ── ERRORS & FAILURES ── */
+    #errors {
+      padding: 5%;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      width: 100%;
+    }
+    .errors-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .failure-counter {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .failure-box {
+      padding: 2rem;
+      flex: 1;
+      min-width: 150px;
+    }
+    .failure-box.dark { background: var(--black); color: var(--white); }
+    .failure-box.orange { background: var(--orange); }
+    .failure-box h3 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      line-height: 1;
+    }
+    .errors-table { width: 100%; border-collapse: collapse; }
+    .errors-table tr { border-bottom: 1px solid #e0e0e0; }
+    .errors-table td { padding: 1rem 0.75rem; vertical-align: top; }
+    .err-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--orange);
+      width: 60px;
+    }
+    .err-type {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+    .err-tag {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .err-tag.warning { background: var(--orange); color: var(--white); }
+    .err-tag.critical { background: var(--black); color: var(--white); }
+    .failure-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .fail-img {
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+      background: #e0e0e0;
+    }
+    .fail-img-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.7);
+      padding: 0.5rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* ── RESULTS ── */
+    #results {
+      padding: 5%;
+      background: var(--gray);
+      width: 100%;
+    }
+    .results-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-bottom: 4rem;
+      gap: 2rem;
+    }
+    .results-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .result-card {
+      padding: 2rem;
+      border: 1px solid #ddd;
+      background: var(--white);
+    }
+    .result-card.dark { background: var(--black); color: var(--white); }
+    .result-card.orange { background: var(--orange); }
+    .result-card h3 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .result-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+    .eval-table-wrap {
+      margin-top: 3rem;
+      overflow-x: auto;
+    }
+    .eval-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+    .eval-table th {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem;
+      text-align: left;
+    }
+    .eval-table th.highlight { background: var(--orange); }
+    .eval-table td {
+      padding: 1rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #ddd;
+      background: var(--white);
+    }
+    .score-bar-wrap { display: flex; align-items: center; gap: 0.75rem; }
+    .score-bar {
+      flex: 1;
+      height: 6px;
+      background: #e0e0e0;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      background: var(--orange);
+    }
+    .score-val {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
     /* Modal para timelapse */
     .modal {
       display: none;
@@ -482,51 +761,19 @@
       color: white;
       padding: 0.5rem 1rem;
       cursor: pointer;
-      font-family: var(--font-condensed);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      #concept {
-        grid-template-columns: 1fr;
-        padding: 2rem;
-        gap: 2rem;
-      }
-      #page-hero h1 { font-size: 4rem; }
-      .phases-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-      #development, #gallery-section { padding: 2rem; }
-      #tools { padding: 1rem; flex-wrap: wrap; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      #page-hero h1 { font-size: 3rem; }
-      #page-hero { padding: 3rem 1rem; }
-      .case-btn { padding: 0.5rem 1rem; font-size: 0.85rem; }
-      .phases-grid { grid-template-columns: 1fr; }
-    }
-
-    /* Fade animations */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     /* Footer */
     footer {
       background: var(--black);
       color: var(--white);
-      padding: 3rem 4rem;
+      padding: 3rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       flex-wrap: wrap;
       gap: 2rem;
+      width: 100%;
     }
     .footer-logo {
       font-family: var(--font-condensed);
@@ -536,7 +783,7 @@
       text-transform: uppercase;
     }
     .footer-copy { font-size: 0.8rem; color: #888; margin-top: 0.5rem; }
-    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .footer-links a {
       font-family: var(--font-condensed);
       font-weight: 700;
@@ -548,11 +795,29 @@
       transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--orange); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      #concept, #errors { grid-template-columns: 1fr; }
+      .results-header { grid-template-columns: 1fr; }
+      .phases-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
 
-<div class="container">
   <!-- NAV -->
   <nav>
     <a class="nav-logo" href="#">Sanders & Young</a>
@@ -561,7 +826,7 @@
       <li><a href="#" class="active">Diseño 3D</a></li>
       <li><a href="impresion.html">Impresión</a></li>
     </ul>
-    <a class="nav-cta" href="#contact">Contacto <span class="dot"></span></a>
+    <a class="nav-cta" href="#">Contacto <span class="dot"></span></a>
   </nav>
 
   <!-- PAGE HERO (CENTRADO) -->
@@ -611,7 +876,7 @@
     <div class="tool-pill"><span class="dot"></span> Cura</div>
   </div>
 
-  <!-- DEVELOPMENT PHASES WITH CASE SELECTOR -->
+  <!-- DEVELOPMENT PHASES -->
   <section id="development">
     <p class="section-label fade-up" style="text-align:center;">02 — Desarrollo del diseño</p>
     <h2 class="fade-up">Fases del Modelado</h2>
@@ -621,12 +886,10 @@
       <button class="case-btn" data-case="top">Top Case</button>
     </div>
 
-    <div id="phasesContainer" class="phases-grid fade-up">
-      <!-- Las fases se cargan dinámicamente con JavaScript -->
-    </div>
+    <div id="phasesContainer" class="phases-grid fade-up"></div>
   </section>
 
-  <!-- GALLERY SECTION (VISTAS 3D) -->
+  <!-- GALLERY SECTION -->
   <section id="gallery-section">
     <h2 class="fade-up">Vistas 3D del Diseño</h2>
     <div class="case-selector fade-up">
@@ -634,9 +897,7 @@
       <button class="case-btn" data-view="top">Top Case Views</button>
     </div>
     
-    <div id="galleryContainer" class="gallery-grid fade-up">
-      <!-- Galería dinámica -->
-    </div>
+    <div id="galleryContainer" class="gallery-grid fade-up"></div>
     
     <div class="timelapse-link fade-up">
       <button class="timelapse-btn" onclick="openTimelapse()">
@@ -645,176 +906,226 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div>
-      <div class="footer-logo">Sanders & Young</div>
-      <p class="footer-copy">© 2026 Sanders & Young Auto Repair. Blog del Proyecto.</p>
-    </div>
-    <div class="footer-links">
-      <a href="index.html">Resumen</a>
-      <a href="#">Diseño 3D</a>
-      <a href="impresion.html">Impresión</a>
-    </div>
-  </footer>
-</div>
+  <!-- PARAMETRIZATION -->
+  <section id="parametrization">
+    <p class="section-label">03 — Parametrización de la impresora 3D</p>
+    <h2 class="fade-up">Configuraciones<br>de Impresión</h2>
+    <p class="intro fade-up">Cada intento de impresión llevó a ajustar los parámetros del slicer. Esta línea de tiempo muestra la evolución de las configuraciones utilizadas.</p>
 
-<!-- Modal para timelapse -->
-<div id="timelapseModal" class="modal">
-  <div class="modal-content">
-    <button class="close-modal" onclick="closeTimelapse()">Cerrar</button>
-    <video id="timelapseVideo" controls>
-      <source src="#" type="video/mp4">
-      Tu navegador no soporta el elemento de video.
-    </video>
-  </div>
-</div>
-
-<script>
-  // Datos de las fases para cada case
-  const phasesData = {
-    bottom: [
-      { num: "01", title: "Geometría Base", desc: "Creación de las formas primitivas y la estructura general del bottom case. Definición de cotas principales (110x65mm) y alojamiento para componentes.", type: "dark" },
-      { num: "02", title: "Refinamiento", desc: "Ajuste de radios internos de 2mm a 3mm, chaflanes en bordes exteriores y detalles de sujeción para la PCB.", type: "accent" },
-      { num: "03", title: "Análisis de Imprimibilidad", desc: "Optimización de voladizos, soportes mínimos para los agujeros de montaje y orientación óptima (cara interior hacia abajo).", type: "light" },
-      { num: "04", title: "Tolerancias de Ensamblaje", desc: "Ajuste de tolerancias +0.2mm para encaje con top case y alojamiento de componentes electrónicos.", type: "dark" },
-      { num: "05", title: "Exportación STL", desc: "Verificación de la malla (sin errores manifold) y exportación a STL con resolución fina (0.01mm).", type: "light" },
-      { num: "06", title: "Validación Final", desc: "Comprobación de espesor 1.6-2.2mm en puntos críticos y encaje con los 'master parts'.", type: "accent" }
-    ],
-    top: [
-      { num: "01", title: "Geometría Base", desc: "Creación del top case con perímetro exterior de 110x65mm y altura de 8mm para alojar pantalla.", type: "dark" },
-      { num: "02", title: "Refinamiento", desc: "Ajuste de ventana para display (80x50mm), radios de 2.5mm en esquinas y detalles estéticos.", type: "accent" },
-      { num: "03", title: "Análisis de Imprimibilidad", desc: "Optimización de soportes para la ventana del display y orientación a 45° para mejor acabado superficial.", type: "light" },
-      { num: "04", title: "Tolerancias de Cierre", desc: "Ajuste de tolerancia -0.1mm para cierre hermético con bottom case y retención de componentes.", type: "dark" },
-      { num: "05", title: "Exportación STL", desc: "Exportación con malla optimizada y verificación de geometrías para impresión FDM.", type: "light" },
-      { num: "06", title: "Validación Final", desc: "Prueba de ensamblaje completa y verificación de funcionalidad con el CP Lab.", type: "accent" }
-    ]
-  };
-
-  // Datos de la galería de vistas
-  const galleryData = {
-    bottom: [
-      { title: "Vista Isométrica", desc: "Perspectiva general del bottom case", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EVista Isométrica Bottom%3C/text%3E%3C/svg%3E" },
-      { title: "Vista en Planta", desc: "Distribución de componentes y agujeros de montaje", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EPlanta Bottom%3C/text%3E%3C/svg%3E" },
-      { title: "Vista de Perfil", desc: "Altura y distribución de alturas", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23bbb'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EPerfil Bottom%3C/text%3E%3C/svg%3E" }
-    ],
-    top: [
-      { title: "Vista Isométrica", desc: "Perspectiva general del top case con ventana", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EVista Isométrica Top%3C/text%3E%3C/svg%3E" },
-      { title: "Vista Frontal", desc: "Detalle de la ventana del display", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EFrontal Top%3C/text%3E%3C/svg%3E" },
-      { title: "Vista Superior", desc: "Acabado superficial y detalles estéticos", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23bbb'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3ESuperior Top%3C/text%3E%3C/svg%3E" }
-    ]
-  };
-
-  // Función para renderizar las fases
-  function renderPhases(caseType) {
-    const phases = phasesData[caseType];
-    const container = document.getElementById('phasesContainer');
-    container.innerHTML = phases.map(phase => `
-      <div class="phase-card ${phase.type}">
-        <div class="phase-num">${phase.num}</div>
-        <h3>${phase.title}</h3>
-        <p>${phase.desc}</p>
-      </div>
-    `).join('');
-  }
-
-  // Función para renderizar la galería
-  function renderGallery(caseType) {
-    const items = galleryData[caseType];
-    const container = document.getElementById('galleryContainer');
-    container.innerHTML = items.map(item => `
-      <div class="gallery-item">
-        <img src="${item.img}" alt="${item.title}">
-        <div class="info">
-          <h4>${item.title}</h4>
-          <p>${item.desc}</p>
+    <div class="timeline-track fade-up">
+      <div class="timeline-inner">
+        <div class="config-node done">
+          <div class="config-dot">C1</div>
+          <div class="config-card">
+            <div class="config-card-label">Configuración 1</div>
+            <h4>Prueba Inicial</h4>
+            <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.3 mm</span></div>
+            <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">15%</span></div>
+            <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">210 °C</span></div>
+            <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#E8440A;">❌ Fallo</span></div>
+          </div>
+        </div>
+        <div class="config-node done">
+          <div class="config-dot">C2</div>
+          <div class="config-card">
+            <div class="config-card-label">Configuración 2</div>
+            <h4>Ajuste Adherencia</h4>
+            <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.2 mm</span></div>
+            <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">20%</span></div>
+            <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">215 °C</span></div>
+            <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#E8440A;">❌ Fallo</span></div>
+          </div>
+        </div>
+        <div class="config-node active">
+          <div class="config-dot">C3</div>
+          <div class="config-card">
+            <div class="config-card-label">Configuración 3</div>
+            <h4>Optimización Calidad</h4>
+            <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.15 mm</span></div>
+            <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">25%</span></div>
+            <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">205 °C</span></div>
+            <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#4CAF50;">✓ Éxito</span></div>
+          </div>
         </div>
       </div>
-    `).join('');
-  }
+    </div>
+  </section>
 
-  // Event listeners para los selectores de case
-  document.querySelectorAll('.case-selector .case-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const selector = this.parentElement;
-      selector.querySelectorAll('.case-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      
-      if (selector.closest('#development')) {
-        renderPhases(this.dataset.case);
-      } else if (selector.closest('#gallery-section')) {
-        renderGallery(this.dataset.view);
-      }
-    });
-  });
+  <!-- ERRORS & FAILURES -->
+  <section id="errors">
+    <div class="errors-left fade-up">
+      <p class="section-label">04 — Errores</p>
+      <h2>Fallos de<br>Impresión</h2>
+      <div class="failure-counter">
+        <div class="failure-box dark"><h3>7</h3><p>Fallos totales</p></div>
+        <div class="failure-box orange"><h3>3</h3><p>Tipos de error</p></div>
+      </div>
+      <table class="errors-table">
+        <tr><td class="err-num">01</td><td><div class="err-type">Warping / Deformación</div><span class="err-tag critical">Crítico</span></td><td>×3</td></tr>
+        <tr><td class="err-num">02</td><td><div class="err-type">Stringing / Hilos</div><span class="err-tag warning">Aviso</span></td><td>×2</td></tr>
+        <tr><td class="err-num">03</td><td><div class="err-type">Layer Shifting</div><span class="err-tag critical">Crítico</span></td><td>×2</td></tr>
+      </table>
+    </div>
+    <div class="errors-right fade-up">
+      <p class="section-label">Galería de fallos</p>
+      <h3>Registro Visual</h3>
+      <div class="failure-gallery">
+        <div class="fail-img"><div class="fail-img-label">Warping — Conf. 1</div></div>
+        <div class="fail-img"><div class="fail-img-label">Stringing — Conf. 1</div></div>
+        <div class="fail-img"><div class="fail-img-label">Layer shift — Conf. 2</div></div>
+      </div>
+    </div>
+  </section>
 
-  // Inicializar con bottom case
-  renderPhases('bottom');
-  renderGallery('bottom');
+  <!-- RESULTS -->
+  <section id="results">
+    <div class="results-header fade-up">
+      <div><p class="section-label">05 — Resultados</p><h2>Evaluación<br>Final</h2></div>
+      <p>Comparativa de las impresiones obtenidas con cada configuración.</p>
+    </div>
+    <div class="results-grid fade-up">
+      <div class="result-card dark"><div class="result-label">Resultado final</div><h3>Conf. 3</h3><p>La configuración 3 produjo el mejor resultado en calidad superficial y precisión dimensional.</p></div>
+      <div class="result-card"><div class="result-label">Tiempo total</div><h3>4h 32m</h3><p>Duración de la impresión final exitosa.</p></div>
+      <div class="result-card orange"><div class="result-label">Filamento usado</div><h3>18g</h3><p>PLA consumido en la impresión definitiva.</p></div>
+    </div>
+    <div class="eval-table-wrap fade-up">
+      <h3>Comparativa de Configuraciones</h3>
+      <table class="eval-table">
+        <thead><tr><th>Criterio</th><th>Conf. 1</th><th>Conf. 2</th><th class="highlight">Conf. 3 ✓</th></tr></thead>
+        <tbody>
+          <tr><td>Adhesión</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:20%"></div></div><span>2/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:50%"></div></div><span>5/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:90%"></div></div><span>9/10</span></div></td></tr>
+          <tr><td>Calidad superficial</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:30%"></div></div><span>3/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span>6/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:85%"></div></div><span>8.5/10</span></div></td></tr>
+          <tr><td>Precisión dimensional</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:40%"></div></div><span>4/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:55%"></div></div><span>5.5/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span>8/10</span></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  // Slideshow
-  let slideIndex = 0;
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.slide-dot');
+  <!-- FOOTER -->
+  <footer>
+    <div><div class="footer-logo">Sanders & Young</div><p class="footer-copy">© 2026 Sanders & Young Auto Repair. Blog del Proyecto.</p></div>
+    <div class="footer-links"><a href="index.html">Resumen</a><a href="#">Diseño 3D</a><a href="impresion.html">Impresión</a></div>
+  </footer>
 
-  function showSlide(index) {
-    if (index >= slides.length) slideIndex = 0;
-    if (index < 0) slideIndex = slides.length - 1;
-    
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === slideIndex);
-    });
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === slideIndex);
-    });
-  }
+  <!-- Modal Timelapse -->
+  <div id="timelapseModal" class="modal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeTimelapse()">Cerrar</button>
+      <video id="timelapseVideo" controls><source src="#" type="video/mp4"></video>
+    </div>
+  </div>
 
-  window.changeSlide = function(direction) {
-    slideIndex += direction;
-    showSlide(slideIndex);
-  };
+  <script>
+    // Datos de fases
+    const phasesData = {
+      bottom: [
+        { num: "01", title: "Geometría Base", desc: "Creación de las formas primitivas del bottom case. Definición de cotas principales (110x65mm).", type: "dark" },
+        { num: "02", title: "Refinamiento", desc: "Ajuste de radios internos a 3mm y chaflanes en bordes exteriores.", type: "accent" },
+        { num: "03", title: "Análisis Imprimibilidad", desc: "Optimización de voladizos y soportes para agujeros de montaje.", type: "light" },
+        { num: "04", title: "Tolerancias", desc: "Ajuste de tolerancias +0.2mm para encaje con top case.", type: "dark" },
+        { num: "05", title: "Exportación STL", desc: "Verificación de malla y exportación con resolución fina.", type: "light" },
+        { num: "06", title: "Validación Final", desc: "Comprobación de espesor 1.6-2.2mm y encaje con master parts.", type: "accent" }
+      ],
+      top: [
+        { num: "01", title: "Geometría Base", desc: "Creación del top case con perímetro 110x65mm y altura 8mm.", type: "dark" },
+        { num: "02", title: "Refinamiento", desc: "Ajuste de ventana para display (80x50mm) y radios en esquinas.", type: "accent" },
+        { num: "03", title: "Análisis Imprimibilidad", desc: "Optimización de soportes para ventana del display.", type: "light" },
+        { num: "04", title: "Tolerancias", desc: "Ajuste de tolerancia -0.1mm para cierre hermético.", type: "dark" },
+        { num: "05", title: "Exportación STL", desc: "Exportación con malla optimizada para FDM.", type: "light" },
+        { num: "06", title: "Validación Final", desc: "Prueba de ensamblaje completa con CP Lab.", type: "accent" }
+      ]
+    };
 
-  window.currentSlide = function(index) {
-    slideIndex = index;
-    showSlide(slideIndex);
-  };
+    const galleryData = {
+      bottom: [
+        { title: "Vista Isométrica", desc: "Perspectiva general del bottom case", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EIsométrica Bottom%3C/text%3E%3C/svg%3E" },
+        { title: "Vista en Planta", desc: "Distribución de componentes", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EPlanta Bottom%3C/text%3E%3C/svg%3E" },
+        { title: "Vista de Perfil", desc: "Altura y distribución", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23bbb'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EPerfil Bottom%3C/text%3E%3C/svg%3E" }
+      ],
+      top: [
+        { title: "Vista Isométrica", desc: "Perspectiva del top case", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EIsométrica Top%3C/text%3E%3C/svg%3E" },
+        { title: "Vista Frontal", desc: "Detalle ventana display", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EFrontal Top%3C/text%3E%3C/svg%3E" },
+        { title: "Vista Superior", desc: "Acabado superficial", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23bbb'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3ESuperior Top%3C/text%3E%3C/svg%3E" }
+      ]
+    };
 
-  // Timelapse modal
-  function openTimelapse() {
-    const modal = document.getElementById('timelapseModal');
-    modal.classList.add('active');
-    // Aquí puedes cargar un video real o un placeholder
-    const video = document.getElementById('timelapseVideo');
-    video.src = "data:video/mp4;base64,..."; // Placeholder
-  }
-
-  function closeTimelapse() {
-    const modal = document.getElementById('timelapseModal');
-    modal.classList.remove('active');
-    const video = document.getElementById('timelapseVideo');
-    video.pause();
-    video.src = "";
-  }
-
-  window.openTimelapse = openTimelapse;
-  window.closeTimelapse = closeTimelapse;
-
-  // Cerrar modal con ESC
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeTimelapse();
+    function renderPhases(caseType) {
+      const phases = phasesData[caseType];
+      document.getElementById('phasesContainer').innerHTML = phases.map(p => `
+        <div class="phase-card ${p.type}">
+          <div class="phase-num">${p.num}</div>
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+        </div>
+      `).join('');
     }
-  });
 
-  // Animaciones fade-up
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+    function renderGallery(caseType) {
+      const items = galleryData[caseType];
+      document.getElementById('galleryContainer').innerHTML = items.map(i => `
+        <div class="gallery-item">
+          <img src="${i.img}" alt="${i.title}">
+          <div class="info"><h4>${i.title}</h4><p>${i.desc}</p></div>
+        </div>
+      `).join('');
+    }
+
+    // Event listeners
+    document.querySelectorAll('#development .case-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('#development .case-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        renderPhases(this.dataset.case);
+      });
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
+
+    document.querySelectorAll('#gallery-section .case-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('#gallery-section .case-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        renderGallery(this.dataset.view);
+      });
+    });
+
+    // Inicializar
+    renderPhases('bottom');
+    renderGallery('bottom');
+
+    // Slideshow
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slide-dot');
+
+    function showSlide(index) {
+      if (index >= slides.length) slideIndex = 0;
+      if (index < 0) slideIndex = slides.length - 1;
+      slides.forEach((s, i) => s.classList.toggle('active', i === slideIndex));
+      dots.forEach((d, i) => d.classList.toggle('active', i === slideIndex));
+    }
+
+    window.changeSlide = (dir) => { slideIndex += dir; showSlide(slideIndex); };
+    window.currentSlide = (index) => { slideIndex = index; showSlide(slideIndex); };
+
+    // Timelapse modal
+    function openTimelapse() {
+      document.getElementById('timelapseModal').classList.add('active');
+    }
+    function closeTimelapse() {
+      document.getElementById('timelapseModal').classList.remove('active');
+      const video = document.getElementById('timelapseVideo');
+      video.pause();
+      video.src = "";
+    }
+    window.openTimelapse = openTimelapse;
+    window.closeTimelapse = closeTimelapse;
+
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeTimelapse(); });
+
+    // Animaciones
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => e.target.classList.add('visible'));
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
