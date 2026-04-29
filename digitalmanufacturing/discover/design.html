@@ -1006,11 +1006,11 @@
     <div class="slideshow-container fade-up">
       <div class="slides">
         <div class="slide active">
-          <img src="assets/images/Case drawing v5.pdf" alt="Boceto inicial">
+          <img src="assets/images/Screenshot 2026-04-29 170621.png" alt="Boceto inicial">
           <div class="slide-caption">Engineering drawing - Bottom Case</div>
         </div>
         <div class="slide">
-          <img src="assets/images/DM Top Case Drawings Drawing v4.pdf" alt="Boceto top case">
+          <img src="assets/images/Screenshot 2026-04-29 170612.pngf" alt="Boceto top case">
           <div class="slide-caption">Engineering drawing - Top Case</div>
         </div>
       </div>
@@ -1237,51 +1237,27 @@
       top: [
         { 
           num: "01", 
-          title: "Geometría Base", 
-          desc: "Creación del top case con perímetro 110x65mm y altura 8mm.", 
+          title: "Initial CAD Model", 
+          desc: "Direct modeling was performed based on the engineering drawings. The top case requires latching features that engage with the bottom case and master parts. While the initial design strictly followed the engineering drawings, the snaps were not specified. Initial prints revealed that the snaps could be too loose, preventing the casings from closing securely.", 
           type: "dark",
           fusionImage: "assets/images/fusion-top-geometria.jpg",
-          fusionCaption: "Sketch del contorno exterior y extrusión a 8mm de altura."
+          fusionCaption: "Unkwown interference fit between snap features"
         },
         { 
           num: "02", 
-          title: "Refinamiento", 
-          desc: "Ajuste de ventana para display (80x50mm) y radios en esquinas.", 
+          title: "Snap-Fit Dimensional Tuning", 
+          desc: "Three different snap lengths were modeled and tested across consecutive prints. The print that presented the best fit was the T2b print", 
           type: "accent",
           fusionImage: "assets/images/fusion-top-refinamiento.jpg",
-          fusionCaption: "Creación de ventana para display mediante operación de corte."
+          fusionCaption: "T2b selected for final design, but print parameters also affect fit.See Parametrization section"
         },
         { 
           num: "03", 
-          title: "Análisis Imprimibilidad", 
-          desc: "Optimización de soportes para ventana del display.", 
+          title: "Final Snap-Fine Tuning", 
+          desc: "Even with nominal CAD dimensions, snap-fit performance varied significantly between print configurations (e.g., 50% infill vs 15% infill in "fast" printing mode). The final successful configuration (Config 7) used 15% infill and variable layer height, which produced slightly more flexible snaps, improving engagement without breaking.", 
           type: "light",
           fusionImage: "assets/images/fusion-top-imprimibilidad.jpg",
-          fusionCaption: "Adición de soportes en voladizos de la ventana del display."
-        },
-        { 
-          num: "04", 
-          title: "Tolerancias", 
-          desc: "Ajuste de tolerancia -0.1mm para cierre hermético.", 
-          type: "dark",
-          fusionImage: "assets/images/fusion-top-tolerancias.jpg",
-          fusionCaption: "Aplicación de offset negativo en superficies de contacto."
-        },
-        { 
-          num: "05", 
-          title: "Exportación STL", 
-          desc: "Exportación con malla optimizada para FDM.", 
-          type: "light",
-          fusionImage: "assets/images/fusion-top-stl.jpg",
-          fusionCaption: "Configuración de parámetros de exportación STL de alta calidad."
-        },
-        { 
-          num: "06", 
-          title: "Validación Final", 
-          desc: "Prueba de ensamblaje completa con CP Lab.", 
-          type: "accent",
-          fusionImage: "assets/images/fusion-top-validacion.jpg",
-          fusionCaption: "Ensamblaje virtual para verificar interferencias y tolerancias."
+          fusionCaption: "Snap-fit performance is a function of both CAD geometry AND material properties (influenced by infill, layer orientation, and cooling rate)."
         }
       ]
     };
