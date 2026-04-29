@@ -354,6 +354,7 @@
     }
     .phase-card.accent { background: var(--orange); }
     .phase-card.dark { background: var(--black); color: var(--white); }
+    .phase-card.light { background: var(--gray); }
     .phase-num {
       font-family: var(--font-display);
       font-size: 3rem;
@@ -363,6 +364,7 @@
     }
     .phase-card.accent .phase-num { color: var(--black); }
     .phase-card.dark .phase-num { color: var(--orange); }
+    .phase-card.light .phase-num { color: var(--orange); }
     .phase-card h3 {
       font-family: var(--font-condensed);
       font-weight: 900;
@@ -377,6 +379,7 @@
     }
     .phase-card.dark p { color: var(--gray-dark); }
     .phase-card.accent p { color: rgba(0,0,0,0.7); }
+    .phase-card.light p { color: #555; }
     
     /* Botón de ver cambio en Fusion */
     .fusion-btn {
@@ -404,6 +407,10 @@
     .phase-card.accent .fusion-btn {
       border-color: var(--black);
       color: var(--black);
+    }
+    .phase-card.light .fusion-btn {
+      border-color: var(--orange);
+      color: var(--orange);
     }
     .fusion-btn:hover {
       background: var(--orange);
@@ -501,6 +508,15 @@
       color: #666;
       line-height: 1.5;
     }
+    .fusion-modal-body .image-counter {
+      display: inline-block;
+      background: var(--orange);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
     .fusion-modal-footer {
       padding: 1rem 1.5rem;
       background: var(--gray);
@@ -520,6 +536,10 @@
     }
     .modal-nav-btn:hover {
       background: var(--orange);
+    }
+    .modal-nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     /* ── GALLERY WITH CASE SELECTOR ── */
@@ -977,11 +997,11 @@
 
   <!-- NAV -->
   <nav>
-    <a class="nav-logo" href="#">Sanders & Young</a>
+    <a class="nav-logo" href="#">Analucia Vera</a>
     <ul class="nav-links">
-      <li><a href="index.html">Resumen</a></li>
-      <li><a href="#" class="active">Diseño 3D</a></li>
-      <li><a href="impresion.html">Impresión</a></li>
+      <li><a href="index.html">home</a></li>
+      <li><a href="#" class="active">3D design</a></li>
+      <li><a href="impresion.html">simulation</a></li>
     </ul>
     <a class="nav-cta" href="#">Contacto <span class="dot"></span></a>
   </nav>
@@ -1010,7 +1030,7 @@
           <div class="slide-caption">Engineering drawing - Bottom Case</div>
         </div>
         <div class="slide">
-          <img src="assets/images/Screenshot 2026-04-29 170612.pngf" alt="Boceto top case">
+          <img src="assets/images/Screenshot 2026-04-29 170612.png" alt="Boceto top case">
           <div class="slide-caption">Engineering drawing - Top Case</div>
         </div>
       </div>
@@ -1119,7 +1139,7 @@
         <tr><td class="err-num">01</td><td><div class="err-type">Warping / Deformación</div><span class="err-tag critical">Crítico</span></td><td>×3</td></tr>
         <tr><td class="err-num">02</td><td><div class="err-type">Stringing / Hilos</div><span class="err-tag warning">Aviso</span></td><td>×2</td></tr>
         <tr><td class="err-num">03</td><td><div class="err-type">Layer Shifting</div><span class="err-tag critical">Crítico</span></td><td>×2</td></tr>
-       </table>
+      </table>
     </div>
     <div class="errors-right fade-up">
       <p class="section-label">Galería de fallos</p>
@@ -1173,12 +1193,13 @@
         <button class="close-fusion-modal" onclick="closeFusionModal()">✕</button>
       </div>
       <div class="fusion-modal-body">
+        <div id="imageCounter" class="image-counter"></div>
         <img id="modalImage" src="" alt="Cambio en Fusion 360">
         <p id="modalCaption" class="caption"></p>
       </div>
       <div class="fusion-modal-footer">
-        <button class="modal-nav-btn" onclick="previousImage()">◀ Anterior</button>
-        <button class="modal-nav-btn" onclick="nextImage()">Siguiente ▶</button>
+        <button id="prevBtn" class="modal-nav-btn" onclick="previousImage()">◀ Anterior</button>
+        <button id="nextBtn" class="modal-nav-btn" onclick="nextImage()">Siguiente ▶</button>
       </div>
     </div>
   </div>
@@ -1192,7 +1213,7 @@
   </div>
 
   <script>
-    // Datos de las fases con imágenes de referencia en Fusion 360
+    // Datos de las fases con soporte para múltiples imágenes
     const phasesData = {
       bottom: [
         { 
@@ -1200,38 +1221,65 @@
           title: "Initial CAD model", 
           desc: "Direct modeling from engineering drawings. First 3D print revealed a critical issue: the internal radius at the bottom case curvature prevented assembly line components from inserting correctly. The radius was too tight, creating interference.", 
           type: "dark",
+          hasButton: false  // No tiene botón
         },
         { 
           num: "02", 
           title: "Internal Radius Revision", 
           desc: "After identifying the fit issue during initial assembly testing, the internal curvature radius was modified in Fusion 360. The engineering drawing was reviewed and the final value allowed all CP Lab components to seat fully into the bottom case without forcing.", 
           type: "accent",
-          fusionImage: "assets/images/fusion-bottom-refinamiento.jpg",
-          fusionCaption: "This highlights the importance of DFMA (Design for Manufacture and Assembly) — designing for how parts will interact, not just meeting drawing dimensions."
+          hasButton: true,
+          fusionContent: {
+            title: "Internal Radius Optimization Process",
+            images: [
+              {
+                src: "assets/images/Screenshot 2026-04-29 170851.png",
+                title: "Radius revision",
+                caption: "From 362.47mm to 364.47mm"
+              }
+            ]
+          }
         },
         { 
           num: "03", 
           title: "Measurement Datum Relocation", 
           desc: "The rectangular datum feature, used by the inspection station to measure thickness differential (1.6-2.2mm specification), was initially positioned at incorrect coordinates relative to the assembly line's sensing points. The CAD model was updated to align the datum with the actual physical reference points used by the CP Lab measurement station.", 
           type: "light",
-          fusionImage: "assets/images/fusion-bottom-imprimibilidad.jpg",
-          fusionCaption: "Datum coordinates adjusted to match inspection station reference frame"
+          hasButton: true,
+          fusionContent: {
+            title: "Datum Reference Frame Update",
+            images: [
+              {
+                src: "assets/images/Screenshot 2026-04-29 170934.png",
+                title: "Datum position revision",
+                caption: "Datum coordinates adjusted to match inspection station reference frame"
+              }
+            ]
+          }
         },
         { 
           num: "04", 
           title: "Traceability code", 
           desc: "A traceability code was added to the bottom of the case to display critical part information, including color, case type, manufacturing technique, material, year, and serial number. Its placement was carefully designed to avoid interfering with the rectangular datum feature.", 
           type: "dark",
-          fusionImage: "assets/images/fusion-bottom-tolerancias.jpg",
-          fusionCaption: "The traceability code was generated with a height of 5 mm to ensure readability."
+          hasButton: false  // No tiene botón
         },
         { 
           num: "05", 
           title: "Final validation", 
           desc: "The design was validated after a successful print confirmed that it met all production line requirements.", 
           type: "light",
-          fusionImage: "assets/images/fusion-bottom-stl.jpg",
-          fusionCaption: "Design modifications were completed."
+          hasButton: true,
+          fusionContent: {
+            title: "Design validation",
+            images: [
+              {
+                src: "assets/images/Screenshot 2026-04-29 175711.png",
+                title: "Design validation",
+                caption: "Design modifications were completed."
+              }
+            ]
+          }
         }
       ],
       
@@ -1241,110 +1289,159 @@
           title: "Initial CAD Model", 
           desc: "Direct modeling was performed based on the engineering drawings. The top case requires latching features that engage with the bottom case and master parts. While the initial design strictly followed the engineering drawings, the snaps were not specified. Initial prints revealed that the snaps could be too loose, preventing the casings from closing securely.", 
           type: "dark",
-          fusionImage: "assets/images/fusion-top-geometria.jpg",
-          fusionCaption: "Unkwown interference fit between snap features"
+          hasButton: false  // No tiene botón
         },
         { 
           num: "02", 
           title: "Snap-Fit Dimensional Tuning", 
           desc: "Three different snap lengths were modeled and tested across consecutive prints. The print that presented the best fit was the T2b print", 
           type: "accent",
-          fusionImage: "assets/images/fusion-top-refinamiento.jpg",
-          fusionCaption: "T2b selected for final design, but print parameters also affect fit.See Parametrization section"
+          hasButton: true,
+          fusionContent: {
+            title: "Snap-Fit Design Iterations",
+            images: [
+              {
+                src: "assets/images/Screenshot 2026-04-29 171642.png",
+                title: "Test T2a",
+                caption: "First iteration. Slight improvement but still insufficient engagement"
+              },
+              {
+                src: "assets/images/Screenshot 2026-04-29 171658.png",
+                title: "Test T2b",
+                caption: "Optimal geometry. Perfect engagement (selected for final design)"
+              },
+              {
+                src: "assets/images/Screenshot 2026-04-29 171717.png",
+                title: "Test T2c",
+                caption: "Over-constrained. Too tight, risk of process failure"
+              }
+            ]
+          }
         },
         { 
           num: "03", 
-          title: "Final Snap-Fine Tuning", 
-          desc: "Even with nominal CAD dimensions, snap-fit performance varied significantly between print configurations (e.g., 50% infill vs 15% infill in 'fast' printing mode). The final successful configuration (Config 7) used 15% infill and variable layer height, which produced slightly more flexible snaps, improving engagement without breaking.",
+          title: "Final Snap-Fit Tuning", 
+          desc: "Despite maintaining nominal CAD dimensions, snap-fit performance showed significant variation across print configurations (e.g., 50% infill versus 15% infill in “fast” printing mode). Nevertheless, the design was validated to ensure compatibility with a range of future printing parameter configurations.",
           type: "light",
-          fusionImage: "assets/images/fusion-top-imprimibilidad.jpg",
-          fusionCaption: "Snap-fit performance is a function of both CAD geometry AND material properties (influenced by infill, layer orientation, and cooling rate)."
-        },
+          hasButton: true,
+          fusionContent: {
+            title: "Validated model",
+            images: [
+              {
+                src: "assets/images/Screenshot 2026-04-29 180200.png",
+                title: "Validated model",
+                caption: "Design modifications were completed."
+              },
+            ]
+          }
+        }
       ]
-      
     };
 
     const galleryData = {
       bottom: [
-        { title: "Vista Isométrica", desc: "Perspectiva general del bottom case", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EIsométrica Bottom%3C/text%3E%3C/svg%3E" },
-        { title: "Vista en Planta", desc: "Distribución de componentes", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EPlanta Bottom%3C/text%3E%3C/svg%3E" },
-        { title: "Vista de Perfil", desc: "Altura y distribución", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23bbb'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EPerfil Bottom%3C/text%3E%3C/svg%3E" }
+        { title: "Time lapse - Botom case", desc: "Top view of the design process for the botom case", img: "assets/videos/Bottom.mp4",  isVideo: true },
+        { title: "Side view", desc: "", img: "assets/images/Screenshot 2026-04-29 140340.png" },
+        { title: "Bottom - Side view", desc: "", img: "assets/images/Screenshot 2026-04-29 140351.png" }
       ],
       top: [
-        { title: "Vista Isométrica", desc: "Perspectiva del top case", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EIsométrica Top%3C/text%3E%3C/svg%3E" },
-        { title: "Vista Frontal", desc: "Detalle ventana display", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EFrontal Top%3C/text%3E%3C/svg%3E" },
-        { title: "Vista Superior", desc: "Acabado superficial", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23bbb'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3ESuperior Top%3C/text%3E%3C/svg%3E" }
+        { title: "Time lapse - Botom case", desc: "Top view of the design process for the botom case", img: "assets/videos/top.mp4",  isVideo: true},
+        { title: "Side view", desc: "", img: "assets/images/Screenshot 2026-04-29 140328.png" },
+        { title: "Top - Side view", desc: "", img: "assets/images/Screenshot 2026-04-29 140413.png" }
       ]
     };
 
-    // Variables para el modal de Fusion
-    let currentPhaseIndex = 0;
+    // Variables para el modal de múltiples imágenes
+    let currentMultiImageIndex = 0;
+    let currentMultiImageData = null;
     let currentCase = 'bottom';
-    let currentPhasesList = [];
 
     function renderPhases(caseType) {
       const phases = phasesData[caseType];
-      currentPhasesList = phases;
-      document.getElementById('phasesContainer').innerHTML = phases.map((p, index) => `
-        <div class="phase-card ${p.type}">
-          <div class="phase-num">${p.num}</div>
-          <h3>${p.title}</h3>
-          <p>${p.desc}</p>
-          <button class="fusion-btn" onclick="openFusionModal('${caseType}', ${index})">
-            🔧 Ver cambio en Fusion 360 →
-          </button>
-        </div>
-      `).join('');
+      document.getElementById('phasesContainer').innerHTML = phases.map((p, index) => {
+        const hasButton = p.hasButton === true;
+        const imageCount = p.fusionContent?.images?.length || 0;
+        const buttonText = hasButton ? `🔧 See changes (${imageCount}) →` : '';
+        
+        return `
+          <div class="phase-card ${p.type}">
+            <div class="phase-num">${p.num}</div>
+            <h3>${p.title}</h3>
+            <p>${p.desc}</p>
+            ${hasButton ? `
+              <button class="fusion-btn" onclick="openMultiImageModal('${caseType}', ${index})">
+                ${buttonText}
+              </button>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
     }
 
     function renderGallery(caseType) {
       const items = galleryData[caseType];
       document.getElementById('galleryContainer').innerHTML = items.map(i => `
         <div class="gallery-item">
-          <img src="${i.img}" alt="${i.title}">
+          ${i.isVideo ? 
+            `<video style="width:100%; height:250px; object-fit:cover;" controls>
+               <source src="${i.img}" type="video/mp4">
+               Tu navegador no soporta el elemento de video.
+             </video>` :
+            `<img src="${i.img}" alt="${i.title}">`
+          }
           <div class="info"><h4>${i.title}</h4><p>${i.desc}</p></div>
         </div>
       `).join('');
     }
 
-    // Abrir modal con la imagen de Fusion 360
-    function openFusionModal(caseType, phaseIndex) {
+    // Abrir modal con múltiples imágenes
+    function openMultiImageModal(caseType, phaseIndex) {
       currentCase = caseType;
-      currentPhaseIndex = phaseIndex;
       const phase = phasesData[caseType][phaseIndex];
+      currentMultiImageData = phase.fusionContent;
+      currentMultiImageIndex = 0;
       
-      document.getElementById('modalPhaseTitle').textContent = phase.title;
-      document.getElementById('modalPhaseNum').textContent = `Fase ${phase.num}`;
-      document.getElementById('modalImage').src = phase.fusionImage;
-      document.getElementById('modalCaption').textContent = phase.fusionCaption;
-      
+      updateModalContent();
       document.getElementById('fusionModal').classList.add('active');
     }
 
-    function closeFusionModal() {
-      document.getElementById('fusionModal').classList.remove('active');
+    function updateModalContent() {
+      if (!currentMultiImageData) return;
+      
+      const currentImage = currentMultiImageData.images[currentMultiImageIndex];
+      const totalImages = currentMultiImageData.images.length;
+      
+      document.getElementById('modalPhaseTitle').textContent = currentMultiImageData.title;
+      document.getElementById('modalPhaseNum').textContent = `Paso ${currentMultiImageIndex + 1} de ${totalImages}`;
+      document.getElementById('imageCounter').textContent = `${currentMultiImageIndex + 1} / ${totalImages}`;
+      document.getElementById('modalImage').src = currentImage.src;
+      document.getElementById('modalCaption').innerHTML = `<strong>${currentImage.title}</strong><br><br>${currentImage.caption}`;
+      
+      // Actualizar estado de botones
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      if (prevBtn) prevBtn.disabled = (currentMultiImageIndex === 0);
+      if (nextBtn) nextBtn.disabled = (currentMultiImageIndex === totalImages - 1);
     }
 
     function previousImage() {
-      if (currentPhaseIndex > 0) {
-        currentPhaseIndex--;
-        const phase = phasesData[currentCase][currentPhaseIndex];
-        document.getElementById('modalPhaseTitle').textContent = phase.title;
-        document.getElementById('modalPhaseNum').textContent = `Fase ${phase.num}`;
-        document.getElementById('modalImage').src = phase.fusionImage;
-        document.getElementById('modalCaption').textContent = phase.fusionCaption;
+      if (currentMultiImageIndex > 0) {
+        currentMultiImageIndex--;
+        updateModalContent();
       }
     }
 
     function nextImage() {
-      if (currentPhaseIndex < phasesData[currentCase].length - 1) {
-        currentPhaseIndex++;
-        const phase = phasesData[currentCase][currentPhaseIndex];
-        document.getElementById('modalPhaseTitle').textContent = phase.title;
-        document.getElementById('modalPhaseNum').textContent = `Fase ${phase.num}`;
-        document.getElementById('modalImage').src = phase.fusionImage;
-        document.getElementById('modalCaption').textContent = phase.fusionCaption;
+      if (currentMultiImageData && currentMultiImageIndex < currentMultiImageData.images.length - 1) {
+        currentMultiImageIndex++;
+        updateModalContent();
       }
+    }
+
+    function closeFusionModal() {
+      document.getElementById('fusionModal').classList.remove('active');
+      currentMultiImageData = null;
+      currentMultiImageIndex = 0;
     }
 
     // Event listeners para los selectores de case
@@ -1366,7 +1463,7 @@
       });
     });
 
-    // Cerrar modal Fusion con ESC
+    // Cerrar modal con ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         closeFusionModal();
@@ -1411,8 +1508,17 @@
     }
     window.openTimelapse = openTimelapse;
     window.closeTimelapse = closeTimelapse;
+    window.openMultiImageModal = openMultiImageModal;
+    window.previousImage = previousImage;
+    window.nextImage = nextImage;
+    window.closeFusionModal = closeFusionModal;
 
-    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeTimelapse(); });
+    document.addEventListener('keydown', (e) => { 
+      if(e.key === 'Escape') {
+        closeTimelapse();
+        closeFusionModal();
+      }
+    });
 
     // Animaciones
     const observer = new IntersectionObserver((entries) => {
