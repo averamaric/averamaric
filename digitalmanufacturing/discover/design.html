@@ -6,6 +6,7 @@
   <title>Sanders & Young — Diseño 3D</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
   <style>
+    /* Mantén todos tus estilos existentes aquí */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -29,7 +30,7 @@
       width: 100%;
     }
 
-    /* ── NAV ── */
+    /* Navegación (mantén tu código existente) */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -92,7 +93,7 @@
     .nav-cta .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
     .nav-cta:hover .dot { background: var(--white); }
 
-    /* ── PAGE HERO (CENTRADO) ── */
+    /* Hero y otras secciones (mantén tu código existente) */
     #page-hero {
       margin-top: 60px;
       padding: 8% 5%;
@@ -125,7 +126,6 @@
       text-transform: uppercase;
       color: var(--white);
       margin-bottom: 1.5rem;
-      letter-spacing: 0.02em;
     }
     #page-hero p {
       font-size: clamp(0.9rem, 2vw, 1.1rem);
@@ -134,166 +134,20 @@
       margin: 0 auto;
     }
 
-    /* ── SECTION HEADER ── */
-    .section-label {
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 1rem;
-    }
-
-    /* ── CONCEPT WITH SLIDESHOW ── */
-    #concept {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5%;
+    /* Fases del modelado */
+    #development {
       padding: 5%;
+      background: var(--white);
       width: 100%;
     }
-    .concept-text {
-      background: var(--white);
-    }
-    .concept-text h2 {
+    #development > h2 {
       font-family: var(--font-display);
       font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 0.95;
+      line-height: 0.9;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
     }
-    .concept-text p {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-    
-    /* Slideshow */
-    .slideshow-container {
-      position: relative;
-      background: var(--gray);
-      border-radius: 12px;
-      overflow: hidden;
-      min-height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .slides {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: 400px;
-    }
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      background: var(--gray);
-    }
-    .slide.active {
-      opacity: 1;
-    }
-    .slide img {
-      max-width: 90%;
-      max-height: 350px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-    .slide-caption {
-      margin-top: 1rem;
-      font-family: var(--font-condensed);
-      font-size: 0.85rem;
-      color: #666;
-    }
-    .slide-nav {
-      position: absolute;
-      bottom: 1rem;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      z-index: 10;
-    }
-    .slide-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #ccc;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .slide-dot.active {
-      background: var(--orange);
-    }
-    .slide-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      color: white;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border: none;
-      font-size: 1.5rem;
-      z-index: 10;
-      transition: background 0.3s;
-    }
-    .slide-arrow:hover {
-      background: rgba(232,68,10,0.8);
-    }
-    .slide-arrow.prev { left: 0.5rem; }
-    .slide-arrow.next { right: 0.5rem; }
-
-    /* ── TOOLS ── */
-    #tools {
-      background: var(--black);
-      padding: 2rem 5%;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      overflow-x: auto;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-    }
-    .tools-label {
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--orange);
-      white-space: nowrap;
-    }
-    .tool-pill {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1.2rem;
-      border: 1.5px solid #333;
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray-dark);
-      white-space: nowrap;
-    }
-    .tool-pill .dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
-
-    /* ── CASE SELECTOR ── */
     .case-selector {
       display: flex;
       justify-content: center;
@@ -318,24 +172,6 @@
       background: var(--orange);
       color: var(--white);
     }
-    .case-btn:hover:not(.active) {
-      background: rgba(232,68,10,0.1);
-    }
-
-    /* ── DEVELOPMENT PHASES ── */
-    #development {
-      padding: 5%;
-      background: var(--white);
-      width: 100%;
-    }
-    #development > h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 0.9;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
     .phases-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -345,6 +181,8 @@
       padding: 2rem;
       border: 1px solid #e0e0e0;
       transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
     }
     .phase-card:hover {
       transform: translateY(-5px);
@@ -375,395 +213,161 @@
     }
     .phase-card.dark p { color: var(--gray-dark); }
     .phase-card.accent p { color: rgba(0,0,0,0.7); }
-
-    /* ── GALLERY WITH CASE SELECTOR ── */
-    #gallery-section {
-      padding: 5%;
-      background: var(--gray);
-      width: 100%;
-    }
-    #gallery-section h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3rem);
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .gallery-item {
-      background: var(--white);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
-    .gallery-item .info {
-      padding: 1rem;
-    }
-    .gallery-item .info h4 {
-      font-family: var(--font-condensed);
-      font-weight: 900;
-      margin-bottom: 0.5rem;
-    }
-    .timelapse-link {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .timelapse-btn {
+    
+    /* Botón de ver cambio en Fusion */
+    .fusion-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      background: var(--orange);
-      color: var(--white);
-      padding: 1rem 2rem;
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 1rem;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: transform 0.3s;
-      border: none;
-      cursor: pointer;
-    }
-    .timelapse-btn:hover {
-      transform: scale(1.05);
-    }
-
-    /* ── PARAMETRIZATION TIMELINE ── */
-    #parametrization {
-      padding: 5%;
-      background: var(--black);
-      color: var(--white);
-      width: 100%;
-    }
-    #parametrization h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 0.9;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
-    #parametrization .intro {
-      font-size: 1rem;
-      color: #888;
-      line-height: 1.6;
-      max-width: 500px;
-      margin-bottom: 4rem;
-    }
-    .timeline-track {
-      position: relative;
-      overflow-x: auto;
-      padding-bottom: 2rem;
-    }
-    .timeline-inner {
-      display: flex;
-      align-items: flex-start;
-      gap: 2rem;
-      min-width: max-content;
-      padding-bottom: 1rem;
-    }
-    .config-node {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 220px;
-      flex-shrink: 0;
-    }
-    .config-dot {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--black);
-      border: 3px solid #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: #666;
-      transition: border-color 0.3s, color 0.3s;
-    }
-    .config-node.active .config-dot {
-      border-color: var(--orange);
-      background: var(--orange);
-      color: var(--white);
-    }
-    .config-card {
-      margin-top: 1.5rem;
-      background: #111;
-      border: 1px solid #222;
-      padding: 1.5rem;
-      width: 200px;
-    }
-    .config-node.active .config-card {
-      border-color: var(--orange);
-    }
-    .config-card-label {
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 0.5rem;
-    }
-    .config-card h4 {
-      font-family: var(--font-condensed);
-      font-weight: 900;
-      font-size: 1rem;
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
-    .config-param {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.3rem 0;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    .config-param:last-child { border-bottom: none; }
-    .config-param .param-name {
-      font-size: 0.72rem;
-      color: #666;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .config-param .param-val {
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.8rem;
-      color: var(--gray-dark);
-    }
-
-    /* ── ERRORS & FAILURES ── */
-    #errors {
-      padding: 5%;
-      background: var(--white);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-      width: 100%;
-    }
-    .errors-left h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 0.9;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-    }
-    .failure-counter {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-    .failure-box {
-      padding: 2rem;
-      flex: 1;
-      min-width: 150px;
-    }
-    .failure-box.dark { background: var(--black); color: var(--white); }
-    .failure-box.orange { background: var(--orange); }
-    .failure-box h3 {
-      font-family: var(--font-display);
-      font-size: 3rem;
-      line-height: 1;
-    }
-    .errors-table { width: 100%; border-collapse: collapse; }
-    .errors-table tr { border-bottom: 1px solid #e0e0e0; }
-    .errors-table td { padding: 1rem 0.75rem; vertical-align: top; }
-    .err-num {
-      font-family: var(--font-display);
-      font-size: 1.8rem;
-      color: var(--orange);
-      width: 60px;
-    }
-    .err-type {
-      font-family: var(--font-condensed);
-      font-weight: 900;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-    }
-    .err-tag {
-      display: inline-block;
-      padding: 0.2rem 0.6rem;
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .err-tag.warning { background: var(--orange); color: var(--white); }
-    .err-tag.critical { background: var(--black); color: var(--white); }
-    .failure-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+      gap: 0.5rem;
       margin-top: 1rem;
-    }
-    .fail-img {
-      position: relative;
-      overflow: hidden;
-      min-height: 200px;
-      background: #e0e0e0;
-    }
-    .fail-img-label {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: rgba(0,0,0,0.7);
-      padding: 0.5rem;
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-
-    /* ── RESULTS ── */
-    #results {
-      padding: 5%;
-      background: var(--gray);
-      width: 100%;
-    }
-    .results-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: end;
-      margin-bottom: 4rem;
-      gap: 2rem;
-    }
-    .results-header h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 0.9;
-      text-transform: uppercase;
-    }
-    .results-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-    .result-card {
-      padding: 2rem;
-      border: 1px solid #ddd;
-      background: var(--white);
-    }
-    .result-card.dark { background: var(--black); color: var(--white); }
-    .result-card.orange { background: var(--orange); }
-    .result-card h3 {
-      font-family: var(--font-display);
-      font-size: 2.5rem;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-    .result-label {
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: 1.5px solid var(--orange);
       color: var(--orange);
-      margin-bottom: 1rem;
-    }
-    .eval-table-wrap {
-      margin-top: 3rem;
-      overflow-x: auto;
-    }
-    .eval-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 600px;
-    }
-    .eval-table th {
-      background: var(--black);
-      color: var(--white);
       font-family: var(--font-condensed);
       font-weight: 700;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 1rem;
-      text-align: left;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 4px;
     }
-    .eval-table th.highlight { background: var(--orange); }
-    .eval-table td {
-      padding: 1rem;
-      font-size: 0.9rem;
-      border-bottom: 1px solid #ddd;
-      background: var(--white);
+    .phase-card.dark .fusion-btn {
+      border-color: var(--orange);
+      color: var(--orange);
     }
-    .score-bar-wrap { display: flex; align-items: center; gap: 0.75rem; }
-    .score-bar {
-      flex: 1;
-      height: 6px;
-      background: #e0e0e0;
-      overflow: hidden;
+    .phase-card.accent .fusion-btn {
+      border-color: var(--black);
+      color: var(--black);
     }
-    .score-bar-fill {
-      height: 100%;
+    .fusion-btn:hover {
       background: var(--orange);
+      color: var(--white);
     }
-    .score-val {
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.85rem;
-      white-space: nowrap;
+    .phase-card.accent .fusion-btn:hover {
+      background: var(--black);
+      border-color: var(--black);
+      color: var(--white);
     }
 
-    /* Modal para timelapse */
-    .modal {
+    /* Modal para imágenes de Fusion 360 */
+    .fusion-modal {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.9);
-      z-index: 1000;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
       align-items: center;
       justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-    .modal.active {
+    .fusion-modal.active {
       display: flex;
+      opacity: 1;
     }
-    .modal-content {
+    .fusion-modal-content {
       background: var(--white);
-      padding: 2rem;
       border-radius: 12px;
       max-width: 90%;
       max-height: 90%;
+      width: 800px;
       position: relative;
+      overflow: hidden;
+      animation: modalSlideIn 0.3s ease;
     }
-    .modal-content video {
-      max-width: 100%;
-      max-height: 70vh;
+    @keyframes modalSlideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
-    .close-modal {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
+    .fusion-modal-header {
+      padding: 1rem 1.5rem;
+      background: var(--black);
+      color: var(--white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .fusion-modal-header h3 {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+    .fusion-modal-header .phase-badge {
       background: var(--orange);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    .close-fusion-modal {
+      background: none;
       border: none;
-      color: white;
-      padding: 0.5rem 1rem;
+      color: var(--white);
+      font-size: 1.5rem;
       cursor: pointer;
+      transition: color 0.3s;
+    }
+    .close-fusion-modal:hover {
+      color: var(--orange);
+    }
+    .fusion-modal-body {
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .fusion-modal-body img {
+      max-width: 100%;
+      max-height: 60vh;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .fusion-modal-body .caption {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.5;
+    }
+    .fusion-modal-footer {
+      padding: 1rem 1.5rem;
+      background: var(--gray);
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+    .modal-nav-btn {
+      padding: 0.5rem 1rem;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .modal-nav-btn:hover {
+      background: var(--orange);
     }
 
-    /* Footer */
+    /* Otras secciones (mantén tu código existente) */
+    .section-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
     footer {
       background: var(--black);
       color: var(--white);
@@ -775,36 +379,6 @@
       gap: 2rem;
       width: 100%;
     }
-    .footer-logo {
-      font-family: var(--font-condensed);
-      font-weight: 900;
-      font-size: 1.5rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .footer-copy { font-size: 0.8rem; color: #888; margin-top: 0.5rem; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .footer-links a {
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray-dark);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--orange); }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
-      #concept, #errors { grid-template-columns: 1fr; }
-      .results-header { grid-template-columns: 1fr; }
-      .phases-grid { grid-template-columns: 1fr; }
-    }
-
-    /* Animations */
     .fade-up {
       opacity: 0;
       transform: translateY(30px);
@@ -813,6 +387,10 @@
     .fade-up.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .phases-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -829,55 +407,17 @@
     <a class="nav-cta" href="#">Contacto <span class="dot"></span></a>
   </nav>
 
-  <!-- PAGE HERO (CENTRADO) -->
+  <!-- PAGE HERO -->
   <section id="page-hero">
-    <p class="page-label">Project blog · Design entry 01</p>
-    <h1>3D Design and Print</h1>
+    <p class="page-label">Blog del Proyecto · Entrada 01</p>
+    <h1>Diseño 3D</h1>
     <p>Complete design process in Fusion 360, from engineering drawing to print-ready files. This entry documents every design decision, dimensional iteration, and the critical link between CAD parameters and assembly line performance.</p>
   </section>
 
-  <!-- CONCEPT WITH SLIDESHOW -->
-  <section id="concept">
-    <div class="concept-text fade-up">
-      <p class="section-label">01 — Initial concept</p>
-      <h2>From the Engineering drwaing<br>to the 3D model</h2>
-      <p>The project began with full engineering drawings for both top and bottom phone casings. No tolerances were specified initially, only the requirement that the final parts must successfully navigate the complete CP Lab assembly line, including dimensional verification stations, component insertion tests, and seamless fit with the pre-existing "master parts" provided with the production line.</p>
-      <p>Both casings were modeled from scratch in Fusion 360 using direct modeling. When drawing information was incomplete (e.g., certain internal radii), design decisions followed the pattern of similar geometric features elsewhere on the casing to maintain visual and functional consistency.</p>
-      <p>A key early insight: print parameters would ultimately determine whether the parts passed the thickness tolerance (1.6-2.2mm differential between two measurement points on the bottom case) and component fit requirements.</p>
-    </div>
-    
-    <div class="slideshow-container fade-up">
-      <div class="slides">
-        <div class="slide active">
-          <img src="assets/images/Case drawing v5.pdf" alt="Boceto inicial">
-          <div class="slide-caption">Boceto inicial - Vista superior</div>
-        </div>
-        <div class="slide">
-          <img src="assets/images/DM Top Case Drawings Drawing v4.pdf" alt="Boceto inicial">
-          <div class="slide-caption">Primer render 3D del modelo</div>
-        </div>
-      </div>
-      <button class="slide-arrow prev" onclick="changeSlide(-1)">❮</button>
-      <button class="slide-arrow next" onclick="changeSlide(1)">❯</button>
-      <div class="slide-nav">
-        <div class="slide-dot active" onclick="currentSlide(0)"></div>
-        <div class="slide-dot" onclick="currentSlide(1)"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TOOLS -->
-  <div id="tools">
-    <span class="tools-label">Software utilizado</span>
-    <div class="tool-pill"><span class="dot"></span> Fusion 360</div>
-    <div class="tool-pill"><span class="dot"></span> Cura Slicer</div>
-    <div class="tool-pill"><span class="dot"></span> Elegoo Slicer</div>
-  </div>
-
   <!-- DEVELOPMENT PHASES -->
   <section id="development">
-    <p class="section-label fade-up" style="text-align:center;">02 — Design development</p>
-    <h2 class="fade-up">Modeling phases</h2>
+    <p class="section-label fade-up" style="text-align:center;">02 — Desarrollo del diseño</p>
+    <h2 class="fade-up">Fases del Modelado</h2>
     
     <div class="case-selector fade-up">
       <button class="case-btn active" data-case="bottom">Bottom Case</button>
@@ -887,117 +427,26 @@
     <div id="phasesContainer" class="phases-grid fade-up"></div>
   </section>
 
-  <!-- GALLERY SECTION -->
-  <section id="gallery-section">
-    <h2 class="fade-up">Vistas 3D del Diseño</h2>
-    <div class="case-selector fade-up">
-      <button class="case-btn active" data-view="bottom">Bottom Case Views</button>
-      <button class="case-btn" data-view="top">Top Case Views</button>
-    </div>
-    
-    <div id="galleryContainer" class="gallery-grid fade-up"></div>
-    
-    <div class="timelapse-link fade-up">
-      <button class="timelapse-btn" onclick="openTimelapse()">
-        ▶ Ver Timelapse del Diseño
-      </button>
-    </div>
-  </section>
-
-  <!-- PARAMETRIZATION -->
-  <section id="parametrization">
-    <p class="section-label">03 — Parametrización de la impresora 3D</p>
-    <h2 class="fade-up">Configuraciones<br>de Impresión</h2>
-    <p class="intro fade-up">Cada intento de impresión llevó a ajustar los parámetros del slicer. Esta línea de tiempo muestra la evolución de las configuraciones utilizadas.</p>
-
-    <div class="timeline-track fade-up">
-      <div class="timeline-inner">
-        <div class="config-node done">
-          <div class="config-dot">C1</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuración 1</div>
-            <h4>Prueba Inicial</h4>
-            <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.3 mm</span></div>
-            <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">15%</span></div>
-            <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">210 °C</span></div>
-            <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#E8440A;">❌ Fallo</span></div>
-          </div>
+  <!-- Modal para imágenes de Fusion 360 -->
+  <div id="fusionModal" class="fusion-modal">
+    <div class="fusion-modal-content">
+      <div class="fusion-modal-header">
+        <div>
+          <h3 id="modalPhaseTitle">Cambio en Fusion 360</h3>
+          <span id="modalPhaseNum" class="phase-badge">Fase 01</span>
         </div>
-        <div class="config-node done">
-          <div class="config-dot">C2</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuración 2</div>
-            <h4>Ajuste Adherencia</h4>
-            <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.2 mm</span></div>
-            <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">20%</span></div>
-            <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">215 °C</span></div>
-            <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#E8440A;">❌ Fallo</span></div>
-          </div>
-        </div>
-        <div class="config-node active">
-          <div class="config-dot">C3</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuración 3</div>
-            <h4>Optimización Calidad</h4>
-            <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.15 mm</span></div>
-            <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">25%</span></div>
-            <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">205 °C</span></div>
-            <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#4CAF50;">✓ Éxito</span></div>
-          </div>
-        </div>
+        <button class="close-fusion-modal" onclick="closeFusionModal()">✕</button>
+      </div>
+      <div class="fusion-modal-body">
+        <img id="modalImage" src="" alt="Cambio en Fusion 360">
+        <p id="modalCaption" class="caption"></p>
+      </div>
+      <div class="fusion-modal-footer">
+        <button class="modal-nav-btn" onclick="previousImage()">◀ Anterior</button>
+        <button class="modal-nav-btn" onclick="nextImage()">Siguiente ▶</button>
       </div>
     </div>
-  </section>
-
-  <!-- ERRORS & FAILURES -->
-  <section id="errors">
-    <div class="errors-left fade-up">
-      <p class="section-label">04 — Errores</p>
-      <h2>Fallos de<br>Impresión</h2>
-      <div class="failure-counter">
-        <div class="failure-box dark"><h3>7</h3><p>Fallos totales</p></div>
-        <div class="failure-box orange"><h3>3</h3><p>Tipos de error</p></div>
-      </div>
-      <table class="errors-table">
-        <tr><td class="err-num">01</td><td><div class="err-type">Warping / Deformación</div><span class="err-tag critical">Crítico</span></td><td>×3</td></tr>
-        <tr><td class="err-num">02</td><td><div class="err-type">Stringing / Hilos</div><span class="err-tag warning">Aviso</span></td><td>×2</td></tr>
-        <tr><td class="err-num">03</td><td><div class="err-type">Layer Shifting</div><span class="err-tag critical">Crítico</span></td><td>×2</td></tr>
-      </table>
-    </div>
-    <div class="errors-right fade-up">
-      <p class="section-label">Galería de fallos</p>
-      <h3>Registro Visual</h3>
-      <div class="failure-gallery">
-        <div class="fail-img"><div class="fail-img-label">Warping — Conf. 1</div></div>
-        <div class="fail-img"><div class="fail-img-label">Stringing — Conf. 1</div></div>
-        <div class="fail-img"><div class="fail-img-label">Layer shift — Conf. 2</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RESULTS -->
-  <section id="results">
-    <div class="results-header fade-up">
-      <div><p class="section-label">05 — Resultados</p><h2>Evaluación<br>Final</h2></div>
-      <p>Comparativa de las impresiones obtenidas con cada configuración.</p>
-    </div>
-    <div class="results-grid fade-up">
-      <div class="result-card dark"><div class="result-label">Resultado final</div><h3>Conf. 3</h3><p>La configuración 3 produjo el mejor resultado en calidad superficial y precisión dimensional.</p></div>
-      <div class="result-card"><div class="result-label">Tiempo total</div><h3>4h 32m</h3><p>Duración de la impresión final exitosa.</p></div>
-      <div class="result-card orange"><div class="result-label">Filamento usado</div><h3>18g</h3><p>PLA consumido en la impresión definitiva.</p></div>
-    </div>
-    <div class="eval-table-wrap fade-up">
-      <h3>Comparativa de Configuraciones</h3>
-      <table class="eval-table">
-        <thead><tr><th>Criterio</th><th>Conf. 1</th><th>Conf. 2</th><th class="highlight">Conf. 3 ✓</th></tr></thead>
-        <tbody>
-          <tr><td>Adhesión</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:20%"></div></div><span>2/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:50%"></div></div><span>5/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:90%"></div></div><span>9/10</span></div></td></tr>
-          <tr><td>Calidad superficial</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:30%"></div></div><span>3/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span>6/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:85%"></div></div><span>8.5/10</span></div></td></tr>
-          <tr><td>Precisión dimensional</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:40%"></div></div><span>4/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:55%"></div></div><span>5.5/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span>8/10</span></div></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -1005,121 +454,202 @@
     <div class="footer-links"><a href="index.html">Resumen</a><a href="#">Diseño 3D</a><a href="impresion.html">Impresión</a></div>
   </footer>
 
-  <!-- Modal Timelapse -->
-  <div id="timelapseModal" class="modal">
-    <div class="modal-content">
-      <button class="close-modal" onclick="closeTimelapse()">Cerrar</button>
-      <video id="timelapseVideo" controls><source src="#" type="video/mp4"></video>
-    </div>
-  </div>
-
   <script>
-    // Datos de fases
+    // Datos de las fases con imágenes de referencia en Fusion 360
     const phasesData = {
       bottom: [
-        { num: "01", title: "Geometría Base", desc: "Creación de las formas primitivas del bottom case. Definición de cotas principales (110x65mm).", type: "dark" },
-        { num: "02", title: "Refinamiento", desc: "Ajuste de radios internos a 3mm y chaflanes en bordes exteriores.", type: "accent" },
-        { num: "03", title: "Análisis Imprimibilidad", desc: "Optimización de voladizos y soportes para agujeros de montaje.", type: "light" },
-        { num: "04", title: "Tolerancias", desc: "Ajuste de tolerancias +0.2mm para encaje con top case.", type: "dark" },
-        { num: "05", title: "Exportación STL", desc: "Verificación de malla y exportación con resolución fina.", type: "light" },
-        { num: "06", title: "Validación Final", desc: "Comprobación de espesor 1.6-2.2mm y encaje con master parts.", type: "accent" }
+        { 
+          num: "01", 
+          title: "Geometría Base", 
+          desc: "Creación de las formas primitivas del bottom case. Definición de cotas principales (110x65mm).", 
+          type: "dark",
+          fusionImage: "assets/images/fusion-bottom-geometria.jpg",
+          fusionCaption: "Geometría base creada en Fusion 360 con sketch inicial y extrusión principal."
+        },
+        { 
+          num: "02", 
+          title: "Refinamiento", 
+          desc: "Ajuste de radios internos a 3mm y chaflanes en bordes exteriores.", 
+          type: "accent",
+          fusionImage: "assets/images/fusion-bottom-refinamiento.jpg",
+          fusionCaption: "Aplicación de radios de 3mm en esquinas internas y chaflanes de 45° en bordes."
+        },
+        { 
+          num: "03", 
+          title: "Análisis Imprimibilidad", 
+          desc: "Optimización de voladizos y soportes para agujeros de montaje.", 
+          type: "light",
+          fusionImage: "assets/images/fusion-bottom-imprimibilidad.jpg",
+          fusionCaption: "Análisis de voladizos >45° y adición de soportes personalizados."
+        },
+        { 
+          num: "04", 
+          title: "Tolerancias", 
+          desc: "Ajuste de tolerancias +0.2mm para encaje con top case.", 
+          type: "dark",
+          fusionImage: "assets/images/fusion-bottom-tolerancias.jpg",
+          fusionCaption: "Aplicación de tolerancias de offset en superficies de contacto (+0.2mm)."
+        },
+        { 
+          num: "05", 
+          title: "Exportación STL", 
+          desc: "Verificación de malla y exportación con resolución fina.", 
+          type: "light",
+          fusionImage: "assets/images/fusion-bottom-stl.jpg",
+          fusionCaption: "Configuración de refinamiento de malla (0.01mm) y exportación STL."
+        },
+        { 
+          num: "06", 
+          title: "Validación Final", 
+          desc: "Comprobación de espesor 1.6-2.2mm y encaje con master parts.", 
+          type: "accent",
+          fusionImage: "assets/images/fusion-bottom-validacion.jpg",
+          fusionCaption: "Verificación de espesores con herramienta de análisis de sección."
+        }
       ],
       top: [
-        { num: "01", title: "Geometría Base", desc: "Creación del top case con perímetro 110x65mm y altura 8mm.", type: "dark" },
-        { num: "02", title: "Refinamiento", desc: "Ajuste de ventana para display (80x50mm) y radios en esquinas.", type: "accent" },
-        { num: "03", title: "Análisis Imprimibilidad", desc: "Optimización de soportes para ventana del display.", type: "light" },
-        { num: "04", title: "Tolerancias", desc: "Ajuste de tolerancia -0.1mm para cierre hermético.", type: "dark" },
-        { num: "05", title: "Exportación STL", desc: "Exportación con malla optimizada para FDM.", type: "light" },
-        { num: "06", title: "Validación Final", desc: "Prueba de ensamblaje completa con CP Lab.", type: "accent" }
+        { 
+          num: "01", 
+          title: "Geometría Base", 
+          desc: "Creación del top case con perímetro 110x65mm y altura 8mm.", 
+          type: "dark",
+          fusionImage: "assets/images/fusion-top-geometria.jpg",
+          fusionCaption: "Sketch del contorno exterior y extrusión a 8mm de altura."
+        },
+        { 
+          num: "02", 
+          title: "Refinamiento", 
+          desc: "Ajuste de ventana para display (80x50mm) y radios en esquinas.", 
+          type: "accent",
+          fusionImage: "assets/images/fusion-top-refinamiento.jpg",
+          fusionCaption: "Creación de ventana para display mediante operación de corte."
+        },
+        { 
+          num: "03", 
+          title: "Análisis Imprimibilidad", 
+          desc: "Optimización de soportes para ventana del display.", 
+          type: "light",
+          fusionImage: "assets/images/fusion-top-imprimibilidad.jpg",
+          fusionCaption: "Adición de soportes en voladizos de la ventana del display."
+        },
+        { 
+          num: "04", 
+          title: "Tolerancias", 
+          desc: "Ajuste de tolerancia -0.1mm para cierre hermético.", 
+          type: "dark",
+          fusionImage: "assets/images/fusion-top-tolerancias.jpg",
+          fusionCaption: "Aplicación de offset negativo en superficies de contacto."
+        },
+        { 
+          num: "05", 
+          title: "Exportación STL", 
+          desc: "Exportación con malla optimizada para FDM.", 
+          type: "light",
+          fusionImage: "assets/images/fusion-top-stl.jpg",
+          fusionCaption: "Configuración de parámetros de exportación STL de alta calidad."
+        },
+        { 
+          num: "06", 
+          title: "Validación Final", 
+          desc: "Prueba de ensamblaje completa con CP Lab.", 
+          type: "accent",
+          fusionImage: "assets/images/fusion-top-validacion.jpg",
+          fusionCaption: "Ensamblaje virtual para verificar interferencias y tolerancias."
+        }
       ]
     };
 
-    const galleryData = {
-      bottom: [
-        { title: "Vista Isométrica", desc: "Perspectiva general del bottom case", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EIsométrica Bottom%3C/text%3E%3C/svg%3E" },
-        { title: "Vista en Planta", desc: "Distribución de componentes", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EPlanta Bottom%3C/text%3E%3C/svg%3E" },
-        { title: "Vista de Perfil", desc: "Altura y distribución", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23bbb'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EPerfil Bottom%3C/text%3E%3C/svg%3E" }
-      ],
-      top: [
-        { title: "Vista Isométrica", desc: "Perspectiva del top case", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EIsométrica Top%3C/text%3E%3C/svg%3E" },
-        { title: "Vista Frontal", desc: "Detalle ventana display", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3EFrontal Top%3C/text%3E%3C/svg%3E" },
-        { title: "Vista Superior", desc: "Acabado superficial", img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23bbb'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23999'%3ESuperior Top%3C/text%3E%3C/svg%3E" }
-      ]
-    };
+    // Variables para el modal
+    let currentPhaseIndex = 0;
+    let currentCase = 'bottom';
+    let currentPhasesList = [];
 
     function renderPhases(caseType) {
       const phases = phasesData[caseType];
-      document.getElementById('phasesContainer').innerHTML = phases.map(p => `
+      currentPhasesList = phases;
+      document.getElementById('phasesContainer').innerHTML = phases.map((p, index) => `
         <div class="phase-card ${p.type}">
           <div class="phase-num">${p.num}</div>
           <h3>${p.title}</h3>
           <p>${p.desc}</p>
+          ${p.fusionImage ? `
+            <button class="fusion-btn" onclick="openFusionModal('${caseType}', ${index})">
+              🔧 Ver cambio en Fusion 360 →
+            </button>
+          ` : ''}
         </div>
       `).join('');
     }
 
-    function renderGallery(caseType) {
-      const items = galleryData[caseType];
-      document.getElementById('galleryContainer').innerHTML = items.map(i => `
-        <div class="gallery-item">
-          <img src="${i.img}" alt="${i.title}">
-          <div class="info"><h4>${i.title}</h4><p>${i.desc}</p></div>
-        </div>
-      `).join('');
+    // Abrir modal con la imagen de Fusion 360
+    function openFusionModal(caseType, phaseIndex) {
+      currentCase = caseType;
+      currentPhaseIndex = phaseIndex;
+      const phase = phasesData[caseType][phaseIndex];
+      
+      document.getElementById('modalPhaseTitle').textContent = phase.title;
+      document.getElementById('modalPhaseNum').textContent = `Fase ${phase.num}`;
+      document.getElementById('modalImage').src = phase.fusionImage;
+      document.getElementById('modalCaption').textContent = phase.fusionCaption;
+      
+      document.getElementById('fusionModal').classList.add('active');
     }
 
-    // Event listeners
+    function closeFusionModal() {
+      document.getElementById('fusionModal').classList.remove('active');
+    }
+
+    function previousImage() {
+      if (currentPhaseIndex > 0) {
+        currentPhaseIndex--;
+        const phase = phasesData[currentCase][currentPhaseIndex];
+        document.getElementById('modalPhaseTitle').textContent = phase.title;
+        document.getElementById('modalPhaseNum').textContent = `Fase ${phase.num}`;
+        document.getElementById('modalImage').src = phase.fusionImage;
+        document.getElementById('modalCaption').textContent = phase.fusionCaption;
+      }
+    }
+
+    function nextImage() {
+      if (currentPhaseIndex < phasesData[currentCase].length - 1) {
+        currentPhaseIndex++;
+        const phase = phasesData[currentCase][currentPhaseIndex];
+        document.getElementById('modalPhaseTitle').textContent = phase.title;
+        document.getElementById('modalPhaseNum').textContent = `Fase ${phase.num}`;
+        document.getElementById('modalImage').src = phase.fusionImage;
+        document.getElementById('modalCaption').textContent = phase.fusionCaption;
+      }
+    }
+
+    // Event listeners para los selectores de case
     document.querySelectorAll('#development .case-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('#development .case-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
-        renderPhases(this.dataset.case);
+        const caseType = this.dataset.case;
+        currentCase = caseType;
+        renderPhases(caseType);
       });
     });
 
-    document.querySelectorAll('#gallery-section .case-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('#gallery-section .case-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        renderGallery(this.dataset.view);
-      });
+    // Cerrar modal con ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeFusionModal();
+      }
+    });
+
+    // Cerrar modal haciendo clic fuera del contenido
+    document.getElementById('fusionModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeFusionModal();
+      }
     });
 
     // Inicializar
     renderPhases('bottom');
-    renderGallery('bottom');
 
-    // Slideshow
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.slide-dot');
-
-    function showSlide(index) {
-      if (index >= slides.length) slideIndex = 0;
-      if (index < 0) slideIndex = slides.length - 1;
-      slides.forEach((s, i) => s.classList.toggle('active', i === slideIndex));
-      dots.forEach((d, i) => d.classList.toggle('active', i === slideIndex));
-    }
-
-    window.changeSlide = (dir) => { slideIndex += dir; showSlide(slideIndex); };
-    window.currentSlide = (index) => { slideIndex = index; showSlide(slideIndex); };
-
-    // Timelapse modal
-    function openTimelapse() {
-      document.getElementById('timelapseModal').classList.add('active');
-    }
-    function closeTimelapse() {
-      document.getElementById('timelapseModal').classList.remove('active');
-      const video = document.getElementById('timelapseVideo');
-      video.pause();
-      video.src = "";
-    }
-    window.openTimelapse = openTimelapse;
-    window.closeTimelapse = closeTimelapse;
-
-    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeTimelapse(); });
-
-    // Animaciones
+    // Animaciones fade-up
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => e.target.classList.add('visible'));
     }, { threshold: 0.1 });
