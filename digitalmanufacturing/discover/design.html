@@ -713,6 +713,30 @@
       color: var(--gray-dark);
     }
 
+        /* Nuevos estilos para estados de configuración */
+    
+    
+    .config-node.partial .config-dot {
+      border-color: #FFFFFF;
+      background: #1f1a00;
+      color: #FFFFFF;
+    }
+    .config-node.partial .config-card {
+      border-color: #FFFFFF;
+      box-shadow: 0 0 0 1px rgba(255,193,7,0.3);
+    }
+    
+    .config-node.success .config-dot {
+      border-color: #4CAF50;
+      background: #0a1a0a;
+      color: #4CAF50;
+    }
+    .config-node.success .config-card {
+      border-color: #4CAF50;
+      box-shadow: 0 0 0 1px rgba(76,175,80,0.3);
+    }
+    
+    
     /* ESTILOS NUEVOS: Conectores de razonamiento entre configuraciones */
     .transition-reason {
       display: flex;
@@ -1153,6 +1177,272 @@
       opacity: 1;
       transform: translateY(0);
     }
+        /* Contenedor del timeline con flechas */
+    .timeline-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .timeline-nav-btn {
+      background: var(--orange);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+    .timeline-nav-btn:hover {
+      background: var(--white);
+      color: var(--black);
+      transform: scale(1.05);
+    }
+    .timeline-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .timeline-container {
+      overflow-x: hidden;
+      flex: 1;
+      scroll-behavior: smooth;
+    }
+    .timeline-track {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      transition: transform 0.4s ease-in-out;
+      width: max-content;
+    }
+    
+    
+        /* Línea conectora GRIS y DISCONTINUA */
+    .timeline-connector-line {
+      position: absolute;
+      top: 24px; /* Mitad del config-dot (48px/2 = 24px) */
+      left: 0;
+      right: 0;
+      height: 2px; /* Un poco más delgada para look más elegante */
+      background-image: repeating-linear-gradient(
+        90deg,
+        #666 0px,
+        #666 8px,
+        transparent 8px,
+        transparent 16px
+      );
+      z-index: 0;
+      pointer-events: none;
+      border-radius: 0; /* Sin bordes redondeados para línea discontinua */
+    }
+    
+    /* Línea que conecta SOLO entre configuraciones (ignora conectores de razón) */
+    .timeline-track.has-connector {
+      position: relative;
+    }
+    
+    /* Cada nodo de configuración debe tener z-index mayor que la línea */
+    .config-node {
+      position: relative;
+      z-index: 2;
+      background: transparent;
+    }
+    
+    
+    
+    /* Ocultar scrollbar original */
+    .timeline-container {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .timeline-container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    
+        /* ── ERRORES INTERACTIVOS (NUEVOS ESTILOS) ── */
+    .errors-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    
+    .error-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--white);
+      border: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .error-item:hover {
+      border-color: var(--orange);
+      transform: translateX(5px);
+    }
+    .error-item.active {
+      border-left: 4px solid var(--orange);
+      background: #FFF8F5;
+    }
+    .error-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--orange);
+      min-width: 50px;
+    }
+    .error-info {
+      flex: 1;
+    }
+    .error-title {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1rem;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    .error-meta {
+      font-size: 0.7rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .error-more-btn {
+      background: transparent;
+      border: 1.5px solid var(--orange);
+      padding: 0.4rem 0.8rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 4px;
+    }
+    .error-more-btn:hover {
+      background: var(--orange);
+      color: var(--white);
+    }
+    
+    .error-gallery-header {
+      margin-bottom: 1.5rem;
+    }
+    .error-gallery-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+    
+    /* Galería dinámica */
+    .failure-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .fail-img-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 180px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .fail-img-card:hover {
+      transform: scale(1.02);
+    }
+    .fail-img-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .fail-img-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      padding: 0.5rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    
+    /* Tarjetas de detalles */
+    .error-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .detail-card {
+      background: var(--white);
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 1.2rem;
+      transition: all 0.3s;
+    }
+    .detail-card:hover {
+      border-color: var(--orange);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .detail-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .detail-title {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      color: var(--orange);
+    }
+    .detail-text {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #555;
+    }
+    .detail-solution {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #eee;
+      font-size: 0.8rem;
+    }
+    .detail-solution strong {
+      color: var(--orange);
+    }
+    
+    .active-error-indicator {
+      margin-top: 1.5rem;
+      padding: 0.75rem;
+      background: var(--gray);
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
+      border-radius: 8px;
+    }
+    
+    /* Estado vacío / default */
+    .error-placeholder {
+      text-align: center;
+      padding: 2rem;
+      color: #999;
+    }
   </style>
 </head>
 <body>
@@ -1243,220 +1533,274 @@
     <h2 class="fade-up">Printing<br>Cofigurations</h2>
     <p class="intro fade-up">Each print attempt led to adjustments in the slicer parameters. This timeline shows the evolution of the configurations used.<br><strong>Click on “⚡ Why this change?” between settings to understand the reasoning behind each adjustment.</strong></p>
 
-    <div class="timeline-track fade-up">
-      <div class="timeline-inner">
-        <!-- Configuración 1 -->
-        <div class="config-node">
-          <div class="config-dot">C1</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuration 1</div>
-            <h4>Utilmaker - Cura</h4>
-            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
-            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
-            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
-            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Very fast" mode</span></div>
-            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
-            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Incorrect settigs</span></div>
-          </div>
-        </div>
+     <div class="timeline-wrapper fade-up">
+      <button class="timeline-nav-btn" id="timelinePrevBtn" onclick="scrollTimeline(-1)">◀</button>
+      
+      <div class="timeline-container" id="timelineContainer">
+        <div class="timeline-track" id="timelineInner" style="position: relative;">
+          
+          <!-- LÍNEA CONECTORA (se posicionará absolutamente dentro del track) -->
+          <div class="timeline-connector-line" id="connectorLine"></div>
+            <!-- Configuración 1 -->
+            <div class="config-node active">
+              <div class="config-dot">C1</div>
+              <div class="config-card">
+                <div class="config-card-label">Configuration 1</div>
+                <h4>Utilmaker - Cura</h4>
+                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+                <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
+                <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+                <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Very fast" mode</span></div>
+                <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
+                <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Incorrect settigs</span></div>
+              </div>
+            </div>
 
-        <!-- Conector C1 → C2: Razonamiento detallado -->
-        <div class="transition-reason">
-          <div class="reason-trigger" onclick="openReasonModal('C1_C2')">
-            <span class="reason-arrow">⚡</span>
-            <span class="reason-icon">Why this change?</span>
-          </div>
-        </div>
+            <!-- Conector C1 → C2: Razonamiento detallado -->
+            <div class="transition-reason">
+              <div class="reason-trigger" onclick="openReasonModal('C1_C2')">
+                <span class="reason-arrow">⚡</span>
+                <span class="reason-icon">Why this change?</span>
+              </div>
+            </div>
 
-        <!-- Configuración 2 -->
-        <div class="config-node">
-          <div class="config-dot">C2</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuration 2</div>
-            <h4>Utilmaker - Cura</h4>
-            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
-            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
-            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
-            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Fast" mode</span></div>
-            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
-            <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Default</span></div>
-            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Print fail</span></div>
-          </div>
-        </div>
+            <!-- Configuración 2 -->
+            <div class="config-node active">
+              <div class="config-dot">C2</div>
+              <div class="config-card">
+                <div class="config-card-label">Configuration 2</div>
+                <h4>Utilmaker - Cura</h4>
+                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+                <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
+                <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+                <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Fast" mode</span></div>
+                <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
+                <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Default</span></div>
+                <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Print fail</span></div>
+              </div>
+            </div>
 
-        <!-- Conector C2 → C3: Razonamiento detallado -->
-        <div class="transition-reason">
-          <div class="reason-trigger" onclick="openReasonModal('C2_C3')">
-            <span class="reason-arrow">⚡</span>
-            <span class="reason-icon">Why this change?</span>
-          </div>
-        </div>
+            <!-- Conector C2 → C3: Razonamiento detallado -->
+            <div class="transition-reason">
+              <div class="reason-trigger" onclick="openReasonModal('C2_C3')">
+                <span class="reason-arrow">⚡</span>
+                <span class="reason-icon">Why this change?</span>
+              </div>
+            </div>
 
-        <!-- Configuración 3 -->
-        <div class="config-node">
-          <div class="config-dot">C3</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuration 3</div>
-            <h4>Utilmaker - Cura</h4>
-            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
-            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">50%</span></div>
-            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
-            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Normal" mode</span></div>
-            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
-            <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Disabled</span></div>
-            <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Enabled</span></div>
-            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">⚠️ Partial success</span></div>
-          </div>
-        </div>
+            <!-- Configuración 3 -->
+            <div class="config-node partial">
+              <div class="config-dot">C3</div>
+              <div class="config-card">
+                <div class="config-card-label">Configuration 3</div>
+                <h4>Utilmaker - Cura</h4>
+                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+                <div class="config-param"><span class="param-name">Infill</span><span class="param-val">50%</span></div>
+                <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+                <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Normal" mode</span></div>
+                <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
+                <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Disabled</span></div>
+                <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Enabled</span></div>
+                <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">⚠️ Partial success</span></div>
+              </div>
+            </div>
 
-        <div class="transition-reason">
-          <div class="reason-trigger" onclick="openReasonModal('C3_C4')">
-            <span class="reason-arrow">⚡</span>
-            <span class="reason-icon">Why this change?</span>
-          </div>
-        </div>
+            <div class="transition-reason">
+              <div class="reason-trigger" onclick="openReasonModal('C3_C4')">
+                <span class="reason-arrow">⚡</span>
+                <span class="reason-icon">Why this change?</span>
+              </div>
+            </div>
 
-        <div class="config-node">
-          <div class="config-dot">C4</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuration 4</div>
-            <h4>Utilmaker - Cura</h4>
-            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
-            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">20%</span></div>
-            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
-            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Normal" mode</span></div>
-            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
-            <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Disabled</span></div>
-            <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Enabled</span></div>
-            <div class="config-param"><span class="param-name">Ironing</span><span class="param-val">Enabled (for internal surfaces)</span></div>
-            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">⚠️ Partial success</span></div>
-          </div>
-        </div>
+            <div class="config-node partial">
+              <div class="config-dot">C4</div>
+              <div class="config-card">
+                <div class="config-card-label">Configuration 4</div>
+                <h4>Utilmaker - Cura</h4>
+                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+                <div class="config-param"><span class="param-name">Infill</span><span class="param-val">20%</span></div>
+                <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+                <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Normal" mode</span></div>
+                <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
+                <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Disabled</span></div>
+                <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Enabled</span></div>
+                <div class="config-param"><span class="param-name">Ironing</span><span class="param-val">Enabled (for internal surfaces)</span></div>
+                <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">⚠️ Partial success</span></div>
+              </div>
+            </div>
 
-        <div class="transition-reason">
-          <div class="reason-trigger" onclick="openReasonModal('C4_C5')">
-            <span class="reason-arrow">⚡</span>
-            <span class="reason-icon">Why this change?</span>
-          </div>
-        </div>
+            <div class="transition-reason">
+              <div class="reason-trigger" onclick="openReasonModal('C4_C5')">
+                <span class="reason-arrow">⚡</span>
+                <span class="reason-icon">Why this change?</span>
+              </div>
+            </div>
 
-        <div class="config-node">
-          <div class="config-dot">C5</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuration 5</div>
-            <h4>Elegoo - Slicer</h4>
-            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
-            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
-            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
-            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
-            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
-            <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Disabled</span></div>
-            <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Disabled</span></div>
-            <div class="config-param"><span class="param-name">Ironing</span><span class="param-val">Disabled</span></div>
-            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Innadecuate</span></div>
-          </div>
-        </div>
+            <div class="config-node active">
+              <div class="config-dot">C5</div>
+              <div class="config-card">
+                <div class="config-card-label">Configuration 5</div>
+                <h4>Elegoo - Slicer</h4>
+                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+                <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
+                <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+                <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
+                <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
+                <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Disabled</span></div>
+                <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Disabled</span></div>
+                <div class="config-param"><span class="param-name">Ironing</span><span class="param-val">Disabled</span></div>
+                <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Innadecuate</span></div>
+              </div>
+            </div>
 
-        <div class="transition-reason">
-          <div class="reason-trigger" onclick="openReasonModal('C5_C6')">
-            <span class="reason-arrow">⚡</span>
-            <span class="reason-icon">Why this change?</span>
-          </div>
-        </div>
+            <div class="transition-reason">
+              <div class="reason-trigger" onclick="openReasonModal('C5_C6')">
+                <span class="reason-arrow">⚡</span>
+                <span class="reason-icon">Why this change?</span>
+              </div>
+            </div>
 
-        <div class="config-node">
-          <div class="config-dot">C6</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuration 6</div>
-            <h4>Elegoo - Slicer</h4>
-            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
-            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
-            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
-            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
-            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Disabled</span></div>
-            <div class="config-param"><span class="param-name">Overhang speed</span><span class="param-val">0(10-25%)<br>50(-50%)<br>30(-75%)<br>10(-100%)</span></div>
-            <div class="config-param"><span class="param-name">Bridge speed</span><span class="param-val">50mm/s</span></div>
-            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Print fail</span></div>
-          </div>
-        </div>
+            <div class="config-node active">
+              <div class="config-dot">C6</div>
+              <div class="config-card">
+                <div class="config-card-label">Configuration 6</div>
+                <h4>Elegoo - Slicer</h4>
+                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+                <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
+                <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+                <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
+                <div class="config-param"><span class="param-name">Support</span><span class="param-val">Disabled</span></div>
+                <div class="config-param"><span class="param-name">Overhang speed</span><span class="param-val">0(10-25%)<br>50(-50%)<br>30(-75%)<br>10(-100%)</span></div>
+                <div class="config-param"><span class="param-name">Bridge speed</span><span class="param-val">50mm/s</span></div>
+                <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Print fail</span></div>
+              </div>
+            </div>
 
-        <div class="transition-reason">
-          <div class="reason-trigger" onclick="openReasonModal('C6_C7')">
-            <span class="reason-arrow">⚡</span>
-            <span class="reason-icon">Why this change?</span>
-          </div>
-        </div>
+            <div class="transition-reason">
+              <div class="reason-trigger" onclick="openReasonModal('C6_C7')">
+                <span class="reason-arrow">⚡</span>
+                <span class="reason-icon">Why this change?</span>
+              </div>
+            </div>
 
-        <div class="config-node active">
-          <div class="config-dot">C7</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuration 7</div>
-            <h4>Elegoo - Slicer</h4>
-            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
-            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
-            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
-            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
-            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Disabled</span></div>
-            <div class="config-param"><span class="param-name">Overhang speed</span><span class="param-val">0(10-25%)<br>50(-50%)<br>30(-75%)<br>10(-100%)</span></div>
-            <div class="config-param"><span class="param-name">Bridge speed</span><span class="param-val">25mm/s</span></div>
-            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">✓ Success</span></div>
-          </div>
-        </div>
+            <div class="config-node success">
+              <div class="config-dot">C7</div>
+              <div class="config-card">
+                <div class="config-card-label">Configuration 7</div>
+                <h4>Elegoo - Slicer</h4>
+                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+                <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
+                <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+                <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
+                <div class="config-param"><span class="param-name">Support</span><span class="param-val">Disabled</span></div>
+                <div class="config-param"><span class="param-name">Overhang speed</span><span class="param-val">0(10-25%)<br>50(-50%)<br>30(-75%)<br>10(-100%)</span></div>
+                <div class="config-param"><span class="param-name">Bridge speed</span><span class="param-val">25mm/s</span></div>
+                <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">✓ Success</span></div>
+              </div>
+            </div>
 
-        <div class="transition-reason">
-          <div class="reason-trigger" onclick="openReasonModal('C7_C8')">
-            <span class="reason-arrow">⚡</span>
-            <span class="reason-icon">Why this change?</span>
-          </div>
-        </div>
+            <div class="transition-reason">
+              <div class="reason-trigger" onclick="openReasonModal('C7_C8')">
+                <span class="reason-arrow">⚡</span>
+                <span class="reason-icon">Why this change?</span>
+              </div>
+            </div>
 
-        <div class="config-node active">
-          <div class="config-dot">C8</div>
-          <div class="config-card">
-            <div class="config-card-label">Configuration 8</div>
-            <h4>Elegoo - Slicer</h4>
-            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
-            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">60%</span></div>
-            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
-            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
-            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Disabled</span></div>
-            <div class="config-param"><span class="param-name">Overhang speed</span><span class="param-val">0(10-25%)<br>50(-50%)<br>30(-75%)<br>10(-100%)</span></div>
-            <div class="config-param"><span class="param-name">Bridge speed</span><span class="param-val">25mm/s</span></div>
-            <div class="config-param"><span class="param-name">Ironing</span><span class="param-val">Enabled (all top surfaces, flow 15%)</span></div>
-            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">✓ Success</span></div>
-          </div>
-        </div>
+            <div class="config-node success">
+              <div class="config-dot">C8</div>
+              <div class="config-card">
+                <div class="config-card-label">Configuration 8</div>
+                <h4>Elegoo - Slicer</h4>
+                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+                <div class="config-param"><span class="param-name">Infill</span><span class="param-val">60%</span></div>
+                <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+                <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
+                <div class="config-param"><span class="param-name">Support</span><span class="param-val">Disabled</span></div>
+                <div class="config-param"><span class="param-name">Overhang speed</span><span class="param-val">0(10-25%)<br>50(-50%)<br>30(-75%)<br>10(-100%)</span></div>
+                <div class="config-param"><span class="param-name">Bridge speed</span><span class="param-val">25mm/s</span></div>
+                <div class="config-param"><span class="param-name">Ironing</span><span class="param-val">Enabled (all top surfaces, flow 15%)</span></div>
+                <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">✓ Success</span></div>
+              </div>
+            </div>
 
 
         
       </div>
     </div>
+       
+       <button class="timeline-nav-btn" id="timelineNextBtn" onclick="scrollTimeline(1)">▶</button>
+    </div>
   </section>
 
   <!-- ERRORS & FAILURES -->
+    <!-- ERRORS & FAILURES (VERSIÓN INTERACTIVA) -->
   <section id="errors">
     <div class="errors-left fade-up">
       <p class="section-label">04 — Errors</p>
       <h2>Print<br>fails/errors</h2>
       <div class="failure-counter">
-        <div class="failure-box dark"><h3>7</h3><p>Total</p></div>
-        <div class="failure-box orange"><h3>3</h3><p>Types</p></div>
+        <div class="failure-box dark"><h3>7</h3><p>Total<br>failures</p></div>
+        <div class="failure-box orange"><h3>4</h3><p>Error<br>types</p></div>
       </div>
-      <table class="errors-table">
-        <tr><td class="err-num">01</td><td><div class="err-type">Poor Layer Adhesion</div><span class="err-tag warning">Re-parametrisation needed</span></td><td>C1</td></tr>
-        <tr><td class="err-num">02</td><td><div class="err-type">Mid-Print Failure</div><span class="err-tag critical">Critical</span></td><td>×3</td></tr>
-        <tr><td class="err-num">03</td><td><div class="err-type">Support Fusion</div><span class="err-tag critical">Critical</span></td><td>C5</td></tr>
-         <tr><td class="err-num">03</td><td><div class="err-type">Overhang Collapse</div><span class="err-tag warning">Re-parametrisation needed</span></td><td>C6</td></tr>
-      </table>
+      
+      <!-- Lista de errores interactiva -->
+      <div class="errors-list" id="errorsList">
+        <div class="error-item" data-error="layer_adhesion">
+          <div class="error-num">01</div>
+          <div class="error-info">
+            <div class="error-title">Poor Layer Adhesion</div>
+            <div class="error-meta">C1 · Re-parametrisation needed</div>
+          </div>
+          <button class="error-more-btn" data-error="layer_adhesion">↗ More</button>
+        </div>
+        
+        <div class="error-item" data-error="mid_print">
+          <div class="error-num">02</div>
+          <div class="error-info">
+            <div class="error-title">Mid-Print Failure</div>
+            <div class="error-meta">x5 · Critical</div>
+          </div>
+          <button class="error-more-btn" data-error="mid_print">↗ More</button>
+        </div>
+        
+        <div class="error-item" data-error="support_fusion">
+          <div class="error-num">03</div>
+          <div class="error-info">
+            <div class="error-title">Support Fusion</div>
+            <div class="error-meta">C4 · Critical</div>
+          </div>
+          <button class="error-more-btn" data-error="support_fusion">↗ More</button>
+        </div>
+        
+        <div class="error-item" data-error="overhang_collapse">
+          <div class="error-num">04</div>
+          <div class="error-info">
+            <div class="error-title">Overhang Collapse</div>
+            <div class="error-meta">C5 · Re-parametrisation needed</div>
+          </div>
+          <button class="error-more-btn" data-error="overhang_collapse">↗ More</button>
+        </div>
+      </div>
     </div>
+    
     <div class="errors-right fade-up">
-      <p class="section-label">Galería de fallos</p>
-      <h3>Registro Visual</h3>
-      <div class="failure-gallery">
-        <div class="fail-img"><div class="fail-img-label">Warping — Conf. 1</div></div>
-        <div class="fail-img"><div class="fail-img-label">Stringing — Conf. 1</div></div>
-        <div class="fail-img"><div class="fail-img-label">Layer shift — Conf. 2</div></div>
+      <div class="error-gallery-header">
+        <p class="section-label" id="currentErrorLabel">Galería de fallos</p>
+        <h3 id="currentErrorTitle">Todos los fallos</h3>
       </div>
+      
+      <!-- Galería de imágenes dinámica -->
+      <div class="failure-gallery" id="failureGallery">
+        <!-- Las imágenes se cargarán dinámicamente con JS -->
+      </div>
+      
+      <!-- Tarjetas de detalles dinámicas -->
+      <div class="error-details" id="errorDetails">
+        <!-- Los detalles se cargarán dinámicamente -->
+      </div>
+      
+      <!-- Indicador de error activo -->
+      
     </div>
   </section>
 
@@ -1486,8 +1830,8 @@
 
   <!-- FOOTER -->
   <footer>
-    <div><div class="footer-logo">Sanders & Young</div><p class="footer-copy">© 2026 Sanders & Young Auto Repair. Blog del Proyecto.</p></div>
-    <div class="footer-links"><a href="index.html">Resumen</a><a href="#">Diseño 3D</a><a href="impresion.html">Impresión</a></div>
+    <div><div class="footer-logo">Analucia Vera</div><p class="footer-copy">© 2026 Analucia Vera - Digital Manufacturing Blog.</p></div>
+    <div class="footer-links"><a href="index.html">Home</a><a href="#">3D Design</a><a href="impresion.html">Simulation</a></div>
   </footer>
 
   <!-- Modal para imágenes de Fusion 360 -->
@@ -1535,6 +1879,86 @@
 
   <script>
     // Datos de razonamiento entre configuraciones
+   
+    const errorsDatabase = {
+      layer_adhesion: {
+        name: "Poor Layer Adhesion",
+        label: "Galería: Poor Layer Adhesion",
+        images: [
+          { src: "assets/images/error_layer_1.jpg", label: "C1 - Visible gaps between layers" },
+          { src: "assets/images/error_layer_2.jpg", label: "C1 - Delamination on bottom case" }
+        ],
+        details: [
+          {
+            icon: "🔬",
+            title: "Technical analysis",
+            text: "'Very Fast' mode caused insufficient inter-layer bonding. Each layer didn't have time to fuse properly before the next was deposited, resulting in a brittle part with visible gaps."
+          },
+        ]
+      },
+      
+      mid_print: {
+        name: "Mid-Print Failure",
+        label: "Galería: Mid-Print Failure",
+        images: [
+          { src: "assets/images/error_mid_1.jpg", label: "C2 - Machine error on Ultimaker" },
+          { src: "assets/images/error_mid_2.jpg", label: "C5 - Print stopped at 60%" },
+          { src: "assets/images/error_mid_3.jpg", label: "C6 - Filament jam detection" }
+        ],
+        details: [
+          {
+            icon: "⚠️",
+            title: "Nozzle Clogging",
+            text: "Partial or complete blockage of the nozzle, causing under-extrusion or print failure. Common causes include filament debris, heat creep, or improper retraction settings."
+          },
+          {
+            icon: "🔧",
+            title: "Bed Calibration Issue",
+            text: "Poor first-layer adhesion due to incorrect nozzle-to-bed distance. If too high, the filament won’t stick; if too low, the nozzle can drag through the layer or cause over-extrusion."
+          },
+          {
+            icon: "📐",
+            title: "Layer shifting",
+            text: "Sudden loss of position in the X or Y axis during printing, causing the rest of the object to be misaligned or “shifted” from its original path. Common causes: loose belts or pulleys, excessive print speed or acceleration, mechanical obstructions, or stepper motors skipping steps due to overheating or incorrect current settings."
+          }
+        ]
+      },
+      
+      support_fusion: {
+        name: "Support Fusion",
+        label: "Galería: Support Fusion",
+        images: [
+          { src: "assets/images/error_support_1.jpg", label: "C5 - Supports fused with part" },
+          { src: "assets/images/error_support_2.jpg", label: "C5 - Interface gap too small" }
+        ],
+        details: [
+          {
+            icon: "🔬",
+            title: "Technical analysis",
+            text: "The support material fused permanently to the part due to insufficient air gap between support interface and part surface. The Z-distance parameter was too small, making support removal impossible."
+          },
+          
+        ]
+      },
+      
+      overhang_collapse: {
+        name: "Overhang Collapse",
+        label: "Galería: Overhang Collapse",
+        images: [
+          { src: "assets/images/error_overhang_1.jpg", label: "C6 - Bridge collapse on bottom case" },
+          { src: "assets/images/error_overhang_2.jpg", label: "C6 - Failed unsupported overhang" }
+        ],
+        details: [
+          {
+            icon: "🔬",
+            title: "Technical analysis",
+            text: "Layer collapsed on unsupported overhang because the bridge distance exceeded the printer's maximum unsupported span capability. Without supports, gravity pulled the extruded filament downward before it could cool and solidify."
+          },
+          
+        ]
+      }
+    };
+    
     const reasoningData = {
       C1_C2: {
         from: "Configuración 1",
@@ -1644,6 +2068,124 @@
       }
       };
 
+    function showDefaultErrorState() {
+      const gallery = document.getElementById('failureGallery');
+      const details = document.getElementById('errorDetails');
+      const errorLabel = document.getElementById('currentErrorLabel');
+      const errorTitle = document.getElementById('currentErrorTitle');
+      const indicator = document.getElementById('activeErrorIndicator');
+      
+      errorLabel.textContent = "Gallery";
+      errorTitle.textContent = "Errors and fails";
+      //indicator.innerHTML = '<span>📋 Selecciona un error para ver detalles específicos</span>';
+      
+      // Mostrar todas las imágenes de todos los errores (primeras 3)
+      const allImages = [];
+      for (const key in errorsDatabase) {
+        allImages.push(...errorsDatabase[key].images);
+      }
+      
+      gallery.innerHTML = allImages.slice(0, 3).map(img => `
+        <div class="fail-img-card">
+          <img src="${img.src}" alt="${img.label}" onerror="this.src='https://placehold.co/400x300/eee/ccc?text=Imagen+no+disponible'">
+          <div class="fail-img-label">${img.label}</div>
+        </div>
+      `).join('');
+      
+      details.innerHTML = `
+        <div class="error-placeholder">
+          <p>🔍Click on “More” next to any error to view further details analysis.</p>
+          
+        </div>
+      `;
+      
+      // Remover active de todos los items
+      document.querySelectorAll('.error-item').forEach(item => {
+        item.classList.remove('active');
+      });
+    }
+    
+    // Función para mostrar detalles de un error específico
+    function showErrorDetails(errorId) {
+      const error = errorsDatabase[errorId];
+      if (!error) return;
+      
+      const gallery = document.getElementById('failureGallery');
+      const details = document.getElementById('errorDetails');
+      const errorLabel = document.getElementById('currentErrorLabel');
+      const errorTitle = document.getElementById('currentErrorTitle');
+      const indicator = document.getElementById('activeErrorIndicator');
+      
+      errorLabel.textContent = `Galería: ${error.name}`;
+      errorTitle.textContent = error.name;
+      indicator.innerHTML = `<span>Details of: ${error.name}</span>`;
+      
+      // Actualizar galería de imágenes
+      gallery.innerHTML = error.images.map(img => `
+        <div class="fail-img-card">
+          <img src="${img.src}" alt="${img.label}" onerror="this.src='https://placehold.co/400x300/eee/ccc?text=Imagen+no+disponible'">
+          <div class="fail-img-label">${img.label}</div>
+        </div>
+      `).join('');
+      
+      // Si no hay suficientes imágenes, mostrar placeholder
+      if (error.images.length === 0) {
+        gallery.innerHTML = `<div class="error-placeholder">🖼️ No hay imágenes disponibles para este error</div>`;
+      }
+      
+      // Actualizar tarjetas de detalles
+      details.innerHTML = error.details.map(detail => `
+        <div class="detail-card">
+          <div class="detail-icon">${detail.icon}</div>
+          <div class="detail-title">${detail.title}</div>
+          <div class="detail-text">${detail.text}</div>
+        </div>
+      `).join('');
+      
+      // Resaltar el error activo en la lista
+      document.querySelectorAll('.error-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.dataset.error === errorId) {
+          item.classList.add('active');
+        }
+      });
+    }
+    
+    // Inicializar los botones "More"
+    function initErrorButtons() {
+      const buttons = document.querySelectorAll('.error-more-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const errorId = this.dataset.error;
+          showErrorDetails(errorId);
+        });
+      });
+      
+      // También hacer clic en toda la fila
+      const errorItems = document.querySelectorAll('.error-item');
+      errorItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+          if (e.target.classList.contains('error-more-btn')) return;
+          const errorId = this.dataset.error;
+          showErrorDetails(errorId);
+        });
+      });
+    }
+    
+    // Cargar estado por defecto al iniciar
+    document.addEventListener('DOMContentLoaded', function() {
+      showDefaultErrorState();
+      initErrorButtons();
+    });
+    
+    // También ejecutar después de que todo esté cargado (por si acaso)
+    setTimeout(() => {
+      showDefaultErrorState();
+      initErrorButtons();
+    }, 100);
+    
+    
     // Función para abrir el modal de razonamiento
     function openReasonModal(transitionId) {
       const data = reasoningData[transitionId];
@@ -1851,7 +2393,61 @@
     // Variables para el modal de múltiples imágenes
     let currentMultiImageIndex = 0;
     let currentMultiImageData = null;
-    let currentCase = 'bottom';
+    let currentCase = 'bottom';    // Variables para el scroll del timeline
+    let currentScrollIndex = 0;
+    const cardsPerView = 2; // Cuántas tarjetas se ven a la vez (ajústalo según pantalla)
+
+    function scrollTimeline(direction) {
+      const container = document.getElementById('timelineContainer');
+      const inner = document.getElementById('timelineInner');
+      const nodes = document.querySelectorAll('#timelineInner .config-node');
+      const transitions = document.querySelectorAll('#timelineInner .transition-reason');
+      
+      // Contar el total de "items" (cada configuración + conector cuenta como 1 item visual)
+      const totalItems = nodes.length + transitions.length;
+      const maxIndex = Math.max(0, Math.ceil(totalItems / cardsPerView) - 1);
+      
+      currentScrollIndex += direction;
+      if (currentScrollIndex < 0) currentScrollIndex = 0;
+      if (currentScrollIndex > maxIndex) currentScrollIndex = maxIndex;
+      
+      // Calcular el ancho a scrollar
+      const firstNode = nodes[0];
+      const firstTransition = transitions[0];
+      if (!firstNode) return;
+      
+      // Ancho aproximado por item (config-node = 220px + transition-reason = 80px)
+      const itemWidth = 300; // Ajusta según necesidad
+      const scrollAmount = currentScrollIndex * itemWidth * cardsPerView;
+      
+      container.scrollTo({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+      
+      // Actualizar estado de botones
+      const prevBtn = document.getElementById('timelinePrevBtn');
+      const nextBtn = document.getElementById('timelineNextBtn');
+      if (prevBtn) prevBtn.disabled = (currentScrollIndex === 0);
+      if (nextBtn) nextBtn.disabled = (currentScrollIndex === maxIndex);
+    }
+    
+    // Detectar el ancho de pantalla para ajustar cardsPerView
+    function updateCardsPerView() {
+      const width = window.innerWidth;
+      if (width < 600) window.cardsPerView = 1;
+      else if (width < 1000) window.cardsPerView = 2;
+      else window.cardsPerView = 3;
+    }
+    
+    window.addEventListener('resize', updateCardsPerView);
+    updateCardsPerView();
+    
+    // Inicializar botones disabled
+    setTimeout(() => {
+      const prevBtn = document.getElementById('timelinePrevBtn');
+      if (prevBtn) prevBtn.disabled = true;
+    }, 100);
 
     function renderPhases(caseType) {
       const phases = phasesData[caseType];
