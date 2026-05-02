@@ -604,7 +604,7 @@
       transform: scale(1.05);
     }
 
-    /* ── PARAMETRIZATION TIMELINE ── */
+    /* ── PARAMETRIZATION TIMELINE (MODIFICADO) ── */
     #parametrization {
       padding: 5%;
       background: var(--black);
@@ -634,7 +634,7 @@
     .timeline-inner {
       display: flex;
       align-items: flex-start;
-      gap: 2rem;
+      gap: 0;
       min-width: max-content;
       padding-bottom: 1rem;
     }
@@ -711,6 +711,168 @@
       font-weight: 700;
       font-size: 0.8rem;
       color: var(--gray-dark);
+    }
+
+    /* ESTILOS NUEVOS: Conectores de razonamiento entre configuraciones */
+    .transition-reason {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .reason-trigger {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      padding: 0.6rem 0.8rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .reason-trigger:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      transform: scale(1.05);
+    }
+    .reason-icon {
+      font-size: 0.7rem;
+      color: var(--orange);
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .reason-trigger:hover .reason-icon {
+      color: var(--white);
+    }
+    .reason-arrow {
+      font-size: 1.2rem;
+      color: #444;
+    }
+    .reason-trigger:hover .reason-arrow {
+      color: var(--white);
+    }
+
+    /* Modal de razonamiento */
+    .reason-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 2100;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .reason-modal.active {
+      display: flex;
+      opacity: 1;
+    }
+    .reason-modal-content {
+      background: var(--white);
+      border-radius: 12px;
+      max-width: 90%;
+      max-height: 90%;
+      width: 650px;
+      position: relative;
+      overflow-y: auto;
+      animation: modalSlideIn 0.3s ease;
+    }
+    .reason-modal-header {
+      padding: 1rem 1.5rem;
+      background: var(--orange);
+      color: var(--white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .reason-modal-header h3 {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+    .close-reason-modal {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .close-reason-modal:hover {
+      opacity: 0.7;
+    }
+    .reason-modal-body {
+      padding: 2rem;
+    }
+    .reason-transition-badge {
+      display: inline-block;
+      background: var(--black);
+      color: var(--orange);
+      padding: 0.25rem 1rem;
+      border-radius: 20px;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .reason-modal-body h4 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .reason-failure {
+      background: #FFF3F0;
+      border-left: 4px solid var(--orange);
+      padding: 1rem;
+      margin: 1rem 0;
+      font-style: italic;
+      color: #555;
+    }
+    .reason-change {
+      background: #F0F7F0;
+      border-left: 4px solid #4CAF50;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    .reason-outcome {
+      background: var(--black);
+      color: var(--white);
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    .reason-outcome .outcome-good {
+      color: #4CAF50;
+      font-weight: bold;
+    }
+    .reason-modal-body p {
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    .ref-link {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: #666;
+      border-top: 1px solid #eee;
+      padding-top: 1rem;
+    }
+    .ref-link a {
+      color: var(--orange);
+      text-decoration: none;
     }
 
     /* ── ERRORS & FAILURES ── */
@@ -1081,15 +1243,16 @@
     </div>
   </section>
 
-  <!-- PARAMETRIZATION -->
+  <!-- PARAMETRIZATION CON RAZONAMIENTOS -->
   <section id="parametrization">
     <p class="section-label">03 — Parametrización de la impresora 3D</p>
     <h2 class="fade-up">Configuraciones<br>de Impresión</h2>
-    <p class="intro fade-up">Cada intento de impresión llevó a ajustar los parámetros del slicer. Esta línea de tiempo muestra la evolución de las configuraciones utilizadas.</p>
+    <p class="intro fade-up">Cada intento de impresión llevó a ajustar los parámetros del slicer. Esta línea de tiempo muestra la evolución de las configuraciones utilizadas. <strong>Haz clic en "⚡ Why this change?" entre configuraciones para entender el razonamiento detrás de cada ajuste.</strong></p>
 
     <div class="timeline-track fade-up">
       <div class="timeline-inner">
-        <div class="config-node done">
+        <!-- Configuración 1 -->
+        <div class="config-node">
           <div class="config-dot">C1</div>
           <div class="config-card">
             <div class="config-card-label">Configuración 1</div>
@@ -1097,10 +1260,21 @@
             <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.3 mm</span></div>
             <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">15%</span></div>
             <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">210 °C</span></div>
+            <div class="config-param"><span class="param-name">Velocidad</span><span class="param-val">50 mm/s</span></div>
             <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#E8440A;">❌ Fallo</span></div>
           </div>
         </div>
-        <div class="config-node done">
+
+        <!-- Conector C1 → C2: Razonamiento detallado -->
+        <div class="transition-reason">
+          <div class="reason-trigger" onclick="openReasonModal('C1_C2')">
+            <span class="reason-arrow">⚡</span>
+            <span class="reason-icon">Why this change?</span>
+          </div>
+        </div>
+
+        <!-- Configuración 2 -->
+        <div class="config-node">
           <div class="config-dot">C2</div>
           <div class="config-card">
             <div class="config-card-label">Configuración 2</div>
@@ -1108,9 +1282,20 @@
             <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.2 mm</span></div>
             <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">20%</span></div>
             <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">215 °C</span></div>
+            <div class="config-param"><span class="param-name">Velocidad</span><span class="param-val">40 mm/s</span></div>
             <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#E8440A;">❌ Fallo</span></div>
           </div>
         </div>
+
+        <!-- Conector C2 → C3: Razonamiento detallado -->
+        <div class="transition-reason">
+          <div class="reason-trigger" onclick="openReasonModal('C2_C3')">
+            <span class="reason-arrow">⚡</span>
+            <span class="reason-icon">Why this change?</span>
+          </div>
+        </div>
+
+        <!-- Configuración 3 -->
         <div class="config-node active">
           <div class="config-dot">C3</div>
           <div class="config-card">
@@ -1119,6 +1304,7 @@
             <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.15 mm</span></div>
             <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">25%</span></div>
             <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">205 °C</span></div>
+            <div class="config-param"><span class="param-name">Velocidad</span><span class="param-val">35 mm/s</span></div>
             <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#4CAF50;">✓ Éxito</span></div>
           </div>
         </div>
@@ -1204,6 +1390,19 @@
     </div>
   </div>
 
+  <!-- MODAL DE RAZONAMIENTO (NUEVO) -->
+  <div id="reasonModal" class="reason-modal">
+    <div class="reason-modal-content">
+      <div class="reason-modal-header">
+        <h3 id="reasonModalTitle">Razonamiento del Cambio</h3>
+        <button class="close-reason-modal" onclick="closeReasonModal()">✕</button>
+      </div>
+      <div class="reason-modal-body" id="reasonModalBody">
+        <!-- Contenido dinámico -->
+      </div>
+    </div>
+  </div>
+
   <!-- Modal Timelapse -->
   <div id="timelapseModal" class="modal">
     <div class="modal-content">
@@ -1213,6 +1412,105 @@
   </div>
 
   <script>
+    // Datos de razonamiento entre configuraciones
+    const reasoningData = {
+      C1_C2: {
+        from: "Configuración 1",
+        to: "Configuración 2",
+        failure: "La impresión C1 presentó warping severo (deformación en las esquinas) y falta de adherencia a la cama caliente. Las piezas se despegaron durante las primeras capas, causando dimensional incorrecto. También se observó stringing (hilos) entre las paredes internas de la carcasa.",
+        analysis: "El warping ocurre principalmente por gradientes térmicos: la capa base se enfría demasiado rápido mientras que las capas superiores aún están calientes, causando contracción diferencial. Con capa de 0.3mm, el volumen de material extruido es mayor, lo que aumenta las fuerzas de contracción. La temperatura de 210°C estaba dentro del rango de PLA pero quizás no óptima para este filamento específico. La velocidad de 50 mm/s era demasiado agresiva para geometrías con detalles finos como los snaps de la carcasa superior.",
+        changes: [
+          "Reduje altura de capa de 0.3mm → 0.2mm para mejorar adherencia entre capas y reducir volumen de contracción por extrusión",
+          "Aumenté temperatura de 210°C → 215°C para mejorar fluidez del PLA y reducir viscosidad",
+          "Incrementé relleno de 15% → 20% para mejorar estabilidad estructural",
+          "Reduje velocidad de 50 mm/s → 40 mm/s para dar más tiempo de adherencia por capa"
+        ],
+        outcome: "C2 mejoró la adherencia pero aún presentó warping en esquinas agudas de la pieza. El stringing se redujo pero no se eliminó completamente. La pieza aún no pasó la prueba dimensional.",
+        theory: "Según la literatura de impresión 3D (ver All3DP, 'How to Fix Warping'), la combinación de temperatura de cama (60°C) y temperatura de extrusión debe balancearse. Teorizo que el PLA usado tiene un punto de Tg más bajo de lo normal."
+      },
+      C2_C3: {
+        from: "Configuración 2",
+        to: "Configuración 3",
+        failure: "C2 mejoró la adherencia pero persistió warping moderado en esquinas de la pieza. La calidad superficial mostraba escalonamiento visible (efecto de capas marcadas) y algunas dimensiones críticas (espesor de pared de 1.8mm) estaban fuera de tolerancia ±0.1mm. Los snaps de la top case no encajaban consistentemente.",
+        analysis: "El escalonamiento visible indica que 0.2mm aún es demasiado grueso para capturar los detalles finos de las nervaduras internas y los snaps. La temperatura de 215°C causaba slight oozing (salida de material) durante movimientos de desplazamiento, creando pequeñas bolitas en superficies verticales. La velocidad de 40 mm/s mejoró pero no resolvió las microfisuras entre perimetros.",
+        changes: [
+          "Reduje altura de capa de 0.2mm → 0.15mm para mejorar resolución de detalles finos",
+          "Reduje temperatura de 215°C → 205°C para minimizar oozing y stringing",
+          "Aumenté relleno de 20% → 25% para mejorar resistencia de snaps y paredes delgadas",
+          "Reduje velocidad de 40 mm/s → 35 mm/s para máxima calidad superficial",
+          "Añadí brim de 5mm para mejorar adherencia en esquinas problemáticas"
+        ],
+        outcome: "C3 produjo warping mínimo, calidad superficial excelente, y todas las dimensiones dentro de tolerancia. Los snaps funcionaron perfectamente en el assembly line test. Primera impresión que pasa todos los criterios Cpk > 1.33.",
+        theory: "Confirmé que 0.15mm es el sweet spot para balancear tiempo de impresión vs resolución para este diseño. La reducción de temperatura eliminó el oozing sin comprometer la adhesión entre capas. Esto se alinea con la regla empírica: mejor calidad requiere compromiso velocidad/temperatura."
+      }
+    };
+
+    // Función para abrir el modal de razonamiento
+    function openReasonModal(transitionId) {
+      const data = reasoningData[transitionId];
+      if (!data) return;
+      
+      const modal = document.getElementById('reasonModal');
+      const body = document.getElementById('reasonModalBody');
+      const title = document.getElementById('reasonModalTitle');
+      
+      title.textContent = `Razonamiento: ${data.from} → ${data.to}`;
+      
+      body.innerHTML = `
+        <div class="reason-transition-badge">Transición documentada</div>
+        <h4>¿Qué falló?</h4>
+        <div class="reason-failure">
+          ${data.failure}
+        </div>
+        
+        <h4>Análisis y diagnosis</h4>
+        <p>${data.analysis}</p>
+        
+        <h4>Cambios implementados</h4>
+        <div class="reason-change">
+          <ul style="margin-left: 1.5rem;">
+            ${data.changes.map(c => `<li>${c}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <h4>Resultado obtenido</h4>
+        <div class="reason-outcome">
+          <p><span class="outcome-good">${data.outcome}</span></p>
+        </div>
+        
+        <h4>Fundamento teórico</h4>
+        <p>${data.theory}</p>
+        
+        <div class="ref-link">
+          <strong>📚 Referencias:</strong><br>
+          All3DP. (2024). <em>How to Fix Warping in 3D Prints</em>. <a href="#" target="_blank">https://all3dp.com/</a><br>
+          Prusa Research. (2023). <em>Print Settings Guide for PLA</em>. <a href="#" target="_blank">https://help.prusa3d.com/</a>
+          <br><br>
+          <em>📝 Reflexión personal: Este proceso demostró que la parametrización es un equilibrio entre velocidad, temperatura y resolución. La lección clave fue que reducir velocidad y temperatura simultáneamente produjo mejor calidad que ajustar solo un parámetro.</em>
+        </div>
+      `;
+      
+      modal.classList.add('active');
+    }
+    
+    function closeReasonModal() {
+      document.getElementById('reasonModal').classList.remove('active');
+    }
+    
+    // Cerrar modal de razonamiento con ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeReasonModal();
+        closeFusionModal();
+        closeTimelapse();
+      }
+    });
+    
+    // Cerrar haciendo clic fuera
+    document.getElementById('reasonModal').addEventListener('click', function(e) {
+      if (e.target === this) closeReasonModal();
+    });
+
     // Datos de las fases con soporte para múltiples imágenes
     const phasesData = {
       bottom: [
@@ -1221,7 +1519,7 @@
           title: "Initial CAD model", 
           desc: "Direct modeling from engineering drawings. First 3D print revealed a critical issue: the internal radius at the bottom case curvature prevented assembly line components from inserting correctly. The radius was too tight, creating interference.", 
           type: "dark",
-          hasButton: false  // No tiene botón
+          hasButton: false
         },
         { 
           num: "02", 
@@ -1262,7 +1560,7 @@
           title: "Traceability code", 
           desc: "A traceability code was added to the bottom of the case to display critical part information, including color, case type, manufacturing technique, material, year, and serial number. Its placement was carefully designed to avoid interfering with the rectangular datum feature.", 
           type: "dark",
-          hasButton: false  // No tiene botón
+          hasButton: false
         },
         { 
           num: "05", 
@@ -1289,7 +1587,7 @@
           title: "Initial CAD Model", 
           desc: "Direct modeling was performed based on the engineering drawings. The top case requires latching features that engage with the bottom case and master parts. While the initial design strictly followed the engineering drawings, the snaps were not specified. Initial prints revealed that the snaps could be too loose, preventing the casings from closing securely.", 
           type: "dark",
-          hasButton: false  // No tiene botón
+          hasButton: false
         },
         { 
           num: "02", 
@@ -1321,7 +1619,7 @@
         { 
           num: "03", 
           title: "Final Snap-Fit Tuning", 
-          desc: "Despite maintaining nominal CAD dimensions, snap-fit performance showed significant variation across print configurations (e.g., 50% infill versus 15% infill in “fast” printing mode). Nevertheless, the design was validated to ensure compatibility with a range of future printing parameter configurations.",
+          desc: "Despite maintaining nominal CAD dimensions, snap-fit performance showed significant variation across print configurations (e.g., 50% infill versus 15% infill in 'fast' printing mode). Nevertheless, the design was validated to ensure compatibility with a range of future printing parameter configurations.",
           type: "light",
           hasButton: true,
           fusionContent: {
@@ -1331,7 +1629,7 @@
                 src: "assets/images/Screenshot 2026-04-29 180200.png",
                 title: "Validated model",
                 caption: "Design modifications were completed."
-              },
+              }
             ]
           }
         }
@@ -1417,7 +1715,6 @@
       document.getElementById('modalImage').src = currentImage.src;
       document.getElementById('modalCaption').innerHTML = `<strong>${currentImage.title}</strong><br><br>${currentImage.caption}`;
       
-      // Actualizar estado de botones
       const prevBtn = document.getElementById('prevBtn');
       const nextBtn = document.getElementById('nextBtn');
       if (prevBtn) prevBtn.disabled = (currentMultiImageIndex === 0);
@@ -1463,7 +1760,7 @@
       });
     });
 
-    // Cerrar modal con ESC
+    // Cerrar modal de Fusion con ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         closeFusionModal();
@@ -1512,13 +1809,6 @@
     window.previousImage = previousImage;
     window.nextImage = nextImage;
     window.closeFusionModal = closeFusionModal;
-
-    document.addEventListener('keydown', (e) => { 
-      if(e.key === 'Escape') {
-        closeTimelapse();
-        closeFusionModal();
-      }
-    });
 
     // Animaciones
     const observer = new IntersectionObserver((entries) => {
