@@ -1255,13 +1255,14 @@
         <div class="config-node">
           <div class="config-dot">C1</div>
           <div class="config-card">
-            <div class="config-card-label">Configuración 1</div>
-            <h4>Prueba Inicial</h4>
-            <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.3 mm</span></div>
-            <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">15%</span></div>
-            <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">210 °C</span></div>
-            <div class="config-param"><span class="param-name">Velocidad</span><span class="param-val">50 mm/s</span></div>
-            <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#E8440A;">❌ Fallo</span></div>
+            <div class="config-card-label">Configuration 1</div>
+            <h4>Initial trial</h4>
+            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
+            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Very fast" mode</span></div>
+            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
+            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Incorrect settigs</span></div>
           </div>
         </div>
 
@@ -1277,13 +1278,15 @@
         <div class="config-node">
           <div class="config-dot">C2</div>
           <div class="config-card">
-            <div class="config-card-label">Configuración 2</div>
-            <h4>Ajuste Adherencia</h4>
-            <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.2 mm</span></div>
-            <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">20%</span></div>
-            <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">215 °C</span></div>
-            <div class="config-param"><span class="param-name">Velocidad</span><span class="param-val">40 mm/s</span></div>
-            <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#E8440A;">❌ Fallo</span></div>
+            <div class="config-card-label">Configuration 2</div>
+            <h4>Speed mode change</h4>
+            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
+            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Fast" mode</span></div>
+            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
+            <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Default</span></div>
+            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Print fail</span></div>
           </div>
         </div>
 
@@ -1299,15 +1302,139 @@
         <div class="config-node active">
           <div class="config-dot">C3</div>
           <div class="config-card">
-            <div class="config-card-label">Configuración 3</div>
-            <h4>Optimización Calidad</h4>
-            <div class="config-param"><span class="param-name">Capa</span><span class="param-val">0.15 mm</span></div>
-            <div class="config-param"><span class="param-name">Relleno</span><span class="param-val">25%</span></div>
-            <div class="config-param"><span class="param-name">Temp.</span><span class="param-val">205 °C</span></div>
-            <div class="config-param"><span class="param-name">Velocidad</span><span class="param-val">35 mm/s</span></div>
-            <div class="config-param"><span class="param-name">Resultado</span><span class="param-val" style="color:#4CAF50;">✓ Éxito</span></div>
+            <div class="config-card-label">Configuration 3</div>
+            <h4>Third trial</h4>
+            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">50%</span></div>
+            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Normal" mode</span></div>
+            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
+            <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Disabled</span></div>
+            <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Enabled</span></div>
+            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">⚠️ Partial success</span></div>
           </div>
         </div>
+
+        <div class="transition-reason">
+          <div class="reason-trigger" onclick="openReasonModal('C3_C4')">
+            <span class="reason-arrow">⚡</span>
+            <span class="reason-icon">Why this change?</span>
+          </div>
+        </div>
+
+        <div class="config-node active">
+          <div class="config-dot">C4</div>
+          <div class="config-card">
+            <div class="config-card-label">Configuration 4</div>
+            <h4>Third trial</h4>
+            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">20%</span></div>
+            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Normal" mode</span></div>
+            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
+            <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Disabled</span></div>
+            <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Enabled</span></div>
+            <div class="config-param"><span class="param-name">Ironing</span><span class="param-val">Enabled (for internal surfaces)</span></div>
+            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">⚠️ Partial success</span></div>
+          </div>
+        </div>
+
+        <div class="transition-reason">
+          <div class="reason-trigger" onclick="openReasonModal('C4_C5')">
+            <span class="reason-arrow">⚡</span>
+            <span class="reason-icon">Why this change?</span>
+          </div>
+        </div>
+
+        <div class="config-node active">
+          <div class="config-dot">C5</div>
+          <div class="config-card">
+            <div class="config-card-label">Configuration 5</div>
+            <h4>Elegoo first trial</h4>
+            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
+            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
+            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
+            <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Disabled</span></div>
+            <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Disabled</span></div>
+            <div class="config-param"><span class="param-name">Ironing</span><span class="param-val">Disabled</span></div>
+            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Innadecuate</span></div>
+          </div>
+        </div>
+
+        <div class="transition-reason">
+          <div class="reason-trigger" onclick="openReasonModal('C5_C6')">
+            <span class="reason-arrow">⚡</span>
+            <span class="reason-icon">Why this change?</span>
+          </div>
+        </div>
+
+        <div class="config-node active">
+          <div class="config-dot">C6</div>
+          <div class="config-card">
+            <div class="config-card-label">Configuration 6</div>
+            <h4>Elegoo first trial</h4>
+            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
+            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
+            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Disabled</span></div>
+            <div class="config-param"><span class="param-name">Overhang speed</span><span class="param-val">0(10-25%)-50(25-50%)-30(50-75%)-10(75-100%)</span></div>
+            <div class="config-param"><span class="param-name">Bridge speed</span><span class="param-val">50mm/s</span></div>
+            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Print fail</span></div>
+          </div>
+        </div>
+
+        <div class="transition-reason">
+          <div class="reason-trigger" onclick="openReasonModal('C6_C7')">
+            <span class="reason-arrow">⚡</span>
+            <span class="reason-icon">Why this change?</span>
+          </div>
+        </div>
+
+        <div class="config-node active">
+          <div class="config-dot">C7</div>
+          <div class="config-card">
+            <div class="config-card-label">Configuration 7</div>
+            <h4>Elegoo first trial</h4>
+            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
+            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
+            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Disabled</span></div>
+            <div class="config-param"><span class="param-name">Overhang speed</span><span class="param-val">0(10-25%)-50(25-50%)-20(50-75%)-10(75-100%)</span></div>
+            <div class="config-param"><span class="param-name">Bridge speed</span><span class="param-val">25mm/s</span></div>
+            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">✓ Success</span></div>
+          </div>
+        </div>
+
+        <div class="transition-reason">
+          <div class="reason-trigger" onclick="openReasonModal('C7_C8')">
+            <span class="reason-arrow">⚡</span>
+            <span class="reason-icon">Why this change?</span>
+          </div>
+        </div>
+
+        <div class="config-node active">
+          <div class="config-dot">C8</div>
+          <div class="config-card">
+            <div class="config-card-label">Configuration 8</div>
+            <h4>Elegoo first trial</h4>
+            <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+            <div class="config-param"><span class="param-name">Infill</span><span class="param-val">60%</span></div>
+            <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
+            <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
+            <div class="config-param"><span class="param-name">Support</span><span class="param-val">Disabled</span></div>
+            <div class="config-param"><span class="param-name">Overhang speed</span><span class="param-val">0(10-25%)-50(25-50%)-20(50-75%)-10(75-100%)</span></div>
+            <div class="config-param"><span class="param-name">Bridge speed</span><span class="param-val">25mm/s</span></div>
+            <div class="config-param"><span class="param-name">Ironing</span><span class="param-val">Enabled (all top surfaces, flow 15%)</span></div>
+            <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">✓ Success</span></div>
+          </div>
+        </div>
+
+
+        
       </div>
     </div>
   </section>
@@ -1417,33 +1544,110 @@
       C1_C2: {
         from: "Configuración 1",
         to: "Configuración 2",
-        failure: "La impresión C1 presentó warping severo (deformación en las esquinas) y falta de adherencia a la cama caliente. Las piezas se despegaron durante las primeras capas, causando dimensional incorrecto. También se observó stringing (hilos) entre las paredes internas de la carcasa.",
-        analysis: "El warping ocurre principalmente por gradientes térmicos: la capa base se enfría demasiado rápido mientras que las capas superiores aún están calientes, causando contracción diferencial. Con capa de 0.3mm, el volumen de material extruido es mayor, lo que aumenta las fuerzas de contracción. La temperatura de 210°C estaba dentro del rango de PLA pero quizás no óptima para este filamento específico. La velocidad de 50 mm/s era demasiado agresiva para geometrías con detalles finos como los snaps de la carcasa superior.",
+        failure: "Print C1 exhibited severe poor layer adhesion with visible gaps between extrusion lines. The fit with master parts was terrible the casing moved excessively within the assembly. The traceability code was completely illegible due to the small font size (2mm). The printer was set to 'Very Fast' mode, prioritising speed over quality.",
+        analysis: "The 'Very Fast' mode reduces nozzle dwell time per layer. With a 0.3mm layer height, the extruded material volume is significant, but interlayer cooling time is insufficient. This causes incomplete layer fusion — a phenomenon known as 'interlayer fusion deficiency'. For PLA, optimal interlayer bonding requires the previous layer to remain slightly above the glass transition temperature (~60°C). At very high speeds, the previous layer cools too much before the next layer is deposited (Wang et al., 2022).",
         changes: [
-          "Reduje altura de capa de 0.3mm → 0.2mm para mejorar adherencia entre capas y reducir volumen de contracción por extrusión",
-          "Aumenté temperatura de 210°C → 215°C para mejorar fluidez del PLA y reducir viscosidad",
-          "Incrementé relleno de 15% → 20% para mejorar estabilidad estructural",
-          "Reduje velocidad de 50 mm/s → 40 mm/s para dar más tiempo de adherencia por capa"
+          "Speed: 'Very Fast' → 'Fast' (approximately 30-40% speed reduction)",
+          "Layer height: 0.3mm → 0.2mm (reduces volume per layer, improves interlayer fusion)",
+          "Traceability code: redesigned in CAD from 2mm → 4mm height",
+          "Infill: 15% (unchanged)",
+          "Supports: enabled (unchanged)"
         ],
-        outcome: "C2 mejoró la adherencia pero aún presentó warping en esquinas agudas de la pieza. El stringing se redujo pero no se eliminó completamente. La pieza aún no pasó la prueba dimensional.",
-        theory: "Según la literatura de impresión 3D (ver All3DP, 'How to Fix Warping'), la combinación de temperatura de cama (60°C) y temperatura de extrusión debe balancearse. Teorizo que el PLA usado tiene un punto de Tg más bajo de lo normal."
+        outcome: "C2 failed mid-print — machine error on the Ultimaker. This was a hardware failure, not a design or parameter issue. Both casings (top and bottom) were lost. The error was documented with photographs.",
+        theory: "According to Ultimaker Support (2024), this specific error is associated with the filament sensor or a partial nozzle clog. Nozzle cleaning and recalibration resolved the issue for subsequent prints."
       },
       C2_C3: {
         from: "Configuración 2",
         to: "Configuración 3",
-        failure: "C2 mejoró la adherencia pero persistió warping moderado en esquinas de la pieza. La calidad superficial mostraba escalonamiento visible (efecto de capas marcadas) y algunas dimensiones críticas (espesor de pared de 1.8mm) estaban fuera de tolerancia ±0.1mm. Los snaps de la top case no encajaban consistentemente.",
-        analysis: "El escalonamiento visible indica que 0.2mm aún es demasiado grueso para capturar los detalles finos de las nervaduras internas y los snaps. La temperatura de 215°C causaba slight oozing (salida de material) durante movimientos de desplazamiento, creando pequeñas bolitas en superficies verticales. La velocidad de 40 mm/s mejoró pero no resolvió las microfisuras entre perimetros.",
+        failure: "C2 failed due to machine error, providing no print quality data. Therefore, C3 was designed as a correction of both parameters and the CAD iterations identified after C1.",
+        analysis: "After C1 (where layers showed poor adhesion), the hypothesis was that higher infill percentage could improve overall dimensional stability. The theory is that more internal material acts as a 'skeleton' maintaining external geometry during cooling by reducing differential shrinkage — a well-documented phenomenon in FDM literature (Wang et al., 2022). A study on dimensional accuracy in screw extrusion 3D printing found that infill percentage significantly affects part quality, with optimal results typically achieved between 30-70% infill (Liu et al., 2024).",
         changes: [
-          "Reduje altura de capa de 0.2mm → 0.15mm para mejorar resolución de detalles finos",
-          "Reduje temperatura de 215°C → 205°C para minimizar oozing y stringing",
-          "Aumenté relleno de 20% → 25% para mejorar resistencia de snaps y paredes delgadas",
-          "Reduje velocidad de 40 mm/s → 35 mm/s para máxima calidad superficial",
-          "Añadí brim de 5mm para mejorar adherencia en esquinas problemáticas"
+          "Infill: 15% → 50% (significant increase for structural rigidity)",
+          "Speed: 'Fast' → 'Normal' (further speed reduction for better surface quality)",
+          "Layer height: 0.2mm (unchanged)",
+          "Temperatures: default (210°C nozzle, 60°C bed)"
         ],
-        outcome: "C3 produjo warping mínimo, calidad superficial excelente, y todas las dimensiones dentro de tolerancia. Los snaps funcionaron perfectamente en el assembly line test. Primera impresión que pasa todos los criterios Cpk > 1.33.",
-        theory: "Confirmé que 0.15mm es el sweet spot para balancear tiempo de impresión vs resolución para este diseño. La reducción de temperatura eliminó el oozing sin comprometer la adhesión entre capas. Esto se alinea con la regla empírica: mejor calidad requiere compromiso velocidad/temperatura."
+        outcome: "C3 showed improved overall dimensional precision — the casings fit better with master parts compared to C1. However, traceability code letter quality remained poor (blurry, poorly defined edges). More importantly, this print revealed that the bottom case internal radius was incorrect — assembly line components would not insert properly.",
+        theory: "The 50% infill likely reduced differential cooling shrinkage. However, the letter quality issue indicates that small Z-height features require finer layer heights or different slicing strategies. The radius discovery was purely a CAD problem, not parameter-related. This aligns with findings that processing parameters and CAD geometry interact in complex ways to determine final part accuracy (Liu et al., 2024)."
+      },
+      C3_C4: {
+        from: "Configuration 3 (Ultimaker)",
+        to: "Configuration 4 (Ultimaker)",
+        failure: "C3 revealed that the bottom case internal radius was incorrect (CAD issue) and that the traceability letters were not legible (combined CAD + parameter issue).",
+        analysis: "After modifying the radius in CAD, a decision was made to experiment with ironing — a feature that passes the hot nozzle over the top surface to melt and smooth the final layers. This could improve letter legibility. Additionally, 15% infill was maintained to compare with C3 (50%) and evaluate whether high infill was truly necessary. Research suggests that infill percentage between 30-70% is standard practice, but lower infill may be acceptable for non-structural applications (Liu et al., 2024).",
+        changes: [
+          "Ironing: disabled → enabled (to improve surface finish)",
+          "Infill: 50% → 15% (return to low infill to test if corrected radius was sufficient)",
+          "Layer height: 0.2mm (unchanged)",
+          "Brim repositioned: from under the part → around the perimeter (to improve adhesion without affecting the bottom surface)"
+        ],
+        outcome: "C4 produced three different top case variants to test different snap lengths (short, nominal, long). This enabled testing multiple snap-fit configurations in a single print. Surface finish improved notably with ironing, but low infill (15%) reintroduced some flexibility that affected fit.",
+        theory: "Printing multiple variants on a single build plate (batch testing) is common in product development to accelerate iteration cycles. Ironing proved effective for letter legibility but added approximately 15-20% print time. This trade-off between quality and time is a key consideration in production planning. The relationship between infill percentage and dimensional accuracy has been mathematically modelled — lower infill can reduce dimensional error for certain geometries (Liu et al., 2024).",
+        },
+      C4_C5: {
+        from: "Configuration 4 (Ultimaker)",
+        to: "Configuration 5 (Elegoo Neptune)",
+        failure: "Ultimaker prints had been inconsistent — 3 machine-error failures and variable quality. A decision was made to switch to the Elegoo Neptune printer available in the lab.",
+        analysis: "Changing printers requires recalibrating all parameters. The Elegoo has a different extruder type (direct drive vs Bowden on Ultimaker), which affects retraction and filament control. Additionally, the heated bed has different thermal distribution. Research on FDM process stability indicates that even identical print settings can produce different results across different machine platforms due to mechanical and thermal variations (Mottola, 2024).",
+        changes: [
+          "Printer: Ultimaker → Elegoo Neptune (complete hardware change)",
+          "Infill: 15% (maintained)",
+          "Supports: enabled (same strategy)",
+          "Layer height: 0.2mm (maintained)"
+        ],
+        outcome: "CATASTROPHIC FAILURE — The support fused completely with the part, making removal impossible. The issue was that the interface gap between support and part (configured in Cura) was too small for this filament and geometry combination.",
+        theory: "The 'Support Z Distance' parameter in Cura controls the gap between support and part. A value of 0.1mm (appropriate for Ultimaker) resulted in complete fusion on the Elegoo. This likely occurs because the Elegoo's direct drive extruder has better extrusion control, depositing filament more precisely — including into the intended gaps. Higher values (e.g., 0.2-0.3mm) are needed for removable supports. This phenomenon relates to research on support structure optimisation, where the interface gap is critical for post-processing removal (Cristiani and Falcone, 2017). Warpage studies also confirm that temperature gradients and adhesion characteristics vary significantly between machines (Mottola, 2024).",
+        
+      },
+
+      C5_C6: {
+        from: "Configuration 5 (Elegoo with supports)",
+        to: "Configuration 6 (Elegoo without supports)",
+        failure: "Supports fused with the part in C5. To avoid this problem entirely, an attempt was made to print without supports.",
+        analysis: "Printing without supports requires either designing the part for 'self-supporting overhangs' or using advanced techniques such as variable layer height and overhang speed control. The bottom case has certain overhangs that would normally require support. Research has demonstrated that support-free overhangs are possible with optimised parameters — even horizontal (0°) overhangs can be manufactured successfully with the right approach (Sit et al., 2024). Studies on inverted FDM printing also suggest that alternative orientations can reduce or eliminate support requirements (Hernandez, 2023).",
+        changes: [
+          "Supports: enabled → disabled (radical change)",
+          "Layer height: 0.2mm (maintained)",
+          "Overhang settings: not specifically configured (error)"
+        ],
+        outcome: "FAILURE — The unsupported bridge distance was too long for certain overhangs. The layer collapsed during printing because the filament had nothing to rest on while cooling. Surface finish in overhang areas was unacceptable.",
+        theory: "The maximum unsupported bridge length depends on material, temperature, and speed. For PLA at 210°C, the safe maximum is approximately 10-15mm. The bottom case overhangs exceeded this distance. Research on LPBF (Laser Powder Bed Fusion) overhangs has shown that multiple layers of support-free horizontal overhangs are possible with careful parameter tuning (Sit et al., 2024). Similarly, studies on inverted FDM printing found that reorienting the part or printer can improve overhang performance by approximately 2mm on average (Hernandez, 2023). For FDM, 'overhang optimisation' strategies are required for support-free printing.",
+        
+      },
+
+      C6_C7: {
+        from: "Configuration 6 (no supports, no optimisation)",
+        to: "Configuration 7 (overhang optimisation)",
+        failure: "C6 failed due to layer collapse on overhangs. Rather than reintroducing supports (which caused fusion in C5), parameters were optimised to enable support-free printing.",
+        analysis: "Support-free printing is possible by controlling three factors: (1) variable layer height for critical overhangs, (2) drastic speed reduction on overhangs, and (3) optimal part orientation on the build plate. This technique is known as 'overhang optimisation' or 'support-free printing' (Cristiani and Falcone, 2017). Research on warpage minimisation also shows that controlling temperature gradients and cooling rates is crucial for dimensional accuracy (Mottola, 2024).",
+        changes: [
+          "Layer height: fixed 0.2mm → variable (0.08mm for overhangs, up to 0.25mm on vertical walls)",
+          "Overhang speed: uncontrolled → activated (0-50-20-10 mm/s progressive by angle)",
+          "Variable layer height: disabled → enabled for bottom case",
+          "Supports: disabled (maintained)",
+          "Base layer height: 0.08mm (finer than any previous configuration)"
+        ],
+        outcome: "✅ COMPLETE SUCCESS — The bottom case printed entirely without supports. Thickness measurement: 1.7mm, within the 1.6-2.2mm tolerance. Fit with master parts was excellent. No significant witness line.",
+        theory: "Variable layer height allows overhang layers to be thinner (0.08mm), reducing gravitational force on each extrusion while it cools. Progressive speed control (10mm/s on extreme overhangs) provides extra cooling time. This combination allows each layer to act as its own 'mini-support' for the next layer. According to Cristiani and Falcone (2017), level set methods can effectively fix overhangs without structural supports. Mottola (2024) demonstrates that warpage minimisation through thermal control is critical for dimensional accuracy. As documented in Aranda's comprehensive guide on 3D printing failures (2019), this technique can eliminate support requirements for overhangs up to approximately 65-70°.",
+        
+      },
+      C7_C8: {
+        from: "Configuration 7 (THE WINNER — 15% infill, no supports)",
+        to: "Configuration 8 (experiment with 60% infill)",
+        failure: "C7 was successful, but a 'witness line' was visible on the side of the bottom case. Theory: this line is caused by the change in thermal behaviour between the solid base and the more porous infill above.",
+        analysis: "The witness line appears when the bottom section of the part (solid, 100% material) cools and contracts at a different rate than the middle section (only 15% infill). The abrupt change in material density creates a thermal discontinuity that manifests as a visible line. Increasing infill could equalise thermal behaviour across the part height. Research on dimensional shrinkage in FDM confirms that infill percentage significantly affects contraction behaviour during cooling (Wang et al., 2022). Studies also show that lower infill can sometimes produce better dimensional accuracy than higher infill due to reduced internal stresses (Liu et al., 2024).",
+        changes: [
+          "Infill: 15% → 60% (massive increase for thermal uniformity)",
+          "Layer height: 0.08mm base (variable, as C7)",
+          "Ironing: enabled (to improve surface finish)",
+          "Overhang speed: as C7",
+          "Supports: disabled (as C7)"
+        ],
+        outcome: "⚠️ MIXED RESULT — The witness line disappeared completely. However, fit with master parts worsened significantly compared to C7. The part was stiffer but dimensionally different.",
+        theory: "This experiment demonstrated a critical principle of FDM 3D printing: 'infill percentage affects final dimensions, not just strength' (Liu et al., 2024). With 60% infill, the total part contraction was different because there was more thermally active material during cooling. This altered final dimensions sufficiently to affect master part assembly. According to Liu et al. (2024), while higher infill percentages (up to 70%) improve structural properties, they can compromise dimensional accuracy because of increased internal stresses. Similarly, Wang et al. (2022) found that shrinkage behaviour varies non-linearly with infill percentage.",
+        
       }
-    };
+      };
 
     // Función para abrir el modal de razonamiento
     function openReasonModal(transitionId) {
