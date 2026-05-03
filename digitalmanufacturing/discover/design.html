@@ -1443,6 +1443,8 @@
       padding: 2rem;
       color: #999;
     }
+    
+    
   </style>
 </head>
 <body>
@@ -1565,18 +1567,17 @@
             </div>
 
             <!-- Configuración 2 -->
+                        <!-- Configuración 2 - FALLO DE MÁQUINA -->
             <div class="config-node active">
               <div class="config-dot">C2</div>
               <div class="config-card">
                 <div class="config-card-label">Configuration 2</div>
-                <h4>Utilmaker - Cura</h4>
-                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
-                <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
-                <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
-                <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Fast" mode</span></div>
-                <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
-                <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Default</span></div>
-                <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">❌ Print fail</span></div>
+                <h4>Ultimaker - Cura</h4>
+                <div class="machine-fail-message">
+                  <div class="machine-fail-icon">🖨️ ⚡</div>
+                  <div class="machine-fail-text">MACHINE ERROR</div>
+                  <div class="machine-fail-detail">Filament sensor failure · Print stopped X2</div>
+                </div>
               </div>
             </div>
 
@@ -1599,8 +1600,8 @@
                 <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
                 <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">"Normal" mode</span></div>
                 <div class="config-param"><span class="param-name">Support</span><span class="param-val">Enabled</span></div>
-                <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Disabled</span></div>
-                <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Enabled</span></div>
+                <div class="config-param"><span class="param-name">Brim</span><span class="param-val">Enabled</span></div>
+                <div class="config-param"><span class="param-name">Skirt</span><span class="param-val">Disabled</span></div>
                 <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">⚠️ Partial success</span></div>
               </div>
             </div>
@@ -1609,6 +1610,21 @@
               <div class="reason-trigger" onclick="openReasonModal('C3_C4')">
                 <span class="reason-arrow">⚡</span>
                 <span class="reason-icon">Why this change?</span>
+              </div>
+            </div>
+          
+          <div class="config-node active">
+              <div class="config-dot">C4</div>
+              <div class="config-card">
+                <div class="config-card-label">Configuration 2</div>
+                <h4>Ultimaker - Cura</h4>
+                <div class="machine-fail-message">
+                  <div class="machine-fail-icon">🖨️ ⚡</div>
+                  <div class="machine-fail-text">MACHINE ERROR</div>
+                  <div class="machine-fail-detail">Callibration error</div>
+                  <div class="machine-fail-detail">Nozzle clogged</div>
+                  <div class="machine-fail-detail">Print stopped X2</div>
+                </div>
               </div>
             </div>
 
@@ -1636,6 +1652,10 @@
               </div>
             </div>
 
+          
+          
+          
+          
             <div class="config-node active">
               <div class="config-dot">C5</div>
               <div class="config-card">
@@ -1657,6 +1677,19 @@
               <div class="reason-trigger" onclick="openReasonModal('C5_C6')">
                 <span class="reason-arrow">⚡</span>
                 <span class="reason-icon">Why this change?</span>
+              </div>
+            </div>
+          
+          <div class="config-node active">
+              <div class="config-dot">C6</div>
+              <div class="config-card">
+                <div class="config-card-label">Configuration 6</div>
+                <h41>Elegoo - Slicer</h41>
+                <div class="machine-fail-message">
+                  <div class="machine-fail-icon">🖨️ ⚡</div>
+                  <div class="machine-fail-text">MACHINE ERROR</div>
+                  <div class="machine-fail-detail">Print stopped X1</div>
+                </div>
               </div>
             </div>
 
@@ -1780,6 +1813,25 @@
           </div>
           <button class="error-more-btn" data-error="overhang_collapse">↗ More</button>
         </div>
+        
+        <div class="error-item" data-error="Comparison_line">
+          <div class="error-num">05</div>
+          <div class="error-info">
+            <div class="error-title">Comparison C7-C8</div>
+            <div class="error-meta">C4 · Critical</div>
+          </div>
+          <button class="error-more-btn" data-error="support_fusion">↗ More</button>
+        </div>
+        
+         <div class="error-item" data-error="Other_printing_errors">
+          <div class="error-num">06</div>
+          <div class="error-info">
+            <div class="error-title">Comparison C7-C8</div>
+            <div class="error-meta">C4 · Critical</div>
+          </div>
+          <button class="error-more-btn" data-error="support_fusion">↗ More</button>
+        </div>
+        
       </div>
     </div>
     
@@ -1831,6 +1883,9 @@
           <tr><td>Dimensional accuracy</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:40%"></div></div><span>4/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:55%"></div></div><span>5.5/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>10/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>10/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>10/10</span></div></td></tr>
           <tr><td>Fit with master parts</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:40%"></div></div><span>4/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span>8/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span>8/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:90%"></div></div><span>9/10</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:70%"></div></div><span>7/10</span></div></td></tr>
           <tr><td>Support removal</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>YES</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>YES</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>YES</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>NO</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>NO</span></div></td></tr>
+          <tr><td>CP Lab Measurement</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>NO</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>NO</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>NO</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>PASS</span></div></td></tr>
+          <tr><td>CP Lab Pick by Light</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>NO</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>PASS</span></div></td></tr>
+          <tr><td>CP Lab Press</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>PASS</span></div></td></tr>
         </tbody>
       </table>
     </div>
@@ -1893,8 +1948,9 @@
         name: "Poor Layer Adhesion",
         label: "Galería: Poor Layer Adhesion",
         images: [
-          { src: "assets/images/error_layer_1.jpg", label: "C1 - Visible gaps between layers" },
-          { src: "assets/images/error_layer_2.jpg", label: "C1 - Delamination on bottom case" }
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.33 (2).jpeg", label: "C1 - layers" },
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.31.jpeg", label: "C1 - Visible gaps between layers" },
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.33 (3).jpeg", label: "C1 - Illegible traceability code" }
         ],
         details: [
           {
@@ -1909,9 +1965,9 @@
         name: "Mid-Print Failure",
         label: "Galería: Mid-Print Failure",
         images: [
-          { src: "assets/images/error_mid_1.jpg", label: "C2 - Machine error on Ultimaker" },
-          { src: "assets/images/error_mid_2.jpg", label: "C5 - Print stopped at 60%" },
-          { src: "assets/images/error_mid_3.jpg", label: "C6 - Filament jam detection" }
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 13.46.48.jpeg", label: "Cloged nozzle" },
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 13.46.48 (1).jpeg", label: "Print stopped" },
+         
         ],
         details: [
           {
@@ -1936,8 +1992,8 @@
         name: "Support Fusion",
         label: "Galería: Support Fusion",
         images: [
-          { src: "assets/images/error_support_1.jpg", label: "C5 - Supports fused with part" },
-          { src: "assets/images/error_support_2.jpg", label: "C5 - Interface gap too small" }
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.32 (2).jpeg", label: "C5 - Supports fused with part" },
+         
         ],
         details: [
           {
@@ -1953,7 +2009,7 @@
         name: "Overhang Collapse",
         label: "Galería: Overhang Collapse",
         images: [
-          { src: "assets/images/error_overhang_1.jpg", label: "C6 - Bridge collapse on bottom case" },
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.34.jpeg", label: "C6 - Bridge collapse on bottom case" },
           { src: "assets/images/error_overhang_2.jpg", label: "C6 - Failed unsupported overhang" }
         ],
         details: [
@@ -1962,7 +2018,38 @@
             title: "Technical analysis",
             text: "Layer collapsed on unsupported overhang because the bridge distance exceeded the printer's maximum unsupported span capability. Without supports, gravity pulled the extruded filament downward before it could cool and solidify."
           },
-          
+        ]
+      },
+      
+      Comparison_line: {
+        name: "Overhang Collapse",
+        label: "Galería: Overhang Collapse",
+        images: [
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.33.jpeg", label: "C7 - Line" },
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.32 (1).jpeg", label: "C8 - Seamless finish" }
+        ],
+        details: [
+          {
+            icon: "🔬",
+            title: "Technical analysis",
+            text: "Layer collapsed on unsupported overhang because the bridge distance exceeded the printer's maximum unsupported span capability. Without supports, gravity pulled the extruded filament downward before it could cool and solidify."
+          },          
+        ]
+      },
+      
+      Other_printing_errors: {
+        name: "Overhang Collapse",
+        label: "Galería: Overhang Collapse",
+        images: [
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.34.jpeg", label: "C7 - Line" },
+          { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.34 (1).jpeg", label: "C8 - Seamless finish" }
+        ],
+        details: [
+          {
+            icon: "🔬",
+            title: "Technical analysis",
+            text: "Layer collapsed on unsupported overhang because the bridge distance exceeded the printer's maximum unsupported span capability. Without supports, gravity pulled the extruded filament downward before it could cool and solidify."
+          },          
         ]
       }
     };
@@ -1972,44 +2059,39 @@
         from: "Configuración 1",
         to: "Configuración 2",
         failure: "Print C1 exhibited severe poor layer adhesion with visible gaps between extrusion lines. The fit with master parts was terrible the casing moved excessively within the assembly. The traceability code was completely illegible due to the small font size (2mm). The printer was set to 'Very Fast' mode, prioritising speed over quality.",
-        analysis: "The 'Very Fast' mode reduces nozzle dwell time per layer. With a 0.3mm layer height, the extruded material volume is significant, but interlayer cooling time is insufficient. This causes incomplete layer fusion — a phenomenon known as 'interlayer fusion deficiency'. For PLA, optimal interlayer bonding requires the previous layer to remain slightly above the glass transition temperature (~60°C). At very high speeds, the previous layer cools too much before the next layer is deposited (Wang et al., 2022).",
+        analysis: "At high speeds, the extruder deposits filament faster than the material can properly fuse with the previous layer. This results in insufficient interdiffusion between polymer chains, which is critical for strong interlayer bonding in FDM processes. Additionally, rapid movement reduces the effective time for heat transfer from the nozzle to the previously deposited layer. This causes the new filament strand to solidify prematurely, leading to poor adhesion and the formation of micro-gaps between layers. These effects were visible in the form of delamination, brittle behavior, and poor surface definition. Small engraved features (such as the traceability text) were especially affected, as their geometry requires precise extrusion control and consistent layer stacking.",
         changes: [
-          "Speed: 'Very Fast' → 'Fast' (approximately 30-40% speed reduction)",
-          "Layer height: 0.3mm → 0.2mm (reduces volume per layer, improves interlayer fusion)",
+          "Speed: 'Very Fast' → 'Fast'",
           "Traceability code: redesigned in CAD from 2mm → 4mm height",
-          "Infill: 15% (unchanged)",
-          "Supports: enabled (unchanged)"
         ],
-        outcome: "C2 failed mid-print — machine error on the Ultimaker. This was a hardware failure, not a design or parameter issue. Both casings (top and bottom) were lost. The error was documented with photographs.",
+        outcome: "C2 failed mid-print. Machine error on the Ultimaker. This was a hardware failure, not a design or parameter issue. Both casings (top and bottom) were lost. The error was documented with photographs.",
         theory: "According to Ultimaker Support (2024), this specific error is associated with the filament sensor or a partial nozzle clog. Nozzle cleaning and recalibration resolved the issue for subsequent prints."
       },
       C2_C3: {
         from: "Configuración 2",
         to: "Configuración 3",
-        failure: "C2 failed due to machine error, providing no print quality data. Therefore, C3 was designed as a correction of both parameters and the CAD iterations identified after C1.",
-        analysis: "After C1 (where layers showed poor adhesion), the hypothesis was that higher infill percentage could improve overall dimensional stability. The theory is that more internal material acts as a 'skeleton' maintaining external geometry during cooling by reducing differential shrinkage — a well-documented phenomenon in FDM literature (Wang et al., 2022). A study on dimensional accuracy in screw extrusion 3D printing found that infill percentage significantly affects part quality, with optimal results typically achieved between 30-70% infill (Liu et al., 2024).",
+        failure: "CWith C2 failing due to hardware instability, C3 focused on improving structural consistency and dimensional reliability.",
+        analysis: "After C1 (where layers showed poor adhesion), the hypothesis was that higher infill percentage could improve overall dimensional stability. Increasing the infill from 15% to 50% significantly altered the internal structure of the part. A higher infill reduces the size and distribution of internal voids, leading to a more uniform material density. This has two important effects, first, it improves load distribution within the part, and secondly, it reduces uneven thermal contraction during cooling. In low infill prints, the outer walls cool and contract differently from the sparse internal structure, which can introduce internal stresses and dimensional inaccuracies. By increasing infill, the goal was to stabilize this behavior. At the same time, switching to Normal speed improved extrusion consistency and reduced vibration artifacts.",
         changes: [
           "Infill: 15% → 50% (significant increase for structural rigidity)",
           "Speed: 'Fast' → 'Normal' (further speed reduction for better surface quality)",
-          "Layer height: 0.2mm (unchanged)",
-          "Temperatures: default (210°C nozzle, 60°C bed)"
         ],
-        outcome: "C3 showed improved overall dimensional precision — the casings fit better with master parts compared to C1. However, traceability code letter quality remained poor (blurry, poorly defined edges). More importantly, this print revealed that the bottom case internal radius was incorrect — assembly line components would not insert properly.",
-        theory: "The 50% infill likely reduced differential cooling shrinkage. However, the letter quality issue indicates that small Z-height features require finer layer heights or different slicing strategies. The radius discovery was purely a CAD problem, not parameter-related. This aligns with findings that processing parameters and CAD geometry interact in complex ways to determine final part accuracy (Liu et al., 2024)."
+        outcome: "PARTIAL SUCCESS: Dimensional precision improved, BUT C3 component (internal component) did not fit because the internal radius in the CAD model was incorrect. The limitation was geometric, not process-driven.",
+        theory: "CAD geometry error discovered. The radius had to be modified in Fusion 360."
       },
       C3_C4: {
         from: "Configuration 3 (Ultimaker)",
         to: "Configuration 4 (Ultimaker)",
-        failure: "C3 revealed that the bottom case internal radius was incorrect (CAD issue) and that the traceability letters were not legible (combined CAD + parameter issue).",
-        analysis: "After modifying the radius in CAD, a decision was made to experiment with ironing — a feature that passes the hot nozzle over the top surface to melt and smooth the final layers. This could improve letter legibility. Additionally, 15% infill was maintained to compare with C3 (50%) and evaluate whether high infill was truly necessary. Research suggests that infill percentage between 30-70% is standard practice, but lower infill may be acceptable for non-structural applications (Liu et al., 2024).",
+        failure: "C3 revealed that the bottom case internal radius was incorrect (CAD issue)",
+        analysis: "After correcting the internal radius in the CAD model, C4 focused on refining surface quality and evaluating assembly performance under different geometric conditions. The infill was reduced to 20% to reassess material efficiency after confirming that 50% was not required for structural stability. This also allowed observation of how reduced internal density affects cooling behavior and surface finish. Ironing was introduced as a step within the printing process. This technique works by passing the nozzle over the top surface with a low flow rate, re-melting and redistributing material to reduce surface roughness. This would improve both surface quality and letter legibility. Additionally, adhesion strategy was modified, switching from Brim to Skirt eliminated the need for post-removal of extra material attached to the part, which had previously affected edge quality and introduced visible artifacts. This iteration also included a controlled experiment: three different snap-fit geometries were printed simultaneously. This allowed direct comparison of tolerance behavior and deformation under identical print conditions, significantly accelerating design validation.",
         changes: [
-          "Ironing: disabled → enabled (to improve surface finish)",
-          "Infill: 50% → 15% (return to low infill to test if corrected radius was sufficient)",
-          "Layer height: 0.2mm (unchanged)",
-          "Brim repositioned: from under the part → around the perimeter (to improve adhesion without affecting the bottom surface)"
+          "Ironing: disabled → enabled (to improve surface finish and letter readability)",
+          "Infill: 50% → 20%",
+          "Brim → Skirt: from under the part → around the perimeter (to improve adhesion without affecting the bottom surface)",
+          "Test: 3 different snap sizes for Top case"
         ],
-        outcome: "C4 produced three different top case variants to test different snap lengths (short, nominal, long). This enabled testing multiple snap-fit configurations in a single print. Surface finish improved notably with ironing, but low infill (15%) reintroduced some flexibility that affected fit.",
-        theory: "Printing multiple variants on a single build plate (batch testing) is common in product development to accelerate iteration cycles. Ironing proved effective for letter legibility but added approximately 15-20% print time. This trade-off between quality and time is a key consideration in production planning. The relationship between infill percentage and dimensional accuracy has been mathematically modelled — lower infill can reduce dimensional error for certain geometries (Liu et al., 2024).",
+        outcome: "C4 produced three different top case variants to test different snap lengths (short, nominal, long). This enabled testing multiple snap-fit configurations in a single print. Surface finish improved notably with ironing, but low infill (20%) reintroduced a visible line in in the case finish. Phenomenon that could potentially be fixed with a higher infill percentage",
+        theory: "Ironing is effective for top surfaces. Skirt eliminates the reflective brim line. Batch printing variants accelerates iteration.",
         },
       C4_C5: {
         from: "Configuration 4 (Ultimaker)",
@@ -2026,19 +2108,18 @@
         theory: "The 'Support Z Distance' parameter in Cura controls the gap between support and part. A value of 0.1mm (appropriate for Ultimaker) resulted in complete fusion on the Elegoo. This likely occurs because the Elegoo's direct drive extruder has better extrusion control, depositing filament more precisely — including into the intended gaps. Higher values (e.g., 0.2-0.3mm) are needed for removable supports. This phenomenon relates to research on support structure optimisation, where the interface gap is critical for post-processing removal (Cristiani and Falcone, 2017). Warpage studies also confirm that temperature gradients and adhesion characteristics vary significantly between machines (Mottola, 2024).",
         
       },
-
       C5_C6: {
         from: "Configuration 5 (Elegoo with supports)",
         to: "Configuration 6 (Elegoo without supports)",
-        failure: "Supports fused with the part in C5. To avoid this problem entirely, an attempt was made to print without supports.",
-        analysis: "Printing without supports requires either designing the part for 'self-supporting overhangs' or using advanced techniques such as variable layer height and overhang speed control. The bottom case has certain overhangs that would normally require support. Research has demonstrated that support-free overhangs are possible with optimised parameters — even horizontal (0°) overhangs can be manufactured successfully with the right approach (Sit et al., 2024). Studies on inverted FDM printing also suggest that alternative orientations can reduce or eliminate support requirements (Hernandez, 2023).",
+        failure: "Supports fused with the part in C5.",
+        analysis: "In C5, the use of supports resulted in complete fusion between the support structure and the part. This indicated that the vertical separation (Support Z Distance) was below the effective detachment threshold for this specific printer and material combination. On a direct drive system like the Elegoo Neptune, extrusion control is more precise, meaning the printer can accurately fill very small gaps. In this case, the intended separation gap was effectively eliminated during deposition, causing both structures to merge. To eliminate this issue, supports were completely disabled in C6. Printing without supports requires either designing the part for 'self-supporting overhangs' or using advanced techniques such as variable layer height and overhang speed control.",
         changes: [
           "Supports: enabled → disabled (radical change)",
           "Layer height: 0.2mm (maintained)",
-          "Overhang settings: not specifically configured (error)"
+          "Overhang settings: Default settings applied"
         ],
         outcome: "FAILURE — The unsupported bridge distance was too long for certain overhangs. The layer collapsed during printing because the filament had nothing to rest on while cooling. Surface finish in overhang areas was unacceptable.",
-        theory: "The maximum unsupported bridge length depends on material, temperature, and speed. For PLA at 210°C, the safe maximum is approximately 10-15mm. The bottom case overhangs exceeded this distance. Research on LPBF (Laser Powder Bed Fusion) overhangs has shown that multiple layers of support-free horizontal overhangs are possible with careful parameter tuning (Sit et al., 2024). Similarly, studies on inverted FDM printing found that reorienting the part or printer can improve overhang performance by approximately 2mm on average (Hernandez, 2023). For FDM, 'overhang optimisation' strategies are required for support-free printing.",
+        theory: "The maximum unsupported bridge length depends on material, temperature, and speed. For PLA at 210°C, the safe maximum is approximately 10-15mm. The bottom case overhangs exceeded this distance.",
         
       },
 
@@ -2046,34 +2127,31 @@
         from: "Configuration 6 (no supports, no optimisation)",
         to: "Configuration 7 (overhang optimisation)",
         failure: "C6 failed due to layer collapse on overhangs. Rather than reintroducing supports (which caused fusion in C5), parameters were optimised to enable support-free printing.",
-        analysis: "Support-free printing is possible by controlling three factors: (1) variable layer height for critical overhangs, (2) drastic speed reduction on overhangs, and (3) optimal part orientation on the build plate. This technique is known as 'overhang optimisation' or 'support-free printing' (Cristiani and Falcone, 2017). Research on warpage minimisation also shows that controlling temperature gradients and cooling rates is crucial for dimensional accuracy (Mottola, 2024).",
+        analysis: "Support-free printing is possible by controlling three factors: (1) variable layer height for critical overhangs, (2) drastic speed reduction on overhangs, and (3) optimal part orientation on the build plate. This technique is known as 'overhang optimisation' or 'support-free printing'.",
         changes: [
-          "Layer height: fixed 0.2mm → variable (0.08mm for overhangs, up to 0.25mm on vertical walls)",
-          "Overhang speed: uncontrolled → activated (0-50-20-10 mm/s progressive by angle)",
-          "Variable layer height: disabled → enabled for bottom case",
+          "Overhang speed: unchanged",
+          "Bridge speed: 50→25mm/s ",
+          "Variable layer height: enabled (0.08mm for overhangs, up to 0.25mm on vertical walls)",
           "Supports: disabled (maintained)",
-          "Base layer height: 0.08mm (finer than any previous configuration)"
         ],
-        outcome: "✅ COMPLETE SUCCESS — The bottom case printed entirely without supports. Thickness measurement: 1.7mm, within the 1.6-2.2mm tolerance. Fit with master parts was excellent. No significant witness line.",
-        theory: "Variable layer height allows overhang layers to be thinner (0.08mm), reducing gravitational force on each extrusion while it cools. Progressive speed control (10mm/s on extreme overhangs) provides extra cooling time. This combination allows each layer to act as its own 'mini-support' for the next layer. According to Cristiani and Falcone (2017), level set methods can effectively fix overhangs without structural supports. Mottola (2024) demonstrates that warpage minimisation through thermal control is critical for dimensional accuracy. As documented in Aranda's comprehensive guide on 3D printing failures (2019), this technique can eliminate support requirements for overhangs up to approximately 65-70°.",
+        outcome: "✅ COMPLETE SUCCESS — The bottom case printed entirely without supports. Thickness measurement: 1.7mm, within the 1.6-2.2mm tolerance. Fit with master parts was excellent. Witness line present but not significant.",
+        theory: "Variable layer height allows overhang layers to be thinner (0.08mm), reducing gravitational force on each extrusion while it cools. Progressive speed control (10mm/s on extreme overhangs) provides extra cooling time. This combination allows each layer to act as its own 'mini-support' for the next layer.",
         
       },
+      
       C7_C8: {
         from: "Configuration 7 (THE WINNER — 15% infill, no supports)",
         to: "Configuration 8 (experiment with 60% infill)",
         failure: "C7 was successful, but a 'witness line' was visible on the side of the bottom case. Theory: this line is caused by the change in thermal behaviour between the solid base and the more porous infill above.",
-        analysis: "The witness line appears when the bottom section of the part (solid, 100% material) cools and contracts at a different rate than the middle section (only 15% infill). The abrupt change in material density creates a thermal discontinuity that manifests as a visible line. Increasing infill could equalise thermal behaviour across the part height. Research on dimensional shrinkage in FDM confirms that infill percentage significantly affects contraction behaviour during cooling (Wang et al., 2022). Studies also show that lower infill can sometimes produce better dimensional accuracy than higher infill due to reduced internal stresses (Liu et al., 2024).",
+        analysis: "The witness line appears when the bottom section of the part cools and contracts at a different rate than the middle section. The abrupt change in material density creates a thermal discontinuity that manifests as a visible line. Increasing infill could equalise thermal behaviour across the part height.",
         changes: [
           "Infill: 15% → 60% (massive increase for thermal uniformity)",
-          "Layer height: 0.08mm base (variable, as C7)",
           "Ironing: enabled (to improve surface finish)",
-          "Overhang speed: as C7",
-          "Supports: disabled (as C7)"
         ],
         outcome: "⚠️ MIXED RESULT — The witness line disappeared completely. However, fit with master parts worsened significantly compared to C7. The part was stiffer but dimensionally different.",
-        theory: "This experiment demonstrated a critical principle of FDM 3D printing: 'infill percentage affects final dimensions, not just strength' (Liu et al., 2024). With 60% infill, the total part contraction was different because there was more thermally active material during cooling. This altered final dimensions sufficiently to affect master part assembly. According to Liu et al. (2024), while higher infill percentages (up to 70%) improve structural properties, they can compromise dimensional accuracy because of increased internal stresses. Similarly, Wang et al. (2022) found that shrinkage behaviour varies non-linearly with infill percentage.",
-        
+        theory: "This experiment demonstrated a critical principle of FDM 3D printing: 'infill percentage affects final dimensions, not just strength'. With 60% infill, the total part contraction was different because there was more thermally active material during cooling. This altered final dimensions sufficiently to affect master part assembly.",
       }
+      
       };
 
     function showDefaultErrorState() {
