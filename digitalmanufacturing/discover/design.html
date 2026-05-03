@@ -1721,13 +1721,15 @@
               <div class="config-card">
                 <div class="config-card-label">Configuration 7</div>
                 <h4>Elegoo - Slicer</h4>
-                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm (top)</span></div>
+                <div class="config-param"><span class="param-name">Variable layer height</span><span class="param-val">Enabled (from 0.08mm to 0.25mm)</span></div>
                 <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
                 <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
                 <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
                 <div class="config-param"><span class="param-name">Support</span><span class="param-val">Disabled</span></div>
                 <div class="config-param"><span class="param-name">Overhang speed</span><span class="param-val">0(10-25%)<br>50(-50%)<br>30(-75%)<br>10(-100%)</span></div>
                 <div class="config-param"><span class="param-name">Bridge speed</span><span class="param-val">25mm/s</span></div>
+                
                 <div class="config-param"><span class="param-name">Result</span><span class="param-val" style="color:#E8440A;">✓ Success</span></div>
               </div>
             </div>
@@ -1744,7 +1746,8 @@
               <div class="config-card">
                 <div class="config-card-label">Configuration 8</div>
                 <h4>Elegoo - Slicer</h4>
-                <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
+                 <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm (top)</span></div>
+                <div class="config-param"><span class="param-name">Variable layer height</span><span class="param-val">Enabled (from 0.08mm to 0.25mm)</span></div>
                 <div class="config-param"><span class="param-name">Infill</span><span class="param-val">60%</span></div>
                 <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
                 <div class="config-param"><span class="param-name">Print speed</span><span class="param-val">200mm/s</span></div>
@@ -1820,7 +1823,7 @@
             <div class="error-title">Comparison C7-C8</div>
             <div class="error-meta">C4 · Critical</div>
           </div>
-          <button class="error-more-btn" data-error="support_fusion">↗ More</button>
+          <button class="error-more-btn" data-error="Comparison_line">↗ More</button>
         </div>
         
          <div class="error-item" data-error="Other_printing_errors">
@@ -1829,7 +1832,7 @@
             <div class="error-title">Comparison C7-C8</div>
             <div class="error-meta">C4 · Critical</div>
           </div>
-          <button class="error-more-btn" data-error="support_fusion">↗ More</button>
+          <button class="error-more-btn" data-error="Other_printing_errors">↗ More</button>
         </div>
         
       </div>
@@ -1888,6 +1891,98 @@
           <tr><td>CP Lab Press</td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>PASS</span></div></td><td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div><span>PASS</span></div></td></tr>
         </tbody>
       </table>
+      <!-- FINAL SELECTION JUSTIFICATION -->
+<div class="final-selection fade-up" style="margin-top: 4rem; background: var(--white); border-left: 6px solid var(--orange); padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+    <span style="background: var(--orange); color: var(--white); padding: 0.3rem 1rem; font-family: var(--font-condensed); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em; border-radius: 20px;">🏆 FINAL DECISION</span>
+    <h3 style="font-family: var(--font-display); font-size: 1.8rem; text-transform: uppercase; margin: 0;">Why Configuration 7 was selected</h3>
+  </div>
+  
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+    <!-- Left column: Justification text -->
+    <div>
+      <p style="font-size: 1rem; line-height: 1.7; color: #333; margin-bottom: 1rem;">
+       After eight distinct print configurations, over fifteen print attempts, and iterative CAD refinements across two different printer platforms (Ultimaker and Elegoo Neptune),<strong>Configuration 7</strong> was selected as the optimal parameter set for manufacturing the phone casings. This decision was based on four critical criteria directly linked to the CP Lab assembly line requirements, supported by empirical measurements.
+      </p>
+      
+      <p style="font-size: 1rem; line-height: 1.7; color: #333; margin-bottom: 1rem;">
+        The <strong>four critical criteria</strong> directly linked to the CP Lab assembly line requirements are:
+      </p>
+      
+      <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: #555; line-height: 1.8;">
+        <li><strong>✅ Dimensional accuracy:</strong> The thickness measurement of <strong>1.7mm</strong> fell within the required 1.6-2.2mm tolerance range, verified by the CP Lab inspection station.</li>
+        <li><strong>✅ Fit with master parts:</strong> The casings assembled seamlessly with the reference master parts provided with the production line, no excessive force or loose fitting.</li>
+        <li><strong>✅ Support-free printing:</strong> By eliminating supports entirely (using variable layer height and overhang speed optimisation), post-processing time was reduced while surface quality was preserved.</li>
+        <li><strong>✅ CP Lab validation:</strong> The parts successfully passed all assembly line tests: dimensional inspection, component insertion, pick-by-light recognition, and press-fitting.</li>
+      </ul>
+      
+      <p style="font-size: 1rem; line-height: 1.7; color: #333; margin-bottom: 1rem;">
+        <strong>Why not configuration 8?</strong> <br> While Configuration 8 (60% infill) eliminated the witness line visible on C7, it <strong>worsened the fit with master parts</strong> demonstrating that higher infill does not always improve dimensional accuracy. The 15% infill in C7 produced a more predictable, balanced shrinkage profile that preserved geometric fidelity to the master parts.
+      </p>
+      
+      <p style="font-size: 1rem; line-height: 1.7; color: #333; background: var(--gray); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+        <strong>📌 Key takeaway:</strong> The optimal print configuration is not necessarily the one with the highest infill or finest layer height. Rather, it is the <strong>balance of parameters</strong> that produces consistent, repeatable results that meet the specific requirements of the assembly line in this case, 15% infill, no supports, variable layer height, and optimised overhang speeds.
+      </p>
+    </div>
+    
+    <!-- Right column: Summary card and comparison -->
+    <div>
+      <div style="background: var(--black); color: var(--white); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+        <div style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 0.5rem;">SELECTED CONFIGURATION</div>
+        <div style="font-family: var(--font-display); font-size: 3rem; line-height: 1;">Configuration 7</div>
+        <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+          <div><strong>Layer height:</strong> 0.08-0.25mm (variable)</div>
+          <div><strong>Infill:</strong> 15%</div>
+          <div><strong>Supports:</strong> Disabled</div>
+          <div><strong>Bridge speed:</strong> 25mm/s</div>
+          <div><strong>Ironing:</strong> Disabled</div>
+          <div><strong>Printer:</strong> Elegoo</div>
+        </div>
+      </div>
+      
+      <div style="background: var(--gray); padding: 1.5rem; border-radius: 8px;">
+        <div style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 0.5rem;">COMPARISON WITH C8 (60% INFILL)</div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+          <tr style="border-bottom: 1px solid #ccc;">
+            <td style="padding: 0.5rem 0;"><strong>Criterion</strong></td>
+            <td style="padding: 0.5rem 0; text-align: center;"><strong>C7 (15%)</strong></td>
+            <td style="padding: 0.5rem 0; text-align: center;"><strong>C8 (60%)</strong></td>
+          </tr>
+          <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 0.5rem 0;">Fit with master parts</td>
+            <td style="padding: 0.5rem 0; text-align: center;">✅ 9/10</td>
+            <td style="padding: 0.5rem 0; text-align: center;">⚠️ 7/10</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 0.5rem 0;">Witness line</td>
+            <td style="padding: 0.5rem 0; text-align: center;">⚠️ Visible</td>
+            <td style="padding: 0.5rem 0; text-align: center;">✅ Eliminated</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 0.5rem 0;">Filament usage</td>
+            <td style="padding: 0.5rem 0; text-align: center;">18g</td>
+            <td style="padding: 0.5rem 0; text-align: center;">~40g (estimated)</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.5rem 0;">Print time (pair)</td>
+            <td style="padding: 0.5rem 0; text-align: center;">~6.5 hours</td>
+            <td style="padding: 0.5rem 0; text-align: center;">~8 hours</td>
+          </tr>
+        </table>
+        <p style="font-size: 0.8rem; color: #666; margin-top: 1rem; font-style: italic;">
+          While C8 eliminated the witness line, it worsened assembly fit and increased material/time costs.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- References specific to this section -->
+  <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; font-size: 0.75rem; color: #888;">
+    <strong>📚 References for this section:</strong>
+    Liu, J. et al. (2024) 'Precision control and parameter optimization in screw extrusion 3D printing of polypropylene materials', <em>Heliyon</em>, 10(12), e32605. doi: 10.1016/j.heliyon.2024.e32605.<br>
+    Wang, Y.Z., Liu, J., Nan, S.H., Xi, D.R. and Liu, S.H. (2022) 'Dimensional shrinkage of cylindrical parts fabricated by fused deposition modeling', <em>Manufacturing Technology & Machine Tool</em>, 0(7), pp. 91-95. doi: 10.19287/j.mtmt.1005-2402.2022.07.016.
+  </div>
+</div>
     </div>
   </section>
 
