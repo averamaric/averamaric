@@ -511,7 +511,17 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 50%,#111 100%);display:flex;align-items:center;justify-content:center;">
+    <div style="
+      width:100%;
+      height:100%;
+      background-image: url('Gemini_Generated_Image_edzoo4edzoo4edzo.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    ">
       <svg width="220" height="300" viewBox="0 0 220 300" fill="none" opacity="0.3">
         <rect x="20" y="50" width="18" height="250" fill="#888"/>
         <rect x="182" y="50" width="18" height="250" fill="#888"/>
@@ -523,15 +533,163 @@
         <rect x="160" y="155" width="18" height="10" rx="2" fill="#aaa"/>
       </svg>
     </div>
-    <div class="hero-badge"><h1>AUTO<br>REPAIR<br>YOU<br>CAN<br>TRUST</h1></div>
+    <div class="hero-badge"><h1>3D<br>Print<br>you<br>CAN<br>TRUST</h1></div>
   </div>
   <div class="hero-right">
     <p class="hero-tagline">We keep your vehicle running strong with honest service and fair prices.</p>
     <div class="hero-img-bottom">
-      <div style="width:100%;height:100%;background:linear-gradient(120deg,#C0392B,#E8440A,#8B1A1A);min-height:280px;display:flex;align-items:center;justify-content:center;">
-        <svg width="180" height="120" viewBox="0 0 180 120" fill="none" opacity="0.5"><ellipse cx="90" cy="60" rx="80" ry="45" fill="#ff6b3d" opacity="0.6"/><ellipse cx="110" cy="50" rx="50" ry="28" fill="#ff9966" opacity="0.4"/></svg>
+      <div class="hero-img-bottom">
+  <div style="width:100%;height:100%;background:linear-gradient(120deg,#C0392B,#E8440A,#8B1A1A);min-height:280px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+    
+    <!-- ANIMACIÓN 3D PRINTER + PIEZA BLANCA IMPRESA -->
+    <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+      
+      <!-- Contenedor de la animación -->
+      <div style="position: relative; width: 260px; height: 240px;">
+        
+        <svg viewBox="0 0 260 240" width="100%" height="100%" style="display: block;">
+          
+          <!-- ===== ESTRUCTURA DE LA IMPRESORA ===== -->
+          <!-- Base de la impresora -->
+          <rect x="40" y="200" width="180" height="20" rx="4" fill="#0A0A0A"/>
+          <rect x="50" y="195" width="160" height="8" rx="2" fill="#333"/>
+          
+          <!-- Pilares verticales -->
+          <rect x="55" y="70" width="10" height="125" fill="#0A0A0A"/>
+          <rect x="195" y="70" width="10" height="125" fill="#0A0A0A"/>
+          
+          <!-- Viga superior (X-axis) -->
+          <rect x="45" y="65" width="170" height="12" rx="3" fill="#0A0A0A"/>
+          <rect x="45" y="60" width="170" height="8" rx="2" fill="#E8440A"/>
+          
+          <!-- Cama de impresión (build plate) -->
+          <rect x="65" y="190" width="130" height="5" rx="1" fill="#555"/>
+          <rect x="75" y="185" width="110" height="5" rx="1" fill="#444"/>
+          
+          <!-- ===== PIEZA QUE SE ESTÁ IMPRIMIENDO (blanca, crece) ===== -->
+          <!-- Capa base (siempre visible) -->
+          <rect x="105" y="180" width="50" height="5" rx="1" fill="white" opacity="0.9"/>
+          
+          <!-- Capas que crecen progresivamente (simulando impresión) -->
+          <rect x="108" y="173" width="44" height="5" rx="1" fill="white" opacity="0.9">
+            <animate attributeName="height" values="0;5;5;5;5;5" dur="8s" repeatCount="indefinite"/>
+            <animate attributeName="y" values="180;173;173;173;173;173" dur="8s" repeatCount="indefinite"/>
+          </rect>
+          <rect x="111" y="166" width="38" height="5" rx="1" fill="white" opacity="0.85">
+            <animate attributeName="height" values="0;0;5;5;5;5" dur="8s" repeatCount="indefinite"/>
+            <animate attributeName="y" values="180;180;173;173;173;173" dur="8s" repeatCount="indefinite"/>
+          </rect>
+          <rect x="114" y="159" width="32" height="5" rx="1" fill="white" opacity="0.8">
+            <animate attributeName="height" values="0;0;0;5;5;5" dur="8s" repeatCount="indefinite"/>
+            <animate attributeName="y" values="180;180;180;173;173;173" dur="8s" repeatCount="indefinite"/>
+          </rect>
+          <rect x="117" y="152" width="26" height="5" rx="1" fill="white" opacity="0.75">
+            <animate attributeName="height" values="0;0;0;0;5;5" dur="8s" repeatCount="indefinite"/>
+            <animate attributeName="y" values="180;180;180;180;173;173" dur="8s" repeatCount="indefinite"/>
+          </rect>
+          <rect x="120" y="145" width="20" height="5" rx="1" fill="white" opacity="0.7">
+            <animate attributeName="height" values="0;0;0;0;0;5" dur="8s" repeatCount="indefinite"/>
+            <animate attributeName="y" values="180;180;180;180;180;173" dur="8s" repeatCount="indefinite"/>
+          </rect>
+          
+          <!-- ===== EXTRUSOR / NOZZLE (se mueve mientras imprime) ===== -->
+          <g>
+            <!-- Cuerpo del extrusor -->
+            <rect x="118" y="85" width="24" height="18" rx="3" fill="#E8440A"/>
+            <rect x="123" y="103" width="14" height="12" rx="2" fill="#E8440A"/>
+            <!-- Boquilla -->
+            <polygon points="126,115 134,115 130,122" fill="#E8440A"/>
+            
+            <!-- Movimiento del nozzle: se mueve lateralmente mientras la pieza crece -->
+            <animateTransform attributeName="transform" type="translate" 
+              values="0,0; 30,0; -30,0; 15,0; -15,0; 0,0" 
+              dur="8s" repeatCount="indefinite"/>
+          </g>
+          
+          <!-- ===== FILAMENTO QUE SALE DEL NOZZLE ===== -->
+          <!-- Línea de filamento cayendo -->
+          <line x1="130" y1="122" x2="130" y2="180" stroke="white" stroke-width="2" opacity="0.6">
+            <animate attributeName="opacity" values="0.6;0.8;0.6" dur="0.5s" repeatCount="indefinite"/>
+          </line>
+          
+          <!-- Pequeñas gotas/depósito de filamento -->
+          <circle cx="130" cy="182" r="2" fill="white" opacity="0.8">
+            <animate attributeName="opacity" values="0.8;0.3;0.8" dur="0.3s" repeatCount="indefinite"/>
+          </circle>
+          
+          <!-- ===== ROLLO DE FILAMENTO (arriba) ===== -->
+          <circle cx="130" cy="35" r="22" fill="none" stroke="#0A0A0A" stroke-width="4"/>
+          <circle cx="130" cy="35" r="14" fill="none" stroke="#E8440A" stroke-width="3" opacity="0.6">
+            <animateTransform attributeName="transform" type="rotate" values="0 130 35;360 130 35" dur="5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="130" cy="35" r="6" fill="#0A0A0A"/>
+          
+          <!-- Filamento que baja del rollo al extrusor -->
+          <path d="M130,57 Q130,70 130,85" stroke="#E8440A" stroke-width="2" fill="none" stroke-dasharray="4 2">
+            <animate attributeName="stroke-dashoffset" values="0;20" dur="1s" repeatCount="indefinite"/>
+          </path>
+          
+          <!-- ===== CABLES / MANGUERA ===== -->
+          <path d="M145,85 Q165,80 175,90 Q185,100 175,110" stroke="#555" stroke-width="2" fill="none"/>
+          <path d="M115,85 Q95,80 85,90 Q75,100 85,110" stroke="#555" stroke-width="2" fill="none"/>
+          
+          <!-- ===== EFECTO DE CALOR EN LA BOQUILLA ===== -->
+          <path d="M120,122 Q115,115 118,108" stroke="#E8440A" stroke-width="1.5" fill="none" opacity="0.4">
+            <animate attributeName="opacity" values="0.4;0.1;0.4" dur="0.6s" repeatCount="indefinite"/>
+          </path>
+          <path d="M140,122 Q145,115 142,108" stroke="#E8440A" stroke-width="1.5" fill="none" opacity="0.4">
+            <animate attributeName="opacity" values="0.1;0.4;0.1" dur="0.6s" repeatCount="indefinite"/>
+          </path>
+          
+          <!-- ===== LUCES LED en la impresora ===== -->
+          <circle cx="70" cy="180" r="3.5" fill="#27ae60">
+            <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="85" cy="180" r="3.5" fill="#E8440A">
+            <animate attributeName="opacity" values="0.2;1;0.2" dur="1.2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="175" cy="180" r="3.5" fill="#27ae60">
+            <animate attributeName="opacity" values="1;0.2;1" dur="0.8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="190" cy="180" r="3.5" fill="#E8440A">
+            <animate attributeName="opacity" values="0.2;1;0.2" dur="0.8s" repeatCount="indefinite"/>
+          </circle>
+          
+          <!-- ===== PEQUEÑAS CHISPAS / PARTÍCULAS al imprimir ===== -->
+          <circle cx="125" cy="125" r="1.5" fill="white" opacity="0.6">
+            <animate attributeName="cy" values="125;140;155" dur="1.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.6;0.3;0" dur="1.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="135" cy="125" r="1" fill="white" opacity="0.5">
+            <animate attributeName="cy" values="125;145;165" dur="1.8s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.5;0.2;0" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
+          
+          <!-- ===== SOMBRA DE LA PIEZA ===== -->
+          <ellipse cx="130" cy="205" rx="30" ry="4" fill="rgba(0,0,0,0.2)">
+            <animate attributeName="rx" values="30;35;28;32;30" dur="3s" repeatCount="indefinite"/>
+          </ellipse>
+          
+        </svg>
       </div>
-      <a href="#contact" class="btn-cta">Schedule Service <span class="dot"></span></a>
+      
+      <!-- Efecto de "cámara" suave (sin círculo que late) -->
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;">
+        <svg width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="none">
+          
+        </svg>
+      </div>
+      
+    </div>
+    
+    <!-- Overlay de gradiente -->
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 30%; background: linear-gradient(to top, rgba(0,0,0,0.2), transparent); pointer-events: none;"></div>
+    
+  </div>
+  
+  
+</div>
+      
     </div>
   </div>
 </section>
