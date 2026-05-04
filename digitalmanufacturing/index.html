@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Analucia Vera — Home</title>
+  <title>Analucia Vera — Ingeniería Avanzada</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,6 +14,9 @@
       --white: #FFFFFF;
       --gray: #EFEFEF;
       --gray-dark: #C8C8C8;
+      --red: #c0392b;
+      --yellow: #f39c12;
+      --green: #27ae60;
       --font-display: 'Bebas Neue', sans-serif;
       --font-body: 'Barlow', sans-serif;
       --font-condensed: 'Barlow Condensed', sans-serif;
@@ -90,7 +93,18 @@
     .nav-cta .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
     .nav-cta:hover .dot { background: var(--white); }
 
-    /* ── HERO ── */
+    /* Utility */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero, About, Services, etc. (manteniendo tu diseño) */
     #hero {
       margin-top: 60px;
       display: grid;
@@ -148,12 +162,6 @@
       min-height: 300px;
       overflow: hidden;
     }
-    .hero-img-bottom img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
     .btn-cta {
       display: inline-flex;
       align-items: center;
@@ -177,7 +185,7 @@
     .btn-cta:hover { background: var(--orange); }
     .btn-cta:hover .dot { background: var(--white); }
 
-    /* ── ABOUT STRIP ── */
+    /* About */
     #about {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -197,7 +205,6 @@
       overflow: hidden;
       max-height: 320px;
     }
-    .about-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .about-right {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -219,304 +226,158 @@
     .stat-card p {
       font-size: 0.8rem;
       letter-spacing: 0.05em;
-      /*text-transform: uppercase;*/
       opacity: 0.7;
       margin-top: 1rem;
     }
-    .stat-card.dark p { color: var(--gray-dark); }
 
-    /* ── SERVICES ── */
-    #services { padding: 5rem 4rem; }
-    .services-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: end;
-      margin-bottom: 4rem;
+    /* PFMEA */
+    .pfmea-section {
+      padding: 5rem 4rem;
+      background: var(--white);
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
     }
-    .services-header h2 {
+    .pfmea-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .pfmea-header h2 {
       font-family: var(--font-display);
-      font-size: 4.5rem;
-      line-height: 0.9;
+      font-size: 3rem;
+      line-height: 1;
       text-transform: uppercase;
+      color: var(--black);
     }
-    .services-header p {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.6;
-      max-width: 320px;
-      justify-self: end;
+    .risk-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: var(--gray);
+      border-left: 4px solid var(--orange);
     }
-    .services-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 0;
+    .risk-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-family: var(--font-condensed);
+      font-weight: 600;
     }
-    .service-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 360px;
+    .risk-badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.7rem;
     }
-    .service-card img {
+    .risk-badge.high { background: var(--red); color: white; }
+    .risk-badge.medium { background: var(--yellow); color: black; }
+    .risk-badge.low { background: var(--green); color: white; }
+    .pfmea-table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .pfmea-table {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
+      border-collapse: collapse;
+      font-size: 0.7rem;
+      min-width: 1300px;
     }
-    .service-card:hover img { transform: scale(1.04); }
-    .service-info {
-      position: absolute;
-      top: 0; left: 0; right: 0;
+    .pfmea-table th {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.9rem 0.6rem;
+      text-align: center;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: 1px solid #333;
+    }
+    .pfmea-table td {
+      padding: 0.7rem 0.5rem;
+      border: 1px solid #e0e0e0;
+      vertical-align: top;
+      font-size: 0.7rem;
+      line-height: 1.4;
+    }
+    .process-id {
+      font-family: monospace;
+      font-weight: 700;
+      color: var(--orange);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .rpn-high {
+      background: var(--red);
+      color: white;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 12px;
+      padding: 0.2rem 0.4rem;
+      display: inline-block;
+    }
+    .rpn-medium { background: var(--yellow); color: black; font-weight: 700; text-align: center; border-radius: 12px; padding: 0.2rem 0.4rem; display: inline-block; }
+    .summary-section {
+      margin-top: 3rem;
       padding: 1.5rem;
+      background: var(--gray);
+      border-left: 4px solid var(--red);
     }
+    .summary-section h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+    }
+    .summary-table th {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.7rem;
+      text-align: left;
+      font-family: var(--font-condensed);
+      font-size: 0.7rem;
+    }
+    .summary-table td {
+      padding: 0.6rem;
+      border-bottom: 1px solid #ddd;
+      font-size: 0.75rem;
+    }
+    .footer-note {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--gray);
+      font-size: 0.7rem;
+      color: #555;
+      text-align: center;
+      border-top: 2px solid var(--orange);
+    }
+    .why-table { width: 100%; border-collapse: collapse; }
+    .why-table tr { border-bottom: 1px solid #ccc; }
+    .why-table tr:first-child { border-top: 1px solid #ccc; }
+    .why-table td { padding: 1.5rem 2rem; vertical-align: middle; }
+    .why-table tr:nth-child(odd) { background: var(--black); color: var(--white); }
+    .why-table tr:nth-child(even) { background: var(--gray); color: var(--black); }
+    .why-num { font-family: var(--font-display); font-size: 2.5rem; white-space: nowrap; width: 100px; }
+    .why-title { font-family: var(--font-condensed); font-weight: 900; font-size: 1.3rem; width: 220px; }
+    .services-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0; }
+    .service-card { position: relative; overflow: hidden; min-height: 360px; }
     .service-card.orange { background: var(--orange); }
     .service-card.dark { background: var(--black); }
     .service-card.light { background: var(--gray); }
-    .service-card.orange .service-info h3 { color: var(--black); }
-    .service-card.dark .service-info h3,
-    .service-card.dark .service-info p { color: var(--white); }
-    .service-card.light .service-info h3,
-    .service-card.light .service-info p { color: var(--black); }
-    .service-info h3 {
-      font-family: var(--font-condensed);
-      font-weight: 900;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .service-info p {
-      font-size: 0.9rem;
-      line-height: 1.4;
-      opacity: 0.85;
-    }
-
-    /* bottom row services */
-    .services-row2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr 2fr;
-      margin-top: 0;
-    }
-
-    .explore-bar {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 2rem;
-    }
-    .btn-explore {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: var(--black);
-      color: var(--white);
-      padding: 1rem 2rem;
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: background 0.2s;
-    }
-    .btn-explore .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
-    .btn-explore:hover { background: var(--orange); }
-
-    /* ── WHY US ── */
-    #why {
-      padding: 5rem 4rem;
-      background: var(--white);
-    }
-    #why h2 {
-      font-family: var(--font-display);
-      font-size: 4.5rem;
-      line-height: 0.9;
-      text-transform: uppercase;
-      margin-bottom: 4rem;
-    }
-    .why-table { width: 100%; border-collapse: collapse; }
-    .why-table tr {
-      border-bottom: 1px solid #ccc;
-    }
-    .why-table tr:first-child { border-top: 1px solid #ccc; }
-    .why-table td {
-      padding: 1.5rem 2rem;
-      vertical-align: middle;
-    }
-    .why-table tr:nth-child(odd) { background: var(--black); color: var(--white); }
-    .why-table tr:nth-child(even) { background: var(--gray); color: var(--black); }
-    .why-num {
-      font-family: var(--font-display);
-      font-size: 2.5rem;
-      white-space: nowrap;
-      width: 100px;
-    }
-    .why-title {
-      font-family: var(--font-condensed);
-      font-weight: 900;
-      font-size: 1.3rem;
-      width: 220px;
-    }
-    .why-desc {
-      font-size: 0.9rem;
-      line-height: 1.5;
-      opacity: 0.85;
-    }
-    .why-footer {
-      margin-top: 2rem;
-    }
-    .btn-who {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: var(--black);
-      color: var(--white);
-      padding: 0.75rem 1.5rem;
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: background 0.2s;
-    }
-    .btn-who .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
-    .btn-who:hover { background: var(--orange); }
-
-    /* ── TESTIMONIALS ── */
-    #testimonials {
-      position: relative;
-      background: var(--black);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 500px;
-    }
-    .testimonials-left {
-      position: relative;
-      overflow: hidden;
-    }
-    .testimonials-left img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      opacity: 0.6;
-    }
-    .testimonials-left h2 {
-      position: absolute;
-      top: 2.5rem; left: 2.5rem;
-      font-family: var(--font-display);
-      font-size: 3.5rem;
-      line-height: 0.9;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-    .testimonials-right {
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      background: var(--gray);
-    }
-    .review {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid #bbb;
-    }
-    .review:last-child { border-bottom: none; }
-    .review-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.75rem;
-    }
-    .review-name {
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .review-score {
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-    }
-    .review-text {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: #333;
-    }
-
-    /* ── CONTACT / SCHEDULE ── */
-    #contact {
-      padding: 5rem 4rem;
-      background: var(--white);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    #contact h2 {
-      font-family: var(--font-display);
-      font-size: 4rem;
-      line-height: 0.9;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-    #contact p {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-    .contact-info p { margin-bottom: 0.5rem; color: #333; font-size: 0.95rem; }
-    .contact-info strong { color: var(--black); }
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .contact-form input,
-    .contact-form select,
-    .contact-form textarea {
-      width: 100%;
-      padding: 0.9rem 1rem;
-      border: 1.5px solid #ccc;
-      background: var(--white);
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .contact-form input:focus,
-    .contact-form select:focus,
-    .contact-form textarea:focus { border-color: var(--orange); }
-    .contact-form textarea { resize: vertical; min-height: 100px; }
-    .btn-submit {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: var(--orange);
-      color: var(--white);
-      padding: 1rem 2rem;
-      font-family: var(--font-condensed);
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-      align-self: flex-start;
-    }
-    .btn-submit:hover { background: var(--black); }
-
-    /* ── FOOTER ── */
+    .service-info { position: absolute; top: 0; left: 0; right: 0; padding: 1.5rem; }
     footer {
       background: var(--black);
       color: var(--white);
@@ -527,39 +388,101 @@
       flex-wrap: wrap;
       gap: 2rem;
     }
-    .footer-logo {
-      font-family: var(--font-condensed);
-      font-weight: 900;
+    /* Añade esto después de .summary-section */
+    .summary-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    background: var(--white); /* Fondo blanco como las tarjetas */
+      border-left: none; /* Quitamos la línea lateral */
+      padding: 0; /* Quitamos padding para que la tarjeta lo gestione */
+      overflow: hidden; /* Para mantener las esquinas redondeadas */
+    }
+
+    /* Nuevo estilo para que cada summary-section sea una tarjeta */
+    .summary-card {
+      background: var(--white);
+      border-radius: 0; /* Mantenemos el estilo cuadrado como las otras tarjetas */
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Cabecera de la tarjeta (alternando colores como las stat-card) */
+    .summary-card-header {
+      padding: 1.5rem 1.5rem 0.75rem 1.5rem;
+      font-family: var(--font-display);
       font-size: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .summary-card.dark .summary-card-header {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .summary-card.light .summary-card-header {
+      background: var(--gray);
+      color: var(--black);
+    }
+
+    /* Cuerpo de la tarjeta */
+    .summary-card-body {
+      padding: 1.5rem;
+      flex: 1;
+    }
+
+    /* Tabla dentro de las tarjetas */
+    .summary-card-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: transparent;
+    }
+
+    .summary-card-table th {
+      background: transparent;
+      color: inherit;
+      padding: 0.7rem 0.5rem;
+      text-align: left;
+      font-family: var(--font-condensed);
+      font-size: 0.7rem;
+      font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      border-bottom: 2px solid var(--orange);
     }
-    .footer-copy { font-size: 0.8rem; color: #888; margin-top: 0.5rem; }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a {
-      font-family: var(--font-condensed);
-      font-weight: 700;
+
+    .summary-card-table td {
+      padding: 0.6rem 0.5rem;
+      border-bottom: 1px solid #e0e0e0;
       font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray-dark);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--orange); }
-
-    /* ── ANIMATIONS ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
-    /* ── RESPONSIVE ── */
+    .summary-card.dark .summary-card-table td {
+      border-bottom-color: #333;
+    }
+
+    .summary-card-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Texto de nota dentro de la tarjeta */
+    .summary-card-note {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .summary-card.dark .summary-card-note {
+      border-top-color: #333;
+      color: #aaa;
+    }
     @media (max-width: 900px) {
       #hero, #about, #contact, #testimonials { grid-template-columns: 1fr; }
       .services-grid, .services-row2 { grid-template-columns: 1fr; }
@@ -575,97 +498,56 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Analucia Vera</a>
   <ul class="nav-links">
-    <li><a href="#about">home</a></li>
+    <li><a href="#about">Home</a></li>
     <li><a href="#services">3D Design</a></li>
     <li><a href="#contact">Simulation</a></li>
   </ul>
-  <a class="nav-cta" href="#contact">
-    Schedule Service <span class="dot"></span>
-  </a>
+  <a class="nav-cta" href="#contact">Schedule Service <span class="dot"></span></a>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <!-- Placeholder gradient simulating car on lift -->
     <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 50%,#111 100%);display:flex;align-items:center;justify-content:center;">
       <svg width="220" height="300" viewBox="0 0 220 300" fill="none" opacity="0.3">
-        <!-- lift pillars -->
         <rect x="20" y="50" width="18" height="250" fill="#888"/>
         <rect x="182" y="50" width="18" height="250" fill="#888"/>
-        <!-- car body simplified -->
         <rect x="40" y="140" width="140" height="55" rx="12" fill="#555"/>
         <rect x="60" y="115" width="100" height="40" rx="8" fill="#444"/>
-        <!-- wheels -->
         <circle cx="68" cy="200" r="22" fill="#333" stroke="#666" stroke-width="4"/>
         <circle cx="152" cy="200" r="22" fill="#333" stroke="#666" stroke-width="4"/>
-        <!-- headlights -->
         <rect x="42" y="155" width="18" height="10" rx="2" fill="#aaa"/>
         <rect x="160" y="155" width="18" height="10" rx="2" fill="#aaa"/>
       </svg>
     </div>
-    <img src="assets/images/hero-bg.jpg" alt="Car repair background" 
-           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
-    <div class="hero-badge">
-      <h1>AUTO<br>REPAIR<br>YOU<br>CAN<br>TRUST</h1>
-    </div>
+    <div class="hero-badge"><h1>AUTO<br>REPAIR<br>YOU<br>CAN<br>TRUST</h1></div>
   </div>
   <div class="hero-right">
     <p class="hero-tagline">We keep your vehicle running strong with honest service and fair prices.</p>
     <div class="hero-img-bottom">
-      <!-- Placeholder for red car detail image -->
       <div style="width:100%;height:100%;background:linear-gradient(120deg,#C0392B,#E8440A,#8B1A1A);min-height:280px;display:flex;align-items:center;justify-content:center;">
-        <svg width="180" height="120" viewBox="0 0 180 120" fill="none" opacity="0.5">
-          <ellipse cx="90" cy="60" rx="80" ry="45" fill="#ff6b3d" opacity="0.6"/>
-          <ellipse cx="110" cy="50" rx="50" ry="28" fill="#ff9966" opacity="0.4"/>
-        </svg>
+        <svg width="180" height="120" viewBox="0 0 180 120" fill="none" opacity="0.5"><ellipse cx="90" cy="60" rx="80" ry="45" fill="#ff6b3d" opacity="0.6"/><ellipse cx="110" cy="50" rx="50" ry="28" fill="#ff9966" opacity="0.4"/></svg>
       </div>
       <a href="#contact" class="btn-cta">Schedule Service <span class="dot"></span></a>
     </div>
   </div>
 </section>
-  
-  <section id="about">
-  <div class="about-left fade-up">
-    <h2>Background</h2>
-    <div class="about-img">
-      <!-- Placeholder garage image -->
-      <div style="width:100%;height:220px;background:linear-gradient(180deg,#d0d0d0,#b0b0b0);display:flex;align-items:center;justify-content:center;">
-        <div style="display:flex;gap:12px;">
-          <div style="width:80px;height:140px;background:var(--orange);border-radius:4px 4px 0 0;"></div>
-          <div style="width:80px;height:140px;background:var(--orange);border-radius:4px 4px 0 0;"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left fade-up"><h2>Background</h2><div class="about-img"><div style="width:100%;height:220px;background:linear-gradient(180deg,#d0d0d0,#b0b0b0);display:flex;align-items:center;justify-content:center;"><div style="display:flex;gap:12px;"><div style="width:80px;height:140px;background:var(--orange);border-radius:4px 4px 0 0;"></div><div style="width:80px;height:140px;background:var(--orange);border-radius:4px 4px 0 0;"></div></div></div></div></div>
   <div class="about-right fade-up">
-    <div class="stat-card light">
-      <h3>About us</h3>
-      <p style="font-size: 1rem;"> <strong>DigiCase Solutions</strong> is a specialized contract manufacturer (Tier 1 supplier) operating within the Industry 4.0 paradigm. Unlike traditional injection molding shops, our core competency lies in additive manufacturing processes (Fused Deposition Modeling) coupled with end-to-end digital thread integration.<br><br>We do not simply print plastic. We provide <strong>qualified, traceable, and interchangeable</strong> casings for modular electronics OEMs.</p>
-    </div>
-    <div class="stat-card dark">
-      <h3>The<br>Challenge</h3>
-      <p style="font-size: 1.2rem;">How do we guarantee that 50,000 casings from our printer behave identically to the 'master part' provided by another supplier?</p>
-    </div>
-    <div class="stat-card dark">
-      <h3>The<br>Risk</h3>
-      <p style="font-size: 1.2rem;">If geometric variability is present across multiple suppliers, the CP Lab assembly line will suffer jams, pick-by-light failures, or press-fit fractures.</p>
-    </div>
-    <div class="stat-card light">
-      <h3>Our<br>Commitment</h3>
-      <p style="font-size: 1.2rem;">We guarantee both statistical interchangeability and CP Lab station success ensuring that any casing from our batch will fit the "master parts" without selective assembly (no batching/matching).</p>
-    </div>
+    <div class="stat-card light"><h3>About us</h3><p style="font-size: 1rem;"><strong>DigiCase Solutions</strong> is a specialized contract manufacturer (Tier 1 supplier) operating within Industry 4.0. Our core competency is additive manufacturing (FDM) with end-to-end digital thread integration.</p></div>
+    <div class="stat-card dark"><h3>The<br>Challenge</h3><p style="font-size: 1.2rem;">How to guarantee 50,000 casings behave identically to the 'master part'?</p></div>
+    <div class="stat-card dark"><h3>The<br>Risk</h3><p style="font-size: 1.2rem;">Geometric variability across suppliers causes assembly line jams, failures.</p></div>
+    <div class="stat-card light"><h3>Our<br>Commitment</h3><p style="font-size: 1.2rem;">Statistical interchangeability and CP Lab station success without selective assembly.</p></div>
   </div>
 </section>
-
-
   
-  <!-- BUSINESS MODEL CANVAS - VERSIÓN FLIP CARDS (adaptada al estilo Auto Repair) -->
-<section id="bmc" style="padding: 5rem 4rem; background: var(--gray); width: 100%;">
+  <section id="bmc" style="padding: 5rem 4rem; background: var(--gray); width: 100%;">
   <div class="fade-up" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
     
     
@@ -808,6 +690,138 @@
       font-size: 0.8rem;
       color: #555;
       margin-bottom: 0.5rem;
+    }
+    
+        /* ── NAVIGATION CARDS (3D Design & Simulation) ── */
+    .nav-cards-section {
+      padding: 5rem 4rem;
+      background: var(--gray);
+    }
+
+    .nav-cards-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .nav-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+
+    .nav-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .nav-card-inner {
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-card-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .nav-card h3 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 1rem;
+    }
+
+    .nav-card p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .nav-card-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      transition: gap 0.3s ease;
+    }
+
+    .nav-card:hover .nav-card-arrow {
+      gap: 1rem;
+    }
+
+    .nav-card-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.05;
+      z-index: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-card:hover .nav-card-bg {
+      opacity: 0.1;
+    }
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+    .services-header h2 {
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+    .services-header h2 {
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+    .services-header p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      max-width: 320px;
+      
+    }
+
+    @media (max-width: 900px) {
+      .nav-cards-section {
+        padding: 3rem 1.5rem;
+      }
+      .nav-cards-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .nav-card h3 {
+        font-size: 2rem;
+      }
     }
     
     @media (max-width: 900px) {
@@ -1030,586 +1044,223 @@
   </p> -->
 </section>
   
-  
-  <!-- MULTI-SUPPLIER VARIABILITY SECTION -->
-<section id="variability" style="padding: 5rem 4rem; background: var(--gray);">
-  <div class="fade-up" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <p class="section-label" style="margin-bottom: 0;">03 — Supply Chain Challenge</p>
-    <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--orange), transparent);"></div>
-  </div>
-  
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
-    <div class="fade-up">
-      <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 0.95; text-transform: uppercase; margin-bottom: 1.5rem;">Multiple Suppliers,<br>One Drawing</h2>
-      <p style="font-size: 1rem; line-height: 1.7; color: #333; margin-bottom: 1rem;">In traditional manufacturing, companies often subcontract aspects of production to multiple suppliers of the same component to reduce supply chain disruption risk. However, this introduces a critical challenge: <strong>variability and interchangeability</strong>.</p>
-      <p style="font-size: 1rem; line-height: 1.7; color: #333; margin-bottom: 1rem;">Will all components from different suppliers be consistent and interchangeable? Will they fit together during assembly, or must they be matched and batched per supplier?</p>
-      <p style="font-size: 1rem; line-height: 1.7; color: #333;">This project directly addressed this challenge through the <strong>"master parts"</strong> provided with the CP Lab line — reference casings from an existing supplier against which our parts were measured and validated.</p>
+     <!-- CALL TO ACTION: EXPLORE 3D DESIGN & SIMULATION (Estilo Services) -->
+  <section class="nav-cards-section fade-up">
+    <div class="services-header" style="margin-bottom: 2rem;">
+      <h2>Explore My<br>Technical Work</h2>
+      <p></p>
+      <p class="fade-up" style="margin-bottom: 2rem; max-width: 700px; font-size: 0.95rem; color: #555; line-height: 1.6;">Dive deep into the engineering process, from digital manufacturing to plant simulation.<br></p>
     </div>
-    
-    <div class="fade-up" style="background: var(--white); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-      <h3 style="font-family: var(--font-condensed); font-weight: 900; font-size: 1.2rem; text-transform: uppercase; margin-bottom: 1rem;">🔍 Key Findings</h3>
-      <ul style="margin-left: 1.2rem; line-height: 1.8;">
-        <li>Even with identical CAD files, print parameters across <strong>two different printers</strong> (Ultimaker vs Elegoo) produced measurable dimensional variation</li>
-        <li>The <strong>same printer</strong> with different filament batches showed slight colour and shrinkage differences</li>
-        <li>Configuration 7 (15% infill, no supports) produced the <strong>best fit</strong> with master parts, despite not having the highest infill</li>
-        <li><strong>Statistical Process Control (SPC)</strong> would be required to monitor and maintain consistency across multiple suppliers</li>
-      </ul>
-      <div style="margin-top: 1.5rem; padding: 1rem; background: var(--gray); border-left: 4px solid var(--orange);">
-        <p style="font-size: 0.85rem; margin: 0;"><strong>📌 Recommendation:</strong> Implement regular gauge R&R studies and maintain digital twins of each supplier's process parameters to ensure interchangeability.</p>
-      </div>
-    </div>
-  </div>
-</section>
-  
-<!-- INDUSTRY 4.0 INTEGRATION - Estilo "The Region's Best Auto Shop" -->
-<section id="industry40" style="padding: 5rem 4rem; background: var(--white);">
-  <div class="fade-up" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <p class="section-label" style="margin-bottom: 0;">04 — Industry 4.0</p>
-    <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--orange), transparent);"></div>
-  </div>
-  
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
-    
-    <!-- COLUMNA IZQUIERDA: Visual / Dibujo (como la imagen del taller) -->
-    <div class="fade-up">
-      <div style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border-radius: 12px; overflow: hidden; min-height: 400px; display: flex; flex-direction: column; position: relative;">
-        <!-- SVG representando integración vertical y horizontal -->
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; opacity: 0.7;">
-          <svg width="280" height="280" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Círculo central (fábrica) -->
-            <circle cx="140" cy="140" r="45" fill="var(--orange)" fill-opacity="0.3" stroke="var(--orange)" stroke-width="2"/>
-            <text x="120" y="146" fill="white" font-size="12" font-family="monospace">Factory</text>
-            
-            <!-- Línea vertical (integración vertical: arriba diseño, abajo producción) -->
-            <line x1="140" y1="30" x2="140" y2="250" stroke="var(--orange)" stroke-width="2" stroke-dasharray="6 4"/>
-            
-            <!-- Línea horizontal (integración horizontal: izquierda proveedores, derecha cliente) -->
-            <line x1="30" y1="140" x2="250" y2="140" stroke="var(--white)" stroke-width="2" stroke-dasharray="6 4"/>
-            
-            <!-- Nodos verticales -->
-            <circle cx="140" cy="55" r="18" fill="#1a1a1a" stroke="var(--orange)" stroke-width="1.5"/>
-            <text x="128" y="60" fill="var(--orange)" font-size="8" font-family="monospace">CAD</text>
-            
-            <circle cx="140" cy="225" r="18" fill="#1a1a1a" stroke="var(--orange)" stroke-width="1.5"/>
-            <text x="124" y="230" fill="var(--orange)" font-size="8" font-family="monospace">QC</text>
-            
-            <!-- Nodos horizontales -->
-            <circle cx="55" cy="140" r="18" fill="#1a1a1a" stroke="var(--white)" stroke-width="1.5"/>
-            <text x="38" y="144" fill="white" font-size="7" font-family="monospace">Suppliers</text>
-            
-            <circle cx="225" cy="140" r="18" fill="#1a1a1a" stroke="var(--white)" stroke-width="1.5"/>
-            <text x="210" y="144" fill="white" font-size="7" font-family="monospace">Customer</text>
-            
-            <!-- Flechas -->
-            <polygon points="140,37 136,45 144,45" fill="var(--orange)"/>
-            <polygon points="140,243 136,235 144,235" fill="var(--orange)"/>
-            <polygon points="37,140 45,136 45,144" fill="white"/>
-            <polygon points="243,140 235,136 235,144" fill="white"/>
-            
-            <!-- Etiquetas decorativas -->
-            <text x="100" y="28" fill="var(--orange)" font-size="7" font-family="monospace">VERTICAL</text>
-            <text x="100" y="270" fill="var(--orange)" font-size="7" font-family="monospace">INTEGRATION</text>
-            <text x="18" y="130" fill="white" font-size="7" font-family="monospace">HORIZONTAL</text>
-            <text x="200" y="270" fill="white" font-size="7" font-family="monospace">INTEGRATION</text>
-          </svg>
-        </div>
-        <div style="padding: 2rem; z-index: 1; text-align: center; margin-top: auto;">
-          <div style="background: rgba(0,0,0,0.6); padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin: 0 auto;">
-            <span style="font-family: var(--font-condensed); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--orange);">Digital Thread</span>
+
+    <div class="services-grid fade-up">
+      <!-- Tarjeta 1: 3D Design & Additive Manufacturing (estilo orange - grande) -->
+      <div class="service-card orange" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='#'">
+        <div class="service-info">
+          <h3>3D Design &<br>Additive Manufacturing</h3>
+          <p>From CAD to FDM printing, explore the complete digital manufacturing workflow.</p>
+          <div style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black);">
+            View Case Study <span style="font-size: 1rem;">→</span>
           </div>
         </div>
+        <div style="position: absolute; bottom: 0; right: 0; width: 70%; height: 70%; display: flex; align-items: center; justify-content: center; overflow: hidden; opacity: 0.5;">
+          <svg viewBox="0 0 300 300" width="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ilustración 3D Printer / Engineering -->
+            <rect x="80" y="80" width="140" height="160" rx="8" fill="#0A0A0A"/>
+            <rect x="100" y="100" width="100" height="80" rx="4" fill="#333"/>
+            <rect x="120" y="120" width="60" height="40" rx="2" fill="#E8440A"/>
+            <circle cx="110" cy="220" r="15" fill="#0A0A0A"/>
+            <circle cx="190" cy="220" r="15" fill="#0A0A0A"/>
+            <line x1="150" y1="80" x2="150" y2="50" stroke="#0A0A0A" stroke-width="4"/>
+            <line x1="130" y1="50" x2="170" y2="50" stroke="#0A0A0A" stroke-width="4"/>
+            <!-- Capas de impresión -->
+            <rect x="125" y="125" width="50" height="4" fill="#E8440A" opacity="0.7"/>
+            <rect x="125" y="135" width="50" height="4" fill="#E8440A" opacity="0.5"/>
+            <rect x="135" y="145" width="30" height="4" fill="#E8440A" opacity="0.3"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Tarjeta 2: Plant Simulation (estilo dark) -->
+      <div class="service-card dark" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='#'">
+        <div class="service-info" style="color: white;">
+          <h3>Plant Simulation<br>& Process Optimization</h3>
+          <p>Tecnomatix digital twins, bottleneck analysis and throughput optimization.</p>
+          <div style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange);">
+            View Analysis <span style="font-size: 1rem;">→</span>
+          </div>
+        </div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 65%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1.5rem; opacity: 0.6;">
+          <svg viewBox="0 0 140 120" width="80%" fill="none">
+            <!-- Simulación / Estaciones de trabajo -->
+            <rect x="10" y="60" width="30" height="40" rx="3" fill="var(--orange)"/>
+            <rect x="50" y="30" width="30" height="70" rx="3" fill="var(--orange)" opacity="0.8"/>
+            <rect x="90" y="15" width="30" height="85" rx="3" fill="var(--orange)" opacity="0.6"/>
+            <!-- Flechas de flujo -->
+            <line x1="40" y1="80" x2="50" y2="65" stroke="white" stroke-width="2" stroke-dasharray="3 2"/>
+            <polygon points="48,63 54,68 52,60" fill="white"/>
+            <line x1="80" y1="65" x2="90" y2="55" stroke="white" stroke-width="2" stroke-dasharray="3 2"/>
+            <polygon points="88,53 94,58 92,50" fill="white"/>
+            <!-- Cinta transportadora -->
+            <line x1="10" y1="100" x2="120" y2="100" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3: Process Validation (estilo dark) -->
+      <div class="service-card dark" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='#'">
+        <div class="service-info" style="color: white;">
+          <h3>Process<br>Validation & PFMEA</h3>
+          <p>Risk assessment, quality control, and assembly line integration.</p>
+          <div style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange);">
+            View Methodology <span style="font-size: 1rem;">→</span>
+          </div>
+        </div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 65%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1.5rem; opacity: 0.6;">
+          <svg viewBox="0 0 120 100" width="70%" fill="none">
+            <!-- Gráfico de control / QC -->
+            <rect x="10" y="20" width="100" height="60" rx="4" fill="none" stroke="white" stroke-width="2"/>
+            <line x1="10" y1="50" x2="110" y2="50" stroke="white" stroke-width="1" stroke-dasharray="2 2"/>
+            <!-- Línea de tendencia -->
+            <polyline points="20,70 40,45 60,55 80,35 100,40" stroke="var(--orange)" stroke-width="2" fill="none"/>
+            <!-- OK / NOK markers -->
+            <circle cx="30" cy="60" r="3" fill="#27ae60"/>
+            <circle cx="50" cy="50" r="3" fill="#27ae60"/>
+            <circle cx="70" cy="42" r="3" fill="#e74c3c"/>
+            <circle cx="90" cy="45" r="3" fill="#27ae60"/>
+          </svg>
+        </div>
       </div>
     </div>
-    
-    <!-- COLUMNA DERECHA: Grid de 2 tarjetas (como en About) -->
-    <div class="fade-up">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
-        
-        <!-- Tarjeta 1: Vertical Integration (estilo stat-card dark) -->
-        <div class="stat-card dark" style="padding: 2rem; border: 1px solid #222;">
-          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏭</div>
-          <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2;">Vertical<br>Integration</h3>
-          <p style="font-size: 0.7rem; margin-top: 1rem; color: #aaa;">CAD → Slicer → Printer → QC → Simulation</p>
-          <p style="font-size: 0.75rem; margin-top: 0.5rem; color: var(--orange);">Inside the factory</p>
+
+    <!-- Segunda fila: Recursos adicionales (estilo services-row2) -->
+    <div class="services-row2 fade-up">
+      <!-- Digital Thread -->
+      <div class="service-card dark" style="min-height: 320px; cursor: pointer;" onclick="window.location.href='#'">
+        <div class="service-info">
+          <h3>Digital Thread<br>& Traceability</h3>
+          <p>QR codes, SPC charts, and end-to-end quality tracking across the supply chain.</p>
+          <div style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black);">
+            Learn More <span style="font-size: 1rem;">→</span>
+          </div>
         </div>
-        
-        <!-- Tarjeta 2: Horizontal Integration (estilo stat-card light) -->
-        <div class="stat-card light" style="padding: 2rem; border: 1px solid #e0e0e0;">
-          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔄</div>
-          <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2;">Horizontal<br>Integration</h3>
-          <p style="font-size: 0.7rem; margin-top: 1rem;">Suppliers → Manufacturer → Customer</p>
-          <p style="font-size: 0.75rem; margin-top: 0.5rem; color: var(--orange);">Along the supply chain</p>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 55%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1rem; opacity: 0.5;">
+          <svg viewBox="0 0 120 80" width="70%" fill="none">
+            <!-- Código QR estilizado -->
+            <rect x="20" y="10" width="60" height="60" rx="3" fill="white"/>
+            <rect x="25" y="15" width="10" height="10" fill="black"/>
+            <rect x="40" y="15" width="10" height="10" fill="black"/>
+            <rect x="25" y="30" width="10" height="10" fill="black"/>
+            <rect x="55" y="30" width="10" height="10" fill="black"/>
+            <rect x="25" y="45" width="25" height="20" fill="black"/>
+            <rect x="65" y="15" width="10" height="20" fill="black"/>
+            <rect x="55" y="55" width="20" height="10" fill="black"/>
+            <!-- Flecha de datos -->
+            <line x1="85" y1="40" x2="105" y2="40" stroke="var(--orange)" stroke-width="2"/>
+            <polygon points="103,36 111,40 103,44" fill="var(--orange)"/>
+          </svg>
         </div>
-        
       </div>
+
+      <!-- Industry 4.0 Framework -->
       
-      <!-- Resumen / descripción adicional debajo -->
-      <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--gray); border-radius: 8px;">
-        <p style="font-size: 0.85rem; line-height: 1.6; margin: 0; color: #333;">
-          <strong>💡 Digital continuity</strong> — From Fusion 360 CAD to 3D printing to CP Lab validation, 
-          data flows seamlessly through the value chain. This enables <strong>real-time quality tracking</strong> 
-          and <strong>rapid iteration</strong> when dimensional issues arise.
-        </p>
-      </div>
-      <p style="font-size: 0.7rem; margin-top: 1rem; color: #888; text-align: right;">
-        Kagermann et al. (2013) — Industry 4.0 framework
-      </p>
     </div>
-  </div>
-</section>
-  
-  <!-- LESSONS LEARNED SECTION -->
-<!-- LESSONS LEARNED - Estilo "Why Folks Choose Us" -->
-<section id="lessons" style="padding: 5rem 4rem; background: var(--white);">
-  <div class="fade-up" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <p class="section-label" style="margin-bottom: 0;">05 — Key Takeaways</p>
-    <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--orange), transparent);"></div>
-  </div>
-  
-  <h2 class="fade-up" style="font-family: var(--font-display); font-size: 4rem; line-height: 0.9; text-transform: uppercase; margin-bottom: 3rem;">Lessons<br>Learned</h2>
-  
-  <!-- Tabla estilo "Why Folks Choose Us" -->
-  <table class="why-table fade-up" style="width: 100%; border-collapse: collapse;">
-    <tr>
-      <td class="why-num">'01</td>
-      <td class="why-title">Digital Manufacturing</td>
-      <td class="why-desc">3D printing enables rapid iteration — design changes tested in hours. However, for 50,000 units/year, FDM requires ~93 printers. Recommendation: injection moulding for high volume, additive for prototyping.</td>
-    </tr>
-    <tr>
-      <td class="why-num">'02</td>
-      <td class="why-title">Measurement Challenges</td>
-      <td class="why-desc">Thickness tolerance (1.6-2.2mm) was achieved (1.7mm), but variability between manual calipers and CP Lab inspection station was observed. Automated in-line measurement is essential.</td>
-    </tr>
-    <tr>
-      <td class="why-num">'03</td>
-      <td class="why-title">Multi-Supplier Variability</td>
-      <td class="why-desc">Even with identical drawings, different printers/settings produce variation. Master parts are essential reference standards. Digital traceability (QR codes) enables root cause analysis.</td>
-    </tr>
-    <tr>
-      <td class="why-num">'04</td>
-      <td class="why-title">Plant Simulation Benefits</td>
-      <td class="why-desc">Virtual modelling identified the bottleneck: 3D printing throughput (228 printers needed), not assembly line. Simulation prevented costly physical trial-and-error.</td>
-    </tr>
-  </table>
-  
-  <div class="why-footer fade-up" style="margin-top: 2rem; display: flex; justify-content: flex-end;">
-    <div style="background: var(--gray); padding: 1rem 1.5rem; border-radius: 8px; max-width: 400px;">
-      <p style="font-size: 0.75rem; margin: 0; color: #555;">
-        <strong>🎯 Final recommendation:</strong> For 50,000 units/year, consider 
-        <strong>batch printing (4+ pairs per plate)</strong> or transition to 
-        <strong>injection moulding</strong> for the casings while keeping 
-        additive for custom variants.
-      </p>
-    </div>
-  </div>
-</section>
-  
-  <!-- INDUSTRY 4.0 INTEGRATION - Estilo "Complete Auto Repair Services" -->
-<section id="industry40" style="padding: 5rem 4rem; background: var(--white);">
-  <div class="fade-up" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <p class="section-label" style="margin-bottom: 0;">04 — Industry 4.0</p>
-    <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--orange), transparent);"></div>
-  </div>
-  
-  <div class="fade-up" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem;">
-    <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 8vw, 4rem); line-height: 0.9; text-transform: uppercase; margin: 0;">
-      Vertical & Horizontal<br>
-      <span style="color: var(--orange);">Integration</span>
-    </h2>
-    <div style="display: flex; gap: 0.5rem;">
-      <div style="background: var(--orange); padding: 0.5rem 1.2rem; border-radius: 40px; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);">Digital Thread</div>
-      <div style="background: var(--black); padding: 0.5rem 1.2rem; border-radius: 40px; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);">Industry 4.0</div>
-    </div>
-  </div>
 
-  <!-- Grid principal - estilo services-grid -->
-  <div class="services-grid fade-up" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0;">
     
-    <!-- Tarjeta grande: Representación visual de la integración (como Oil Change) -->
-    <div class="service-card orange" style="min-height: 380px; position: relative; overflow: hidden;">
-      <div class="service-info">
-        <h3>Digital Integration</h3>
-        <p>CAD → Slicer → Printer → QC → Simulation</p>
-      </div>
-      <div style="position: absolute; bottom: 0; right: 0; width: 70%; height: 70%; display: flex; align-items: center; justify-content: center; overflow: hidden; opacity: 0.6;">
-        <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
-          <!-- Nodos interconectados -->
-          <circle cx="40" cy="100" r="25" fill="var(--black)" stroke="var(--white)" stroke-width="2"/>
-          <text x="28" y="106" fill="white" font-size="10" font-family="monospace">CAD</text>
-          
-          <circle cx="100" cy="40" r="25" fill="var(--black)" stroke="var(--white)" stroke-width="2"/>
-          <text x="78" y="46" fill="white" font-size="10" font-family="monospace">Printer</text>
-          
-          <circle cx="160" cy="100" r="25" fill="var(--black)" stroke="var(--white)" stroke-width="2"/>
-          <text x="142" y="106" fill="white" font-size="10" font-family="monospace">QC</text>
-          
-          <circle cx="100" cy="160" r="25" fill="var(--black)" stroke="var(--white)" stroke-width="2"/>
-          <text x="78" y="166" fill="white" font-size="10" font-family="monospace">Sim</text>
-          
-          <!-- Líneas de conexión -->
-          <line x1="55" y1="90" x2="85" y2="55" stroke="var(--white)" stroke-width="2" stroke-dasharray="4 3"/>
-          <line x1="115" y1="55" x2="145" y2="90" stroke="var(--white)" stroke-width="2" stroke-dasharray="4 3"/>
-          <line x1="145" y1="115" x2="115" y2="145" stroke="var(--white)" stroke-width="2" stroke-dasharray="4 3"/>
-          <line x1="85" y1="145" x2="55" y2="115" stroke="var(--white)" stroke-width="2" stroke-dasharray="4 3"/>
-          
-          <!-- Flechas de dirección -->
-          <polygon points="78,55 82,48 86,55" fill="var(--white)"/>
-          <polygon points="142,90 148,86 142,82" fill="var(--white)"/>
-          <polygon points="132,145 128,152 122,145" fill="var(--white)"/>
-          <polygon points="68,142 62,138 68,132" fill="var(--white)"/>
-        </svg>
-      </div>
-    </div>
+  </section>
+      
+<!-- PFMEA SECTION -->
+<section id="pfmea" class="pfmea-section fade-up">
+  <div class="pfmea-header"><h2>Process FMEA<br><span style="font-size:1rem;">Additive Manufacturing + Automated Assembly</span></h2><div class="pfmea-sub">PFMEA v1.0 · FDM Printing · CP Lab Assembly Line</div></div>
+  <div class="risk-legend"><div class="risk-legend-item"><span class="risk-badge high">RPN ≥ 100</span><span>High Risk · Immediate action required</span></div><div class="risk-legend-item"><span class="risk-badge medium">RPN 50–99</span><span>Medium Risk · Monitor & improve</span></div><div class="risk-legend-item"><span class="risk-badge low">RPN &lt; 50</span><span>Low Risk · Acceptable</span></div><div class="risk-legend-item"><span style="font-weight:700;">S / O / D</span><span>Severity · Occurrence · Detection (1–10)</span></div></div>
+  <div class="pfmea-table-wrapper"><table class="pfmea-table"><thead><tr><th>ID</th><th>Process Step</th><th>Failure Mode</th><th>Effect</th><th>S</th><th>Cause(s)</th><th>O</th><th>Current Control(s)</th><th>D</th><th>RPN</th><th>Recommended Action</th><th>Responsible</th></tr></thead>
+  <tbody><tr><td class="process-id">P01</td><td>Bed preparation (pre-print)</td><td>Poor adhesion → part detaches mid-print</td><td>Print failure, nozzle crash risk</td><td>9</td><td>Bed not leveled; temp too low</td><td>5</td><td>Manual leveling; brim enabled</td><td>4</td><td><span class="rpn-high">180</span></td><td>Auto bed leveling sensor; IPA cleaning</td><td>Operator</td></tr>
+  <tr><td class="process-id">P02</td><td>Filament loading</td><td>Filament jam or tangle</td><td>Stop in mid-print, grinds filament</td><td>7</td><td>Tangled spool; debris</td><td>3</td><td>Visual check of spool before loading</td><td>5</td><td><span class="rpn-high">105</span></td><td>Filament runout sensor + jam detection</td><td>Maintenance</td></tr>
+  <tr><td class="process-id">P03</td><td>Print start (first layer)</td><td>First layer incomplete</td><td>Part detaches or warps</td><td>8</td><td>Z-offset too high; under-extrusion</td><td>4</td><td>Calibration cube printed daily</td><td>3</td><td><span class="rpn-medium">96</span></td><td>Live Z-adjust during first layer</td><td>Operator</td></tr>
+  <tr><td class="process-id">P04</td><td>Printing – general</td><td>Layer shift (X or Y axis)</td><td>Part unusable, geometry incorrect</td><td>8</td><td>Belt loose; nozzle collision</td><td>3</td><td>Belt tension check weekly</td><td>4</td><td><span class="rpn-medium">96</span></td><td>Add belt tension gauge; reduce acceleration</td><td>Engineer</td></tr>
+  <tr><td class="process-id">P05</td><td>Printing – overhangs</td><td>Layer collapse or sagging</td><td>Catastrophic print failure</td><td>10</td><td>Bridge > 15mm; insufficient cooling</td><td>4</td><td>Variable layer height in C7</td><td>1</td><td><span class="rpn-low">40</span></td><td>Already mitigated for C7 – document restriction</td><td>Design</td></tr>
+  <tr><td class="process-id">P06</td><td>Printing – extrusion</td><td>Partial clog / under-extrusion</td><td>Voids, weak structure, poor surface</td><td>7</td><td>Nozzle temp fluctuation; debris</td><td>4</td><td>Purge line at start; nozzle replacement</td><td>4</td><td><span class="rpn-high">112</span></td><td>Real-time flow monitoring</td><td>Operator</td></tr>
+  <tr><td class="process-id">P07</td><td>Printing – cooling</td><td>Warping during print</td><td>Dimensional error, part detached</td><td>8</td><td>Uneven cooling; draft in room</td><td>4</td><td>Enclosure closed during print; brim used</td><td>3</td><td><span class="rpn-medium">96</span></td><td>Add heated chamber or draft shield</td><td>Engineer</td></tr>
+  <tr><td class="process-id">P08</td><td>Post-print cooling</td><td>Part warps after removal</td><td>Final geometry out of spec</td><td>7</td><td>Removed too early; cooled too fast</td><td>5</td><td>Parts held on bed until &lt;40°C</td><td>4</td><td><span class="rpn-high">140</span></td><td>Controlled cooling ramp; annealing fixture</td><td>Engineer</td></tr>
+  <tr><td class="process-id">M01</td><td>Thickness Measurement</td><td>Wall thickness &lt; 1.6 mm</td><td>Laser sensor rejects part, line stops</td><td>9</td><td>Infill too low; Z-offset drift</td><td>4</td><td>Daily calibration cube; fixed C7 parameters</td><td>3</td><td><span class="rpn-high">108</span></td><td>Implement SPC chart; move to 20% infill</td><td>Quality</td></tr>
+  <tr><td class="process-id">M02</td><td>Thickness Measurement</td><td>False reject due to sensor misalignment</td><td>Good part scrapped, waste</td><td>5</td><td>Sensor mounting shifted</td><td>3</td><td>Weekly sensor check with master gauge</td><td>4</td><td><span class="rpn-medium">60</span></td><td>Automated self-check with reference part</td><td>Maintenance</td></tr>
+  <tr><td class="process-id">T01</td><td>Pick-by-Light / QR</td><td>QR code illegible</td><td>Vision system cannot read, part rejected</td><td>7</td><td>Font too small (2mm)</td><td>2</td><td>Font increased to 4mm in CAD</td><td>2</td><td><span class="rpn-low">28</span></td><td>Maintain ironing = enabled for top surfaces</td><td>Design</td></tr>
+  <tr><td class="process-id">A01</td><td>Component Insertion</td><td>Internal radius too tight</td><td>Component jams halfway</td><td>8</td><td>CAD deviation; shrinkage not compensated</td><td>3</td><td>CMM spot-check every 50 parts</td><td>4</td><td><span class="rpn-medium">96</span></td><td>Increase CAD radius by 0.1 mm compensation</td><td>Design</td></tr>
+  <tr><td class="process-id">A02</td><td>Component Insertion</td><td>Insertion force too low (loose fit)</td><td>Component falls out during handling</td><td>7</td><td>Radius too large; worn nozzle</td><td>3</td><td>Go/no-go gauge for radius</td><td>5</td><td><span class="rpn-high">105</span></td><td>Spec tighter gauge; add automated force monitoring</td><td>Quality</td></tr>
+  <tr><td class="process-id">F01</td><td>Press-Fit / Closing</td><td>Snap too loose</td><td>Case does not latch, assembly separates</td><td>9</td><td>Snap length wrong; extrusion width variation</td><td>5</td><td>Three snap lengths tested (T2b selected)</td><td>3</td><td><span class="rpn-high">135</span></td><td>In-line snap force tester; feedback to print parameters</td><td>Engineer</td></tr>
+  <tr><td class="process-id">F02</td><td>Press-Fit / Closing</td><td>Snap too tight or brittle</td><td>Snap fractures during assembly</td><td>8</td><td>Layer adhesion weak; snap length too long</td><td>3</td><td>C7 parameters (normal speed, 15% infill)</td><td>2</td><td><span class="rpn-low">48</span></td><td>Maintain "Normal" speed; never use "Fast" mode</td><td>Production</td></tr>
+  <tr><td class="process-id">F03</td><td>Press-Fit / Closing</td><td>Case misalignment before pressing</td><td>Uneven closure, stress on snaps</td><td>7</td><td>Part warped; fixturing not precise</td><td>4</td><td>Visual alignment guide on fixture</td><td>4</td><td><span class="rpn-high">112</span></td><td>Add mechanical guide pins; reject if warped >0.2mm</td><td>Design</td></tr>
+  </tbody></table></div>
+
+      <!-- HIGH RISK SUMMARY & REVIEW FREQUENCY - ESTILO TARJETAS -->
+  <div class="summary-container">
     
-    <!-- Tarjeta: Vertical Integration (como Engine Check) -->
-    <div class="service-card dark" style="min-height: 380px; position: relative;">
-      <div class="service-info">
-        <h3>Vertical Integration</h3>
-        <p>Inside the factory — machine-to-machine data flow.</p>
+    <!-- Tarjeta 1: High Risk Summary (estilo dark como "The Challenge") -->
+    <div class="summary-card dark">
+      <div class="summary-card-header">
+        🔴 High Risk Summary
       </div>
-      <div style="position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; padding-bottom: 1.5rem;">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-          <div style="font-size: 2rem;">🏭</div>
-          <div style="font-size: 0.7rem; color: var(--gray-dark); margin-top: 0.3rem;">CAD → CAM → CAQ</div>
+      <div class="summary-card-body">
+        <table class="summary-card-table">
+          <thead>
+            <tr><th>RPN</th><th>ID</th><th>Failure Mode</th><th>Priority Action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>180</strong></td><td>P01</td><td>Part detachment mid-print</td><td>Auto bed leveling + automatic cleaning</td></tr>
+            <tr><td><strong>140</strong></td><td>P08</td><td>Post-cooling warping</td><td>Controlled cooling ramp + annealing fixture</td></tr>
+            <tr><td><strong>135</strong></td><td>F01</td><td>Snap too loose</td><td>In-line snap force tester + feedback</td></tr>
+            <tr><td><strong>112</strong></td><td>P06</td><td>Under-extrusion</td><td>Real-time flow monitoring</td></tr>
+            <tr><td><strong>112</strong></td><td>F03</td><td>Case misalignment</td><td>Mechanical guide pins + reject if warped</td></tr>
+            <tr><td><strong>108</strong></td><td>M01</td><td>Wall thickness &lt; 1.6mm</td><td>SPC chart + 20% infill if drift detected</td></tr>
+            <tr><td><strong>105</strong></td><td>P02</td><td>Filament jam / tangle</td><td>Filament runout sensor + jam detection</td></tr>
+            <tr><td><strong>105</strong></td><td>A02</td><td>Insertion too loose</td><td>Tighter go/no-go gauge + force monitoring</td></tr>
+          </tbody>
+        </table>
+        <div class="summary-card-note">
+          ⚠️ 8 high-risk items require immediate management review.
         </div>
       </div>
     </div>
-    
-    <!-- Tarjeta: Horizontal Integration (como Brake Repair) -->
-    <div class="service-card dark" style="min-height: 380px; position: relative;">
-      <div class="service-info">
-        <h3>Horizontal Integration</h3>
-        <p>Along the supply chain — supplier to customer.</p>
+
+    <!-- Tarjeta 2: Review Frequency (estilo light como "About Us") -->
+    <div class="summary-card light">
+      <div class="summary-card-header">
+        📋 Review Frequency by RPN
       </div>
-      <div style="position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; padding-bottom: 1.5rem;">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-          <div style="font-size: 2rem;">🔄</div>
-          <div style="font-size: 0.7rem; color: var(--gray-dark); margin-top: 0.3rem;">Supplier → Manufacturer → Customer</div>
+      <div class="summary-card-body">
+        <table class="summary-card-table">
+          <thead>
+            <tr><th>RPN Range</th><th>Review Frequency</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>≥ 120</strong></td><td>Weekly</td></tr>
+            <tr><td><strong>70 – 119</strong></td><td>Bi-weekly or Monthly</td></tr>
+            <tr><td><strong>30 – 69</strong></td><td>Quarterly</td></tr>
+            <tr><td><strong>&lt; 30</strong></td><td>Semi-annually or Annually</td></tr>
+          </tbody>
+        </table>
+        <div class="summary-card-note">
+          <strong>Note:</strong> Based on AIAG & VDA guidelines. RPN ≥ 120 requires immediate action. 
+          RPN 70–119 requires monthly review. Lower RPNs reviewed periodically.
         </div>
       </div>
     </div>
+
   </div>
 
-  <!-- Fila inferior: Explicación detallada (como la fila de Tires + Inspections) -->
-  <div style="display: grid; grid-template-columns: 2fr 1fr; margin-top: 0;" class="fade-up">
-    <div class="service-card dark" style="min-height: 280px; position: relative;">
-      <div class="service-info">
-        <h3>Digital Twin & Simulation</h3>
-        <p>Virtual modelling of the entire production ecosystem — from 3D printing to CP Lab assembly. Real-time data sync between physical and digital twins enables predictive maintenance and bottleneck detection.</p>
-      </div>
-      <div style="position: absolute; bottom: 0; right: 0; width: 40%; height: 60%; display: flex; align-items: flex-end; justify-content: flex-end; opacity: 0.4;">
-        <svg width="120" height="100" viewBox="0 0 120 100" fill="none">
-          <rect x="10" y="30" width="40" height="50" rx="4" fill="var(--orange)"/>
-          <rect x="35" y="15" width="40" height="50" rx="4" fill="var(--orange)" opacity="0.7"/>
-          <rect x="60" y="5" width="40" height="50" rx="4" fill="var(--orange)" opacity="0.4"/>
-        </svg>
-      </div>
-    </div>
-    <div class="service-card light" style="min-height: 280px;">
-      <div class="service-info" style="position: static; padding: 1.5rem;">
-        <h3 style="color: var(--black);">Key Benefits</h3>
-        <p style="font-size: 0.85rem; line-height: 1.5; color: #333;">✓ Real-time quality tracking<br>✓ Rapid iteration (hours vs weeks)<br>✓ Supply chain transparency<br>✓ Predictive maintenance</p>
-        <div style="margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #ddd;">
-          <p style="font-size: 0.7rem; color: var(--orange);">Kagermann et al. (2013)</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-  
-<!-- ABOUT -->
-
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="services-header fade-up">
-    <h2>Complete Auto<br>Repair Services</h2>
-    <p>From routine maintenance to major repairs, we handle it all.</p>
-  </div>
-
-  <div class="services-grid fade-up">
-    <!-- Oil Change — orange large card -->
-    <div class="service-card orange" style="min-height:400px;">
-      <div class="service-info">
-        <h3>Oil Change</h3>
-        <p>Quick, thorough service to keep your engine healthy.</p>
-      </div>
-      <div style="position:absolute;bottom:0;right:0;width:70%;height:70%;display:flex;align-items:center;justify-content:center;overflow:hidden;">
-        <!-- Oil bubble SVG illustration -->
-        <svg viewBox="0 0 300 300" width="100%" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.55">
-          <circle cx="180" cy="160" r="90" fill="#C0330A"/>
-          <circle cx="100" cy="200" r="55" fill="#C0330A"/>
-          <circle cx="200" cy="90" r="40" fill="#C0330A"/>
-          <circle cx="80" cy="120" r="28" fill="#C0330A"/>
-          <circle cx="240" cy="200" r="22" fill="#C0330A"/>
-          <circle cx="140" cy="240" r="18" fill="#C0330A"/>
-          <circle cx="60" cy="230" r="14" fill="#C0330A"/>
-          <circle cx="260" cy="130" r="12" fill="#C0330A"/>
-        </svg>
-      </div>
-    </div>
-    <!-- Engine Check -->
-    <div class="service-card dark">
-      <div class="service-info">
-        <h3>Engine Check</h3>
-        <p>Advanced tools to find and fix the problem fast.</p>
-      </div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:65%;display:flex;align-items:flex-end;justify-content:center;padding-bottom:1rem;">
-        <svg viewBox="0 0 120 100" width="80%" fill="none" opacity="0.7">
-          <rect x="20" y="20" width="80" height="60" rx="6" fill="#555"/>
-          <rect x="35" y="5" width="15" height="20" rx="3" fill="#888"/>
-          <rect x="70" y="5" width="15" height="20" rx="3" fill="#888"/>
-          <rect x="35" y="75" width="15" height="20" rx="3" fill="#888"/>
-          <rect x="70" y="75" width="15" height="20" rx="3" fill="#888"/>
-          <circle cx="60" cy="50" r="18" fill="#333" stroke="#999" stroke-width="3"/>
-          <circle cx="60" cy="50" r="8" fill="#777"/>
-        </svg>
-      </div>
-    </div>
-    <!-- Brake Repair -->
-    <div class="service-card dark">
-      <div class="service-info">
-        <h3>Brake Repair</h3>
-        <p>Safe, reliable stopping power you can count on.</p>
-      </div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:65%;display:flex;align-items:flex-end;justify-content:center;padding-bottom:1rem;">
-        <svg viewBox="0 0 120 120" width="80%" fill="none" opacity="0.7">
-          <circle cx="60" cy="60" r="50" fill="#333" stroke="#666" stroke-width="3"/>
-          <circle cx="60" cy="60" r="28" fill="#222"/>
-          <circle cx="60" cy="60" r="10" fill="#888"/>
-          <rect x="78" y="20" width="22" height="80" rx="4" fill="#C8A000"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  <div class="services-row2 fade-up">
-    <!-- Air Conditioning -->
-    <div class="service-card dark" style="min-height:300px;">
-      <div class="service-info">
-        <h3>Air Conditioning</h3>
-        <p>Stay comfortable in any weather, year-round.</p>
-      </div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:60%;display:flex;align-items:flex-end;justify-content:center;">
-        <svg viewBox="0 0 120 60" width="100%" fill="none" opacity="0.5">
-          <rect x="5" y="10" width="110" height="35" rx="4" fill="#333"/>
-          <rect x="10" y="20" width="100" height="2" fill="#777"/>
-          <rect x="10" y="28" width="100" height="2" fill="#777"/>
-          <rect x="10" y="36" width="100" height="2" fill="#777"/>
-          <rect x="50" y="42" width="20" height="10" rx="2" fill="#555"/>
-        </svg>
-      </div>
-    </div>
-    <!-- Transmission -->
-    <div class="service-card dark" style="min-height:300px;">
-      <div class="service-info">
-        <h3>Transmission</h3>
-        <p>Expert care for smooth shifting and long life.</p>
-      </div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:65%;display:flex;align-items:center;justify-content:center;">
-        <svg viewBox="0 0 100 100" width="70%" fill="none" opacity="0.7">
-          <circle cx="50" cy="50" r="42" fill="#222" stroke="#666" stroke-width="4"/>
-          <circle cx="50" cy="50" r="22" fill="#111" stroke="#888" stroke-width="3"/>
-          <line x1="50" y1="8" x2="50" y2="28" stroke="#aaa" stroke-width="4" stroke-linecap="round"/>
-          <line x1="50" y1="72" x2="50" y2="92" stroke="#aaa" stroke-width="4" stroke-linecap="round"/>
-          <line x1="8" y1="50" x2="28" y2="50" stroke="#aaa" stroke-width="4" stroke-linecap="round"/>
-          <line x1="72" y1="50" x2="92" y2="50" stroke="#aaa" stroke-width="4" stroke-linecap="round"/>
-          <text x="38" y="55" fill="white" font-size="12" font-family="sans-serif">H</text>
-        </svg>
-      </div>
-    </div>
-    <!-- Electrical -->
-    <div class="service-card light" style="min-height:300px;">
-      <div class="service-info" style="position:static;padding:1.5rem;">
-        <h3 style="color:var(--black);">Electrical Systems</h3>
-        <p style="color:#333;">From batteries to starters, we've got you covered.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Last row: Tires + Inspections -->
-  <div style="display:grid;grid-template-columns:2fr 1fr;margin-top:0;" class="fade-up">
-    <div class="service-card dark" style="min-height:400px;">
-      <div class="service-info">
-        <h3>Tire Service & Alignment</h3>
-        <p>Proper alignment and quality tires for safer driving.</p>
-      </div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:75%;display:flex;align-items:center;justify-content:center;">
-        <svg viewBox="0 0 200 200" width="60%" fill="none" opacity="0.7">
-          <circle cx="100" cy="100" r="90" fill="#1a1a1a" stroke="#666" stroke-width="6"/>
-          <circle cx="100" cy="100" r="45" fill="#111" stroke="#999" stroke-width="4"/>
-          <circle cx="100" cy="100" r="15" fill="#888"/>
-          <line x1="100" y1="10" x2="100" y2="55" stroke="#555" stroke-width="8"/>
-          <line x1="100" y1="145" x2="100" y2="190" stroke="#555" stroke-width="8"/>
-          <line x1="10" y1="100" x2="55" y2="100" stroke="#555" stroke-width="8"/>
-          <line x1="145" y1="100" x2="190" y2="100" stroke="#555" stroke-width="8"/>
-          <line x1="36" y1="36" x2="68" y2="68" stroke="#555" stroke-width="6"/>
-          <line x1="132" y1="132" x2="164" y2="164" stroke="#555" stroke-width="6"/>
-          <line x1="164" y1="36" x2="132" y2="68" stroke="#555" stroke-width="6"/>
-          <line x1="68" y1="132" x2="36" y2="164" stroke="#555" stroke-width="6"/>
-        </svg>
-      </div>
-    </div>
-    <div class="service-card light" style="min-height:400px;">
-      <div class="service-info" style="position:static;padding:1.5rem;">
-        <h3>State Inspections</h3>
-        <p>Get inspected and back on the road quickly.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="explore-bar fade-up">
-    <a href="#" class="btn-explore">Explore All Services <span class="dot"></span></a>
-  </div>
+  <div class="footer-note">📊 PFMEA based on AIAG & VDA standards. Severity (S), Occurrence (O), Detection (D) rated 1–10. 🎯 Priority actions assigned to Engineering, Quality, Maintenance, and Production teams. Target: Reduce all RPNs below 100 by Q3.</div>
 </section>
 
-<!-- WHY CHOOSE US -->
-<section id="why">
-  <h2 class="fade-up">Why Folks<br>Choose Us</h2>
-  <table class="why-table fade-up">
-    <tr>
-      <td class="why-num">'01</td>
-      <td class="why-title">Honest & Upfront</td>
-      <td class="why-desc">We explain what's wrong, what it costs, and only fix what's needed. No surprises, no upselling.</td>
-    </tr>
-    <tr>
-      <td class="why-num">'02</td>
-      <td class="why-title">Experienced Team</td>
-      <td class="why-desc">Our ASE-certified mechanics have decades of combined experience working on every type of vehicle.</td>
-    </tr>
-    <tr>
-      <td class="why-num">'03</td>
-      <td class="why-title">Quality Parts Warranty</td>
-      <td class="why-desc">We use quality parts and back our work with a 24-month/24,000-mile warranty for your peace of mind.</td>
-    </tr>
-    <tr>
-      <td class="why-num">'04</td>
-      <td class="why-title">Local & Reliable</td>
-      <td class="why-desc">For 15 years, we've been your trusted local auto shop, committed to providing top-notch service right here in the community.</td>
-    </tr>
-  </table>
-  <div class="why-footer fade-up">
-    <a href="#about" class="btn-who">Who We Are <span class="dot"></span></a>
-  </div>
-</section>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="testimonials-left">
-    <div style="width:100%;height:100%;background:linear-gradient(180deg,#0a0a0a,#1a1a1a);display:flex;align-items:center;justify-content:center;">
-      <svg viewBox="0 0 300 200" width="80%" fill="none" opacity="0.4">
-        <ellipse cx="150" cy="100" rx="120" ry="60" fill="#333"/>
-        <rect x="50" y="60" width="200" height="10" rx="3" fill="#555"/>
-        <rect x="80" y="85" width="140" height="10" rx="3" fill="#555"/>
-        <ellipse cx="80" cy="120" rx="25" ry="10" fill="#222"/>
-        <ellipse cx="220" cy="120" rx="25" ry="10" fill="#222"/>
-      </svg>
-    </div>
-    <h2>What Our<br>Customers<br>Say</h2>
-  </div>
-  <div class="testimonials-right fade-up">
-    <div class="review">
-      <div class="review-header">
-        <span class="review-name">Mike T.</span>
-        <span class="review-score">5.0 ★</span>
-      </div>
-      <p class="review-text">"Sanders & Young fixed my truck right the first time. Fair price, honest work. That's all I need."</p>
-    </div>
-    <div class="review">
-      <div class="review-header">
-        <span class="review-name">Barbara R.</span>
-        <span class="review-score">5.0 ★</span>
-      </div>
-      <p class="review-text">"I've been bringing my cars here for years. They treat you like family and never try to sell you something you don't need."</p>
-    </div>
-    <div class="review">
-      <div class="review-header">
-        <span class="review-name">James L.</span>
-        <span class="review-score">5.0 ★</span>
-      </div>
-      <p class="review-text">"Best mechanic shop around. They explained everything in plain English and got me back on the road fast."</p>
-    </div>
-  </div>
-</section>
+ 
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="fade-up">
-    <h2>Schedule Your Service</h2>
-    <p>Ready to bring your vehicle in? Book an appointment or give us a call — we'll take care of the rest.</p>
-    <div class="contact-info">
-      <p><strong>Phone:</strong> (555) 123-4567</p>
-      <p><strong>Hours:</strong> Mon–Fri 7:30am–6pm · Sat 8am–4pm</p>
-      <p><strong>Address:</strong> 1200 Main Street, Your City, ST 00000</p>
-    </div>
-  </div>
-  <div class="contact-form fade-up">
-    <div class="form-row">
-      <input type="text" placeholder="First Name" />
-      <input type="text" placeholder="Last Name" />
-    </div>
-    <input type="email" placeholder="Email Address" />
-    <input type="tel" placeholder="Phone Number" />
-    <select>
-      <option value="" disabled selected>Select a Service</option>
-      <option>Oil Change</option>
-      <option>Engine Check</option>
-      <option>Brake Repair</option>
-      <option>Air Conditioning</option>
-      <option>Transmission</option>
-      <option>Electrical Systems</option>
-      <option>Tire Service & Alignment</option>
-      <option>State Inspection</option>
-      <option>Other</option>
-    </select>
-    <textarea placeholder="Additional notes or questions..."></textarea>
-    <button class="btn-submit" type="button">Request Appointment →</button>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div>
-    <div class="footer-logo">Analucia Vera</div>
-    <p class="footer-copy">© Digitall Manufac2026 Sanders & Young Auto Repair. All rights reserved.</p>
-  </div>
-  <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#why">Why Us</a>
-    <a href="#contact">Contact</a>
-  </div>
-</footer>
+<footer><div><div class="footer-logo">Analucia Vera</div><p class="footer-copy">© 2025 Analucia Vera. All rights reserved.</p></div><div class="footer-links"><a href="#about">About</a><a href="#services">Services</a><a href="#why">Why Us</a><a href="#contact">Contact</a></div></footer>
 
 <script>
-  // Scroll-triggered fade-up animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
+  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // Smooth active nav highlight
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
-    });
-    navLinks.forEach(a => {
-      a.style.background = '';
-      a.style.color = '';
-      if (a.getAttribute('href') === '#' + current) {
-        a.style.background = 'var(--orange)';
-        a.style.color = 'var(--white)';
-      }
-    });
-  });
+  window.addEventListener('scroll', () => { let current = ''; sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.id; }); navLinks.forEach(a => { a.style.background = ''; a.style.color = ''; if (a.getAttribute('href') === '#' + current) { a.style.background = 'var(--orange)'; a.style.color = 'var(--white)'; } }); });
 </script>
 </body>
 </html>
