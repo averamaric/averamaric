@@ -1,1 +1,838 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analucia Vera — Simulation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #E8440A;
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray: #EFEFEF;
+      --gray-dark: #C8C8C8;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+      --font-condensed: 'Barlow Condensed', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    /* ===== NAV (Mismo estilo) ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 60px;
+      background: var(--white);
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .nav-logo { font-family: var(--font-condensed); font-weight: 900; font-size: 1.25rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+    .nav-links { display: flex; list-style: none; gap: 0; }
+    .nav-links li a { display: block; padding: 0 1.4rem; height: 60px; line-height: 60px; font-family: var(--font-condensed); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); text-decoration: none; transition: background 0.2s; }
+    .nav-links li a:hover, .nav-links li a.active { background: var(--orange); color: var(--white); }
+    .nav-cta { display: flex; align-items: center; gap: 0.75rem; background: var(--black); color: var(--white); padding: 0 1.5rem; height: 60px; font-family: var(--font-condensed); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--orange); }
+    .nav-cta .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+    .nav-cta:hover .dot { background: var(--white); }
+
+    /* ===== HERO ===== */
+    #page-hero {
+      margin-top: 60px;
+      padding: 6% 5%;
+      text-align: center;
+      background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%);
+      position: relative;
+    }
+    #page-hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6rem); line-height: 0.9; text-transform: uppercase; color: var(--white); margin-bottom: 1rem; }
+    #page-hero p { font-size: clamp(0.9rem, 2vw, 1.1rem); color: #aaa; max-width: 700px; margin: 0 auto; }
+
+    /* ===== SECCIONES GENERALES ===== */
+    .section-container { padding: 5% 5%; width: 100%; border-bottom: 1px solid #eee; }
+    .section-label { font-family: var(--font-condensed); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; }
+    h2 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 0.95; text-transform: uppercase; margin-bottom: 1.5rem; }
+
+    /* Layout de dos columnas */
+    .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    @media (max-width: 900px) { .two-col-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+    /* Tarjetas de estaciones */
+    .stations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .station-card { background: var(--white); border-left: 4px solid var(--orange); padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.3s; }
+    .station-card:hover { transform: translateY(-5px); }
+    .station-number { font-family: var(--font-display); font-size: 2rem; color: var(--orange); line-height: 1; }
+    .station-title { font-family: var(--font-condensed); font-weight: 900; font-size: 1.2rem; margin: 0.5rem 0; text-transform: uppercase; }
+    .station-desc { font-size: 0.85rem; color: #555; line-height: 1.5; }
+
+    /* Tablas */
+    .data-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: var(--white); }
+    .data-table th { background: var(--black); color: var(--white); padding: 1rem; text-align: left; font-family: var(--font-condensed); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+    .data-table td { padding: 0.8rem 1rem; border-bottom: 1px solid #e0e0e0; font-size: 0.9rem; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .highlight-orange { background: var(--orange); color: var(--white); font-weight: bold; }
+
+    /* Simulador interactivo */
+    .simulator-box { background: var(--gray); padding: 2rem; border-radius: 12px; margin: 2rem 0; }
+    .conveyor-belt { background: #333; height: 40px; width: 100%; border-radius: 20px; margin: 1rem 0; position: relative; overflow: hidden; }
+    .items-flow { display: flex; gap: 1rem; animation: moveItems 3s linear infinite; width: fit-content; padding: 5px 0; }
+    .item { width: 30px; height: 30px; background: var(--orange); border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: bold; }
+    @keyframes moveItems { 0% { transform: translateX(0); } 100% { transform: translateX(-100px); } }
+    
+    .printer-bank { display: flex; gap: 1rem; justify-content: center; margin: 1rem 0; }
+    .printer-unit { width: 60px; height: 60px; background: var(--black); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--white); font-size: 0.7rem; font-family: var(--font-condensed); }
+    
+    .slider { width: 100%; margin: 1rem 0; }
+    input[type="range"] { width: 100%; margin: 0.5rem 0; }
+
+    .kpi-card { background: var(--white); padding: 1rem; text-align: center; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .kpi-value { font-family: var(--font-display); font-size: 2rem; color: var(--orange); }
+    
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 3rem 5%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .footer-logo { font-family: var(--font-condensed); font-weight: 900; font-size: 1.5rem; text-transform: uppercase; }
+    .footer-links a { color: var(--gray-dark); text-decoration: none; margin-right: 1.5rem; font-size: 0.8rem; }
+    .footer-links a:hover { color: var(--orange); }
+    
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Analucia Vera</a>
+  <ul class="nav-links">
+    <li><a href="index.html">home</a></li>
+    <li><a href="3d-design.html">3D design</a></li>
+    <li><a href="#" class="active">simulation</a></li>
+  </ul>
+  <a class="nav-cta" href="#">Contacto <span class="dot"></span></a>
+</nav>
+
+<!-- Hero -->
+<section id="page-hero">
+  <h1>Plant Simulation<br>CP Lab Assembly</h1>
+  <p>Modelado virtual de la línea de ensamblaje, cálculo de capacidad, optimización de recursos y validación del target de 50.000 unidades/año.</p>
+</section>
+  
+  <!-- SECTION 01: BUSINESS CONTEXT -->
+<!-- BUSINESS CONTEXT - VERSIÓN REDISEÑADA (MÁS ARTÍSTICA) -->
+<section id="business-context" style="padding: 5%; background: var(--white); width: 100%; position: relative; overflow: hidden;">
+  
+  <!-- Elemento decorativo de fondo (círculo naranja difuminado) -->
+  <div style="position: absolute; top: -10%; right: -10%; width: 300px; height: 300px; background: var(--orange); opacity: 0.05; border-radius: 50%; pointer-events: none; z-index: 0;"></div>
+  <div style="position: absolute; bottom: -10%; left: -10%; width: 400px; height: 400px; background: var(--black); opacity: 0.03; border-radius: 50%; pointer-events: none; z-index: 0;"></div>
+  
+  <div style="position: relative; z-index: 1;">
+    
+    <!-- HEADER con línea decorativa -->
+    <div class="fade-up" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+      <p class="section-label" style="margin-bottom: 0;">01 — Business Context</p>
+      <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--orange), transparent);"></div>
+    </div>
+    
+    <div class="fade-up" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem;">
+      <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 0.9; text-transform: uppercase; margin: 0; max-width: 600px;">
+        The Challenge<br>
+        <span style="color: var(--orange);">50,000 Units/Year</span>
+      </h2>
+      
+      <!-- Badge decorativo -->
+      <div style="display: flex; gap: 0.5rem;">
+        <div style="background: var(--orange); padding: 0.5rem 1.2rem; border-radius: 40px; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);">Additive Manufacturing</div>
+        <div style="background: var(--black); padding: 0.5rem 1.2rem; border-radius: 40px; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);">Industry 4.0</div>
+      </div>
+    </div>
+    
+    <!-- Layout principal: 2 columnas asimétricas (más dinámico) -->
+    <div style="display: grid; grid-template-columns: 1fr 0.9fr; gap: 3rem; align-items: start;">
+      
+      <!-- COLUMNA IZQUIERDA - Texto con formato mejorado -->
+      <div class="fade-up">
+        <!-- Tarjeta de introducción con borde izquierdo naranja -->
+        <div style="background: var(--gray); padding: 2rem; border-left: 4px solid var(--orange); margin-bottom: 2rem; border-radius: 0 12px 12px 0;">
+          <div style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.75rem;">The Client</div>
+          <p style="font-size: 1rem; line-height: 1.7; color: #222; margin: 0;">
+            <strong>Phones-R-Us</strong>, a producer of modular mobile devices, has approached our company to manufacture both top and bottom plastic casings for their existing phone model.
+          </p>
+        </div>
+        
+        <!-- Texto principal con mejor jerarquía -->
+        <p style="font-size: 1rem; line-height: 1.7; color: #333; margin-bottom: 1.5rem;">
+          They require <strong style="color: var(--orange);">50,000 modular phones per year</strong> — meaning <strong>100,000 casings (top + bottom) annually</strong>. The casings must fit seamlessly with the <strong>"master parts"</strong> produced by another supplier and flow through the existing FESTO CP Lab assembly line without faults.
+        </p>
+        
+        <!-- Cita o frase destacada (Pull quote) -->
+        <div style="margin: 2rem 0; padding: 1.5rem 2rem; background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%); border-radius: 12px; color: var(--white);">
+          <div style="font-family: var(--font-display); font-size: 2rem; line-height: 1.2; margin-bottom: 0.5rem;">"From CAD to assembly line"</div>
+          <p style="font-size: 0.85rem; opacity: 0.8; margin: 0;">Our role: a manufacturer specialising in <strong>additive processes (3D printing)</strong> — delivering consistent, assembly-ready casings.</p>
+        </div>
+        
+        <!-- Enlace a secciones (mini índice) -->
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+          <a href="#bmc" style="background: transparent; border: 1.5px solid var(--orange); padding: 0.5rem 1.2rem; border-radius: 40px; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); text-decoration: none; transition: all 0.3s;">⬇ View Business Model</a>
+          <a href="#simulation" style="background: var(--black); padding: 0.5rem 1.2rem; border-radius: 40px; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: all 0.3s;">⬇ Production Simulation</a>
+        </div>
+      </div>
+      
+      <!-- COLUMNA DERECHA - Demand Analysis con diseño más visual -->
+      <div class="fade-up">
+        <!-- Tarjeta principal con sombra y diseño moderno -->
+        <div style="background: var(--white); border-radius: 16px; box-shadow: 0 20px 35px -15px rgba(0,0,0,0.15); overflow: hidden;">
+          
+          <!-- Header de la tarjeta -->
+          <div style="background: var(--orange); padding: 1rem 1.5rem;">
+            <div style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); opacity: 0.9;">Demand Analysis</div>
+            <div style="font-family: var(--font-display); font-size: 1.5rem; color: var(--white);">Breaking down the numbers</div>
+          </div>
+          
+          <!-- Contenido de la tabla con diseño mejorado -->
+          <div style="padding: 1.5rem;">
+            <!-- Métrica destacada: Takt Time (arriba del todo) -->
+            <div style="background: linear-gradient(135deg, #FFF8F5 0%, #FFFFFF 100%); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; text-align: center; border: 1px solid #f0e0d8;">
+              <div style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange);">Takt Time Target</div>
+              <div style="font-family: var(--font-display); font-size: 2.8rem; line-height: 1; color: var(--black);">110 <span style="font-size: 1rem;">sec/phone</span></div>
+              <div style="font-size: 0.7rem; color: #666;">Every station must complete its task within this window</div>
+            </div>
+            
+            <!-- Tabla simplificada y más elegante -->
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0.5rem; border-bottom: 1px solid #eee;">
+                <span style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: #888;">Annual demand (phones)</span>
+                <span style="font-family: var(--font-display); font-size: 1.3rem; color: var(--orange);">50,000</span>
+              </div>
+              
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0.5rem; border-bottom: 1px solid #eee;">
+                <span style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: #888;">Annual demand (casings)</span>
+                <span style="font-family: var(--font-display); font-size: 1.3rem; color: var(--orange);">100,000</span>
+              </div>
+              
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0.5rem; border-bottom: 1px solid #eee;">
+                <span style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: #888;">Operating days / year</span>
+                <span style="font-family: var(--font-display); font-size: 1.1rem;">252</span>
+              </div>
+              
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0.5rem; border-bottom: 1px solid #eee;">
+                <span style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: #888;">Daily phone demand</span>
+                <span style="font-family: var(--font-display); font-size: 1.3rem; color: var(--orange);">~228</span>
+              </div>
+              
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0.5rem; border-bottom: 1px solid #eee;">
+                <span style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: #888;">Shift structure</span>
+                <span style="font-family: var(--font-display); font-size: 1rem;">1 × 8h</span>
+              </div>
+              
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0.5rem;">
+                <span style="font-family: var(--font-condensed); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: #888;">Productive hours/day</span>
+                <span style="font-family: var(--font-display); font-size: 1rem;">7h (after breaks)</span>
+              </div>
+            </div>
+            
+            <!-- Nota a pie de tabla -->
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid var(--orange); font-size: 0.7rem; color: #999; text-align: center;">
+              Takt Time Calculation: (7h × 3600s) ÷ 228 units = <strong>~110 seconds/phone</strong>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Indicador visual de flujo -->
+        <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <span style="font-size: 0.7rem; color: #888;">Consumer Demand</span>
+          <span style="color: var(--orange);">→</span>
+          <span style="font-size: 0.7rem; color: #888;">Takt Time</span>
+          <span style="color: var(--orange);">→</span>
+          <span style="font-size: 0.7rem; color: #888;">Process Design</span>
+          <span style="color: var(--orange);">→</span>
+          <span style="font-size: 0.7rem; color: #888;">Simulation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+ <!-- BUSINESS MODEL CANVAS - VERSIÓN INTERACTIVA (FLIP CARDS) -->
+<section id="bmc" style="padding: 5%; background: var(--gray); width: 100%;">
+  <p class="section-label fade-up">02 — Business Model</p>
+  <h2 class="fade-up" style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 0.95; text-transform: uppercase; margin-bottom: 2rem;">Business Model Canvas</h2>
+  
+  <p class="fade-up" style="margin-bottom: 2rem; max-width: 800px;">
+    The Business Model Canvas (Osterwalder & Pigneur, 2010) provides a strategic framework for understanding how our additive manufacturing operation creates, delivers, and captures value for Phones-R-Us.<br>
+    <strong>👆 Hover over each card to reveal the details.</strong>
+  </p>
+  
+  <style>
+    /* Estilos específicos para el BMC interactivo */
+    .bmc-grid {
+      display: grid;
+      grid-template-areas: 
+        "partners activities resources"
+        "value value relationships"
+        "channels segments revenue"
+        "cost cost cost";
+      /*gap: 1.2rem;*/
+      margin-bottom: 1.2rem;
+    }
+    
+    /* Definición de áreas (nombres) */
+    .area-partners { grid-area: partners; }
+    .area-activities { grid-area: activities; }
+    .area-resources { grid-area: resources; }
+    .area-value { grid-area: value; }
+    .area-relationships { grid-area: relationships; }
+    .area-channels { grid-area: channels; }
+    .area-segments { grid-area: segments; }
+    .area-revenue { grid-area: revenue; }
+    .area-cost { grid-area: cost; }
+    
+    /* Estilo base de la tarjeta contenedora */
+    .flip-card {
+      background-color: transparent;
+      height: 100%;
+      min-height: 220px;
+      perspective: 1000px; /* Efecto 3D */
+      cursor: pointer;
+    }
+    
+    /* Contenedor que hace el giro */
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s ease-in-out;
+      transform-style: preserve-3d;
+      border-radius: 0px;
+    }
+    
+    /* Efecto hover: gira 180 grados */
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    
+    /* Front y back: misma posición absoluta, ocultan la parte trasera */
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 0px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    
+    /* FRONT: Título grande, centrado, con fondo de color según temática */
+    .flip-front {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    /* Variantes de color para el front */
+    .flip-card.orange .flip-front { background: var(--orange); color: var(--black); }
+    .flip-card.light .flip-front { background: var(--white); color: var(--black); }
+    .flip-card.dark .flip-front { background: var(--black); color: var(--white); }
+    
+    /* BACK: Contenido detallado, con scroll si es necesario */
+    .flip-back {
+      background: var(--white);
+      color: var(--black);
+      transform: rotateY(180deg);
+      text-align: left;
+      overflow-y: auto;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .flip-back h4 {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.3rem;
+    }
+    .flip-back ul {
+      margin-left: 1rem;
+      margin-top: 0;
+      padding-left: 0.5rem;
+    }
+    .flip-back li {
+      margin-bottom: 0.4rem;
+      color: #444;
+    }
+    .flip-back p {
+      margin-bottom: 0.5rem;
+      color: #444;
+    }
+    
+    /* Para pantallas pequeñas, que el grid se acomode */
+    @media (max-width: 900px) {
+      .bmc-grid {
+        grid-template-areas: 
+          "partners"
+          "activities"
+          "resources"
+          "value"
+          "relationships"
+          "channels"
+          "segments"
+          "revenue"
+          "cost";
+        gap: 1rem;
+      }
+      .flip-card { min-height: 200px; }
+    }
+  </style>
+  
+  <div class="bmc-grid fade-up">
+    <!-- KEY PARTNERS (Naranja) -->
+    <div class="flip-card orange area-partners">
+      <div class="flip-card-inner">
+        <div class="flip-front">
+          <span>Key</span>
+          <span>Partners</span>
+        </div>
+        <div class="flip-back">
+          <h4> Key Partners</h4>
+          <ul>
+            <li>Filament suppliers (PLA manufacturers)</li>
+            <li>3D printer vendors (Elegoo, Ultimaker)</li>
+            <li>FESTO CP Lab (testing & validation)</li>
+            <li>Metrology equipment providers</li>
+            <li>Master parts supplier (reference casings)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- KEY ACTIVITIES (Negro) -->
+    <div class="flip-card dark area-activities">
+      <div class="flip-card-inner">
+        <div class="flip-front">
+          <span>Key</span>
+          <span>Activities</span>
+        </div>
+        <div class="flip-back">
+          <h4> Key Activities</h4>
+          <ul>
+            <li>3D printing (FDM) of phone casings</li>
+            <li>Quality inspection & dimensional verification</li>
+            <li>Plant Simulation & process optimisation</li>
+            <li>Printer maintenance & calibration</li>
+            <li>Batch printing & post-processing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- KEY RESOURCES (Blanco con borde naranja) -->
+    <div class="flip-card light area-resources">
+      <div class="flip-card-inner">
+        <div class="flip-front">
+          <span>Key</span>
+          <span>Resources</span>
+        </div>
+        <div class="flip-back">
+          <h4>Key Resources</h4>
+          <ul>
+            <li>3D printers (Elegoo Neptune / Ultimaker)</li>
+            <li>PLA filament inventory</li>
+            <li>Tecnomatix Plant Simulation software</li>
+            <li>Calibration tools & metrology equipment</li>
+            <li>Skilled technicians</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- VALUE PROPOSITIONS (Naranja, ocupa 1 columna pero visualmente destacará) -->
+    <div class="flip-card orange area-value">
+      <div class="flip-card-inner">
+        <div class="flip-front">
+          <span>Value</span>
+          <span>Propositions</span>
+        </div>
+        <div class="flip-back">
+          <h4>Value Propositions</h4>
+          <ul>
+            <li><strong>Consistent quality:</strong> Casings within ±0.1mm tolerance</li>
+            <li><strong>Fast iteration:</strong> Design changes in hours, not weeks</li>
+            <li><strong>No tooling costs:</strong> No expensive injection molds</li>
+            <li><strong>Assembly-ready:</strong> Passes all CP Lab stations</li>
+            <li><strong>Traceability:</strong> Each casing has unique QR code</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CUSTOMER RELATIONSHIPS (Negro) -->
+    <div class="flip-card dark area-relationships">
+      <div class="flip-card-inner">
+        <div class="flip-front">
+          <span>Customer</span>
+          <span>Relationships</span>
+        </div>
+        <div class="flip-back">
+          <h4>Customer Relationships</h4>
+          <ul>
+            <li>Direct B2B account management</li>
+            <li>Technical support for assembly integration</li>
+            <li>Regular quality reports & Cp/Cpk data</li>
+            <li>Design collaboration (CAD reviews)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CHANNELS (Blanco) -->
+    <div class="flip-card light area-channels">
+      <div class="flip-card-inner">
+        <div class="flip-front">
+          <span>Channels</span>
+        </div>
+        <div class="flip-back">
+          <h4> Channels</h4>
+          <ul>
+            <li>Direct B2B sales team</li>
+            <li>Technical blog (this portfolio)</li>
+            <li>Industry events (Additive Manufacturing conferences)</li>
+            <li>Referral from FESTO ecosystem</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CUSTOMER SEGMENTS (Naranja) -->
+    <div class="flip-card orange area-segments">
+      <div class="flip-card-inner">
+        <div class="flip-front">
+          <span>Customer</span>
+          <span>Segments</span>
+        </div>
+        <div class="flip-back">
+          <h4> Customer Segments</h4>
+          <ul>
+            <li><strong>Primary:</strong> Phones-R-Us (modular phone OEM)</li>
+            <li><strong>Secondary:</strong> Other modular device manufacturers</li>
+            <li><strong>Tertiary:</strong> Prototyping services for startups</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- REVENUE STREAMS (Negro) -->
+    <div class="flip-card dark area-revenue">
+      <div class="flip-card-inner">
+        <div class="flip-front">
+          <span>Revenue</span>
+          <span>Streams</span>
+        </div>
+        <div class="flip-back">
+          <h4> Revenue Streams</h4>
+          <ul>
+            <li>Per-unit casing pricing (contract based)</li>
+            <li>Design & iteration fees (NRE)</li>
+            <li>Quality certification premium</li>
+            <li>Long-term supply agreement (3 years)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- COST STRUCTURE (Bloque amplio, usamos estilo diferente para que abarque todo el ancho, pero manteniendo el flip) -->
+    
+  </div>
+  
+  <!-- Tarjeta de Cost Structure independiente para que abarque el ancho completo, también con flip -->
+  <div class="flip-card dark fade-up" style="width: 100%; margin-top: 1rem;">
+    <div class="flip-card-inner" style="min-height: 200px;">
+      <div class="flip-front" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <span>Cost Structure</span>
+      </div>
+      <div class="flip-back" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: start;">
+        <div>
+          <h4>Fixed Costs</h4>
+          <ul>
+            <li>Printer acquisition (amortised)</li>
+            <li>Software licenses (Plant Simulation)</li>
+            <li>Facility lease</li>
+            <li>Salaries (technicians, QA)</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Variable Costs</h4>
+          <ul>
+            <li>PLA filament (per casing)</li>
+            <li>Electricity per print</li>
+            <li>Printer maintenance</li>
+            <li>Packaging & shipping</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Estimated Unit Cost</h4>
+          <ul>
+            <li>Filament: ~$0.45 per casing</li>
+            <li>Electricity: ~$0.08 per print</li>
+            <li>Labor (allocated): ~$0.50 per casing</li>
+            <li><strong>Total: ~$3.60 per casing pair</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <p class="fade-up" style="margin-top: 1.5rem; font-size: 0.8rem; color: #666; text-align: center;">
+    Reference: Osterwalder, A. and Pigneur, Y. (2010) <em>Business Model Generation</em>. John Wiley & Sons. | Interactive design by Analucia Vera.
+  </p>
+</section>
+
+<!-- 1. DESCRIPCIÓN DE LA PLANTA Y ESTACIONES -->
+<section class="section-container fade-up">
+  <p class="section-label">01 — Línea de ensamblaje</p>
+  <h2>FESTO CP Lab<br>6 estaciones clave</h2>
+  <div class="two-col-grid">
+    <div>
+      <p style="margin-bottom: 1rem;">La línea FESTO CP Lab replica un proceso industrial de ensamblaje de dispositivos móviles. Se compone de 6 estaciones interconectadas que realizan desde la alimentación de piezas hasta el testeo final. Cada estación fue modelada en Tecnomatix Plant Simulation a nivel de proceso para calcular tiempos de ciclo, identificar cuellos de botella y simular escenarios de demanda.</p>
+      <p>El flujo comienza con la base del teléfono (master part) y, en estaciones posteriores, se insertan la carcasa superior e inferior fabricadas por nosotros, junto con componentes electrónicos simulados.</p>
+    </div>
+    <div>
+      <img src="assets/images/cp-lab-diagram.png" alt="Diagrama CP Lab" style="width:100%; border-radius: 12px; background: #eee; padding: 1rem;" onerror="this.src='https://placehold.co/600x300/333/white?text=Diagrama+CP+Lab'">
+      <p style="font-size:0.8rem; text-align:center; margin-top:0.5rem;">Diagrama conceptual de las 6 estaciones.</p>
+    </div>
+  </div>
+  
+  <div class="stations-grid">
+    <div class="station-card"><div class="station-number">01</div><div class="station-title">Alimentación / Separador</div><div class="station-desc">Alimenta las bases (master parts) desde un almacén vertical. Separa piezas individualmente. Tiempo ciclo: 2.5s.</div></div>
+    <div class="station-card"><div class="station-number">02</div><div class="station-title">Prensado / Inserción</div><div class="station-desc">Inserta un componente simulado (batería) en la base. Control de fuerza y posición. Tiempo ciclo: 3.2s.</div></div>
+    <div class="station-card"><div class="station-number">03</div><div class="station-title">Pick by Light</div><div class="station-desc">El operario recibe señal luminosa para colocar la carcasa superior. Verificación por sensor. Tiempo: 4.0s.</div></div>
+    <div class="station-card"><div class="station-number">04</div><div class="station-title">Atornillado automático</div><div class="station-desc">4 tornillos simulados. Control de par. Tiempo ciclo: 5.0s (cuello de botella inicial).</div></div>
+    <div class="station-card"><div class="station-number">05</div><div class="station-title">Control dimensional</div><div class="station-desc">Medición del espesor (1.6-2.2mm) y verificación de geometría. Tiempo: 3.0s.</div></div>
+    <div class="station-card"><div class="station-number">06</div><div class="station-title">Testeo / Expulsión</div><div class="station-desc">Prueba funcional simulada. Expulsión de unidades defectuosas (2%). Tiempo: 2.8s.</div></div>
+  </div>
+</section>
+
+<!-- 2. RESULTADOS DE SIMULACIÓN Y MÉTRICAS CLAVE -->
+<section class="section-container fade-up" style="background: var(--gray);">
+  <p class="section-label">02 — Simulación base</p>
+  <h2>Capacidad y cuello de botella</h2>
+  <div class="two-col-grid">
+    <div>
+      <table class="data-table">
+        <thead><tr><th>Métrica</th><th>Valor</th><th>Observación</th></tr></thead>
+        <tbody>
+          <tr><td>Takt Time objetivo</td><td><strong>432 s/unidad</strong></td><td>Para 50.000 uds/año (250 días, 1 turno 7h)</td></tr>
+          <tr><td>Tiempo de ciclo línea</td><td><strong>5.0 s</strong></td><td>Limitado por estación de atornillado</td></tr>
+          <tr><td>Producción por turno (7h)</td><td><strong>5.040 unidades</strong></td><td>Teórico a ciclo de 5s</td></tr>
+          <tr><td>Producción anual (1 turno)</td><td><strong>1.260.000 uds</strong></td><td>Muy por encima del target</td></tr>
+          <tr><td>Cuello de botella</td><td>Estación 04</td><td>Atornillado (5.0s)</td></tr>
+          <tr><td>Eficiencia global (OEE)</td><td>85%</td><td>Incorporando paradas y defectos</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="kpi-card"><div class="kpi-value">5.0 s</div><div>Ciclo de línea</div></div>
+      <div class="kpi-card" style="margin-top:1rem;"><div class="kpi-value">50k / año</div><div>Target alcanzable</div></div>
+      <p style="margin-top:1rem;">📌 <strong>Conclusión:</strong> La línea de ensamblaje por sí sola tiene capacidad más que suficiente. El verdadero cuello de botella es la fabricación de las carcasas mediante impresión 3D.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. SIMULADOR DE IMPRESORAS (ESCENARIOS) -->
+<section class="section-container fade-up">
+  <p class="section-label">03 — Optimización de recursos</p>
+  <h2>¿Cuántas impresoras 3D necesitamos?</h2>
+  <p>La producción anual de 50.000 teléfonos requiere 50.000 pares de carcasas (superior + inferior). Con el tiempo de impresión por par optimizado (Configuración C7: 6.5h), calculamos el número de impresoras necesario en paralelo.</p>
+  
+  <div class="simulator-box">
+    <h3 style="font-family:var(--font-display); margin-bottom:1rem;">Simulador dinámico de producción</h3>
+    <p>Ajusta el número de impresoras 3D en funcionamiento (turno de 7h):</p>
+    <div class="slider">
+      <input type="range" id="printerSlider" min="1" max="20" value="5" step="1">
+      <span>Impresoras activas: <strong id="printerCount">5</strong></span>
+    </div>
+    <div class="printer-bank" id="printerBank"></div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+      <div class="kpi-card">Producción por hora: <span id="prodHour" class="kpi-value">0.77</span> pares</div>
+      <div class="kpi-card">Producción por turno (7h): <span id="prodShift" class="kpi-value">5.4</span> pares</div>
+      <div class="kpi-card">Días para 50.000 pares: <span id="daysNeeded" class="kpi-value">---</span></div>
+      <div class="kpi-card">¿Objetivo anual alcanzable? <span id="targetMet" class="kpi-value" style="font-size:1.2rem;">---</span></div>
+    </div>
+    
+    <div class="conveyor-belt">
+      <div class="items-flow" id="itemsFlow"></div>
+    </div>
+    <p style="font-size:0.8rem;">*Simulación basada en tiempo de impresión por par = 6.5 horas (configuración C7), jornada laboral de 7h efectivas por turno, 250 días laborables/año.</p>
+  </div>
+  
+  <div style="margin-top: 2rem; background: #f9f9f9; padding: 1.5rem; border-left: 4px solid var(--orange);">
+    <h4>📊 Escenarios analizados en Plant Simulation:</h4>
+    <ul style="margin-left: 1.5rem;">
+      <li><strong>Escenario 1 (1 impresora):</strong> Producción anual ≈ 269 pares → ❌ Insuficiente.</li>
+      <li><strong>Escenario 2 (5 impresoras):</strong> Producción anual ≈ 1.346 pares → ❌ Muy lejos del target.</li>
+      <li><strong>Escenario 3 (10 impresoras):</strong> Producción anual ≈ 2.692 pares → ❌ Aún insuficiente.</li>
+      <li><strong>Escenario 4 (20 impresoras):</strong> Producción anual ≈ 5.385 pares → ❌ No alcanza.</li>
+      <li><strong>Escenario 5 (93 impresoras):</strong> Producción teórica ≈ 25.000 pares (7h/día) → Necesario para llegar a 50.000/año con 1 turno.</li>
+    </ul>
+    <p style="margin-top:1rem;"><strong>💡 Conclusión de la simulación:</strong> Para cumplir con 50.000 unidades/año **con una sola línea de ensamblaje** se necesitarían aproximadamente <strong>93 impresoras</strong> funcionando en paralelo las 7h diarias. Esto no es factible económica ni espacialmente. Por tanto, la propuesta de negocio debería incluir:</p>
+    <ul><li>Aumentar número de turnos (2 o 3 turnos).</li><li>Externalizar parte de la producción de carcasas.</li><li>Reducir tiempo de impresión optimizando aún más o cambiando tecnología (inyección).</li></ul>
+  </div>
+</section>
+
+<!-- 4. PFMEA, VALUE STREAM MAP y DOCUMENTACIÓN (Requisito del brief) -->
+<section class="section-container fade-up" style="background: var(--gray);">
+  <p class="section-label">04 — Gestión de calidad y procesos</p>
+  <h2>PFMEA & Value Stream Mapping</h2>
+  <div class="two-col-grid">
+    <div>
+      <h3>PFMEA (Modo de fallo y efecto)</h3>
+      <table class="data-table">
+        <thead><tr><th>Proceso</th><th>Modo de fallo</th><th>Efecto</th><th>Acción recomendada</th></tr></thead>
+        <tbody>
+          <tr><td>Impresión 3D</td><td>Desviación dimensional &gt;0.2mm</td><td>No encaja en estación 03/04</td><td>Control estadístico de procesos (CpK &gt;1.33)</td></tr>
+          <tr><td>Pick by Light (Est.03)</td><td>Colocación incorrecta de carcasa</td><td>Rotura en atornillado</td><td>Sensores de presencia + verificación visual</td></tr>
+          <tr><td>Atornillado (Est.04)</td><td>Par insuficiente / excesivo</td><td>Unidad defectuosa</td><td>Mantenimiento preventivo, calibración semanal</td></tr>
+          <tr><td>Control dimensional</td><td>Sensor descalibrado</td><td>Falsos positivos/negativos</td><td>Patrón de referencia diario</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>Value Stream Map (VSM)</h3>
+      <p>Tiempo de valor añadido vs desperdicio:</p>
+      <ul style="margin-left:1.5rem;">
+        <li><strong>Impresión 3D:</strong> 6.5h (VA) + 0.5h post-procesado (No VA)</li>
+        <li><strong>Transporte interno:</strong> 0.2h</li>
+        <li><strong>Ensamble línea CP Lab:</strong> 5s/unidad (VA)</li>
+        <li><strong>Takt Time:</strong> 432s / unidad → Línea muy sobredimensionada.</li>
+        <li><strong>Lead time total:</strong> ≈ 7 horas por lote de 1 par.</li>
+      </ul>
+      <p><strong>Business Model Canvas (resumen):</strong> Propuesta de valor: carcasas precisas y compatibles con master parts. Segmento: Phones-R-Us. Estructura de costes: Prismas, filamento, mantenimiento. Fuente de ingresos: contrato por unidad ensamblada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CONCLUSIÓN / REFLEXIÓN FINAL -->
+<section class="section-container fade-up">
+  <p class="section-label">05 — Lecciones aprendidas</p>
+  <h2>Manufactura digital<br>y simulación</h2>
+  <div class="two-col-grid">
+    <div>
+      <p><strong>Beneficio de Plant Simulation:</strong> Nos permitió identificar que el cuello de botella no era la línea de ensamblaje, sino la fabricación aditiva. Ajustando el número de impresoras en el modelo virtual se demostró la inviabilidad de alcanzar 50.000 unidades/año con una sola impresora, necesidad de 93 equipos.</p>
+      <p><strong>Desafíos de múltiples proveedores:</strong> La variabilidad dimensional entre lotes (aunque cumplan el mismo drawing) provocaría problemas de intercambiabilidad. Propuesta: implementar un sistema de batching por proveedor o utilizar un sistema de medición 100% en línea (como el CP Lab) para redirigir piezas.</p>
+      <p><strong>Próximos pasos:</strong> Optimizar el diseño para reducir tiempo de impresión (canalizaciones, menor altura) o considerar moldeo por inyección para grandes volúmenes.</p>
+    </div>
+    <div style="background: var(--black); color: white; padding: 2rem; border-radius: 12px;">
+      <div style="font-family: var(--font-display); font-size: 2rem;">50.000</div>
+      <p>Unidades / año requeridas</p>
+      <hr style="margin:1rem 0; border-color:#333;">
+      <div style="font-family: var(--font-display); font-size: 1rem;">📌 Plan de acción:</div>
+      <ul style="margin-left:1rem; margin-top:0.5rem;">
+        <li>✓ Contratar 93 impresoras o externalizar.</li>
+        <li>✓ Implementar SPC en cada impresora.</li>
+        <li>✓ Digitalizar trazabilidad por QR.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div><div class="footer-logo">Analucia Vera</div><p class="footer-copy">© 2026 · Digital Manufacturing · Proyecto Phones-R-Us</p></div>
+  <div class="footer-links"><a href="index.html">Home</a><a href="#">3D Design</a><a href="#">Simulation</a></div>
+</footer>
+
+<script>
+  // Simulador de impresoras
+  const printerSlider = document.getElementById('printerSlider');
+  const printerCountSpan = document.getElementById('printerCount');
+  const printerBankDiv = document.getElementById('printerBank');
+  const prodHourSpan = document.getElementById('prodHour');
+  const prodShiftSpan = document.getElementById('prodShift');
+  const daysNeededSpan = document.getElementById('daysNeeded');
+  const targetMetSpan = document.getElementById('targetMet');
+  
+  const PRINT_TIME_HOURS = 6.5;        // horas por par (carcasa inf+sup)
+  const SHIFT_HOURS = 7;               // horas efectivas por turno
+  const WORKING_DAYS = 250;            // días laborables/año
+  const TARGET_UNITS = 50000;          // pares requeridos
+  
+  function updateSimulation() {
+    let printers = parseInt(printerSlider.value);
+    printerCountSpan.innerText = printers;
+    
+    // Representación visual de impresoras (máximo 20 para no saturar)
+    let printersHtml = '';
+    for (let i = 0; i < Math.min(printers, 20); i++) {
+      printersHtml += `<div class="printer-unit">🖨️ ${i+1}</div>`;
+    }
+    if (printers > 20) printersHtml += `<div class="printer-unit">+${printers-20} más</div>`;
+    printerBankDiv.innerHTML = printersHtml;
+    
+    // Producción teórica por hora: en 1 hora cada impresora produce 1/PRINT_TIME_HOURS pares
+    let prodPerHour = printers / PRINT_TIME_HOURS;
+    let prodPerShift = prodPerHour * SHIFT_HOURS;
+    let daysToReach = TARGET_UNITS / prodPerShift;
+    let targetAchievable = (prodPerShift * WORKING_DAYS) >= TARGET_UNITS;
+    
+    prodHourSpan.innerText = prodPerHour.toFixed(2);
+    prodShiftSpan.innerText = prodPerShift.toFixed(1);
+    daysNeededSpan.innerText = daysToReach < 0 ? '---' : Math.ceil(daysToReach);
+    targetMetSpan.innerText = targetAchievable ? '✅ SÍ' : '❌ NO';
+    
+    // Simular flujo en cinta transportadora (número de items)
+    const flowDiv = document.getElementById('itemsFlow');
+    let itemCount = Math.min(Math.floor(prodPerHour)*2, 15);
+    let itemsHtml = '';
+    for (let i=0; i<itemCount; i++) itemsHtml += '<div class="item">📱</div>';
+    flowDiv.innerHTML = itemsHtml;
+  }
+  
+  printerSlider.addEventListener('input', updateSimulation);
+  updateSimulation();
+  
+  // Animaciones fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => e.target.classList.add('visible'));
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
