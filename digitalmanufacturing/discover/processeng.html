@@ -1,1 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analucia Vera — Manufacturing Systems & Process Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --orange: #E8440A;
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray: #EFEFEF;
+      --gray-dark: #C8C8C8;
+      --red: #c0392b;
+      --yellow: #f39c12;
+      --green: #27ae60;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+      --font-condensed: 'Barlow Condensed', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      background: var(--white);
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .nav-logo {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0;
+    }
+    .nav-links li a {
+      display: block;
+      padding: 0 1.4rem;
+      height: 60px;
+      line-height: 60px;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-links li a:hover { background: var(--orange); color: var(--white); }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 0 1.5rem;
+      height: 60px;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--orange); }
+    .nav-cta .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+    .nav-cta:hover .dot { background: var(--white); }
+
+    /* ── FADE UP UTILITY ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── HERO SECTION ── */
+    #hero {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 60px);
+    }
+    .hero-left {
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .hero-visual {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 60%, #111 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-40%, -50%);
+      background: var(--orange);
+      padding: 2.5rem 2rem;
+      width: 300px;
+      z-index: 2;
+    }
+    .hero-badge h1 {
+      font-family: var(--font-display);
+      font-size: 4.2rem;
+      line-height: 0.9;
+      color: var(--black);
+      text-transform: uppercase;
+    }
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+    }
+    .hero-right-top {
+      padding: 4rem 3rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .hero-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+    .hero-tagline {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.65;
+      max-width: 340px;
+      margin-bottom: 2rem;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #e0e0e0;
+    }
+    .hero-stat {
+      padding: 2rem;
+      border-right: 1px solid #e0e0e0;
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--black);
+    }
+    .hero-stat-label {
+      font-family: var(--font-condensed);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #888;
+      margin-top: 0.3rem;
+    }
+
+    /* ── SECTION BASE ── */
+    .section {
+      padding: 5rem 4rem;
+    }
+    .section-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .section-intro {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.65;
+      max-width: 760px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── STAT CARDS (same as home) ── */
+    .stat-card {
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stat-card.dark { background: var(--black); color: var(--white); }
+    .stat-card.light { background: var(--gray); color: var(--black); }
+    .stat-card.orange { background: var(--orange); color: var(--black); }
+    .stat-card h3 {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+    .stat-card p {
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      opacity: 0.75;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    /* ── ORANGE ACCENT BAR ── */
+    .accent-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 1rem 1.5rem;
+      background: var(--gray);
+      border-left: 4px solid var(--orange);
+      margin-bottom: 2rem;
+    }
+    .accent-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-family: var(--font-condensed);
+      font-weight: 600;
+    }
+
+    /* ── TABLES ── */
+    .table-wrapper {
+      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    .industrial-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.72rem;
+    }
+    .industrial-table th {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.9rem 0.7rem;
+      text-align: left;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border: 1px solid #222;
+      white-space: nowrap;
+    }
+    .industrial-table th.center { text-align: center; }
+    .industrial-table td {
+      padding: 0.75rem 0.7rem;
+      border: 1px solid #e8e8e8;
+      vertical-align: top;
+      line-height: 1.45;
+    }
+    .industrial-table tr:nth-child(even) td { background: #fafafa; }
+    .industrial-table tr:hover td { background: #f4f4f4; }
+    .cell-id {
+      font-family: monospace;
+      font-weight: 700;
+      color: var(--orange);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .cell-center { text-align: center; }
+
+    /* RPN badges */
+    .rpn {
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 0.2rem 0.5rem;
+      display: inline-block;
+      font-size: 0.72rem;
+    }
+    .rpn-high { background: var(--red); color: white; }
+    .rpn-medium { background: var(--yellow); color: black; }
+    .rpn-low { background: var(--green); color: white; }
+
+    /* Risk badges in legend */
+    .risk-badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.7rem;
+    }
+    .risk-badge.high { background: var(--red); color: white; }
+    .risk-badge.medium { background: var(--yellow); color: black; }
+    .risk-badge.low { background: var(--green); color: white; }
+
+    /* Process symbols */
+    .sym {
+      display: inline-flex;
+      width: 36px; height: 36px;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.65rem;
+      font-family: var(--font-condensed);
+    }
+    .sym-fab { background: var(--orange); color: white; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+    .sym-move { background: var(--black); color: white; border-radius: 50%; }
+    .sym-store { background: var(--gray-dark); color: var(--black); clip-path: polygon(50% 0%, 100% 100%, 0% 100%); }
+    .sym-inspect { background: var(--orange); color: white; }
+    .cat-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      background: var(--gray);
+      white-space: nowrap;
+    }
+
+    /* ── 2-COL SUMMARY GRID (same as home about-right) ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .four-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
+    /* ── SUMMARY CARDS ── */
+    .summary-container { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    .summary-card { background: var(--white); overflow: hidden; height: 100%; display: flex; flex-direction: column; }
+    .summary-card-header {
+      padding: 1.25rem 1.5rem 0.75rem;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      text-transform: uppercase;
+    }
+    .summary-card.dark .summary-card-header { background: var(--black); color: var(--white); }
+    .summary-card.light .summary-card-header { background: var(--gray); color: var(--black); }
+    .summary-card-body { padding: 1.5rem; flex: 1; }
+    .summary-card-table { width: 100%; border-collapse: collapse; }
+    .summary-card-table th {
+      padding: 0.6rem 0.5rem;
+      text-align: left;
+      font-family: var(--font-condensed);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--orange);
+    }
+    .summary-card.dark .summary-card-table th { color: var(--white); }
+    .summary-card-table td { padding: 0.55rem 0.5rem; border-bottom: 1px solid #e0e0e0; font-size: 0.72rem; }
+    .summary-card.dark .summary-card-table td { border-bottom-color: #222; color: var(--white); }
+    .summary-card-table tr:last-child td { border-bottom: none; }
+    .summary-card-note {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: #555;
+    }
+    .summary-card.dark .summary-card-note { border-top-color: #222; color: #aaa; }
+
+    /* ── SERVICES GRID (same as home) ── */
+    .services-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0; }
+    .service-card { position: relative; overflow: hidden; min-height: 280px; }
+    .service-card.orange-card { background: var(--orange); }
+    .service-card.dark-card { background: var(--black); color: white; }
+    .service-card.light-card { background: var(--gray); }
+    .service-info { position: absolute; top: 0; left: 0; right: 0; padding: 1.8rem; }
+
+    /* ── TAKT TIME HERO BLOCK ── */
+    .takt-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 500px;
+    }
+    .takt-left {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .takt-number {
+      font-family: var(--font-display);
+      font-size: 9rem;
+      line-height: 0.85;
+      color: var(--orange);
+    }
+    .takt-unit {
+      font-family: var(--font-condensed);
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-dark);
+    }
+    .takt-right {
+      background: var(--gray);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* ── FORMULA BLOCK ── */
+    .formula-block {
+      background: var(--black);
+      color: var(--white);
+      padding: 2rem 2.5rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .formula-text {
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      color: var(--orange);
+    }
+    .formula-result {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── PRINTER FARM ── */
+    .printer-grid-display {
+      display: grid;
+      grid-template-columns: repeat(15, 1fr);
+      gap: 4px;
+      padding: 1.5rem;
+      background: var(--gray);
+    }
+    .printer-dot {
+      aspect-ratio: 1;
+      background: var(--orange);
+      opacity: 0.85;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .printer-dot:hover { opacity: 1; transform: scale(1.2); }
+    .printer-dot.spare { background: var(--gray-dark); }
+
+    /* ── MEASUREMENT MATRIX ── */
+    .meas-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.6rem;
+      padding: 1.5rem;
+      background: var(--gray);
+    }
+    .meas-cell {
+      padding: 0.8rem 0.5rem;
+      text-align: center;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    /* ── ORANGE CTA BLOCK ── */
+    .cta-block {
+      background: var(--orange);
+      padding: 3rem 4rem;
+    }
+    .cta-block p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--black);
+      max-width: 800px;
+      margin-bottom: 0.75rem;
+    }
+    .cta-block ul {
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .cta-block li {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--black);
+      margin-bottom: 0.35rem;
+    }
+    .cta-block strong { font-weight: 700; }
+
+    /* ── WHY TABLE (alternating rows) ── */
+    .why-table { width: 100%; border-collapse: collapse; }
+    .why-table tr { border-bottom: 1px solid #ccc; }
+    .why-table tr:first-child { border-top: 1px solid #ccc; }
+    .why-table td { padding: 1.5rem 2rem; vertical-align: middle; }
+    .why-table tr:nth-child(odd) { background: var(--black); color: var(--white); }
+    .why-table tr:nth-child(even) { background: var(--gray); color: var(--black); }
+    .why-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      white-space: nowrap;
+      width: 100px;
+      color: var(--orange);
+    }
+    .why-title {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.3rem;
+      width: 240px;
+    }
+
+    /* ── FOOTER NOTE ── */
+    .footer-note {
+      padding: 1rem 2rem;
+      background: var(--gray);
+      font-size: 0.7rem;
+      color: #555;
+      text-align: center;
+      border-top: 2px solid var(--orange);
+      margin-top: 1.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .footer-logo {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .footer-copy { font-size: 0.75rem; color: #aaa; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a {
+      color: #aaa;
+      font-size: 0.8rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--orange); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero, .takt-hero, .two-col { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .summary-container { grid-template-columns: 1fr; }
+      .four-grid { grid-template-columns: 1fr 1fr; }
+      .section { padding: 3rem 1.5rem; }
+      .takt-left, .takt-right { padding: 3rem 2rem; }
+      .takt-number { font-size: 6rem; }
+      .cta-block { padding: 2rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+      .printer-grid-display { grid-template-columns: repeat(10, 1fr); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="../index.html">Analucia Vera</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="design.html">3D Design</a></li>
+    <li><a href="simulation.html">Simulation</a></li>
+  </ul>
+  <a class="nav-cta" href="#pfmea">PFMEA <span class="dot"></span></a>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-left">
+    <!-- Background industrial SVG pattern -->
+    <div class="hero-visual">
+      <svg width="100%" height="100%" viewBox="0 0 600 600" opacity="0.08" preserveAspectRatio="xMidYMid slice">
+        <!-- Grid lines -->
+        <g stroke="white" stroke-width="1">
+          <line x1="0" y1="100" x2="600" y2="100"/>
+          <line x1="0" y1="200" x2="600" y2="200"/>
+          <line x1="0" y1="300" x2="600" y2="300"/>
+          <line x1="0" y1="400" x2="600" y2="400"/>
+          <line x1="0" y1="500" x2="600" y2="500"/>
+          <line x1="100" y1="0" x2="100" y2="600"/>
+          <line x1="200" y1="0" x2="200" y2="600"/>
+          <line x1="300" y1="0" x2="300" y2="600"/>
+          <line x1="400" y1="0" x2="400" y2="600"/>
+          <line x1="500" y1="0" x2="500" y2="600"/>
+        </g>
+        <!-- Flow nodes -->
+        <circle cx="100" cy="200" r="20" fill="none" stroke="white" stroke-width="3"/>
+        <circle cx="300" cy="200" r="20" fill="none" stroke="white" stroke-width="3"/>
+        <circle cx="500" cy="200" r="20" fill="none" stroke="white" stroke-width="3"/>
+        <line x1="120" y1="200" x2="280" y2="200" stroke="white" stroke-width="2" stroke-dasharray="6 3"/>
+        <line x1="320" y1="200" x2="480" y2="200" stroke="white" stroke-width="2" stroke-dasharray="6 3"/>
+        <!-- Diamonds -->
+        <polygon points="100,350 130,380 100,410 70,380" fill="none" stroke="white" stroke-width="2"/>
+        <polygon points="300,350 330,380 300,410 270,380" fill="none" stroke="white" stroke-width="2"/>
+        <polygon points="500,350 530,380 500,410 470,380" fill="none" stroke="white" stroke-width="2"/>
+        <line x1="130" y1="380" x2="270" y2="380" stroke="white" stroke-width="2" stroke-dasharray="6 3"/>
+        <line x1="330" y1="380" x2="470" y2="380" stroke="white" stroke-width="2" stroke-dasharray="6 3"/>
+      </svg>
+    </div>
+    <div class="hero-badge fade-up">
+      <h1>Process<br>Engineering</h1>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-right-top fade-up">
+      <p class="hero-label">Manufacturing Systems · Section 3</p>
+      <p class="hero-tagline">
+        Behind every successful production system is a strong engineering foundation. Discover how DigiCase Solutions applies PFMEA, Value Stream Mapping, Takt Time analysis, and Process Flow design to guarantee 50,000 consistent casings per year.
+      </p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">95.7%</div>
+        <div class="hero-stat-label">Value-added ratio</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Cpk 2.15</div>
+        <div class="hero-stat-label">Process capability</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">127s</div>
+        <div class="hero-stat-label">Takt time</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">185</div>
+        <div class="hero-stat-label">Printers required</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PROCESS FLOW DIAGRAM
+═══════════════════════════════════════════ -->
+<section id="process-flow" class="section fade-up" style="background: var(--white); border-top: 3px solid var(--orange);">
+  <p class="section-label">Manufacturing Process · Op-Seq</p>
+  <div class="two-col" style="align-items: end; margin-bottom: 2rem; gap: 3rem;">
+    <h2 class="section-title">Process Flow<br>Diagram</h2>
+    <p class="section-intro" style="margin-bottom: 0;">
+      The Process Flow Diagram maps how PLA filament is converted into finished casings through controlled production stages, quality inspections, and digital data tracking — achieving a <strong>95.7% value-added ratio</strong>.
+    </p>
+  </div>
+
+  <!-- Legend -->
+  <div class="accent-bar">
+    <div class="accent-bar-item"><div class="sym sym-fab">FAB</div><span>Fabrication (change of state)</span></div>
+    <div class="accent-bar-item"><div class="sym sym-move">MOV</div><span>Move (material movement)</span></div>
+    <div class="accent-bar-item"><div class="sym sym-store">STO</div><span>Store / Get</span></div>
+    <div class="accent-bar-item"><div class="sym sym-inspect">INS</div><span>Inspect</span></div>
+    <div class="accent-bar-item"><span style="background:var(--gray); padding:3px 8px; border-radius:12px; font-size:0.7rem; font-weight:700;">⟳ Rework</span></div>
+    <div class="accent-bar-item"><span style="background:var(--black); color:white; padding:3px 8px; border-radius:12px; font-size:0.7rem; font-weight:700;">✖ Scrap</span></div>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="industrial-table">
+      <thead>
+        <tr>
+          <th style="width:80px;">Op-Seq</th>
+          <th>Operation Description</th>
+          <th class="center" style="width:80px;">Symbol</th>
+          <th style="width:130px;">Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cell-id">10-01</td>
+          <td>Raw material reception (PLA filament)</td>
+          <td class="cell-center"><div class="sym sym-store">STO</div></td>
+          <td><span class="cat-tag">Store / Get</span></td>
+        </tr>
+        <tr>
+          <td class="cell-id">10-02</td>
+          <td>Incoming material inspection — verify filament diameter, check for moisture, document batch number for traceability</td>
+          <td class="cell-center"><div class="sym sym-inspect">INS</div></td>
+          <td><span class="cat-tag">Inspect</span></td>
+        </tr>
+        <tr>
+          <td class="cell-id">20-01</td>
+          <td><strong>FDM Printing — Config C7</strong> (15% infill, variable layer height 0.08–0.25 mm, no supports) ← only value-added step</td>
+          <td class="cell-center"><div class="sym sym-fab">FAB</div></td>
+          <td><span class="cat-tag" style="background:var(--orange); color:white;">Fabrication ★</span></td>
+        </tr>
+        <tr>
+          <td class="cell-id">20-02</td>
+          <td>Transfer to post-processing station</td>
+          <td class="cell-center"><div class="sym sym-move">MOV</div></td>
+          <td><span class="cat-tag">Move</span></td>
+        </tr>
+        <tr>
+          <td class="cell-id">30-01</td>
+          <td>Dimensional inspection — remove from build plate with spatula, inspect for visible defects, verify against master part</td>
+          <td class="cell-center"><div class="sym sym-inspect">INS</div></td>
+          <td><span class="cat-tag">Inspect</span></td>
+        </tr>
+        <tr>
+          <td class="cell-id">30-02</td>
+          <td>Transfer to CP Lab production line</td>
+          <td class="cell-center"><div class="sym sym-move">MOV</div></td>
+          <td><span class="cat-tag">Move</span></td>
+        </tr>
+        <tr>
+          <td class="cell-id">40-01</td>
+          <td>Marriage traceability code introduced in bottom case (QR, 4 mm font, ironing enabled)</td>
+          <td class="cell-center"><div class="sym sym-fab">FAB</div></td>
+          <td><span class="cat-tag">Fabrication</span></td>
+        </tr>
+        <tr>
+          <td class="cell-id">40-02</td>
+          <td>CP Lab execution for final product creation across all assembly stations</td>
+          <td class="cell-center"><div class="sym sym-fab">FAB</div></td>
+          <td><span class="cat-tag">Fabrication</span></td>
+        </tr>
+        <tr>
+          <td class="cell-id">50-01</td>
+          <td>Final quality check — OK / NOK parts separated, data logged to SPC system</td>
+          <td class="cell-center"><div class="sym sym-inspect">INS</div></td>
+          <td><span class="cat-tag">Inspect</span></td>
+        </tr>
+        <tr>
+          <td class="cell-id">60-01</td>
+          <td>Packaging and dispatch for OK parts to Phones-R-Us</td>
+          <td class="cell-center"><div class="sym sym-move">MOV</div></td>
+          <td><span class="cat-tag">Move</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="footer-note">Value-Stream reference: Rother, M. and Shook, J. (2003) <em>Learning to See</em>. Lean Enterprise Institute.</p>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PFMEA
+═══════════════════════════════════════════ -->
+<section id="pfmea" class="section fade-up" style="background: var(--gray); border-top: 1px solid #ddd;">
+  <p class="section-label">AIAG &amp; VDA · Risk Prioritisation</p>
+  <div class="two-col" style="align-items: end; margin-bottom: 2rem; gap: 3rem;">
+    <h2 class="section-title">Process<br>FMEA</h2>
+    <p class="section-intro" style="margin-bottom: 0;">
+      Explore the PFMEA analysis used by DigiCase Solutions to identify, assess, and minimise manufacturing risks. The table highlights critical failure points, risk priorities (RPN), and the continuous improvement strategies applied to ensure consistent quality.
+      <br><span style="font-size:0.8rem; color:#888; display:block; margin-top:0.5rem;">Additive Manufacturing + Automated CP Lab Assembly</span>
+    </p>
+  </div>
+
+  <!-- Legend -->
+  <div class="accent-bar">
+    <div class="accent-bar-item"><span class="risk-badge high">RPN ≥ 100</span><span>High Risk · Immediate action required</span></div>
+    <div class="accent-bar-item"><span class="risk-badge medium">RPN 50–99</span><span>Medium Risk · Monitor &amp; improve</span></div>
+    <div class="accent-bar-item"><span class="risk-badge low">RPN &lt; 50</span><span>Low Risk · Acceptable</span></div>
+    <div class="accent-bar-item"><strong>S / O / D</strong> &nbsp;Severity · Occurrence · Detection (1–10)</div>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="industrial-table" style="min-width: 1300px;">
+      <thead>
+        <tr>
+          <th class="center">ID</th>
+          <th>Process Step</th>
+          <th>Failure Mode</th>
+          <th>Effect</th>
+          <th class="center">S</th>
+          <th>Cause(s)</th>
+          <th class="center">O</th>
+          <th>Current Controls</th>
+          <th class="center">D</th>
+          <th class="center">RPN</th>
+          <th>Recommended Action</th>
+          <th>Responsible</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="cell-id">P01</td><td>Bed preparation (pre-print)</td><td>Poor adhesion → part detaches mid-print</td><td>Print failure, nozzle crash risk</td><td class="cell-center">9</td><td>Bed not leveled; temp too low</td><td class="cell-center">5</td><td>Manual leveling; brim enabled</td><td class="cell-center">4</td><td class="cell-center"><span class="rpn rpn-high">180</span></td><td>Auto bed leveling sensor; IPA cleaning</td><td>Operator</td></tr>
+        <tr><td class="cell-id">P02</td><td>Filament loading</td><td>Filament jam or tangle</td><td>Stop in mid-print, grinds filament</td><td class="cell-center">7</td><td>Tangled spool; debris</td><td class="cell-center">3</td><td>Visual check of spool before loading</td><td class="cell-center">5</td><td class="cell-center"><span class="rpn rpn-high">105</span></td><td>Filament runout sensor + jam detection</td><td>Maintenance</td></tr>
+        <tr><td class="cell-id">P03</td><td>Print start (first layer)</td><td>First layer incomplete</td><td>Part detaches or warps</td><td class="cell-center">8</td><td>Z-offset too high; under-extrusion</td><td class="cell-center">4</td><td>Calibration cube printed daily</td><td class="cell-center">3</td><td class="cell-center"><span class="rpn rpn-medium">96</span></td><td>Live Z-adjust during first layer</td><td>Operator</td></tr>
+        <tr><td class="cell-id">P04</td><td>Printing – general</td><td>Layer shift (X or Y axis)</td><td>Part unusable, geometry incorrect</td><td class="cell-center">8</td><td>Belt loose; nozzle collision</td><td class="cell-center">3</td><td>Belt tension check weekly</td><td class="cell-center">4</td><td class="cell-center"><span class="rpn rpn-medium">96</span></td><td>Belt tension gauge; reduce acceleration</td><td>Engineer</td></tr>
+        <tr><td class="cell-id">P05</td><td>Printing – overhangs</td><td>Layer collapse or sagging</td><td>Catastrophic print failure</td><td class="cell-center">10</td><td>Bridge &gt; 15 mm; insufficient cooling</td><td class="cell-center">4</td><td>Variable layer height in C7</td><td class="cell-center">1</td><td class="cell-center"><span class="rpn rpn-low">40</span></td><td>Already mitigated in C7 — document restriction</td><td>Design</td></tr>
+        <tr><td class="cell-id">P06</td><td>Printing – extrusion</td><td>Partial clog / under-extrusion</td><td>Voids, weak structure, poor surface</td><td class="cell-center">7</td><td>Nozzle temp fluctuation; debris</td><td class="cell-center">4</td><td>Purge line at start; nozzle replacement</td><td class="cell-center">4</td><td class="cell-center"><span class="rpn rpn-high">112</span></td><td>Real-time flow monitoring</td><td>Operator</td></tr>
+        <tr><td class="cell-id">P07</td><td>Printing – cooling</td><td>Warping during print</td><td>Dimensional error, part detached</td><td class="cell-center">8</td><td>Uneven cooling; draft in room</td><td class="cell-center">4</td><td>Enclosure closed; brim used</td><td class="cell-center">3</td><td class="cell-center"><span class="rpn rpn-medium">96</span></td><td>Add heated chamber or draft shield</td><td>Engineer</td></tr>
+        <tr><td class="cell-id">P08</td><td>Post-print cooling</td><td>Part warps after removal</td><td>Final geometry out of spec</td><td class="cell-center">7</td><td>Removed too early; cooled too fast</td><td class="cell-center">5</td><td>Parts held on bed until &lt;40°C</td><td class="cell-center">4</td><td class="cell-center"><span class="rpn rpn-high">140</span></td><td>Controlled cooling ramp; annealing fixture</td><td>Engineer</td></tr>
+        <tr><td class="cell-id">M01</td><td>Thickness Measurement</td><td>Wall thickness &lt; 1.6 mm</td><td>Laser sensor rejects part, line stops</td><td class="cell-center">9</td><td>Infill too low; Z-offset drift</td><td class="cell-center">4</td><td>Daily calibration cube; fixed C7 parameters</td><td class="cell-center">3</td><td class="cell-center"><span class="rpn rpn-high">108</span></td><td>Implement SPC chart; move to 20% infill</td><td>Quality</td></tr>
+        <tr><td class="cell-id">M02</td><td>Thickness Measurement</td><td>False reject due to sensor misalignment</td><td>Good part scrapped, waste</td><td class="cell-center">5</td><td>Sensor mounting shifted</td><td class="cell-center">3</td><td>Weekly sensor check with master gauge</td><td class="cell-center">4</td><td class="cell-center"><span class="rpn rpn-medium">60</span></td><td>Automated self-check with reference part</td><td>Maintenance</td></tr>
+        <tr><td class="cell-id">T01</td><td>Pick-by-Light / QR</td><td>QR code illegible</td><td>Vision system cannot read, part rejected</td><td class="cell-center">7</td><td>Font too small (2 mm)</td><td class="cell-center">2</td><td>Font increased to 4 mm in CAD</td><td class="cell-center">2</td><td class="cell-center"><span class="rpn rpn-low">28</span></td><td>Maintain ironing = enabled for top surfaces</td><td>Design</td></tr>
+        <tr><td class="cell-id">A01</td><td>Component Insertion</td><td>Internal radius too tight</td><td>Component jams halfway</td><td class="cell-center">8</td><td>CAD deviation; shrinkage not compensated</td><td class="cell-center">3</td><td>CMM spot-check every 50 parts</td><td class="cell-center">4</td><td class="cell-center"><span class="rpn rpn-medium">96</span></td><td>Increase CAD radius by 0.1 mm compensation</td><td>Design</td></tr>
+        <tr><td class="cell-id">A02</td><td>Component Insertion</td><td>Insertion force too low (loose fit)</td><td>Component falls out during handling</td><td class="cell-center">7</td><td>Radius too large; worn nozzle</td><td class="cell-center">3</td><td>Go/no-go gauge for radius</td><td class="cell-center">5</td><td class="cell-center"><span class="rpn rpn-high">105</span></td><td>Tighter gauge; automated force monitoring</td><td>Quality</td></tr>
+        <tr><td class="cell-id">F01</td><td>Press-Fit / Closing</td><td>Snap too loose</td><td>Case does not latch, assembly separates</td><td class="cell-center">9</td><td>Snap length wrong; extrusion width variation</td><td class="cell-center">5</td><td>Three snap lengths tested (T2b selected)</td><td class="cell-center">3</td><td class="cell-center"><span class="rpn rpn-high">135</span></td><td>In-line snap force tester; feedback to print parameters</td><td>Engineer</td></tr>
+        <tr><td class="cell-id">F02</td><td>Press-Fit / Closing</td><td>Snap too tight or brittle</td><td>Snap fractures during assembly</td><td class="cell-center">8</td><td>Layer adhesion weak; snap length too long</td><td class="cell-center">3</td><td>C7 parameters (normal speed, 15% infill)</td><td class="cell-center">2</td><td class="cell-center"><span class="rpn rpn-low">48</span></td><td>Maintain "Normal" speed; never use "Fast" mode</td><td>Production</td></tr>
+        <tr><td class="cell-id">F03</td><td>Press-Fit / Closing</td><td>Case misalignment before pressing</td><td>Uneven closure, stress on snaps</td><td class="cell-center">7</td><td>Part warped; fixturing not precise</td><td class="cell-center">4</td><td>Visual alignment guide on fixture</td><td class="cell-center">4</td><td class="cell-center"><span class="rpn rpn-high">112</span></td><td>Add mechanical guide pins; reject if warped &gt;0.2 mm</td><td>Design</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Summary cards -->
+  <div class="summary-container">
+    <div class="summary-card dark">
+      <div class="summary-card-header">🔴 High Risk Summary</div>
+      <div class="summary-card-body">
+        <table class="summary-card-table">
+          <thead><tr><th>RPN</th><th>ID</th><th>Failure Mode</th><th>Priority Action</th></tr></thead>
+          <tbody>
+            <tr><td><strong>180</strong></td><td>P01</td><td>Part detachment mid-print</td><td>Auto bed leveling + IPA cleaning</td></tr>
+            <tr><td><strong>140</strong></td><td>P08</td><td>Post-cooling warping</td><td>Controlled cooling ramp</td></tr>
+            <tr><td><strong>135</strong></td><td>F01</td><td>Snap too loose</td><td>In-line snap force tester</td></tr>
+            <tr><td><strong>112</strong></td><td>P06</td><td>Under-extrusion</td><td>Real-time flow monitoring</td></tr>
+            <tr><td><strong>112</strong></td><td>F03</td><td>Case misalignment</td><td>Mechanical guide pins</td></tr>
+            <tr><td><strong>108</strong></td><td>M01</td><td>Wall thickness &lt; 1.6 mm</td><td>SPC chart + 20% infill</td></tr>
+            <tr><td><strong>105</strong></td><td>P02</td><td>Filament jam</td><td>Runout sensor + jam detection</td></tr>
+            <tr><td><strong>105</strong></td><td>A02</td><td>Insertion too loose</td><td>Tighter gauge + force monitoring</td></tr>
+          </tbody>
+        </table>
+        <div class="summary-card-note">⚠️ 8 high-risk items require immediate management review.</div>
+      </div>
+    </div>
+    <div class="summary-card light">
+      <div class="summary-card-header">📋 Review Frequency by RPN</div>
+      <div class="summary-card-body">
+        <table class="summary-card-table">
+          <thead><tr><th>RPN Range</th><th>Review Frequency</th></tr></thead>
+          <tbody>
+            <tr><td><strong>≥ 120</strong></td><td>Weekly</td></tr>
+            <tr><td><strong>70 – 119</strong></td><td>Bi-weekly or Monthly</td></tr>
+            <tr><td><strong>30 – 69</strong></td><td>Quarterly</td></tr>
+            <tr><td><strong>&lt; 30</strong></td><td>Semi-annually or Annually</td></tr>
+          </tbody>
+        </table>
+        <div class="summary-card-note"><strong>Note:</strong> Based on AIAG &amp; VDA FMEA Handbook (2019). RPN ≥ 120 requires immediate action. All RPNs targeted below 100 by Q3.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note" style="margin-top: 1.5rem;">📊 PFMEA v1.0 · AIAG &amp; VDA (2019) · S, O, D rated 1–10 · Target: all RPNs below 100 by Q3.</div>
+</section>
+
+<!-- Continuous improvement CTA block -->
+<div class="cta-block">
+  <p><strong>Continuous improvement is at the core of DigiCase Solutions.</strong> Our PFMEA review identified the highest-risk production challenges, allowing the team to prioritise corrective actions that improve reliability, print quality, and assembly performance.</p>
+  <p>Key improvement initiatives currently underway include:</p>
+  <ul>
+    <li>Auto bed leveling systems to prevent mid-print failures (P01, RPN 180)</li>
+    <li>In-line snap-fit testing to ensure consistent assembly quality (F01, RPN 135)</li>
+    <li>Statistical Process Control (SPC) charts for wall thickness monitoring (M01)</li>
+  </ul>
+  <p>The PFMEA is updated every three months and whenever major manufacturing changes are introduced.</p>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PROCESS CAPABILITY
+═══════════════════════════════════════════ -->
+<section id="process-capability" class="section fade-up" style="background: var(--white); border-top: 1px solid #eee;">
+  <p class="section-label">Statistical Quality Control · Montgomery (2019)</p>
+  <h2 class="section-title">Process Capability<br>&amp; Machine Qualification</h2>
+  <p class="section-intro">Process capability answers: <strong>Is our manufacturing process stable and predictable enough to meet specifications consistently?</strong></p>
+
+  <!-- Measurement data + 4 stat cards -->
+  <div class="two-col" style="gap: 0; margin-bottom: 4rem;">
+    <div style="padding-right: 3rem;">
+      <h3 style="font-family: var(--font-display); font-size: 1.8rem; text-transform: uppercase; margin-bottom: 0.75rem;">Thickness<br>Measurements</h3>
+      <p style="font-size: 0.85rem; color: #555; margin-bottom: 1.5rem; line-height: 1.5;">Critical dimension 1.6–2.2 mm measured on <strong>15 consecutive casings</strong> from Configuration 7.</p>
+
+      <div class="meas-grid">
+        <div class="meas-cell" style="background:var(--black); color:white;">1.71</div>
+        <div class="meas-cell" style="background:var(--orange);">1.68</div>
+        <div class="meas-cell" style="background:var(--white); border:1px solid #ddd;">1.73</div>
+        <div class="meas-cell" style="background:var(--orange);">1.70</div>
+        <div class="meas-cell" style="background:var(--white); border:1px solid #ddd;">1.69</div>
+        <div class="meas-cell" style="background:var(--orange);">1.72</div>
+        <div class="meas-cell" style="background:var(--black); color:white;">1.68</div>
+        <div class="meas-cell" style="background:var(--black); color:white;">1.71</div>
+        <div class="meas-cell" style="background:var(--white); border:1px solid #ddd;">1.70</div>
+        <div class="meas-cell" style="background:var(--white); border:1px solid #ddd;">1.69</div>
+        <div class="meas-cell" style="background:var(--orange);">1.72</div>
+        <div class="meas-cell" style="background:var(--white); border:1px solid #ddd;">1.70</div>
+        <div class="meas-cell" style="background:var(--orange);">1.71</div>
+        <div class="meas-cell" style="background:var(--orange);">1.68</div>
+        <div class="meas-cell" style="background:var(--black); color:white;">1.73</div>
+      </div>
+      <p style="font-size: 0.7rem; color: #999; margin-top: 0.75rem;">n = 15 consecutive casings · Configuration 7 · Elegoo Neptune</p>
+
+      <div style="margin-top: 1.5rem; padding: 1rem 1.25rem; background: var(--gray); border-left: 4px solid var(--orange);">
+        <strong style="font-family: var(--font-condensed); font-size: 0.85rem;">🤔 Why Elegoo Neptune over Ultimaker?</strong>
+        <p style="font-size: 0.8rem; margin-top: 0.4rem; color: #555; line-height: 1.5;">Direct drive extruder provides more precise extrusion control, eliminating support fusion issues discovered in Config C5.</p>
+      </div>
+    </div>
+
+    <div class="four-grid">
+      <div class="stat-card dark"><h3 style="font-size: 2.5rem;">n = 15</h3><p>Sample size from C7 production run</p></div>
+      <div class="stat-card light"><h3 style="font-size: 2rem;">x̄ = 1.703 mm</h3><p>Mean wall thickness</p></div>
+      <div class="stat-card light"><h3 style="font-size: 2rem;">σ = 0.016 mm</h3><p>Standard deviation</p></div>
+      <div class="stat-card dark"><h3 style="font-size: 2rem;">1.6–2.2 mm</h3><p>Specification window (USL / LSL)</p></div>
+    </div>
+  </div>
+
+  <!-- IQ / OQ / PQ cards -->
+  <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 0.5rem;">Machine Qualification</h3>
+  <p style="font-size: 0.85rem; color: #888; font-family: var(--font-condensed); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;">IQ / OQ / PQ Protocol</p>
+  <div class="services-grid" style="margin-bottom: 3rem;">
+    <div class="service-card orange-card">
+      <div class="service-info">
+        <h3 style="font-family: var(--font-display); font-size: 1.8rem; text-transform: uppercase; margin-bottom: 0.75rem;">🔧 Installation<br>Qualification (IQ)</h3>
+        <p style="font-size: 0.85rem; line-height: 1.5; color: #1a1a1a; margin-bottom: 1rem;">Verify printer arrives undamaged. Electrical safety check. Firmware version confirmed.</p>
+        <div style="border-top: 1px solid rgba(0,0,0,0.2); padding-top: 1rem;">
+          <span style="font-family: var(--font-display); font-size: 1.5rem; color: var(--black);">RESULT: PASS ✓</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card dark-card">
+      <div class="service-info">
+        <h3 style="font-family: var(--font-display); font-size: 1.8rem; text-transform: uppercase; margin-bottom: 0.75rem; color:white;">⚙️ Operational<br>Qualification (OQ)</h3>
+        <p style="font-size: 0.85rem; line-height: 1.5; color: #ccc; margin-bottom: 1rem;">Test all axes (X, Y, Z). Heated bed reaches 60°C. Nozzle reaches 210°C.</p>
+        <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem;">
+          <span style="font-family: var(--font-display); font-size: 1.5rem; color: var(--orange);">RESULT: PASS ✓</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card light-card">
+      <div class="service-info">
+        <h3 style="font-family: var(--font-display); font-size: 1.8rem; text-transform: uppercase; margin-bottom: 0.75rem;">📐 Performance<br>Qualification (PQ)</h3>
+        <p style="font-size: 0.85rem; line-height: 1.5; color: #555; margin-bottom: 1rem;">Print calibration cube 20×20×20 mm. Measure dimensions. Calculate error.</p>
+        <div style="border-top: 1px solid #ccc; padding-top: 1rem;">
+          <span style="font-family: var(--font-condensed); font-size: 0.85rem; font-weight: 700;">Mean error: +0.12 mm (X) · +0.09 mm (Y) · +0.15 mm (Z)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cp / Cpk -->
+  <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 0.5rem;">Process Capability</h3>
+  <p style="font-size: 0.85rem; color: #888; font-family: var(--font-condensed); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;">Cp &amp; Cpk Analysis</p>
+  <div class="two-col" style="gap: 1.5rem; margin-bottom: 2rem;">
+    <div class="stat-card dark">
+      <div style="display:flex; justify-content:space-between; align-items:baseline;">
+        <span style="font-family:var(--font-condensed); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase;">Potential Capability</span>
+        <span style="font-family:var(--font-display); font-size:2rem; color:var(--orange);">Cp</span>
+      </div>
+      <div style="font-family:var(--font-display); font-size:6rem; line-height:1; margin:0.5rem 0; color:var(--white);">6.25</div>
+      <p style="font-size:0.78rem; margin-top:0.5rem;">Cp = (USL − LSL) / (6 × σ) = 0.6 / 0.096 = <strong>6.25</strong></p>
+      <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid #333;">
+        <p style="font-size:0.72rem; color:#aaa;">Process spread (6σ = 0.096 mm) is only <strong>16%</strong> of the tolerance band.</p>
+      </div>
+    </div>
+    <div class="stat-card light">
+      <div style="display:flex; justify-content:space-between; align-items:baseline;">
+        <span style="font-family:var(--font-condensed); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase;">Actual Capability</span>
+        <span style="font-family:var(--font-display); font-size:2rem; color:var(--orange);">Cpk</span>
+      </div>
+      <div style="font-family:var(--font-display); font-size:6rem; line-height:1; margin:0.5rem 0;">2.15</div>
+      <p style="font-size:0.78rem; margin-top:0.5rem;">Cpk = min[(USL − x̄)/(3σ), (x̄ − LSL)/(3σ)] = <strong>2.15</strong></p>
+      <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid #ccc;">
+        <p style="font-size:0.72rem;"><strong>💡 Key insight:</strong> Cpk = 2.15 exceeds automotive standard (Cpk ≥ 1.33). Excellent control.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-card dark">
+    <div class="summary-card-header">🔬 Why Such High Capability?</div>
+    <div class="summary-card-body">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+        <div><div style="font-size:1.5rem; margin-bottom:0.5rem;">⚙️</div><p style="font-size:0.75rem; color:#ccc;"><strong style="color:white;">Fixed parameters</strong><br>C7 configuration locked — no deviations permitted</p></div>
+        <div><div style="font-size:1.5rem; margin-bottom:0.5rem;">🖨️</div><p style="font-size:0.75rem; color:#ccc;"><strong style="color:white;">Same printer model</strong><br>Elegoo Neptune (direct drive) used for all samples</p></div>
+        <div><div style="font-size:1.5rem; margin-bottom:0.5rem;">🌡️</div><p style="font-size:0.75rem; color:#ccc;"><strong style="color:white;">Controlled environment</strong><br>~22°C ambient, ~45% relative humidity throughout</p></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">📖 Montgomery, D.C. (2019) <em>Introduction to Statistical Quality Control</em>. 8th edn. Hoboken, NJ: Wiley.</p>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TAKT TIME
+═══════════════════════════════════════════ -->
+<section id="takt-time" class="fade-up" style="border-top: 3px solid var(--orange);">
+  <div class="takt-hero">
+    <div class="takt-left">
+      <div>
+        <p class="section-label" style="color: var(--orange);">Demand-Driven Production</p>
+        <h2 style="font-family: var(--font-display); font-size: 3rem; line-height: 0.9; text-transform: uppercase; color: var(--white); margin-bottom: 2rem;">Takt Time<br>Analysis</h2>
+      </div>
+      <div>
+        <div class="takt-number">127</div>
+        <div class="takt-unit">Seconds per phone</div>
+        <p style="font-size: 0.85rem; color: #aaa; margin-top: 1rem; line-height: 1.5;">The maximum time allowed to produce one unit to meet customer demand of 50,000 casings/year.</p>
+      </div>
+      <div style="border-top: 1px solid #333; padding-top: 1.5rem; margin-top: 1.5rem;">
+        <p style="font-size: 0.75rem; color: #666; font-family: var(--font-condensed); letter-spacing: 0.05em;">Reference: Rother &amp; Shook (2003)</p>
+      </div>
+    </div>
+    <div class="takt-right">
+      <div>
+        <p class="section-label">Calculation Chain</p>
+        <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 1.5rem;">Step by Step</h3>
+      </div>
+
+      <table class="why-table" style="font-size: 0.85rem;">
+        <tr>
+          <td class="why-num" style="color: var(--orange);">01</td>
+          <td class="why-title">Annual target</td>
+          <td><strong>50,000 casings / year</strong> (Phones-R-Us contract)</td>
+        </tr>
+        <tr>
+          <td class="why-num" style="color: var(--black);">02</td>
+          <td class="why-title">Working days</td>
+          <td><strong>220 days</strong> (holidays &amp; planned maintenance excluded)</td>
+        </tr>
+        <tr>
+          <td class="why-num" style="color: var(--orange);">03</td>
+          <td class="why-title">Daily demand</td>
+          <td>50,000 ÷ 220 = <strong>227 units / day</strong></td>
+        </tr>
+        <tr>
+          <td class="why-num" style="color: var(--black);">04</td>
+          <td class="why-title">Available time</td>
+          <td>1 shift × 8 h = <strong>28,800 seconds / day</strong></td>
+        </tr>
+        <tr>
+          <td class="why-num" style="color: var(--orange);">05</td>
+          <td class="why-title">Takt time</td>
+          <td>28,800 ÷ 227 = <strong>127 seconds</strong> ✓</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PRINTER FARM SIZING
+═══════════════════════════════════════════ -->
+<section id="printer-farm" class="section fade-up" style="background: var(--white);">
+  <p class="section-label">Scalability · Industry 4.0</p>
+  <div class="two-col" style="align-items: end; margin-bottom: 3rem; gap: 3rem;">
+    <h2 class="section-title">Printer Farm<br>Sizing</h2>
+    <p class="section-intro" style="margin-bottom: 0;">
+      Each casing set (top + bottom) takes <strong>6.5 hours (23,400 s)</strong> to print. To deliver one casing every 127 seconds, we need to run multiple printers in parallel.
+    </p>
+  </div>
+
+  <!-- Formula blocks -->
+  <div class="formula-block" style="margin-bottom: 1rem;">
+    <div>
+      <div style="font-size:0.7rem; font-family:var(--font-condensed); letter-spacing:0.1em; text-transform:uppercase; color:#aaa; margin-bottom:0.3rem;">Printers required</div>
+      <div class="formula-text">Cycle Time ÷ Takt Time = Printers</div>
+    </div>
+    <div style="font-size: 1.5rem; color: var(--gray-dark);">→</div>
+    <div class="formula-result">23,400 s ÷ 127 s = <span style="color:var(--orange);">184.25</span></div>
+    <div style="border-left: 3px solid var(--orange); padding-left: 1.5rem; font-size: 0.85rem; color: #ccc;">Round up → <strong style="font-family:var(--font-display); font-size:1.5rem; color:var(--orange);">185 printers</strong></div>
+  </div>
+  <div class="formula-block">
+    <div>
+      <div style="font-size:0.7rem; font-family:var(--font-condensed); letter-spacing:0.1em; text-transform:uppercase; color:#aaa; margin-bottom:0.3rem;">Sensitivity (10% downtime)</div>
+      <div class="formula-text">185 × 0.10 ≈ 19 spare printers</div>
+    </div>
+    <div style="font-size: 1.5rem; color: var(--gray-dark);">→</div>
+    <div class="formula-result"><span style="color:var(--orange);">204</span> total printers</div>
+    <div style="border-left: 3px solid var(--gray-dark); padding-left: 1.5rem; font-size: 0.85rem; color: #ccc;">Floor space: ~0.8 m² × 204 = <strong style="color:var(--orange);">~163 m²</strong></div>
+  </div>
+
+  <!-- Visual printer grid -->
+  <div style="margin: 3rem 0;">
+    <p style="font-family: var(--font-condensed); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #888; margin-bottom: 0.75rem;">
+      <span style="display:inline-block; width:12px; height:12px; background:var(--orange); border-radius:2px; margin-right:6px; vertical-align:middle;"></span>Active (185)
+      &nbsp;&nbsp;
+      <span style="display:inline-block; width:12px; height:12px; background:var(--gray-dark); border-radius:2px; margin-right:6px; vertical-align:middle;"></span>Spare (19)
+    </p>
+    <div class="printer-grid-display" id="printerGrid"></div>
+  </div>
+
+  <!-- 4 Stat cards -->
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;">
+    <div class="stat-card dark"><h3 style="font-size:3rem;">185</h3><p>Active printers required</p></div>
+    <div class="stat-card light"><h3 style="font-size:3rem;">+19</h3><p>Spare printers (10% buffer)</p></div>
+    <div class="stat-card orange"><h3 style="font-size:3rem;">163 m²</h3><p>Estimated floor space needed</p></div>
+    <div class="stat-card dark"><h3 style="font-size:3rem;">50k</h3><p>Units/year — target confirmed ✓</p></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     VALUE STREAM MAP
+═══════════════════════════════════════════ -->
+<section id="vsm" class="section fade-up" style="background: var(--gray); border-top: 1px solid #ddd;">
+  <p class="section-label">Lean Manufacturing · VSM</p>
+  <div class="two-col" style="align-items: end; margin-bottom: 2rem; gap: 3rem;">
+    <h2 class="section-title">Value Stream<br>Map</h2>
+    <p class="section-intro" style="margin-bottom: 0;">
+      VSM distinguishes value-added activities (transforming the product) from non-value-added activities (waiting, moving, inspecting). Current state achieves a <strong>95.7% value-added ratio</strong> — exceptional by lean standards.
+    </p>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="industrial-table">
+      <thead>
+        <tr>
+          <th>Process Step</th>
+          <th class="center">Time (s)</th>
+          <th class="center">Value-Added?</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Filament inspection</td><td class="cell-center">60</td><td class="cell-center"><span style="color:#888; font-weight:700;">No (QC)</span></td><td>Necessary but non-value-added</td></tr>
+        <tr style="background:#fff8f5;"><td><strong>FDM Printing (C7)</strong></td><td class="cell-center"><strong>23,400</strong></td><td class="cell-center"><strong style="color:var(--orange);">✓ YES</strong></td><td>The only value-added transformation in the process</td></tr>
+        <tr><td>Cooling (natural)</td><td class="cell-center">600</td><td class="cell-center"><span style="color:#888; font-weight:700;">No</span></td><td>Required for dimensional stability</td></tr>
+        <tr><td>Removal from bed</td><td class="cell-center">30</td><td class="cell-center"><span style="color:#888; font-weight:700;">No</span></td><td>Manual labour</td></tr>
+        <tr><td>Dimensional inspection</td><td class="cell-center">120</td><td class="cell-center"><span style="color:#888; font-weight:700;">No</span></td><td>Quality control</td></tr>
+        <tr><td>CP Lab validation</td><td class="cell-center">180</td><td class="cell-center"><span style="color:var(--yellow); font-weight:700;">Mixed</span></td><td>Assembly adds value; measurement does not</td></tr>
+        <tr><td>Traceability scanning</td><td class="cell-center">15</td><td class="cell-center"><span style="color:#888; font-weight:700;">No</span></td><td>Documentation only</td></tr>
+        <tr><td>Packaging</td><td class="cell-center">45</td><td class="cell-center"><span style="color:#888; font-weight:700;">No</span></td><td>Shipping preparation</td></tr>
+        <tr style="background: var(--black); color: white;"><td><strong>Total Lead Time</strong></td><td class="cell-center"><strong>24,450 s</strong></td><td></td><td><strong>6.79 hours per casing set</strong></td></tr>
+        <tr style="background: var(--orange);"><td><strong>Value-Added Ratio</strong></td><td class="cell-center" colspan="3"><strong>23,400 ÷ 24,450 = 95.7%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-container">
+    <div class="summary-card dark">
+      <div class="summary-card-header">🚀 Future State VSM (204 Printers)</div>
+      <div class="summary-card-body">
+        <table class="summary-card-table">
+          <thead><tr><th>New Activity</th><th>Est. Time</th><th>Impact</th></tr></thead>
+          <tbody>
+            <tr><td>Queue waiting (batch)</td><td>23,400 s</td><td>Eliminated with continuous flow</td></tr>
+            <tr><td>Transport to inspection</td><td>3,600 s</td><td>Conveyor or cart system</td></tr>
+            <tr><td>Inspection queue (SPC)</td><td>1,800 s</td><td>Only 5% of parts require CMM</td></tr>
+          </tbody>
+        </table>
+        <div class="summary-card-note"><strong>Lean recommendation:</strong> Implement continuous flow — unload each printer immediately upon completion. Lead time increases only to ~6.85 h (+1%).</div>
+      </div>
+    </div>
+    <div class="summary-card light">
+      <div class="summary-card-header">📊 VSM Metrics Summary</div>
+      <div class="summary-card-body">
+        <table class="summary-card-table">
+          <thead><tr><th>Metric</th><th>Current (1 printer)</th><th>Future (204 printers)</th></tr></thead>
+          <tbody>
+            <tr><td>Lead time</td><td>6.79 h</td><td>6.85 h (+1%)</td></tr>
+            <tr><td>Value-added ratio</td><td>95.7%</td><td>~94%</td></tr>
+            <tr><td>Production rate</td><td>0.15 units/h</td><td>227 units/day</td></tr>
+            <tr><td>Work-in-progress (WIP)</td><td>1 set</td><td>~204 sets</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <p class="footer-note">📖 Rother, M. and Shook, J. (2003) <em>Learning to See</em>. Cambridge, MA: Lean Enterprise Institute.</p>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 3 SUMMARY
+═══════════════════════════════════════════ -->
+<section id="section3-summary" class="section fade-up" style="background: var(--white); border-top: 3px solid var(--orange);">
+  <p class="section-label">Findings &amp; Conclusions</p>
+  <h2 class="section-title" style="margin-bottom: 2rem;">Section 3<br>Key Takeaways</h2>
+
+  <div class="table-wrapper">
+    <table class="industrial-table">
+      <thead>
+        <tr>
+          <th>Engineering Tool</th>
+          <th>Key Finding</th>
+          <th>Impact on 50,000-Unit Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="cell-id">Process Flow Diagram</td><td>Printing (6.5 h) is the only value-added step in the chain</td><td>Bottleneck clearly identified — parallelisation is the solution</td></tr>
+        <tr><td class="cell-id">PFMEA</td><td>Warpage (P01, P08) has highest RPN; snap-fit risk successfully reduced</td><td>Preventive controls in place; 8 items require active monitoring</td></tr>
+        <tr><td class="cell-id">Process Capability</td><td>Cp = 6.25, Cpk = 2.15</td><td>Exceeds automotive standard; process highly capable</td></tr>
+        <tr><td class="cell-id">Takt Time</td><td>127 seconds per phone (CP Lab assembly faster than demand)</td><td>Assembly line is not the bottleneck — printing is</td></tr>
+        <tr><td class="cell-id">Printer Farm Sizing</td><td>185 active + 19 spare = 204 printers needed</td><td>50,000 units/year target confirmed achievable</td></tr>
+        <tr><td class="cell-id">Value Stream Map</td><td>95.7% value-added ratio in current single-printer state</td><td>Excellent efficiency; queue waiting will emerge at farm scale</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- References -->
+  <div class="summary-card dark" style="margin-top: 2rem;">
+    <div class="summary-card-header">📚 References — Section 3</div>
+    <div class="summary-card-body">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem;">
+        <p style="font-size: 0.72rem; color: #ccc; line-height: 1.6;">AIAG &amp; VDA (2019) <em>FMEA Handbook</em>. 1st edn.</p>
+        <p style="font-size: 0.72rem; color: #ccc; line-height: 1.6;">Gilchrist, A. (2016) <em>Industry 4.0: The Industrial Internet of Things</em>.</p>
+        <p style="font-size: 0.72rem; color: #ccc; line-height: 1.6;">Groover, M.P. (2016) <em>Automation, Production Systems, and CIM</em>. 5th edn.</p>
+        <p style="font-size: 0.72rem; color: #ccc; line-height: 1.6;">Montgomery, D.C. (2019) <em>Introduction to Statistical Quality Control</em>. 8th edn.</p>
+        <p style="font-size: 0.72rem; color: #ccc; line-height: 1.6;">Mottola, F. (2024) <em>Numerical methods for warpage minimisation in FDM</em>. Master's thesis.</p>
+        <p style="font-size: 0.72rem; color: #ccc; line-height: 1.6;">Rother, M. and Shook, J. (2003) <em>Learning to See</em>. Lean Enterprise Institute.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div>
+    <div class="footer-logo">Analucia Vera</div>
+    <p class="footer-copy">© 2025 Analucia Vera. All rights reserved.</p>
+  </div>
+  <div class="footer-links">
+    <a href="../index.html">Home</a>
+    <a href="design.html">3D Design</a>
+    <a href="simulation.html">Simulation</a>
+    <a href="../index.html#pfmea">PFMEA</a>
+  </div>
+</footer>
+
+<script>
+  // Fade-up animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Active nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.id; });
+    navLinks.forEach(a => {
+      a.style.background = '';
+      a.style.color = '';
+      if (a.getAttribute('href') === '#' + current) {
+        a.style.background = 'var(--orange)';
+        a.style.color = 'var(--white)';
+      }
+    });
+  });
+
+  // Generate printer grid
+  const grid = document.getElementById('printerGrid');
+  if (grid) {
+    for (let i = 0; i < 204; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'printer-dot' + (i >= 185 ? ' spare' : '');
+      dot.title = i < 185 ? `Printer ${i + 1} (active)` : `Printer ${i + 1} (spare)`;
+      grid.appendChild(dot);
+    }
+  }
+</script>
+</body>
+</html>
