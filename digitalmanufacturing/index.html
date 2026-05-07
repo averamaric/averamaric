@@ -1202,6 +1202,588 @@
   </p> -->
 </section>
   
+  <!-- ========== ROADMAP SECTION WITH HORIZONTAL SCROLL ========== -->
+<section id="roadmap" class="roadmap-section fade-up" style="padding: 5rem 4rem; background: var(--white); border-top: 1px solid #eee;">
+  
+  <div style="margin-bottom: 3rem;">
+    <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 0.95; text-transform: uppercase; margin-bottom: 1rem;">Project Roadmap<br><span style="font-size: 1.2rem;">9 Weeks from Discovery to Scalable Production</span></h2>
+    <p style="max-width: 700px; font-size: 0.95rem; color: #555; line-height: 1.6;">A structured journey from baseline failure to 50,000 units/year validated through Tecnomatix simulation. <strong>👈👉 Use the arrows to navigate through all 6 phases.</strong></p>
+  </div>
+
+  <style>
+    /* Roadmap styles */
+    .roadmap-wrapper {
+      position: relative;
+      margin: 2rem 0;
+    }
+    
+    /* Navigation arrows */
+    .scroll-arrow {
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    .scroll-arrow:hover {
+      background: var(--orange);
+      transform: translateY(-50%) scale(1.05);
+    }
+    
+    .scroll-arrow-left {
+      left: -20px;
+    }
+    
+    .scroll-arrow-right {
+      right: -20px;
+    }
+    
+    /* Horizontal scroll container for truck */
+    .roadmap-truck-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin: 0 -1rem;
+      padding: 0 1rem;
+      scroll-behavior: smooth;
+      cursor: grab;
+    }
+    
+    .roadmap-truck-scroll:active {
+      cursor: grabbing;
+    }
+    
+    .roadmap-truck-container {
+      min-width: 900px;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    
+    .roadmap-truck-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    
+    /* Stops container with horizontal scroll sync */
+    .roadmap-stops-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin: 1rem -1rem;
+      padding: 0 1rem;
+      scroll-behavior: smooth;
+    }
+    
+    .roadmap-stops {
+      display: flex;
+      gap: 0.5rem;
+      min-width: max-content;
+      justify-content: center;
+    }
+    
+    .roadmap-stop {
+      padding: 0.6rem 1.2rem;
+      background: var(--gray);
+      font-family: var(--font-condensed);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      border: none;
+    }
+    
+    .roadmap-stop:hover, .roadmap-stop.active {
+      background: var(--orange);
+      color: var(--white);
+    }
+    
+    /* Cards container - horizontal scroll */
+    .roadmap-cards-scroll {
+      overflow-x: auto;
+      overflow-y: visible;
+      margin: 2rem -1rem;
+      padding: 0.5rem 1rem;
+      scroll-behavior: smooth;
+    }
+    
+    .roadmap-cards {
+      display: flex;
+      gap: 1.5rem;
+      min-width: max-content;
+    }
+    
+    .roadmap-card {
+      width: 380px;
+      flex-shrink: 0;
+      background: var(--white);
+      border: 1px solid #e0e0e0;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .roadmap-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    
+    .roadmap-card-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 1rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .roadmap-card-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    
+    .roadmap-card-header .phase-badge {
+      font-family: var(--font-condensed);
+      font-size: 0.7rem;
+      background: var(--orange);
+      padding: 0.2rem 0.6rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .roadmap-card-body {
+      padding: 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .roadmap-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--orange);
+      font-family: var(--font-condensed);
+      letter-spacing: 0.05em;
+    }
+    
+    .roadmap-deliverables {
+      margin: 0.75rem 0;
+      padding-left: 1rem;
+      flex: 1;
+    }
+    
+    .roadmap-deliverables li {
+      font-size: 0.7rem;
+      color: #555;
+      margin-bottom: 0.3rem;
+      list-style-type: none;
+      position: relative;
+    }
+    
+    .roadmap-deliverables li::before {
+      content: "▹";
+      position: absolute;
+      left: -1rem;
+      color: var(--orange);
+      font-size: 0.7rem;
+    }
+    
+    .success-gate {
+      background: var(--gray);
+      padding: 0.6rem;
+      margin: 1rem 0;
+      font-size: 0.65rem;
+      font-weight: 600;
+      border-left: 3px solid var(--green);
+    }
+    
+    .btn-details {
+      width: 100%;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 0.7rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: auto;
+    }
+    
+    .btn-details:hover {
+      background: var(--orange);
+    }
+    
+    /* Expandable details table */
+    .phase-details {
+      display: none;
+      padding: 1rem;
+      background: var(--gray);
+      border-top: 2px solid var(--orange);
+      margin-top: 0.75rem;
+    }
+    
+    .phase-details.open {
+      display: block;
+    }
+    
+    .details-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.65rem;
+    }
+    
+    .details-table th {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.5rem;
+      text-align: left;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+    }
+    
+    .details-table td {
+      padding: 0.5rem;
+      border-bottom: 1px solid #ccc;
+      vertical-align: top;
+    }
+    
+    .details-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    /* Scrollbar styling (optional) */
+    .roadmap-truck-scroll::-webkit-scrollbar,
+    .roadmap-stops-scroll::-webkit-scrollbar,
+    .roadmap-cards-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+    
+    .roadmap-truck-scroll::-webkit-scrollbar-track,
+    .roadmap-stops-scroll::-webkit-scrollbar-track,
+    .roadmap-cards-scroll::-webkit-scrollbar-track {
+      background: #f0f0f0;
+      border-radius: 3px;
+    }
+    
+    .roadmap-truck-scroll::-webkit-scrollbar-thumb,
+    .roadmap-stops-scroll::-webkit-scrollbar-thumb,
+    .roadmap-cards-scroll::-webkit-scrollbar-thumb {
+      background: var(--orange);
+      border-radius: 3px;
+    }
+    
+    @media (max-width: 900px) {
+      .roadmap-section {
+        padding: 3rem 1.5rem !important;
+      }
+      .scroll-arrow {
+        display: none;
+      }
+      .roadmap-card {
+        width: 320px;
+      }
+    }
+  </style>
+
+  <div class="roadmap-wrapper">
+    <!-- Left Arrow -->
+    <button class="scroll-arrow scroll-arrow-left" id="scrollLeftBtn" aria-label="Scroll left">←</button>
+    
+    <!-- Right Arrow -->
+    <button class="scroll-arrow scroll-arrow-right" id="scrollRightBtn" aria-label="Scroll right">→</button>
+    
+    <!-- Truck animation (horizontal scroll) -->
+    <div class="roadmap-truck-scroll" id="truckScroll">
+      <div class="roadmap-truck-container">
+        <svg class="roadmap-truck-svg" viewBox="0 0 1100 120" preserveAspectRatio="xMidYMid meet">
+          <!-- Línea de tiempo horizontal -->
+          <line x1="40" y1="60" x2="1080" y2="60" stroke="#ccc" stroke-width="3" stroke-dasharray="6 4"/>
+          
+          <!-- Marcadores de fase (círculos) - 6 fases -->
+          <circle cx="80" cy="60" r="10" fill="var(--black)" stroke="var(--orange)" stroke-width="2"/>
+          <text x="80" y="85" text-anchor="middle" font-size="8" fill="#333" font-weight="bold">P0</text>
+          
+          <circle cx="240" cy="60" r="10" fill="var(--black)" stroke="var(--orange)" stroke-width="2"/>
+          <text x="240" y="85" text-anchor="middle" font-size="8" fill="#333" font-weight="bold">P1</text>
+          
+          <circle cx="420" cy="60" r="10" fill="var(--black)" stroke="var(--orange)" stroke-width="2"/>
+          <text x="420" y="85" text-anchor="middle" font-size="8" fill="#333" font-weight="bold">P2</text>
+          
+          <circle cx="600" cy="60" r="10" fill="var(--black)" stroke="var(--orange)" stroke-width="2"/>
+          <text x="600" y="85" text-anchor="middle" font-size="8" fill="#333" font-weight="bold">P3</text>
+          
+          <circle cx="780" cy="60" r="10" fill="var(--black)" stroke="var(--orange)" stroke-width="2"/>
+          <text x="780" y="85" text-anchor="middle" font-size="8" fill="#333" font-weight="bold">P4</text>
+          
+          <circle cx="960" cy="60" r="10" fill="var(--black)" stroke="var(--orange)" stroke-width="2"/>
+          <text x="960" y="85" text-anchor="middle" font-size="8" fill="#333" font-weight="bold">P5</text>
+          
+          <!-- Camión animado -->
+          <g>
+            <animateTransform attributeName="transform" type="translate" 
+              values="0,0; 0,0; 880,0; 880,0" dur="12s" repeatCount="indefinite"/>
+            <!-- Cuerpo del camión -->
+            <rect x="20" y="40" width="50" height="25" rx="3" fill="var(--orange)"/>
+            <rect x="50" y="25" width="30" height="18" rx="2" fill="#333"/>
+            <!-- Ruedas -->
+            <circle cx="35" cy="68" r="6" fill="#111"/>
+            <circle cx="60" cy="68" r="6" fill="#111"/>
+            <!-- Ventana -->
+            <rect x="53" y="28" width="10" height="8" rx="1" fill="white" opacity="0.8"/>
+            <!-- Faros -->
+            <circle cx="22" cy="55" r="2" fill="#FFD700"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    
+    <!-- Stops (click to scroll to card) -->
+    <div class="roadmap-stops-scroll" id="stopsScroll">
+      <div class="roadmap-stops">
+        <button class="roadmap-stop" data-phase="0">Phase 0 · Discovery (W1)</button>
+        <button class="roadmap-stop" data-phase="1">Phase 1 · CAD & Print (W2–3)</button>
+        <button class="roadmap-stop" data-phase="2">Phase 2 · Parameter Deep Dive (W4–6)</button>
+        <button class="roadmap-stop" data-phase="3">Phase 3 · Quality & Process (W7)</button>
+        <button class="roadmap-stop" data-phase="4">Phase 4 · Simulation & Scaling (W8)</button>
+        <button class="roadmap-stop" data-phase="5">Phase 5 · Documentation (W9)</button>
+      </div>
+    </div>
+    
+    <!-- Cards (horizontal scroll) -->
+    <div class="roadmap-cards-scroll" id="cardsScroll">
+      <div class="roadmap-cards" id="roadmapCardsContainer">
+        <!-- Cards will be injected here by JavaScript -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Phase data (same as before, but I'll include it completely)
+  const phases = [
+    {
+      id: 0, title: "Discovery", weeks: "Week 1",
+      deliverables: "CP Lab observation; Engineering drawing analysis; Baseline C1 print",
+      successGate: "CP Lab stations understood; First failure documented",
+      details: { objective: "Understand the CP Lab assembly line and establish baseline print performance.", activities: [
+        { activity: "CP Lab observation", description: "Attend timetabled session; map all 6 stations", output: "Process flow diagram" },
+        { activity: "Engineering drawing analysis", description: "Identify critical dimensions", output: "Dimensioned drawing with CTQs" },
+        { activity: "Baseline print (C1)", description: "Print bottom case using default Cura settings", output: "C1 physical sample + failure documentation" },
+        { activity: "Failure analysis", description: "Document poor layer adhesion", output: "Photographs + technical notes" }
+      ], successGateDetailed: "First failure understood and documented. ✔️ Achieved." }
+    },
+    {
+      id: 1, title: "CAD & Print Exploration", weeks: "Weeks 2–3",
+      deliverables: "Configurations C1–C4; CAD revisions; Hardware failure resolved",
+      successGate: "Hardware failure resolved; Three snap variants printed",
+      details: { objective: "Iterate CAD geometry and print parameters.", activities: [
+        { activity: "Internal radius revision", description: "Modified radius in Fusion 360", output: "CAD model v2" },
+        { activity: "Configuration C2", description: "Speed reduced → 'Fast'", output: "❌ Machine error" },
+        { activity: "Hardware troubleshooting", description: "Nozzle cleaning; Sensor recalibration", output: "Printer restored" },
+        { activity: "Configuration C3", description: "50% infill for rigidity", output: "⚠️ Partial success" },
+        { activity: "Configuration C4", description: "Ironing enabled; 3 snap variants", output: "⚠️ Witness line appeared" }
+      ], successGateDetailed: "Hardware failure resolved; Three snap variants printed. ✔️ Achieved." }
+    },
+    {
+      id: 2, title: "Parameter Deep Dive", weeks: "Weeks 4–6",
+      deliverables: "Configurations C5–C8; Support-free breakthrough",
+      successGate: "Configuration 7 validated (PASS)",
+      details: { objective: "Achieve fully successful print and eliminate supports.", activities: [
+        { activity: "Configuration C5", description: "Elegoo Neptune, supports enabled", output: "❌ Support fusion" },
+        { activity: "Root cause analysis", description: "Direct drive extrusion needs 0.2–0.3mm gap", output: "Documented" },
+        { activity: "Configuration C6", description: "No supports, bridge speed 50mm/s", output: "❌ Overhang collapse" },
+        { activity: "Overhang research", description: "Variable layer height", output: "Parameter plan for C7" },
+        { activity: "Configuration C7", description: "Variable layer height 0.08–0.25mm", output: "✅ COMPLETE SUCCESS" },
+        { activity: "Configuration C8", description: "60% infill, ironing", output: "⚠️ Fit worsened (7/10)" }
+      ], successGateDetailed: "Configuration 7 validated as optimal. 🏆 Achieved." }
+    },
+    {
+      id: 3, title: "Quality & Process", weeks: "Week 7",
+      deliverables: "PFMEA; Cp/Cpk; Metrology plan; BMC finalised",
+      successGate: "CP Lab full pass; Fit 9/10",
+      details: { objective: "Formalise manufacturing process with Industry 4.0 tools.", activities: [
+        { activity: "PFMEA development", description: "Identify failure modes for CP Lab", output: "PFMEA table" },
+        { activity: "Process Capability", description: "Mean thickness = 1.71mm, StDev = 0.09mm", output: "Cp = 1.11" },
+        { activity: "Metrology plan", description: "Inspect every 50 parts", output: "Quality checklist" },
+        { activity: "BMC finalisation", description: "Cost structure & revenue", output: "BMC table" },
+        { activity: "Traceability system", description: "QR code (4mm font)", output: "Embedded in CAD" }
+      ], successGateDetailed: "CP Lab full pass + PFMEA documented. ✔️ Achieved." }
+    },
+    {
+      id: 4, title: "Simulation & Scaling", weeks: "Week 8",
+      deliverables: "Tecnomatix simulation; Takt Time 127s; 185 printers",
+      successGate: "50,000 units/year feasibility confirmed",
+      details: { objective: "Prove scalability to 50,000 units/year.", activities: [
+        { activity: "Takt Time calculation", description: "50,000 ÷ 220 days = 227 units/day", output: "127 seconds" },
+        { activity: "Cycle time measurement", description: "6.5 hours per casing set", output: "Bottleneck identified" },
+        { activity: "Printing farm sizing", description: "23,400 ÷ 127 = 184.25", output: "185 printers" },
+        { activity: "Floor space estimate", description: "0.8 m² per printer", output: "~150 m²" },
+        { activity: "Tecnomatix simulation", description: "Model CP Lab + 185 printers", output: "50k units/year achievable" },
+        { activity: "Sensitivity analysis", description: "10% downtime", output: "Add 19 spare printers" }
+      ], successGateDetailed: "Simulation confirms 50,000 units/year target met. ✔️ To be completed." }
+    },
+    {
+      id: 5, title: "Documentation", weeks: "Week 9",
+      deliverables: "Final blog posts; References; Multimedia",
+      successGate: "Submission ready",
+      details: { objective: "Finalise all blog content and submit.", activities: [
+        { activity: "Home page", description: "Background, BMC, PFMEA", output: "✅ Complete" },
+        { activity: "3D Design page", description: "8 configurations, failure gallery", output: "✅ Complete" },
+        { activity: "Simulation page", description: "Takt Time, Plant Simulation", output: "🔄 In progress" },
+        { activity: "Multimedia", description: "Time-lapse videos, photo gallery", output: "🔄 In progress" },
+        { activity: "References", description: "Harvard-style list", output: "✅ Complete" },
+        { activity: "Final review", description: "Check links, accessibility", output: "🔄 Pending" },
+        { activity: "Submission", description: "Submit to portal", output: "⏳ Week 9 deadline" }
+      ], successGateDetailed: "All content finalised and submitted. ⏳ Pending." }
+    }
+  ];
+
+  // Render cards
+  const container = document.getElementById('roadmapCardsContainer');
+  if (container) {
+    phases.forEach(phase => {
+      const card = document.createElement('div');
+      card.className = 'roadmap-card';
+      card.setAttribute('data-phase-id', phase.id);
+      
+      const deliverablesList = phase.deliverables.split(';').map(d => `<li>${d.trim()}</li>`).join('');
+      
+      card.innerHTML = `
+        <div class="roadmap-card-header">
+          <h3>Phase ${phase.id}: ${phase.title}</h3>
+          <span class="phase-badge">${phase.weeks}</span>
+        </div>
+        <div class="roadmap-card-body">
+          <div class="roadmap-meta">
+            <span>📅 Timeline</span>
+            <span>${phase.weeks}</span>
+          </div>
+          <ul class="roadmap-deliverables">
+            ${deliverablesList}
+          </ul>
+          <div class="success-gate">
+            🚪 <strong>Success Gate:</strong> ${phase.successGate}
+          </div>
+          <button class="btn-details" data-phase="${phase.id}">🔍 View Details</button>
+          <div class="phase-details" id="details-${phase.id}">
+            <h4 style="font-family: var(--font-condensed); margin-bottom: 0.75rem;">📋 Detailed Execution Log</h4>
+            <p style="font-size: 0.7rem; margin-bottom: 1rem;"><strong>Objective:</strong> ${phase.details.objective}</p>
+            <table class="details-table">
+              <thead><tr><th>Activity</th><th>Description</th><th>Output</th></tr></thead>
+              <tbody>
+                ${phase.details.activities.map(act => `<tr><td style="font-weight: 600;">${act.activity}</td><td>${act.description}</td><td>${act.output}</td></tr>`).join('')}
+              </tbody>
+            </table>
+            <div class="success-gate" style="margin-top: 1rem;">
+              ✅ <strong>Success Gate:</strong> ${phase.details.successGateDetailed}
+            </div>
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    // Add click handlers for detail buttons
+    document.querySelectorAll('.btn-details').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const phaseId = btn.getAttribute('data-phase');
+        const detailsDiv = document.getElementById(`details-${phaseId}`);
+        if (detailsDiv) {
+          detailsDiv.classList.toggle('open');
+          btn.textContent = detailsDiv.classList.contains('open') ? '🔽 Hide Details' : '🔍 View Details';
+        }
+      });
+    });
+  }
+
+  // --- HORIZONTAL SCROLL SYNC ---
+  const truckScroll = document.getElementById('truckScroll');
+  const stopsScroll = document.getElementById('stopsScroll');
+  const cardsScroll = document.getElementById('cardsScroll');
+  const leftBtn = document.getElementById('scrollLeftBtn');
+  const rightBtn = document.getElementById('scrollRightBtn');
+  
+  // Function to scroll all containers together
+  function scrollAllContainers(direction) {
+    const scrollAmount = 400; // pixels per click
+    [truckScroll, stopsScroll, cardsScroll].forEach(scrollContainer => {
+      if (scrollContainer) {
+        scrollContainer.scrollBy({
+          left: direction === 'left' ? -scrollAmount : scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+    });
+  }
+  
+  if (leftBtn && rightBtn) {
+    leftBtn.addEventListener('click', () => scrollAllContainers('left'));
+    rightBtn.addEventListener('click', () => scrollAllContainers('right'));
+  }
+  
+  // Sync scroll positions (optional: when one scrolls, others follow)
+  function syncScroll(source, targets) {
+    if (!source) return;
+    source.addEventListener('scroll', () => {
+      targets.forEach(target => {
+        if (target && target !== source) {
+          target.scrollLeft = source.scrollLeft;
+        }
+      });
+    });
+  }
+  
+  syncScroll(truckScroll, [stopsScroll, cardsScroll]);
+  syncScroll(stopsScroll, [truckScroll, cardsScroll]);
+  syncScroll(cardsScroll, [truckScroll, stopsScroll]);
+  
+  // Click on stop -> scroll to corresponding card
+  document.querySelectorAll('.roadmap-stop').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const phaseId = btn.getAttribute('data-phase');
+      const targetCard = document.querySelector(`.roadmap-card[data-phase-id="${phaseId}"]`);
+      if (targetCard && cardsScroll) {
+        const cardOffset = targetCard.offsetLeft;
+        cardsScroll.scrollTo({ left: cardOffset - 20, behavior: 'smooth' });
+        // Also scroll truck and stops to match
+        if (truckScroll) truckScroll.scrollTo({ left: cardOffset - 20, behavior: 'smooth' });
+        if (stopsScroll) stopsScroll.scrollTo({ left: cardOffset - 20, behavior: 'smooth' });
+        
+        // Highlight effect
+        targetCard.style.transition = 'box-shadow 0.2s';
+        targetCard.style.boxShadow = '0 0 0 2px var(--orange)';
+        setTimeout(() => { targetCard.style.boxShadow = ''; }, 1000);
+      }
+    });
+  });
+</script>
+  
      <!-- CALL TO ACTION: EXPLORE 3D DESIGN & SIMULATION (Estilo Services) -->
   <section id="exploreclass" class="nav-cards-section fade-up">
     <div class="services-header" style="margin-bottom: 2rem;">
@@ -1212,7 +1794,7 @@
 
     <div class="services-grid fade-up">
       <!-- Tarjeta 1: 3D Design & Additive Manufacturing (estilo orange - grande) -->
-      <div class="service-card orange" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='#'">
+      <div class="service-card orange" style="min-height: 420px; cursor: pointer;" onclick="discover/design.html">
         <div class="service-info">
           <h3>3D Design &<br>Additive Manufacturing</h3>
           <p>From CAD to FDM printing, explore the complete digital manufacturing workflow.</p>
@@ -1238,6 +1820,31 @@
         </div>
       </div>
 
+      <!-- Tarjeta 3: Process Validation (estilo dark) -->
+      <div class="service-card dark" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='#'">
+        <div class="service-info" style="color: white;">
+          <h3>Manufacturing Systems <br>& Process EngineeringProcess</h3>
+          <p>Risk assessment, quality control, and assembly line integration.</p>
+          <div style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange);">
+            View Methodology <span style="font-size: 1rem;">→</span>
+          </div>
+        </div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 65%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1.5rem; opacity: 0.6;">
+          <svg viewBox="0 0 120 100" width="70%" fill="none">
+            <!-- Gráfico de control / QC -->
+            <rect x="10" y="20" width="100" height="60" rx="4" fill="none" stroke="white" stroke-width="2"/>
+            <line x1="10" y1="50" x2="110" y2="50" stroke="white" stroke-width="1" stroke-dasharray="2 2"/>
+            <!-- Línea de tendencia -->
+            <polyline points="20,70 40,45 60,55 80,35 100,40" stroke="var(--orange)" stroke-width="2" fill="none"/>
+            <!-- OK / NOK markers -->
+            <circle cx="30" cy="60" r="3" fill="#27ae60"/>
+            <circle cx="50" cy="50" r="3" fill="#27ae60"/>
+            <circle cx="70" cy="42" r="3" fill="#e74c3c"/>
+            <circle cx="90" cy="45" r="3" fill="#27ae60"/>
+          </svg>
+        </div>
+      </div>
+      
       <!-- Tarjeta 2: Plant Simulation (estilo dark) -->
       <div class="service-card dark" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='#'">
         <div class="service-info" style="color: white;">
@@ -1264,30 +1871,7 @@
         </div>
       </div>
 
-      <!-- Tarjeta 3: Process Validation (estilo dark) -->
-      <div class="service-card dark" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='#'">
-        <div class="service-info" style="color: white;">
-          <h3>Process<br>Validation & PFMEA</h3>
-          <p>Risk assessment, quality control, and assembly line integration.</p>
-          <div style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange);">
-            View Methodology <span style="font-size: 1rem;">→</span>
-          </div>
-        </div>
-        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 65%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1.5rem; opacity: 0.6;">
-          <svg viewBox="0 0 120 100" width="70%" fill="none">
-            <!-- Gráfico de control / QC -->
-            <rect x="10" y="20" width="100" height="60" rx="4" fill="none" stroke="white" stroke-width="2"/>
-            <line x1="10" y1="50" x2="110" y2="50" stroke="white" stroke-width="1" stroke-dasharray="2 2"/>
-            <!-- Línea de tendencia -->
-            <polyline points="20,70 40,45 60,55 80,35 100,40" stroke="var(--orange)" stroke-width="2" fill="none"/>
-            <!-- OK / NOK markers -->
-            <circle cx="30" cy="60" r="3" fill="#27ae60"/>
-            <circle cx="50" cy="50" r="3" fill="#27ae60"/>
-            <circle cx="70" cy="42" r="3" fill="#e74c3c"/>
-            <circle cx="90" cy="45" r="3" fill="#27ae60"/>
-          </svg>
-        </div>
-      </div>
+      
     </div>
 
     <!-- Segunda fila: Recursos adicionales (estilo services-row2) -->
