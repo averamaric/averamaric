@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analucia Vera — Ingeniería Avanzada</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #E8440A;
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray: #EFEFEF;
+      --gray-dark: #C8C8C8;
+      --red: #c0392b;
+      --yellow: #f39c12;
+      --green: #27ae60;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+      --font-condensed: 'Barlow Condensed', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      background: var(--white);
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .nav-logo {
+      font-family: var(--font-condensed);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0;
+    }
+    .nav-links li a {
+      display: block;
+      padding: 0 1.4rem;
+      height: 60px;
+      line-height: 60px;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-links li a:hover { background: var(--orange); color: var(--white); }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 0 1.5rem;
+      height: 60px;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--orange); }
+    .nav-cta .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+    .nav-cta:hover .dot { background: var(--white); }
+
+    /* Utility */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero, About, Services, etc. (manteniendo tu diseño) */
+    #hero {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 60px);
+    }
+    .hero-left {
+      position: relative;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+    .hero-left img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      display: block;
+    }
+    .hero-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-40%, -50%);
+      background: var(--orange);
+      padding: 2.5rem 2rem;
+      width: 280px;
+    }
+    .hero-badge h1 {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      line-height: 0.9;
+      color: var(--black);
+      text-transform: uppercase;
+    }
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 4rem 3rem;
+      background: var(--white);
+    }
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.6;
+      max-width: 320px;
+      margin-top: auto;
+      margin-bottom: 2rem;
+    }
+    .hero-img-bottom {
+      position: relative;
+      flex: 1;
+      min-height: 300px;
+      overflow: hidden;
+    }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 1rem 1.5rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+      position: absolute;
+      bottom: 0; right: 0;
+    }
+    .btn-cta .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+    .btn-cta:hover { background: var(--orange); }
+    .btn-cta:hover .dot { background: var(--white); }
+
+    /* About */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+    }
+    .about-left {
+      padding: 5rem 4rem;
+    }
+    .about-left h2 {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+    .about-img {
+      overflow: hidden;
+      max-height: 320px;
+    }
+    .about-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .stat-card {
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stat-card.dark { background: var(--black); color: var(--white); }
+    .stat-card.light { background: var(--gray); color: var(--black); }
+    .stat-card h3 {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+    .stat-card p {
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+      margin-top: 1rem;
+    }
+
+    /* PFMEA */
+    .pfmea-section {
+      padding: 5rem 4rem;
+      background: var(--white);
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+    .pfmea-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .pfmea-header h2 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .risk-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: var(--gray);
+      border-left: 4px solid var(--orange);
+    }
+    .risk-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-family: var(--font-condensed);
+      font-weight: 600;
+    }
+    .risk-badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.7rem;
+    }
+    .risk-badge.high { background: var(--red); color: white; }
+    .risk-badge.medium { background: var(--yellow); color: black; }
+    .risk-badge.low { background: var(--green); color: white; }
+    .pfmea-table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .pfmea-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.7rem;
+      min-width: 1300px;
+    }
+    .pfmea-table th {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.9rem 0.6rem;
+      text-align: center;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: 1px solid #333;
+    }
+    .pfmea-table td {
+      padding: 0.7rem 0.5rem;
+      border: 1px solid #e0e0e0;
+      vertical-align: top;
+      font-size: 0.7rem;
+      line-height: 1.4;
+    }
+    .process-id {
+      font-family: monospace;
+      font-weight: 700;
+      color: var(--orange);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .rpn-high {
+      background: var(--red);
+      color: white;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 12px;
+      padding: 0.2rem 0.4rem;
+      display: inline-block;
+    }
+    .rpn-medium { background: var(--yellow); color: black; font-weight: 700; text-align: center; border-radius: 12px; padding: 0.2rem 0.4rem; display: inline-block; }
+    .summary-section {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: var(--gray);
+      border-left: 4px solid var(--red);
+    }
+    .summary-section h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+    }
+    .summary-table th {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.7rem;
+      text-align: left;
+      font-family: var(--font-condensed);
+      font-size: 0.7rem;
+    }
+    .summary-table td {
+      padding: 0.6rem;
+      border-bottom: 1px solid #ddd;
+      font-size: 0.75rem;
+    }
+    .footer-note {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--gray);
+      font-size: 0.7rem;
+      color: #555;
+      text-align: center;
+      border-top: 2px solid var(--orange);
+    }
+    .why-table { width: 100%; border-collapse: collapse; }
+    .why-table tr { border-bottom: 1px solid #ccc; }
+    .why-table tr:first-child { border-top: 1px solid #ccc; }
+    .why-table td { padding: 1.5rem 2rem; vertical-align: middle; }
+    .why-table tr:nth-child(odd) { background: var(--black); color: var(--white); }
+    .why-table tr:nth-child(even) { background: var(--gray); color: var(--black); }
+    .why-num { font-family: var(--font-display); font-size: 2.5rem; white-space: nowrap; width: 100px; }
+    .why-title { font-family: var(--font-condensed); font-weight: 900; font-size: 1.3rem; width: 220px; }
+    .services-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0; }
+    .service-card { position: relative; overflow: hidden; min-height: 360px; }
+    .service-card.orange { background: var(--orange); }
+    .service-card.dark { background: var(--black); }
+    .service-card.light { background: var(--gray); }
+    .service-info { position: absolute; top: 0; left: 0; right: 0; padding: 1.5rem; }
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    /* Añade esto después de .summary-section */
+    .summary-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    background: var(--white); /* Fondo blanco como las tarjetas */
+      border-left: none; /* Quitamos la línea lateral */
+      padding: 0; /* Quitamos padding para que la tarjeta lo gestione */
+      overflow: hidden; /* Para mantener las esquinas redondeadas */
+    }
+
+    /* Nuevo estilo para que cada summary-section sea una tarjeta */
+    .summary-card {
+      background: var(--white);
+      border-radius: 0; /* Mantenemos el estilo cuadrado como las otras tarjetas */
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Cabecera de la tarjeta (alternando colores como las stat-card) */
+    .summary-card-header {
+      padding: 1.5rem 1.5rem 0.75rem 1.5rem;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .summary-card.dark .summary-card-header {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .summary-card.light .summary-card-header {
+      background: var(--gray);
+      color: var(--black);
+    }
+
+    /* Cuerpo de la tarjeta */
+    .summary-card-body {
+      padding: 1.5rem;
+      flex: 1;
+    }
+
+    /* Tabla dentro de las tarjetas */
+    .summary-card-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: transparent;
+    }
+
+    .summary-card-table th {
+      background: transparent;
+      color: inherit;
+      padding: 0.7rem 0.5rem;
+      text-align: left;
+      font-family: var(--font-condensed);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--orange);
+    }
+
+    .summary-card-table td {
+      padding: 0.6rem 0.5rem;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 0.75rem;
+    }
+
+    .summary-card.dark .summary-card-table td {
+      border-bottom-color: #333;
+    }
+
+    .summary-card-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+     #page-hero {
+      margin-top: 60px;
+      padding: 8% 5%;
+      text-align: center;
+      background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    #page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(232,68,10,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .page-label {
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+    #page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+    #page-hero p {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: #aaa;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+
+    /* Texto de nota dentro de la tarjeta */
+    .summary-card-note {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .summary-card.dark .summary-card-note {
+      border-top-color: #333;
+      color: #aaa;
+    }
+    @media (max-width: 900px) {
+      #hero, #about, #contact, #testimonials { grid-template-columns: 1fr; }
+      .services-grid, .services-row2 { grid-template-columns: 1fr; }
+      #services { padding: 3rem 1.5rem; }
+      #why { padding: 3rem 1.5rem; }
+      #contact { padding: 3rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+      .hero-badge h1 { font-size: 3.5rem; }
+      .hero-badge { width: 200px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Analucia Vera</a>
+  <ul class="nav-links">
+    <li><a href="#about">Home</a></li>
+    <li><a href="discover/design.html">3D Design</a></li>
+    <li><a href="discover/simulation.html">Simulation</a></li>
+  </ul>
+  <a class="nav-cta" href="#pfmea">PFMEA<span class="dot"></span></a>
+</nav>
+
+<!-- HERO -->
+<section id="page-hero">
+    <p class="page-label">Project blog · Technology</p>
+    <h1>Our technology</h1>
+    <p>Exploration of the digital manufacturing technologies, workflows, and Industry 4.0 principles used to address the “Phones-R-Us” industry challenge. This section examines the relationship between additive manufacturing, production systems, supply chain variability, and digital optimisation, linking research and engineering decisions to the goal of delivering reliable, interchangeable phone casings at scale.</p>
+  </section>
+
+<!-- ABOUT -->
+  <!-- TECHNOLOGY STRATEGY SECTION -->
+<section id="technology-strategy" style="padding: 5rem 4rem; background: var(--white);">
+  <div class="fade-up" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+    
+    <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--white), transparent);"></div>
+  </div>
+  
+  <h2 class="fade-up" style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 0.95; text-transform: uppercase; margin-bottom: 2rem;">
+    Injection Moulding vs.<br>
+    <span style="color: var(--orange);">3D Printing</span>
+  </h2>
+  
+  <!-- Tarjeta principal de comparación (estilo services-grid) -->
+  <div class="services-grid fade-up" style="margin-bottom: 3rem;">
+    <!-- Lado izquierdo: Explicación -->
+    <div class="service-card orange" style="min-height: auto; cursor: default;">
+      <div class="service-info" style="position: relative; padding: 2rem;">
+        <h3 style="color: var(--black); margin-bottom: 1rem;">Strategic Comparison</h3>
+        <p style="font-size: 0.85rem; line-height: 1.6; color: #1a1a1a; margin-bottom: 1rem;">
+          Injection moulding requires custom tooling costing <strong>$10,000–$250,000</strong> with lead times of 
+          <strong>4–12 weeks</strong> (BigRep, 2025). Once the mold is built, cycle times are fast (30–90 seconds), making it efficient for high-volume runs 
+          exceeding 10,000 units (Sovol, 2026).
+        </p>
+        <p style="font-size: 0.85rem; line-height: 1.6; color: #1a1a1a;">
+          However, design changes require expensive mould rework (Sovol, 2026). Additive manufacturing offers 
+          <strong>zero tooling investment</strong>, geometric complexity at no extra cost, and design-test cycles 
+          under 24 hours. In addition, according to BigRep (2025), the lead time for 3D printing is measured in hours or days, not weeks.
+        </p>
+        
+        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 4px;">
+          <p style="font-size: 0.75rem; margin: 0; font-weight: 700;">For production the present estimated production run, Additive Manufacturing offers lower total cost of ownership despite higher per-part cost, because the multi-thousand-dollar tooling investment is eliminated (Christensen et al., 2018)</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Lado derecho: Tabla comparativa (estilo dark) -->
+    <div class="service-card dark" style="min-height: auto; cursor: default; grid-column: span 2;">
+      <div class="service-info" style="position: relative; padding: 2rem;">
+        <h3 style="color: var(--white); margin-bottom: 1rem;">Metric Comparison</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--orange);">
+              <th style="text-align: left; padding: 0.5rem; font-family: var(--font-condensed); font-size: 0.7rem; color: white;">Metric</th>
+              <th style="text-align: left; padding: 0.5rem; font-family: var(--font-condensed); font-size: 0.7rem; color: white;">Injection Moulding</th>
+              <th style="text-align: left; padding: 0.5rem; font-family: var(--font-condensed); font-size: 0.7rem; color: white;">3D Printing (FDM)</th>
+              <th style="text-align: left; padding: 0.5rem; font-family: var(--font-condensed); font-size: 0.7rem; color: white;">Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #333;"><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Per-part cost (high volume)</td><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Very low</td><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Higher</td><td style="padding: 0.5rem; font-size: 0.75rem; color: var(--orange);">3D printing costs declining 5-10% annually</td></tr>
+            <tr style="border-bottom: 1px solid #333;"><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Per-part cost (low volume)</td><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Very high (tooling amortisation)</td><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Low (no tooling)</td><td style="padding: 0.5rem; font-size: 0.75rem; color: var(--orange);">Disruptive advantage</td></tr>
+            <tr style="border-bottom: 1px solid #333;"><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Design iteration cost</td><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Very high due to mould rework (BigRep, 2025)</td><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Very low - a complete design-test cycle in under 24 hours (digital changes + new print)</td><td style="padding: 0.5rem; font-size: 0.75rem; color: var(--orange);">Incontestable</td></tr>
+            <tr style="border-bottom: 1px solid #333;"><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Geometric complexity cost</td><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">High (complex tooling)</td><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Zero, "complexity is free" (Sovol, 2026)</td><td style="padding: 0.5rem; font-size: 0.75rem; color: var(--orange);">Incontestable</td></tr>
+            <tr><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Lead time (first part)</td><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">4–12 weeks (BigRep, 2025)</td><td style="padding: 0.5rem; font-size: 0.75rem; color: white;">Hours–days</td><td style="padding: 0.5rem; font-size: 0.75rem; color: var(--orange);">Disruptive advantage</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+    <p style="margin-top: 1.5rem; margin-right: 0.5rem font-size: 0.85rem; padding: 1rem; background: var(--gray); border-left: 4px solid var(--orange); ">
+      <strong>Strategic implication:</strong> Additive manufacturing will not replace injection moulding for commodity, high-volume products. However, for <strong>small-batch, modular, customised products</strong> precisely the market segment occupied by "Phones-R-Us", additive manufacturing is not merely an alternative; it is the <strong>superior technology</strong> (Christensen, 2019).
+    </p>
+  </div>
+
+  <!-- Why Additive Manufacturing? 3 beneficios clave -->
+  <div class="fade-up" style="margin: 4rem 0 3rem 0;">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase;">Why Additive Manufacturing?</h3>
+      <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--orange), transparent);"></div>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+      <div class="stat-card light" style="padding: 1.8rem;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
+        <h3 style="font-family: var(--font-display); font-size: 1.5rem;">Design Iteration Speed</h3>
+        <p style="font-size: 0.8rem; opacity: 1;">Complete design-test cycle in under 24 hours. 8 print configurations (C1–C8) tested equivalent to $160,000 in injection mould tooling (BigRep, 2025).</p>
+      </div>
+      <div class="stat-card dark" style="padding: 1.8rem;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔧</div>
+        <h3 style="font-family: var(--font-display); font-size: 1.5rem;">Complexity at Zero Cost</h3>
+        <p style="font-size: 0.8rem; opacity: 1;">Traceability codes, snap-fit variants, and internal features require no additional tooling. Complexity is free in additive manufacturing.</p>
+      </div>
+      <div class="stat-card light" style="padding: 1.8rem;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📦</div>
+        <h3 style="font-family: var(--font-display); font-size: 1.5rem;">On-Demand Production</h3>
+        <p style="font-size: 0.8rem; opacity: 1;">Just-in-time manufacturing reduces working capital and obsolescence risk (Pullagura et al., 2025). Print casings as needed, not months in advance.</p>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Supply Chain & Multiple-Supplier Problem -->
+  <div class="fade-up" style="margin: 4rem 0;">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase;">Supply Chain Variability</h3>
+      <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--orange), transparent);"></div>
+    </div>
+    <div class="fade-up" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+    <div class="stat-card dark" style="padding: 2rem;">
+      <h3 style="font-size: 2rem;">The Multiple-Supplier <br>Problem</h3>
+      <p style="font-size: 0.85rem; margin-top: 1rem;">
+        Components from different suppliers, all manufactured to the same engineering drawing — are not truly interchangeable.
+      </p>
+      <p style="font-size: 0.85rem; margin-top: 1rem;">
+        According to Hosseinzadeh and Taghipour (2024), manufacturing systems increasingly rely on multi-sourcing as a resilience strategy. However, this introduces <strong>geometric variability between suppliers</strong>.
+      </p>
+      <p style="font-size: 0.85rem; margin-top: 1rem;">
+        Song, Dong and Xu (2014) established that supplier base size directly affects total expected cost and quality consistency.
+      </p>
+    </div>
+    <div class="stat-card light" style="padding: 2rem;">
+      <h3 style="font-size: 2rem;">Our Solution:</h3>
+      <p style="font-size: 0.85rem; margin-top: 1rem;"><strong>Statistical interchangeability guarantees</strong>, achieved through:</p>
+      <ul style="margin-top: 1rem; margin-left: 1.2rem; line-height: 1.8;">
+        <li>Qualified process parameters (Configuration 7)</li>
+        <li>In-process metrology (thickness measurement at CP Lab Station 1)</li>
+        <li>Digital traceability (each casing carries its print parameters)</li>
+      </ul>
+      <p style="font-size: 0.85rem; margin-top: 1rem;">
+        This approach transforms the multiple-supplier problem from a quality risk into a managed process capability (Montgomery, 2019).
+      </p>
+    </div>
+  </div>
+    
+    
+</section>
+  
+  <!-- TECHNOLOGY STRATEGY SECTION -->
+<section id="technology-strategy" style="padding: 0.1rem 4rem; background: var(--white);">
+  
+  <!-- Encabezado estilo services-header -->
+  <div class="services-header fade-up" style="margin-bottom: 2rem;">
+    <h2>Industry 4.0</h2>
+    
+  </div>
+  
+  <p class="fade-up" style="margin-bottom: 2rem; max-width: 800px; font-size: 0.95rem; color: #555; line-height: 1.6;">
+    Industry 4.0, the Fourth Industrial Revolution, redefines manufacturing through interconnected systems. According to Pullagura et al. (2025), the core design principles include:
+  </p>
+
+  <!-- Industry 4.0 Pillars (tabla con 4 pilares) - estilo "why-table" -->
+  <div class="fade-up" style="margin: 4rem 0;">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase;">The Three Pillars of Industry 4.0</h3>
+      <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--orange), transparent);"></div>
+    </div>
+    
+    <table class="why-table" style="width: 100%;">
+      <tr><td class="why-num">01</td><td class="why-title">Interoperability</td><td class="why-desc">Seamless communication between devices, machines, and systems: Cura/Elegoo Slicer → G-code → Printer → Metrology data → CP Lab validation</td></tr>
+      <tr><td class="why-num">02</td><td class="why-title">Information Transparency</td><td class="why-desc">Data integrity and accessibility across the manufacturing ecosystem: Traceability codes, documented print parameters for each configuration and data gathering from the printers and the CP Lab</td></tr>
+      <tr><td class="why-num">03</td><td class="why-title">Decentralized Decision-Making</td><td class="why-desc">Real-time responses using edge computing and local intelligence: Printer firmware adjustments and slicer parameter optimization per geometry</td></tr>
+      <tr><td class="why-num">04</td><td class="why-title">Technical Assistance</td><td class="why-desc"> Simulation results (Tecnomatix) guiding production planning decisions</td></tr>
+    </table>
+    <p style="margin-top: 1rem; font-size: 0.75rem; color: #888; text-align: right;">Pullagura et al. (2025) — Industry 4.0 Design Principles</p>
+    <p style="margin-top: 1rem; font-size: 1rem; color: black; text-align: left;">Industry 4.0 implementation has demonstrated measurable benefits: IBM reports that smart manufacturing approaches improve defect detection by approximately 50% and yield by approximately 20% compared to conventional production (Matrikon, 2025).</p>
+  </div>
+    
+  <!-- TARJETA 5: AI, IoT, Digital Twin (three cards) -->
+  
+    <!-- ENABLING TECHNOLOGIES SECTION (Estilo "Explore My Technical Work") -->
+   <!-- ENABLING TECHNOLOGIES SECTION (Estilo "Explore My Technical Work") -->
+  <div class="fade-up" style="margin: 4rem 0 2rem 0;">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase;">Enabling Technologies</h3>
+      <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--orange), transparent);"></div>
+    </div>
+    <p class="fade-up" style="margin-bottom: 2rem; max-width: 800px; font-size: 0.95rem; color: #555; line-height: 1.6;">
+      Two enabling technologies underpin our manufacturing strategy: Industrial IoT and Digital Twins.
+    </p>
+  </div>
+
+  <!-- Grid estilo services-grid (2fr, 1fr) - solo dos tarjetas grandes -->
+  <div class="services-grid fade-up" style="grid-template-columns: 1fr 1fr;">
+    
+    <!-- Tarjeta 1: Industrial IoT (estilo orange) -->
+    <div class="service-card orange" style="min-height: 480px; cursor: default;">
+      <div class="service-info">
+        <h3>Industrial IoT<br>(IIoT)</h3>
+        <p>IIoT deploys connected sensors on equipment to collect operational data for analytics and optimisation <span class="reference">(Matrikon, 2025)</span>.</p>
+        <p style="margin-top: 1rem;"><strong>In our printing farm, IIoT enables:</strong></p>
+        <ul style="margin-top: 0.5rem; margin-left: 1rem; line-height: 1.6;">
+          <li>Real-time temperature monitoring during prints</li>
+          <li>Filament usage tracking (18g per casing set in C7)</li>
+          <li>Machine health dashboards for the 185 printers required to meet 50,000 units/year</li>
+        </ul>
+      </div>
+      <!-- Ilustración SVG ajustada - sensores y ondas -->
+      <div style="position: absolute; bottom: 9rem; right: 1rem; width: 300px; height: 120px; opacity: 0.35; pointer-events: none;">
+        <svg viewBox="0 0 120 100" fill="none">
+          <rect x="10" y="25" width="30" height="40" rx="6" fill="#0A0A0A"/>
+          <rect x="50" y="15" width="30" height="50" rx="6" fill="#0A0A0A" opacity="0.8"/>
+          <rect x="90" y="35" width="25" height="30" rx="6" fill="#0A0A0A" opacity="0.6"/>
+          <!-- Ondas de señal desde cada sensor -->
+          <path d="M25,70 Q25,85 25,95" stroke="#0A0A0A" stroke-width="2" fill="none"/>
+          <path d="M18,73 Q12,85 18,97" stroke="#0A0A0A" stroke-width="1.5" fill="none"/>
+          <path d="M65,68 Q65,88 65,100" stroke="#0A0A0A" stroke-width="2" fill="none"/>
+          <path d="M102,68 Q102,80 102,92" stroke="#0A0A0A" stroke-width="2" fill="none"/>
+          <!-- Puntos de datos -->
+          <circle cx="20" cy="75" r="2.5" fill="#0A0A0A"/>
+          <circle cx="32" cy="80" r="2" fill="#0A0A0A"/>
+          <circle cx="75" cy="82" r="2.5" fill="#0A0A0A"/>
+          <circle cx="108" cy="78" r="2" fill="#0A0A0A"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Tarjeta 2: Digital Twin (estilo dark) -->
+    <div class="service-card dark" style="min-height: 480px; cursor: default; color: white">
+      <div class="service-info">
+        <h3>Digital Twin</h3>
+        <p>A digital twin is a virtual model of a physical asset, process, or system, fed by real-time sensor data <span class="reference">(Matrikon, 2025)</span>.</p>
+        <p style="margin-top: 1rem;"><strong>In our project, the digital twin appears in two forms:</strong></p>
+        <ul style="margin-top: 0.5rem; margin-left: 1rem; line-height: 1.6;">
+          <li><strong>Tecnomatix Plant Simulation:</strong> Virtual model of the CP Lab assembly line, calculating Takt Time (127 sec/unit) and determining that 185 printers are needed in parallel</li>
+          <li><strong>Process Digital Twin:</strong> Our documented C7 parameters serve as a "baseline twin" — any future parameter change can be tested virtually before physical printing</li>
+        </ul>
+      </div>
+      <!-- Ilustración SVG ajustada - gemelo digital físico ↔ virtual -->
+      <div style="position: absolute; bottom: 5rem; right: 1rem; width: 350px; height: 180px; opacity: 0.4; pointer-events: none;">
+        <svg viewBox="0 0 120 100" fill="none">
+          <!-- Caja física -->
+          <rect x="5" y="20" width="40" height="40" rx="5" fill="var(--orange)" opacity="0.8"/>
+          <text x="15" y="45" fill="white" font-size="8" font-family="monospace">Physical</text>
+          <!-- Caja digital (gemelo) -->
+          <rect x="70" y="20" width="45" height="40" rx="5" fill="none" stroke="var(--orange)" stroke-width="2" stroke-dasharray="4 2"/>
+          <text x="78" y="45" fill="var(--orange)" font-size="8" font-family="monospace">Digital</text>
+          <!-- Flecha de sincronización ida -->
+          <path d="M48,35 L67,35" stroke="white" stroke-width="2"/>
+          <polygon points="65,32 72,35 65,38" fill="white"/>
+          <!-- Flecha de sincronización vuelta -->
+          <path d="M67,55 L48,55" stroke="white" stroke-width="2"/>
+          <polygon points="50,52 43,55 50,58" fill="white"/>
+          <!-- Datos en tránsito -->
+          <circle cx="35" cy="75" r="3" fill="var(--orange)"/>
+          <circle cx="55" cy="78" r="3" fill="var(--orange)" opacity="0.6"/>
+          <circle cx="75" cy="75" r="3" fill="var(--orange)" opacity="0.4"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fila inferior: Relación jerárquica (estilo services-row2) -->
+  <div class="services-row2 fade-up">
+    <div class="service-card light" style="min-height: 160px; cursor: default; grid-column: span 3;">
+      <div class="service-info" style="position: relative; padding: 1.5rem;">
+        <h3 style="color: var(--black); margin-bottom: 0.75rem;">Hierarchical Relationship</h3>
+        <p style="font-size: 0.9rem; color: #333; line-height: 1.5;">
+          <strong>Industry 4.0</strong> is the overarching strategic vision → 
+          <strong>Smart Manufacturing</strong> is the implementation pathway → 
+          <strong>Digital Twins</strong> are the enabling technology that makes both possible 
+          (Huawei Cloud Community, 2025).
+        </p>
+      </div>
+      <!-- Pequeña ilustración decorativa -->
+      <div style="position: absolute; bottom: 4.5rem; right: 0.5rem; width: 180px; height: 80px; opacity: 0.5; pointer-events: none;">
+        <svg viewBox="0 0 100 80" fill="none">
+          <circle cx="50" cy="40" r="35" fill="var(--orange)"/>
+          <text x="38" y="46" fill="white" font-size="10" font-family="monospace">4.0</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+
+</section>
+
+<style>
+  /* Estilo para las referencias */
+  .reference {
+    font-size: 0.65rem;
+    vertical-align: super;
+    color: var(--orange);
+    font-weight: normal;
+  }
+  .services-row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 0;
+  }
+  @media (max-width: 900px) {
+    .services-row2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+ 
+
+<footer><div><div class="footer-logo">Analucia Vera</div><p class="footer-copy">© 2025 Analucia Vera. All rights reserved.</p></div><div class="footer-links"><a href="#about">About</a><a href="#services">Services</a><a href="#why">Why Us</a><a href="#contact">Contact</a></div></footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => { let current = ''; sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.id; }); navLinks.forEach(a => { a.style.background = ''; a.style.color = ''; if (a.getAttribute('href') === '#' + current) { a.style.background = 'var(--orange)'; a.style.color = 'var(--white)'; } }); });
+</script>
+</body>
+</html>
