@@ -1453,9 +1453,11 @@
   <nav>
     <a class="nav-logo" href="#">Analucia Vera</a>
     <ul class="nav-links">
-      <li><a href="index.html">home</a></li>
+      <li><a href="../index.html">home</a></li>
+      <li><a href="ourtechnologies.html" class="active">Our technologies</a></li>
+      <li><a href="processeng.html" class="active">Process Engineering</a></li>      
       <li><a href="#" class="active">3D design</a></li>
-      <li><a href="impresion.html">simulation</a></li>
+      <li><a href="simulation.html">simulation</a></li>
     </ul>
     <a class="nav-cta" href="#">Contacto <span class="dot"></span></a>
   </nav>
@@ -1502,7 +1504,7 @@
     <span class="tools-label">Software utilizado</span>
     <div class="tool-pill"><span class="dot"></span> Fusion 360</div>
     <div class="tool-pill"><span class="dot"></span> Cura Slicer</div>
-    <div class="tool-pill"><span class="dot"></span> Elegoo Slicer</div>
+    <div class="tool-pill"><span class="dot"></span> Bambu Slicer</div>
   </div>
 
   <!-- DEVELOPMENT PHASES -->
@@ -1660,7 +1662,7 @@
               <div class="config-dot">C5</div>
               <div class="config-card">
                 <div class="config-card-label">Configuration 5</div>
-                <h4>Elegoo - Slicer</h4>
+                <h4>Bambu - Slicer</h4>
                 <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
                 <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
                 <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
@@ -1684,7 +1686,7 @@
               <div class="config-dot">C6</div>
               <div class="config-card">
                 <div class="config-card-label">Configuration 6</div>
-                <h41>Elegoo - Slicer</h41>
+                <h41>Bambu - Slicer</h41>
                 <div class="machine-fail-message">
                   <div class="machine-fail-icon">🖨️ ⚡</div>
                   <div class="machine-fail-text">MACHINE ERROR</div>
@@ -1697,7 +1699,7 @@
               <div class="config-dot">C6</div>
               <div class="config-card">
                 <div class="config-card-label">Configuration 6</div>
-                <h4>Elegoo - Slicer</h4>
+                <h4>Bambu - Slicer</h4>
                 <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm</span></div>
                 <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
                 <div class="config-param"><span class="param-name">Temp. nozzle</span><span class="param-val">Default (210/60°C)</span></div>
@@ -1720,7 +1722,7 @@
               <div class="config-dot">C7</div>
               <div class="config-card">
                 <div class="config-card-label">Configuration 7</div>
-                <h4>Elegoo - Slicer</h4>
+                <h4>Bambu - Slicer</h4>
                 <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm (top)</span></div>
                 <div class="config-param"><span class="param-name">Variable layer height</span><span class="param-val">Enabled (from 0.08mm to 0.25mm)</span></div>
                 <div class="config-param"><span class="param-name">Infill</span><span class="param-val">15%</span></div>
@@ -1745,7 +1747,7 @@
               <div class="config-dot">C8</div>
               <div class="config-card">
                 <div class="config-card-label">Configuration 8</div>
-                <h4>Elegoo - Slicer</h4>
+                <h4>Bambu - Slicer</h4>
                  <div class="config-param"><span class="param-name">Layer</span><span class="param-val">0.2 mm (top)</span></div>
                 <div class="config-param"><span class="param-name">Variable layer height</span><span class="param-val">Enabled (from 0.08mm to 0.25mm)</span></div>
                 <div class="config-param"><span class="param-name">Infill</span><span class="param-val">60%</span></div>
@@ -1902,7 +1904,7 @@
     <!-- Left column: Justification text -->
     <div>
       <p style="font-size: 1rem; line-height: 1.7; color: #333; margin-bottom: 1rem;">
-       After eight distinct print configurations, over fifteen print attempts, and iterative CAD refinements across two different printer platforms (Ultimaker and Elegoo Neptune),<strong>Configuration 7</strong> was selected as the optimal parameter set for manufacturing the phone casings. This decision was based on four critical criteria directly linked to the CP Lab assembly line requirements, supported by empirical measurements.
+       After eight distinct print configurations, over fifteen print attempts, and iterative CAD refinements across two different printer platforms (Ultimaker and Bambu ),<strong>Configuration 7</strong> was selected as the optimal parameter set for manufacturing the phone casings. This decision was based on four critical criteria directly linked to the CP Lab assembly line requirements, supported by empirical measurements.
       </p>
       
       <p style="font-size: 1rem; line-height: 1.7; color: #333; margin-bottom: 1rem;">
@@ -1936,7 +1938,7 @@
           <div><strong>Supports:</strong> Disabled</div>
           <div><strong>Bridge speed:</strong> 25mm/s</div>
           <div><strong>Ironing:</strong> Disabled</div>
-          <div><strong>Printer:</strong> Elegoo</div>
+          <div><strong>Printer:</strong> Bambu</div>
         </div>
       </div>
       
@@ -2190,24 +2192,24 @@
         },
       C4_C5: {
         from: "Configuration 4 (Ultimaker)",
-        to: "Configuration 5 (Elegoo Neptune)",
-        failure: "Ultimaker prints had been inconsistent — 3 machine-error failures and variable quality. A decision was made to switch to the Elegoo Neptune printer available in the lab.",
-        analysis: "Changing printers requires recalibrating all parameters. The Elegoo has a different extruder type (direct drive vs Bowden on Ultimaker), which affects retraction and filament control. Additionally, the heated bed has different thermal distribution. Research on FDM process stability indicates that even identical print settings can produce different results across different machine platforms due to mechanical and thermal variations (Mottola, 2024).",
+        to: "Configuration 5 (Bambu )",
+        failure: "Ultimaker prints had been inconsistent — 3 machine-error failures and variable quality. A decision was made to switch to the Bambu  printer available in the lab.",
+        analysis: "Changing printers requires recalibrating all parameters. The Bambu has a different extruder type (direct drive vs Bowden on Ultimaker), which affects retraction and filament control. Additionally, the heated bed has different thermal distribution. Research on FDM process stability indicates that even identical print settings can produce different results across different machine platforms due to mechanical and thermal variations (Mottola, 2024).",
         changes: [
-          "Printer: Ultimaker → Elegoo Neptune (complete hardware change)",
+          "Printer: Ultimaker → Bambu  (complete hardware change)",
           "Infill: 15% (maintained)",
           "Supports: enabled (same strategy)",
           "Layer height: 0.2mm (maintained)"
         ],
         outcome: "CATASTROPHIC FAILURE — The support fused completely with the part, making removal impossible. The issue was that the interface gap between support and part (configured in Cura) was too small for this filament and geometry combination.",
-        theory: "The 'Support Z Distance' parameter in Cura controls the gap between support and part. A value of 0.1mm (appropriate for Ultimaker) resulted in complete fusion on the Elegoo. This likely occurs because the Elegoo's direct drive extruder has better extrusion control, depositing filament more precisely — including into the intended gaps. Higher values (e.g., 0.2-0.3mm) are needed for removable supports. This phenomenon relates to research on support structure optimisation, where the interface gap is critical for post-processing removal (Cristiani and Falcone, 2017). Warpage studies also confirm that temperature gradients and adhesion characteristics vary significantly between machines (Mottola, 2024).",
+        theory: "The 'Support Z Distance' parameter in Cura controls the gap between support and part. A value of 0.1mm (appropriate for Ultimaker) resulted in complete fusion on the Bambu. This likely occurs because the Bambu's direct drive extruder has better extrusion control, depositing filament more precisely — including into the intended gaps. Higher values (e.g., 0.2-0.3mm) are needed for removable supports. This phenomenon relates to research on support structure optimisation, where the interface gap is critical for post-processing removal (Cristiani and Falcone, 2017). Warpage studies also confirm that temperature gradients and adhesion characteristics vary significantly between machines (Mottola, 2024).",
         
       },
       C5_C6: {
-        from: "Configuration 5 (Elegoo with supports)",
-        to: "Configuration 6 (Elegoo without supports)",
+        from: "Configuration 5 (Bambu with supports)",
+        to: "Configuration 6 (Bambu without supports)",
         failure: "Supports fused with the part in C5.",
-        analysis: "In C5, the use of supports resulted in complete fusion between the support structure and the part. This indicated that the vertical separation (Support Z Distance) was below the effective detachment threshold for this specific printer and material combination. On a direct drive system like the Elegoo Neptune, extrusion control is more precise, meaning the printer can accurately fill very small gaps. In this case, the intended separation gap was effectively eliminated during deposition, causing both structures to merge. To eliminate this issue, supports were completely disabled in C6. Printing without supports requires either designing the part for 'self-supporting overhangs' or using advanced techniques such as variable layer height and overhang speed control.",
+        analysis: "In C5, the use of supports resulted in complete fusion between the support structure and the part. This indicated that the vertical separation (Support Z Distance) was below the effective detachment threshold for this specific printer and material combination. On a direct drive system like the Bambu , extrusion control is more precise, meaning the printer can accurately fill very small gaps. In this case, the intended separation gap was effectively eliminated during deposition, causing both structures to merge. To eliminate this issue, supports were completely disabled in C6. Printing without supports requires either designing the part for 'self-supporting overhangs' or using advanced techniques such as variable layer height and overhang speed control.",
         changes: [
           "Supports: enabled → disabled (radical change)",
           "Layer height: 0.2mm (maintained)",
