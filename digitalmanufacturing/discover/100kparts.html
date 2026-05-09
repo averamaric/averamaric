@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Analucia Vera — 100k Units</title>
+  <title>3D Print Production Analysis — 50,000 Units</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -299,14 +299,18 @@
       font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--gray-dark);
     }
-    .cycle-edit-box input[type=number] {
-      background: transparent; border: none;
+    .cycle-edit-box select {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--orange);
+      background: transparent;
+      border: none;
       border-bottom: 2px solid var(--orange);
-      color: var(--orange); font-family: var(--font-display);
-      font-size: 2.5rem; width: 120px; outline: none;
-      text-align: center;
+      outline: none;
+      margin-top: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
     }
-    .cycle-edit-box input[type=number]::-webkit-inner-spin-button { opacity: 0; }
     .cycle-edit-box .edit-hint {
       font-size: 0.7rem; color: #666;
       font-family: var(--font-condensed);
@@ -378,7 +382,7 @@
     .dyn-card span {
       font-size: 0.65rem; color: #bbb; display: block; margin-top: 2px;
     }
-    .dyn-card.highlight span { color: #555; }
+    .dyn-card.highlight span { color: white; }
     .dyn-card.success span, .dyn-card.danger span { color: rgba(255,255,255,0.6); }
 
     /* ── SCENARIO TABLE ── */
@@ -450,7 +454,7 @@
       color: #666; margin-top: 0.4rem;
     }
     .cost-card.highlight p { color: rgba(0,0,0,0.7); }
-    .cost-card span { font-size: 0.65rem; color: #444; display: block; margin-top: 2px; }
+    .cost-card span { font-size: 0.65rem; color: white; display: block; margin-top: 2px; }
     .cost-card.highlight span { color: rgba(0,0,0,0.5); }
 
     /* ── FOOTER ── */
@@ -488,13 +492,11 @@
 <nav>
   <a class="nav-logo" href="#">3D Production — Analysis</a>
   <ul class="nav-links">
-      <li><a href="../index.html">home</a></li>
-      <li><a href="ourtechnologies.html" class="active">Our technologies</a></li>
-      <li><a href="processeng.html" class="active">Process Engineering</a></li>      
-      <li><a href="design.html" class="active">3D design</a></li>
-      <li><a href="100kparts.html" class="active">100k target</a></li>
-      <li><a href="simulation.html">simulation</a></li>
-    </ul>
+    <li><a href="#printers">Printers</a></li>
+    <li><a href="#simulator">Simulator</a></li>
+    <li><a href="#scenarios">Scenarios</a></li>
+    <li><a href="#costs">Costs</a></li>
+  </ul>
   <a class="nav-cta" href="#simulator">Simulate<span class="dot"></span></a>
 </nav>
 
@@ -532,7 +534,7 @@
   </div>
   <div class="hero-right">
     <p class="hero-tagline">
-      How many printers do I need? What is the cost? How many operators? This analysis answers all these questions with adjustable interactive scenarios.
+      How many printers do I need? What are the costs? How many operators? This analysis answers all these questions with adjustable interactive scenarios.
     </p>
     <div class="hero-stat-grid">
       <div class="hero-stat">
@@ -541,15 +543,15 @@
       </div>
       <div class="hero-stat dark">
         <h3 id="hero-printers">–</h3>
-        <p>Minimum printers (5% failure)</p>
+        <p>Min. printers (5% fail)</p>
       </div>
       <div class="hero-stat dark">
-        <h3>11×6</h3>
-        <p>cm — Part footprint</p>
+        <h3>11,5×6,5</h3>
+        <p>cm — Part footprint (incl. distance between parts)</p>
       </div>
       <div class="hero-stat">
-        <h3>12</h3>
-        <p>Parts/cycle on 256mm plate</p>
+        <h3>6</h3>
+        <p>Parts/batch (3 pairs)</p>
       </div>
     </div>
   </div>
@@ -558,33 +560,33 @@
 <!-- ── PRINTER COMPARISON ── -->
 <section id="printers" class="fade-up">
   <div class="section-label">Step 1 — Hardware selection</div>
-  <div class="section-title">Bambu Lab<br>Comparison</div>
+  <div class="section-title">Printer<br>Comparison</div>
   <p style="max-width: 600px; font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 0.5rem;">
-    Evaluation of current Bambu Lab models for producing 100,000 parts per year, considering price, build plate, failure continuity, and print fidelity.
+    Evaluation of current Bambu Lab models for producing 100,000 parts/year, considering price, build volume, failure recovery, and print fidelity.
   </p>
   <div class="printer-grid">
     <div class="printer-card">
       <div class="printer-name">A1 Mini</div>
       <div class="printer-price">~£220 · ~£360 combo</div>
       <span class="badge badge-gray">Too small</span>
-      <div class="spec-row"><span class="spec-label">Build plate</span><span class="spec-val">180 × 180 mm</span></div>
-      <div class="spec-row"><span class="spec-label">Parts/cycle</span><span class="spec-val bad">2 parts</span></div>
-      <div class="spec-row"><span class="spec-label">Continues if 1 part fails</span><span class="spec-val bad">No</span></div>
+      <div class="spec-row"><span class="spec-label">Build plate</span><span class="spec-val bad">180 × 180 mm</span></div>
+      <div class="spec-row"><span class="spec-label">Parts/batch</span><span class="spec-val bad">2 parts</span></div>
+      <div class="spec-row"><span class="spec-label">Continues with partial failure</span><span class="spec-val bad">No</span></div>
       <div class="spec-row"><span class="spec-label">Enclosure</span><span class="spec-val bad">No (open frame)</span></div>
       <div class="spec-row"><span class="spec-label">AI detection</span><span class="spec-val bad">Basic</span></div>
-      <div class="spec-row"><span class="spec-label">Software until</span><span class="spec-val">2031</span></div>
-      <div class="spec-row"><span class="spec-label">Verdict</span><span class="spec-val bad">Discarded</span></div>
+      <div class="spec-row"><span class="spec-label">SW support until</span><span class="spec-val">2031</span></div>
+      <div class="spec-row"><span class="spec-label">Verdict</span><span class="spec-val bad">Rejected</span></div>
     </div>
     <div class="printer-card">
       <div class="printer-name">A1</div>
       <div class="printer-price">~£280 · ~£420 combo</div>
       <span class="badge badge-warn">Limited for production</span>
       <div class="spec-row"><span class="spec-label">Build plate</span><span class="spec-val">256 × 256 mm</span></div>
-      <div class="spec-row"><span class="spec-label">Parts/cycle</span><span class="spec-val warn">12 parts</span></div>
-      <div class="spec-row"><span class="spec-label">Continues if 1 part fails</span><span class="spec-val warn">No (bed slinger)</span></div>
+      <div class="spec-row"><span class="spec-label">Parts/batch</span><span class="spec-val warn">6 parts</span></div>
+      <div class="spec-row"><span class="spec-label">Continues with partial failure</span><span class="spec-val warn">No (bed slinger)</span></div>
       <div class="spec-row"><span class="spec-label">Enclosure</span><span class="spec-val bad">No (open frame)</span></div>
       <div class="spec-row"><span class="spec-label">AI detection</span><span class="spec-val warn">Basic</span></div>
-      <div class="spec-row"><span class="spec-label">Software until</span><span class="spec-val">2031</span></div>
+      <div class="spec-row"><span class="spec-label">SW support until</span><span class="spec-val">2031</span></div>
       <div class="spec-row"><span class="spec-label">Verdict</span><span class="spec-val warn">Not recommended</span></div>
     </div>
     <div class="printer-card recommended">
@@ -593,56 +595,60 @@
       <div class="printer-price">P1S ~£400 · P2S ~£549</div>
       <span class="badge badge-green">Optimal for print farm</span>
       <div class="spec-row"><span class="spec-label">Build plate</span><span class="spec-val good">256 × 256 mm</span></div>
-      <div class="spec-row"><span class="spec-label">Parts/cycle</span><span class="spec-val good">12 parts</span></div>
-      <div class="spec-row"><span class="spec-label">Continues if 1 part fails</span><span class="spec-val good">Yes (AI detects it)</span></div>
-      <div class="spec-row"><span class="spec-label">Enclosure</span><span class="spec-val good">Yes (stable temperature)</span></div>
+      <div class="spec-row"><span class="spec-label">Parts/batch</span><span class="spec-val good">6 parts (3 pairs)</span></div>
+      <div class="spec-row"><span class="spec-label">Continues with partial failure</span><span class="spec-val good">Yes (AI detects)</span></div>
+      <div class="spec-row"><span class="spec-label">Enclosure</span><span class="spec-val good">Yes (stable temp)</span></div>
       <div class="spec-row"><span class="spec-label">AI detection</span><span class="spec-val good">Spaghetti + failure</span></div>
-      <div class="spec-row"><span class="spec-label">Software until</span><span class="spec-val good">2030–2031</span></div>
+      <div class="spec-row"><span class="spec-label">SW support until</span><span class="spec-val good">2030–2031</span></div>
       <div class="spec-row"><span class="spec-label">Verdict</span><span class="spec-val good">★ Recommended</span></div>
     </div>
     <div class="printer-card">
       <div class="printer-name">H2D</div>
       <div class="printer-price">~£1,500 – £2,700</div>
-      <span class="badge badge-warn">Overkill / very expensive</span>
+      <span class="badge badge-warn">Overkill / too expensive</span>
       <div class="spec-row"><span class="spec-label">Build plate</span><span class="spec-val">350 × 320 mm</span></div>
-      <div class="spec-row"><span class="spec-label">Parts/cycle</span><span class="spec-val good">20 parts</span></div>
-      <div class="spec-row"><span class="spec-label">Continues if 1 part fails</span><span class="spec-val good">Yes</span></div>
+      <div class="spec-row"><span class="spec-label">Parts/batch</span><span class="spec-val good">~12 parts</span></div>
+      <div class="spec-row"><span class="spec-label">Continues with partial failure</span><span class="spec-val good">Yes</span></div>
       <div class="spec-row"><span class="spec-label">Enclosure</span><span class="spec-val good">Yes + heated chamber</span></div>
       <div class="spec-row"><span class="spec-label">AI detection</span><span class="spec-val good">Maximum</span></div>
-      <div class="spec-row"><span class="spec-label">Software until</span><span class="spec-val">2033</span></div>
+      <div class="spec-row"><span class="spec-label">SW support until</span><span class="spec-val">2033</span></div>
       <div class="spec-row"><span class="spec-label">Verdict</span><span class="spec-val warn">Unnecessarily expensive</span></div>
     </div>
   </div>
   <div class="printer-note">
-    <strong>Why P1S/P2S?</strong> The 256×256mm build plate allows arranging 3 columns × 4 rows of 11×6cm parts (with ~1cm margin between parts) = <strong>12 parts per cycle</strong>. Its enclosure ensures stable temperature (less warping), AI detects failures and allows continuing to print unaffected parts, and its price makes it viable in a fleet. The P2S adds a touchscreen and better extrusion system, but the P1S (now on sale ~£399) is equally valid for production.
+    <strong>Why P1S/P2S?</strong> The 256×256mm build plate can fit 2 columns × 3 rows of 115×65mm parts (including margin) = <strong>6 parts (3 pairs) per cycle</strong>. Enclosure ensures temperature stability (less warping), AI detects failures and allows continuing unaffected parts, and price makes it viable for a fleet. P2S adds a touch screen and better extrusion system, but P1S (~£399 on sale) is equally valid for production.
   </div>
 </section>
 
 <!-- ── BASE PARAMETERS ── -->
 <section id="params" class="fade-up">
-  <div class="section-label">Step 2 — Base parameters</div>
+  <div class="section-label">Step 2 — Process parameters</div>
   <div class="section-title">Process<br>Data</div>
 
   <div class="cycle-edit-box">
     <div>
-      <label for="cycleBrutoInput">Gross print cycle (hours)</label><br>
-      <input type="number" id="cycleBrutoInput" value="4.2" min="0.5" max="24" step="0.1" />
+      <label for="batchConfig">Batch configuration</label><br>
+      <select id="batchConfig">
+        <option value="1">1 pair / cycle (1 top + 1 bottom) — 3.7h</option>
+        <option value="2" selected>2 pairs / cycle (2 top + 2 bottom) — 7.4h</option>
+        <option value="3">3 pairs / cycle (3 top + 3 bottom) — 11.1h est.</option>
+      </select>
     </div>
     <div class="edit-hint">
-      ← Change this value when you have real data<br>
-      (time to print 12 simultaneous parts)<br>
+      <strong>Actual confirmed data:</strong><br>
+      · 1 pair → 3h 42m · 52.1g PLA<br>
+      · 2 pairs → 7h 24m (linear ×2) · 104.2g<br>
+      · 3 pairs → ~11h 06m (linear ×3) · 156.3g<br>
       <br>
-      Current estimation: 3h × batch factor 1.4 for 12 parts<br>
-      The batch factor can be adjusted in the JS code.
+      Build plate 256×256mm · part 110×60mm + 5mm margin<br>
+      Max layout: 2 cols × 3 rows = 6 parts = 3 pairs max.
     </div>
   </div>
   <div class="cycle-note-box">
-    <strong>Batch factor notice:</strong> Printing 12 parts simultaneously is not 12× the time of 1 part. The head travels more distance between parts and layers are distributed across more geometry. Estimated factor: ×1.4 (3h × 1.4 ≈ 4.2h). This factor can vary between ×1.2 and ×1.6 depending on layout and geometry. <strong>We recommend doing a real test</strong> and updating the value above.
+    <strong>Why linear scaling?</strong> Top and bottom print simultaneously on the same plate. Adding more pairs increases the geometry per layer, scaling time proportionally. Confirmed: 1 pair = 3h42m, 2 pairs = 7h24m (exactly ×2). For 3 pairs, estimated ×3 = ~11h06m — <strong>validate in slicer before using this scenario</strong>.
   </div>
 
-  <div class="params-grid" id="paramCards">
-    <!-- filled by JS -->
-  </div>
+  <div class="params-grid" id="paramCards"></div>
 </section>
 
 <!-- ── INTERACTIVE SIMULATOR ── -->
@@ -668,8 +674,8 @@
       </div>
       <div class="ctrl-row">
         <span class="ctrl-label">Number of printers</span>
-        <input type="range" id="numPrinters" min="1" max="40" step="1" value="10">
-        <span class="ctrl-val" id="numPrintersVal">10</span>
+        <input type="range" id="numPrinters" min="1" max="100" step="1" value="100">
+        <span class="ctrl-val" id="numPrintersVal">100</span>
       </div>
     </div>
     <div class="control-group">
@@ -689,10 +695,9 @@
       </div>
     </div>
   </div>
-
-  <div class="dyn-cards" id="dynCards">
-    <!-- filled by JS -->
-  </div>
+  
+  <div class="dyn-cards" id="dynCards"></div>
+  <div id="safetyNote" style="margin-top: 2rem; padding: 1.5rem; background: var(--black); color: var(--white); border-left: 6px solid var(--orange);"></div>
 </section>
 
 <!-- ── SCENARIO TABLE ── -->
@@ -700,7 +705,7 @@
   <div class="section-label">Step 4 — Scenario comparison</div>
   <div class="section-title">Shifts × Failure<br>× Printers</div>
   <p style="max-width: 600px; font-size: 0.85rem; color: #666; line-height: 1.6; margin-bottom: 1rem;">
-    Minimum number of printers required based on shift and expected failure rate, and required operators.
+    Minimum number of printers needed according to shift length and expected failure rate, plus required operators.
   </p>
 
   <div class="table-wrapper">
@@ -709,9 +714,9 @@
         <tr>
           <th rowspan="2">Shift</th>
           <th rowspan="2">Cycles/day</th>
-          <th rowspan="2">Parts/printer/day</th>
+          <th rowspan="2">Pairs/impr/day</th>
           <th colspan="3" class="orange">Minimum printers needed</th>
-          <th colspan="3">Operators (selected shift)</th>
+          <th colspan="3">Operators (chosen shift)</th>
         </tr>
         <tr>
           <th class="orange">Fail 5%</th>
@@ -726,47 +731,44 @@
     </table>
   </div>
   <p style="font-size: 0.75rem; color: #888; margin-top: 1rem; border-left: 3px solid var(--orange); padding-left: 1rem;">
-    40-minute rule: the operator only needs to be present at the start of each cycle. One operator can supervise multiple printers in parallel if cycle starts are staggered. Estimated ratio: 1:5 for 8h shift, 1:7 for 12h, 1:10 for 24h (with shift changes).
+    40-minute rule: operator only needs to be present at the start of each cycle (first 40 min). One operator can supervise multiple printers in parallel if cycle starts are staggered. Estimated ratio: 1:5 for 8h shift, 1:7 for 12h, 1:10 for 24h (with handover).
   </p>
 </section>
 
 <!-- ── OPERATORS DETAIL ── -->
 <section id="operators" class="fade-up">
-  <div class="section-label">Step 5 — Operators and overhead analysis</div>
-  <div class="section-title">Operators<br>and Times</div>
+  <div class="section-label">Step 5 — Operator & overhead analysis</div>
+  <div class="section-title">Operators<br>& Overhead</div>
 
   <div class="two-col">
     <div>
       <p style="font-size: 0.85rem; color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
-        Overhead per cycle includes all non-productive operations between prints. Conservative estimate for a P1S printer:
+        Overhead per cycle includes all non-productive operations between prints. Conservative estimate for a P1S:
       </p>
       <div class="table-wrapper">
         <table class="data-table" style="min-width: 400px;">
-          <thead>
-            <tr><th>Operation</th><th>Estimated time</th></tr>
-          </thead>
+          <thead><tr><th>Operation</th><th>Estimated time</th></tr></thead>
           <tbody>
             <tr><td style="text-align:left; padding-left: 1rem;">Bed cooling</td><td>~10 min</td></tr>
             <tr><td style="text-align:left; padding-left: 1rem;">Remove parts</td><td>~5 min</td></tr>
             <tr><td style="text-align:left; padding-left: 1rem;">Clean bed</td><td>~5 min</td></tr>
-            <tr><td style="text-align:left; padding-left: 1rem;">Nozzle cleaning/check</td><td>~3 min</td></tr>
-            <tr><td style="text-align:left; padding-left: 1rem;">Recalibrations (amortized)</td><td>~5 min</td></tr>
-            <tr><td style="text-align:left; padding-left: 1rem;">Filament refill</td><td>~5 min</td></tr>
-            <tr><td style="text-align:left; padding-left: 1rem;">Restarts/preparation</td><td>~2 min</td></tr>
+            <tr><td style="text-align:left; padding-left: 1rem;">Nozzle cleaning / check</td><td>~3 min</td></tr>
+            <tr><td style="text-align:left; padding-left: 1rem;">Recalibration (amortized)</td><td>~5 min</td></tr>
+            <tr><td style="text-align:left; padding-left: 1rem;">Filament reload</td><td>~5 min</td></tr>
+            <tr><td style="text-align:left; padding-left: 1rem;">Restarts / preparation</td><td>~2 min</td></tr>
             <tr><td style="text-align:left; padding-left: 1rem; font-weight: 700;">TOTAL OVERHEAD</td><td><strong>~35 min (0.58h)</strong></td></tr>
           </tbody>
         </table>
       </div>
     </div>
     <div>
+      
       <p style="font-size: 0.85rem; color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
-        40-minute rule: the operator must be present for the first <strong>40 min of each cycle</strong> to ensure the first layers are deposited correctly. It is not necessary to stay for the entire print.
+        40-minute rule: operator must be present for the first <strong>40 min of each cycle</strong> to ensure first layers are deposited correctly. Not required for the entire print.
       </p>
       <div class="table-wrapper">
         <table class="data-table" style="min-width: 400px;" id="operarioTable">
-          <thead>
-            <tr><th>Shift</th><th>Possible cycles</th><th>Parts/printer/day</th><th>Operator:printer ratio</th><th>Cost/day (5% failure)</th></tr>
-          </thead>
+          <thead><tr><th>Shift</th><th>Cycles possible</th><th>Pairs/impr/day</th><th>Op:printer ratio</th><th>Cost/day (5% fail)</th></tr></thead>
           <tbody id="operarioBody"></tbody>
         </table>
       </div>
@@ -779,16 +781,14 @@
   <div class="section-label">Step 6 — Cost breakdown</div>
   <div class="section-title">Estimated<br>Costs</div>
   <p style="font-size: 0.85rem; color: #666; line-height: 1.6; max-width: 600px; margin-bottom: 0.5rem;">
-    Based on the simulator scenario (selected shift and failure rate). CAPEX = hardware. OPEX = annual operating cost.
+    Based on the simulator scenario (shift and failure selected). CAPEX = hardware. OPEX = annual operating cost.
   </p>
-  <div class="cost-grid" id="costGrid">
-    <!-- filled by JS -->
-  </div>
+  <div class="cost-grid" id="costGrid"></div>
   <div style="margin-top: 2rem; padding: 1.5rem; border: 1px solid #333; font-size: 0.8rem; color: #888; line-height: 1.6;">
     <strong style="color: var(--orange);">Cost notes:</strong><br>
-    · PLA in UK: £15–25/kg for medium-high quality filament. Volume purchasing can reduce this cost by 20–30%.<br>
+    · PLA in UK: £15–25/kg for mid-to-high quality filament. Bulk purchasing can reduce this cost by 20–30%.<br>
     · UK electricity: ~£0.24–0.34/kWh (industrial rate). P1S consumes ~100–130W during active printing.<br>
-    · Hardware CAPEX does not include shelving, wiring, ventilation system, or maintenance tools.<br>
+    · Hardware CAPEX does not include shelving, wiring, ventilation, or maintenance tools.<br>
     · Annual maintenance cost (~5–8% of hardware) is not included in this calculation.
   </div>
 </section>
@@ -796,7 +796,7 @@
 <footer>
   <div>
     <div class="footer-logo">3D Analysis</div>
-    <p class="footer-copy">Production of 100,000 enclosures · 252 working days · Bambu Lab P1S/P2S</p>
+    <p class="footer-copy">100,000 parts production · 252 working days · Bambu Lab P1S/P2S</p>
   </div>
   <div style="font-size: 0.75rem; color: #555; text-align: right;">
     Printer data: Bambu Lab (2025) · PLA prices: LayerMath UK (Apr 2026)<br>
@@ -806,45 +806,105 @@
 
 <script>
   // ════════════════════════════════════════════════════════════════
-  // PROCESS CONSTANTS — MODIFY HERE IF THEY CHANGE
+  // CONSTANTS — CONFIRMED PROCESS DATA
+  // Update these values if you get new slicer measurements.
   // ════════════════════════════════════════════════════════════════
 
-  const PIECES_PER_CYCLE = 12;
-  const OVERHEAD_H = 35 / 60;  // 0.583 h
-  const GRAMS_PER_PIECE = 18;
+  // ACTUAL PRINT TIME PER PAIR (1 top + 1 bottom on same plate)
+  // Confirmed: 3h 42min = 3 + 42/60 = 3.70 hours
+  // Confirmed scaling: 2 pairs = 7h 24min = 7.40h (exactly ×2)
+  // Time scales LINEARLY: N_pairs × TIME_PER_PAIR_H
+  const TIME_PER_PAIR_H = 3.70;
+
+  // PLA PER PAIR (top + bottom together)
+  // Confirmed: 52.1g per pair
+  const GRAMS_PER_PAIR = 52.1;
+
+  // BATCH CONFIGURATIONS POSSIBLE
+  // Build plate: 256×256mm | Part: 110×60mm | Margin ~5mm → cell 115×65mm
+  // Layout: ⌊256/115⌋=2 cols × ⌊256/65⌋=3 rows = 6 parts = 3 pairs (max physical)
+  // "confirmed" = actually measured | "estimated" = linear projection
+  const BATCH_CONFIGS = {
+    1: { pairs: 1, pieces: 2,  printH: 1 * TIME_PER_PAIR_H, grams: 1 * GRAMS_PER_PAIR, label: '1 pair (2 parts)', confirmed: true },
+    2: { pairs: 2, pieces: 4,  printH: 2 * TIME_PER_PAIR_H, grams: 2 * GRAMS_PER_PAIR, label: '2 pairs (4 parts) ✓', confirmed: true },
+    3: { pairs: 3, pieces: 6,  printH: 3 * TIME_PER_PAIR_H, grams: 3 * GRAMS_PER_PAIR, label: '3 pairs (6 parts) est.', confirmed: false },
+  };
+
+  // OVERHEAD PER CYCLE (hours) — operations between print cycles
+  // Bed cooling: 10 min | Remove parts: 5 min | Clean bed: 5 min
+  // Nozzle clean: 3 min | Recalibration (amortized): 5 min
+  // Filament reload: 5 min | Restarts/prep: 2 min
+  // TOTAL: 35 min = 0.583 h
+  const OVERHEAD_H = 35 / 60;
+
+  // WORKING DAYS PER YEAR
   const WORKING_DAYS = 252;
-  const TARGET = 100000;
+
+  // TARGET: 100,000 parts = 50,000 pairs
+  const TARGET_PAIRS  = 50000;
+  const TARGET_PIECES = 100000;
+
+  // OPERATOR WAGE (£/hour) — fixed per project spec
   const WAGE = 13;
+
+  // PRINTER PRICE P1S (£) — reference CAPEX
   const PRINTER_PRICE_GBP = 480;
+
+  // POWER CONSUMPTION PER PRINTER (kW average during active printing)
+  // P1S: ~100–130W active, ~20W standby. Using 110W as conservative average.
   const KW_PER_PRINTER = 0.110;
-  const MONITOR_MIN = 40;
 
-  function getCycleBruto() {
-    const val = parseFloat(document.getElementById('cycleBrutoInput').value);
-    return isNaN(val) || val <= 0 ? 4.2 : val;
+  // ════════════════════════════════════════════════════════════════
+  // HELPER FUNCTIONS
+  // ════════════════════════════════════════════════════════════════
+
+  function fmt(n, dec = 0) {
+    return Number(n).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
   }
 
+  function getBatchConfig() {
+    const val = parseInt(document.getElementById('batchConfig').value);
+    return BATCH_CONFIGS[val] || BATCH_CONFIGS[2];
+  }
+
+  // Total cycle time: print + overhead
   function getCycleTotal() {
-    return getCycleBruto() + OVERHEAD_H;
+    return getBatchConfig().printH + OVERHEAD_H;
   }
 
+  // How many complete cycles fit in a shift (floor, because operator starts cycle at shift start)
   function cyclesPerShift(shiftH) {
-    return Math.floor(shiftH / getCycleTotal());
+    const cycleTotal = getCycleTotal();
+    return Math.floor(shiftH / cycleTotal);
   }
 
+  // Pairs produced per printer per day (using average continuous operation formula: shiftH / cycleTotal * pairs_per_cycle)
+  // This correctly accounts for the startup effect across many days (the first day only has cycles that start on day1)
+  // For a stable average over 252 days: (shift hours per day / cycle hours) × pairs per cycle
+  function pairsPerPrinterPerDay(shiftH) {
+    const cfg = getBatchConfig();
+    const cycleTotal = getCycleTotal();
+    // Average cycles per day = shift hours / total cycle hours
+    const avgCyclesPerDay = shiftH / cycleTotal;
+    return avgCyclesPerDay * cfg.pairs;
+  }
+
+  // Pieces per printer per day
   function piecesPerPrinterPerDay(shiftH) {
-    return cyclesPerShift(shiftH) * PIECES_PER_CYCLE;
+    return pairsPerPrinterPerDay(shiftH) * 2;
   }
 
+  // Minimum printers needed to reach 50,000 pairs with given failure rate
   function printersNeeded(failRatePct, shiftH) {
-    const neededPieces = TARGET * (1 + failRatePct / 100);
-    const perPrinterYear = piecesPerPrinterPerDay(shiftH) * WORKING_DAYS;
-    if (perPrinterYear === 0) return 999;
-    return Math.ceil(neededPieces / perPrinterYear);
+    const neededPairsGross = TARGET_PAIRS * (1 + failRatePct / 100);
+    const pairsPerPrinterYear = pairsPerPrinterPerDay(shiftH) * WORKING_DAYS;
+    if (pairsPerPrinterYear <= 0) return 999;
+    return Math.ceil(neededPairsGross / pairsPerPrinterYear);
   }
 
+  // Operator to printer ratio based on shift (40-minute supervision rule)
   function operatorRatio(shiftH) {
-    if (shiftH <= 8) return 5;
+    if (shiftH <= 8)  return 5;
     if (shiftH <= 12) return 7;
     return 10;
   }
@@ -853,22 +913,25 @@
     return Math.max(1, Math.ceil(nPrinters / operatorRatio(shiftH)));
   }
 
-  function fmt(n, dec = 0) {
-    return Number(n).toLocaleString('en-US', {
-      minimumFractionDigits: dec,
-      maximumFractionDigits: dec
-    });
+  function toHM(h) {
+    const hh = Math.floor(h);
+    const mm = Math.round((h - hh) * 60);
+    return mm > 0 ? `${hh}h${mm}m` : `${hh}h`;
   }
 
+  // ════════════════════════════════════════════════════════════════
+  // RENDER FUNCTIONS
+  // ════════════════════════════════════════════════════════════════
+
   function renderParamCards() {
-    const bruto = getCycleBruto();
-    const total = getCycleTotal();
+    const cfg = getBatchConfig();
+    const cycleTotal = getCycleTotal();
     const cards = [
-      { val: bruto.toFixed(1) + ' h', label: 'Gross print cycle', sub: 'editable above', cls: 'orange' },
-      { val: OVERHEAD_H.toFixed(2) + ' h', label: 'Overhead per cycle', sub: 'fixed 35 min', cls: '' },
-      { val: total.toFixed(2) + ' h', label: 'Total cycle', sub: 'gross + overhead', cls: 'dark' },
-      { val: PIECES_PER_CYCLE, label: 'Parts/cycle', sub: '3×4 on 256mm', cls: '' },
-      { val: GRAMS_PER_PIECE + ' g', label: 'PLA per part', sub: PIECES_PER_CYCLE * GRAMS_PER_PIECE + 'g/cycle', cls: '' },
+      { val: toHM(cfg.printH), label: 'Print/cycle', sub: cfg.confirmed ? '✓ Actual data' : '~ Linear est.', cls: 'orange' },
+      { val: toHM(OVERHEAD_H), label: 'Overhead/cycle', sub: '35 min between cycles', cls: '' },
+      { val: toHM(cycleTotal), label: 'Total cycle', sub: 'print + overhead', cls: 'dark' },
+      { val: cfg.pieces + ' parts', label: 'Parts/cycle', sub: cfg.pairs + ' pair' + (cfg.pairs > 1 ? 's' : '') + ' · ' + cfg.grams.toFixed(1) + 'g PLA', cls: '' },
+      { val: cfg.grams.toFixed(1) + ' g', label: 'PLA/cycle', sub: (cfg.grams / cfg.pieces).toFixed(1) + 'g per part', cls: '' },
       { val: WORKING_DAYS, label: 'Working days/year', sub: 'no holidays', cls: 'dark' },
     ];
     document.getElementById('paramCards').innerHTML = cards.map(c => `
@@ -880,27 +943,68 @@
     `).join('');
   }
 
-  function renderDynCards() {
+  function renderSafetyNote() {
     const shift = parseInt(document.getElementById('shift').value);
     const failRate = parseInt(document.getElementById('failRate').value);
-    const nPrinters = parseInt(document.getElementById('numPrinters').value);
-
-    const cycles = cyclesPerShift(shift);
-    const ppd = piecesPerPrinterPerDay(shift);
-    const fleetYear = ppd * WORKING_DAYS * nPrinters;
     const needed = printersNeeded(failRate, shift);
-    const feasible = fleetYear >= TARGET * (1 + failRate / 100);
-    const ops = operatorsNeeded(needed, shift);
+    const theoreticalNeeded = Math.ceil(TARGET_PAIRS / (pairsPerPrinterPerDay(shift) * WORKING_DAYS));
+
+    const buffer = needed - theoreticalNeeded;
+
+    let bufferText = '';
+    if (buffer === 0) {
+      bufferText = `Theoretical minimum and recommended number are the same (${needed} printers). Consider adding 1 spare for maintenance.`;
+    } else if (buffer === 1) {
+      bufferText = `We recommend ${needed} printers (+1 buffer) to handle downtime, first-layer failures, and maintenance without stopping production.`;
+    } else {
+      bufferText = `We recommend ${needed} printers (+${buffer} buffer) for a safe, robust production line. The theoretical minimum is ${theoreticalNeeded}.`;
+    }
+
+    const noteHtml = `
+      <p style="font-family: var(--font-condensed); font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.75rem;">⚠ Theoretical vs. Recommended Printers</p>
+      <p style="font-size: 0.85rem; line-height: 1.6; color: #ccc;">
+         <strong>Theoretical minimum:</strong> ${theoreticalNeeded} printers would produce exactly ${(theoreticalNeeded * pairsPerPrinterPerDay(shift) * WORKING_DAYS).toFixed(0)} pairs/year (${failRate}% failure rate, ${shift}h shift).
+      </p>
+      <p style="font-size: 0.85rem; line-height: 1.6; color: #ccc; margin-top: 0.75rem;">
+        <strong>${bufferText}</strong>
+      </p>
+      <ul style="margin-top: 0.75rem; margin-left: 1.5rem; font-size: 0.75rem; line-height: 1.5; color: #aaa;">
+        <li>Unplanned downtime & maintenance</li>
+        <li>First-layer failures (losing full cycles)</li>
+        <li>Real-world overhead variability</li>
+        <li>Partial redundancy for continuous output</li>
+      </ul>
+    `;
+
+    document.getElementById('safetyNote').innerHTML = noteHtml;
+  }
+  
+  function renderDynCards() {
+    const shift    = parseInt(document.getElementById('shift').value);
+    const failRate = parseInt(document.getElementById('failRate').value);
+    const nPrinters = parseInt(document.getElementById('numPrinters').value);
+    const cfg = getBatchConfig();
+
+    const cyclesAvg = (shift / getCycleTotal()).toFixed(2);
+    const ppdPairs  = pairsPerPrinterPerDay(shift);
+    const ppdPieces = ppdPairs * 2;
+    const fleetPairsYear  = ppdPairs * WORKING_DAYS * nPrinters;
+    const fleetPiecesYear = ppdPieces * WORKING_DAYS * nPrinters;
+    const needed   = printersNeeded(failRate, shift);
+    const feasible = fleetPairsYear >= TARGET_PAIRS * (1 + failRate / 100);
+    const ops      = operatorsNeeded(needed, shift);
 
     document.getElementById('hero-printers').textContent = printersNeeded(5, 24);
 
     const cards = [
-      { h3: cycles, p: 'Cycles/printer/shift', sub: shift + 'h ÷ ' + getCycleTotal().toFixed(1) + 'h', cls: '' },
-      { h3: ppd, p: 'Parts/printer/day', sub: shift + 'h shift', cls: '' },
-      { h3: fmt(fleetYear), p: 'Fleet/year output', sub: nPrinters + ' printers × ' + ppd + ' × ' + WORKING_DAYS + 'd', cls: feasible ? 'success' : 'danger' },
-      { h3: needed, p: 'Min. printers needed', sub: 'fail ' + failRate + '%, ' + shift + 'h shift', cls: 'highlight' },
-      { h3: ops, p: 'Operators required', sub: '1 : ' + operatorRatio(shift) + ' ratio', cls: '' },
-      { h3: nPrinters >= needed ? '✓' : '✗', p: nPrinters >= needed ? 'Sufficient fleet' : 'Missing ' + (needed - nPrinters) + ' printers', sub: nPrinters + ' selected', cls: nPrinters >= needed ? 'success' : 'danger' },
+      { h3: cyclesAvg,        p: 'Avg cycles/impr/day',    sub: shift + 'h ÷ ' + toHM(getCycleTotal()), cls: '' },
+      { h3: ppdPairs.toFixed(2), p: 'Pairs/impr/day',       sub: ppdPieces.toFixed(1) + ' parts · ' + toHM(getCycleTotal()) + '/cycle', cls: '' },
+      { h3: fmt(fleetPairsYear), p: 'Fleet output/year',    sub: nPrinters + ' printers × ' + ppdPairs.toFixed(2) + ' × ' + WORKING_DAYS + 'd', cls: feasible ? 'success' : 'danger' },
+      { h3: needed,           p: 'Min. printers needed',    sub: failRate + '% fail, ' + shift + 'h shift', cls: 'highlight' },
+      { h3: ops,              p: 'Operators required',      sub: '1 : ' + operatorRatio(shift) + ' ratio', cls: '' },
+      { h3: nPrinters >= needed ? '✓' : '✗',
+        p: nPrinters >= needed ? 'Fleet sufficient' : 'Need ' + (needed - nPrinters) + ' more',
+        sub: nPrinters + ' selected', cls: nPrinters >= needed ? 'success' : 'danger' },
     ];
 
     document.getElementById('dynCards').innerHTML = cards.map(c => `
@@ -914,19 +1018,18 @@
 
   function renderScenarioTable() {
     const shifts = [8, 12, 24];
-    const fails = [5, 10, 20];
+    const fails  = [5, 10, 20];
     let rows = '';
     shifts.forEach(s => {
-      const cycles = cyclesPerShift(s);
-      const ppd = piecesPerPrinterPerDay(s);
-      const ns = fails.map(f => printersNeeded(f, s));
-      const ops = ns.map(n => operatorsNeeded(n, s));
-
+      const cycles = (s / getCycleTotal()).toFixed(2);
+      const ppd    = pairsPerPrinterPerDay(s).toFixed(2);
+      const ns     = fails.map(f => printersNeeded(f, s));
+      const ops    = ns.map(n => operatorsNeeded(n, s));
       rows += `<tr>
         <td class="row-label">${s}h</td>
         <td>${cycles}</td>
         <td>${ppd}</td>
-        ${ns.map(n => `<td><span class="${n <= 15 ? 'rpn-low' : n <= 25 ? 'rpn-med' : 'rpn-high'}">${n}</span></td>`).join('')}
+        ${ns.map(n => `<td><span class="${n <= 25 ? 'rpn-low' : n <= 40 ? 'rpn-med' : 'rpn-high'}">${n}</span></td>`).join('')}
         ${ops.map(o => `<td>${o}</td>`).join('')}
       </tr>`;
     });
@@ -937,16 +1040,16 @@
     const failRate = parseInt(document.getElementById('failRate').value);
     let rows = '';
     [8, 12, 24].forEach(s => {
-      const cycles = cyclesPerShift(s);
-      const ppd = piecesPerPrinterPerDay(s);
-      const needed = printersNeeded(failRate, s);
-      const ops = operatorsNeeded(needed, s);
+      const cyclesAvg = (s / getCycleTotal()).toFixed(2);
+      const ppdPairs  = pairsPerPrinterPerDay(s).toFixed(2);
+      const needed    = printersNeeded(failRate, s);
+      const ops       = operatorsNeeded(needed, s);
       const hoursPerOp = s === 24 ? 8 : s;
-      const costDay = ops * hoursPerOp * WAGE;
+      const costDay   = ops * hoursPerOp * WAGE;
       rows += `<tr>
         <td class="row-label">${s}h</td>
-        <td>${cycles} cycles</td>
-        <td>${ppd} parts</td>
+        <td>${cyclesAvg} cycles</td>
+        <td>${ppdPairs} pairs</td>
         <td>1 : ${operatorRatio(s)}</td>
         <td>£${fmt(Math.round(costDay))}/day</td>
       </tr>`;
@@ -955,34 +1058,44 @@
   }
 
   function renderCostGrid() {
-    const shift = parseInt(document.getElementById('shift').value);
+    const shift    = parseInt(document.getElementById('shift').value);
     const failRate = parseInt(document.getElementById('failRate').value);
     const plaPrice = parseFloat(document.getElementById('plaPrice').value);
-    const elec = parseFloat(document.getElementById('elecPrice').value);
+    const elec     = parseFloat(document.getElementById('elecPrice').value);
+    const cfg      = getBatchConfig();
 
-    const needed = printersNeeded(failRate, shift);
-    const ops = operatorsNeeded(needed, shift);
+    const needed   = printersNeeded(failRate, shift);
+    const ops      = operatorsNeeded(needed, shift);
     const hoursPerOp = shift === 24 ? 8 : shift;
 
-    const plaKgYear = TARGET * (1 + failRate / 100) * GRAMS_PER_PIECE / 1000;
-    const plaCost = plaKgYear * plaPrice;
+    // PLA: need to produce extra to compensate for failures
+    const pairsToProduce = TARGET_PAIRS * (1 + failRate / 100);
+    const plaKgYear  = pairsToProduce * GRAMS_PER_PAIR / 1000;
+    const plaCost    = plaKgYear * plaPrice;
 
-    const cycles = cyclesPerShift(shift);
-    const printHoursPerPrinterDay = cycles * getCycleBruto();
-    const elecCostYear = printHoursPerPrinterDay * WORKING_DAYS * needed * KW_PER_PRINTER * elec;
+    // Electricity: active print hours only (not overhead)
+    const avgCyclesPerDay = shift / getCycleTotal();
+    const printHoursPerDay = avgCyclesPerDay * cfg.printH;
+    const elecCostYear = printHoursPerDay * WORKING_DAYS * needed * KW_PER_PRINTER * elec;
 
+    // Operators
     const opCostYear = ops * hoursPerOp * WAGE * WORKING_DAYS;
+
+    // Hardware
     const hardwareCost = needed * PRINTER_PRICE_GBP;
+
+    // Totals
     const totalOpex = plaCost + elecCostYear + opCostYear;
-    const costPerPiece = totalOpex / TARGET;
+    const costPerPair = totalOpex / TARGET_PAIRS;
+    const costPerPiece = totalOpex / TARGET_PIECES;
 
     const items = [
-      { h3: '£' + fmt(Math.round(hardwareCost)), p: 'Hardware CAPEX', sub: needed + ' × £' + PRINTER_PRICE_GBP, cls: '' },
-      { h3: '£' + fmt(Math.round(plaCost)), p: 'PLA annual', sub: fmt(Math.round(plaKgYear)) + ' kg × £' + plaPrice + '/kg', cls: '' },
-      { h3: '£' + fmt(Math.round(elecCostYear)), p: 'Electricity/year', sub: needed + ' printers × ' + (KW_PER_PRINTER * 1000) + 'W', cls: '' },
-      { h3: '£' + fmt(Math.round(opCostYear)), p: 'Operators/year', sub: ops + ' ops × £' + WAGE + '/h × ' + WORKING_DAYS + 'd', cls: '' },
-      { h3: '£' + fmt(Math.round(totalOpex)), p: 'Total OPEX/year', sub: 'excl. CAPEX', cls: 'highlight' },
-      { h3: '£' + costPerPiece.toFixed(2), p: 'Cost per part', sub: 'OPEX ÷ 100,000 parts', cls: 'highlight' },
+      { h3: '£' + fmt(Math.round(hardwareCost)),  p: 'CAPEX Hardware',   sub: needed + ' printers × £' + PRINTER_PRICE_GBP, cls: '' },
+      { h3: '£' + fmt(Math.round(plaCost)),        p: 'PLA annual',       sub: fmt(Math.round(plaKgYear)) + ' kg × £' + plaPrice + '/kg', cls: '' },
+      { h3: '£' + fmt(Math.round(elecCostYear)),   p: 'Electricity/year', sub: needed + ' printers × ' + (KW_PER_PRINTER * 1000) + 'W', cls: '' },
+      { h3: '£' + fmt(Math.round(opCostYear)),     p: 'Operators/year',   sub: ops + ' ops × £' + WAGE + '/h × ' + WORKING_DAYS + 'd', cls: '' },
+      { h3: '£' + fmt(Math.round(totalOpex)),      p: 'OPEX total/year',  sub: 'excludes hardware CAPEX', cls: 'highlight' },
+      { h3: '£' + costPerPair.toFixed(2),          p: 'Cost per phone',   sub: '(£' + costPerPiece.toFixed(2) + ' per part)', cls: 'highlight' },
     ];
 
     document.getElementById('costGrid').innerHTML = items.map(c => `
@@ -994,45 +1107,53 @@
     `).join('');
   }
 
+  // ════════════════════════════════════════════════════════════════
+  // UPDATE ALL
+  // ════════════════════════════════════════════════════════════════
+
   function updateAll() {
-    document.getElementById('shiftVal').textContent = document.getElementById('shift').value + 'h';
+    const shift = parseInt(document.getElementById('shift').value);
+    document.getElementById('shiftVal').textContent    = shift + 'h';
     document.getElementById('failRateVal').textContent = document.getElementById('failRate').value + '%';
     document.getElementById('numPrintersVal').textContent = document.getElementById('numPrinters').value;
     document.getElementById('plaPriceVal').textContent = '£' + document.getElementById('plaPrice').value;
-    document.getElementById('elecVal').textContent = '£' + parseFloat(document.getElementById('elecPrice').value).toFixed(2);
+    document.getElementById('elecVal').textContent     = '£' + parseFloat(document.getElementById('elecPrice').value).toFixed(2);
 
     renderParamCards();
     renderDynCards();
     renderScenarioTable();
     renderOperarioTable();
     renderCostGrid();
+    renderSafetyNote();
   }
 
-  ['shift', 'failRate', 'numPrinters', 'plaPrice', 'elecPrice'].forEach(id => {
+  // Event listeners
+  ['shift', 'failRate', 'numPrinters', 'plaPrice', 'elecPrice', 'batchConfig'].forEach(id => {
     document.getElementById(id).addEventListener('input', updateAll);
+    document.getElementById(id).addEventListener('change', updateAll);
   });
-  document.getElementById('cycleBrutoInput').addEventListener('input', updateAll);
 
+  // Fade-up on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+  // Nav active link
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.id; });
     navLinks.forEach(a => {
-      a.style.background = '';
-      a.style.color = '';
+      a.style.background = ''; a.style.color = '';
       if (a.getAttribute('href') === '#' + current) {
-        a.style.background = 'var(--orange)';
-        a.style.color = 'var(--white)';
+        a.style.background = 'var(--orange)'; a.style.color = 'var(--white)';
       }
     });
   });
 
+  // Initial render
   updateAll();
 </script>
 </body>
