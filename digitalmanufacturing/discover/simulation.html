@@ -47,6 +47,7 @@
     .nav-links { display: flex; list-style: none; gap: 0; }
     .nav-links li a { display: block; padding: 0 1.4rem; height: 60px; line-height: 60px; font-family: var(--font-condensed); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); text-decoration: none; transition: background 0.2s; }
     .nav-links li a:hover, .nav-links li a.active { background: var(--orange); color: var(--white); }
+    .nav-links li a.active { background: var(--orange); color: var(--white); }
     .nav-cta { display: flex; align-items: center; gap: 0.75rem; background: var(--black); color: var(--white); padding: 0 1.5rem; height: 60px; font-family: var(--font-condensed); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
     .nav-cta:hover { background: var(--orange); }
     .nav-cta .dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
@@ -125,10 +126,13 @@
 <nav>
   <a class="nav-logo" href="#">Analucia Vera</a>
   <ul class="nav-links">
-    <li><a href="index.html">home</a></li>
-    <li><a href="3d-design.html">3D design</a></li>
-    <li><a href="#" class="active">simulation</a></li>
-  </ul>
+      <li><a href="../index.html">home</a></li>
+      <li><a href="ourtechnologies.html">Our technologies</a></li>
+      <li><a href="processeng.html">Process Engineering</a></li>      
+      <li><a href="design.html" >3D design</a></li>
+      <li><a href="100kparts.html">100K target</a></li> 
+      <li><a href="simulation.html" class="active">simulation</a></li>
+    </ul>
   <a class="nav-cta" href="#">Contacto <span class="dot"></span></a>
 </nav>
 
