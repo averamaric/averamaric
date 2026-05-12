@@ -1344,7 +1344,7 @@
       margin-top: 0.5rem;
     }
     
-    /* Galería dinámica */
+    /* Gallery dinámica */
     .failure-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1843,11 +1843,11 @@
     
     <div class="errors-right fade-up">
       <div class="error-gallery-header">
-        <p class="section-label" id="currentErrorLabel">Galería de fallos</p>
-        <h3 id="currentErrorTitle">Todos los fallos</h3>
+        <p class="section-label" id="currentErrorLabel">Gallery</p>
+        <h3 id="currentErrorTitle">All fails/errors</h3>
       </div>
       
-      <!-- Galería de imágenes dinámica -->
+      <!-- Gallery de imágenes dinámica -->
       <div class="failure-gallery" id="failureGallery">
         <!-- Las imágenes se cargarán dinámicamente con JS -->
       </div>
@@ -2044,7 +2044,7 @@
     const errorsDatabase = {
       layer_adhesion: {
         name: "Poor Layer Adhesion",
-        label: "Galería: Poor Layer Adhesion",
+        label: "Gallery: Poor Layer Adhesion",
         images: [
           { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.33 (2).jpeg", label: "C1 - layers" },
           { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.31.jpeg", label: "C1 - Visible gaps between layers" },
@@ -2061,7 +2061,7 @@
       
       mid_print: {
         name: "Mid-Print Failure",
-        label: "Galería: Mid-Print Failure",
+        label: "Gallery: Mid-Print Failure",
         images: [
           { src: "assets/images/WhatsApp Image 2026-05-03 at 13.46.48.jpeg", label: "Cloged nozzle" },
           { src: "assets/images/WhatsApp Image 2026-05-03 at 13.46.48 (1).jpeg", label: "Print stopped" },
@@ -2088,7 +2088,7 @@
       
       support_fusion: {
         name: "Support Fusion",
-        label: "Galería: Support Fusion",
+        label: "Gallery: Support Fusion",
         images: [
           { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.32 (2).jpeg", label: "C5 - Supports fused with part" },
          
@@ -2105,7 +2105,7 @@
       
       overhang_collapse: {
         name: "Overhang Collapse",
-        label: "Galería: Overhang Collapse",
+        label: "Gallery: Overhang Collapse",
         images: [
           { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.34.jpeg", label: "C6 - Bridge collapse on bottom case" },
           { src: "assets/images/error_overhang_2.jpg", label: "C6 - Failed unsupported overhang" }
@@ -2121,7 +2121,7 @@
       
       Comparison_line: {
         name: "Overhang Collapse",
-        label: "Galería: Overhang Collapse",
+        label: "Gallery: Overhang Collapse",
         images: [
           { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.33.jpeg", label: "C7 - Line" },
           { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.32 (1).jpeg", label: "C8 - Seamless finish" }
@@ -2137,7 +2137,7 @@
       
       Other_printing_errors: {
         name: "Overhang Collapse",
-        label: "Galería: Overhang Collapse",
+        label: "Gallery: Overhang Collapse",
         images: [
           { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.33.jpeg", label: "C7 - Line" },
           { src: "assets/images/WhatsApp Image 2026-05-03 at 16.44.34 (1).jpeg", label: "Shiny finish" }
@@ -2300,11 +2300,11 @@
       const errorTitle = document.getElementById('currentErrorTitle');
       const indicator = document.getElementById('activeErrorIndicator');
       
-      errorLabel.textContent = `Galería: ${error.name}`;
+      errorLabel.textContent = `Gallery: ${error.name}`;
       errorTitle.textContent = error.name;
       indicator.innerHTML = `<span>Details of: ${error.name}</span>`;
       
-      // Actualizar galería de imágenes
+      // Actualizar Gallery de imágenes
       gallery.innerHTML = error.images.map(img => `
         <div class="fail-img-card">
           <img src="${img.src}" alt="${img.label}" onerror="this.src='https://placehold.co/400x300/eee/ccc?text=Imagen+no+disponible'">
