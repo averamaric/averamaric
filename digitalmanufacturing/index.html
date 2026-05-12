@@ -1825,10 +1825,10 @@
       </div>
 
       <!-- Tarjeta 3: Process Validation (estilo dark) -->
-      <div class="service-card dark" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='#'">
+      <div class="service-card dark" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='discover/processeng.html">
         <div class="service-info" style="color: white;">
           <h3>Manufacturing Systems <br>& Process EngineeringProcess</h3>
-          <p>Risk assessment, quality control, and assembly line integration.</p>
+          <p>Risk assessment, process capability, machine qualification, takt time, etc.</p>
           <div style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-condensed); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange);">
             View Methodology <span style="font-size: 1rem;">→</span>
           </div>
@@ -1850,7 +1850,7 @@
       </div>
       
       <!-- Tarjeta 2: Plant Simulation (estilo dark) -->
-      <div class="service-card dark" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='#'">
+      <div class="service-card dark" style="min-height: 420px; cursor: pointer;" onclick="window.location.href='discover/simulation.html'">
         <div class="service-info" style="color: white;">
           <h3>Plant Simulation<br>& Process Optimization</h3>
           <p>Tecnomatix digital twins, bottleneck analysis and throughput optimization.</p>
@@ -1916,84 +1916,30 @@
       
 <!-- PFMEA SECTION -->
 <section id="pfmea" class="pfmea-section fade-up">
-  <div class="pfmea-header"><h2>Process FMEA<br><span style="font-size:1rem;">Additive Manufacturing + Automated Assembly</span></h2><div class="pfmea-sub">PFMEA v1.0 · FDM Printing · CP Lab Assembly Line</div></div>
-  <div class="risk-legend"><div class="risk-legend-item"><span class="risk-badge high">RPN ≥ 100</span><span>High Risk · Immediate action required</span></div><div class="risk-legend-item"><span class="risk-badge medium">RPN 50–99</span><span>Medium Risk · Monitor & improve</span></div><div class="risk-legend-item"><span class="risk-badge low">RPN &lt; 50</span><span>Low Risk · Acceptable</span></div><div class="risk-legend-item"><span style="font-weight:700;">S / O / D</span><span>Severity · Occurrence · Detection (1–10)</span></div></div>
-  <div class="pfmea-table-wrapper"><table class="pfmea-table"><thead><tr><th>ID</th><th>Process Step</th><th>Failure Mode</th><th>Effect</th><th>S</th><th>Cause(s)</th><th>O</th><th>Current Control(s)</th><th>D</th><th>RPN</th><th>Recommended Action</th><th>Responsible</th></tr></thead>
-  <tbody><tr><td class="process-id">P01</td><td>Bed preparation (pre-print)</td><td>Poor adhesion → part detaches mid-print</td><td>Print failure, nozzle crash risk</td><td>9</td><td>Bed not leveled; temp too low</td><td>5</td><td>Manual leveling; brim enabled</td><td>4</td><td><span class="rpn-high">180</span></td><td>Auto bed leveling sensor; IPA cleaning</td><td>Operator</td></tr>
-  <tr><td class="process-id">P02</td><td>Filament loading</td><td>Filament jam or tangle</td><td>Stop in mid-print, grinds filament</td><td>7</td><td>Tangled spool; debris</td><td>3</td><td>Visual check of spool before loading</td><td>5</td><td><span class="rpn-high">105</span></td><td>Filament runout sensor + jam detection</td><td>Maintenance</td></tr>
-  <tr><td class="process-id">P03</td><td>Print start (first layer)</td><td>First layer incomplete</td><td>Part detaches or warps</td><td>8</td><td>Z-offset too high; under-extrusion</td><td>4</td><td>Calibration cube printed daily</td><td>3</td><td><span class="rpn-medium">96</span></td><td>Live Z-adjust during first layer</td><td>Operator</td></tr>
-  <tr><td class="process-id">P04</td><td>Printing – general</td><td>Layer shift (X or Y axis)</td><td>Part unusable, geometry incorrect</td><td>8</td><td>Belt loose; nozzle collision</td><td>3</td><td>Belt tension check weekly</td><td>4</td><td><span class="rpn-medium">96</span></td><td>Add belt tension gauge; reduce acceleration</td><td>Engineer</td></tr>
-  <tr><td class="process-id">P05</td><td>Printing – overhangs</td><td>Layer collapse or sagging</td><td>Catastrophic print failure</td><td>10</td><td>Bridge > 15mm; insufficient cooling</td><td>4</td><td>Variable layer height in C7</td><td>1</td><td><span class="rpn-low">40</span></td><td>Already mitigated for C7 – document restriction</td><td>Design</td></tr>
-  <tr><td class="process-id">P06</td><td>Printing – extrusion</td><td>Partial clog / under-extrusion</td><td>Voids, weak structure, poor surface</td><td>7</td><td>Nozzle temp fluctuation; debris</td><td>4</td><td>Purge line at start; nozzle replacement</td><td>4</td><td><span class="rpn-high">112</span></td><td>Real-time flow monitoring</td><td>Operator</td></tr>
-  <tr><td class="process-id">P07</td><td>Printing – cooling</td><td>Warping during print</td><td>Dimensional error, part detached</td><td>8</td><td>Uneven cooling; draft in room</td><td>4</td><td>Enclosure closed during print; brim used</td><td>3</td><td><span class="rpn-medium">96</span></td><td>Add heated chamber or draft shield</td><td>Engineer</td></tr>
-  <tr><td class="process-id">P08</td><td>Post-print cooling</td><td>Part warps after removal</td><td>Final geometry out of spec</td><td>7</td><td>Removed too early; cooled too fast</td><td>5</td><td>Parts held on bed until &lt;40°C</td><td>4</td><td><span class="rpn-high">140</span></td><td>Controlled cooling ramp; annealing fixture</td><td>Engineer</td></tr>
-  <tr><td class="process-id">M01</td><td>Thickness Measurement</td><td>Wall thickness &lt; 1.6 mm</td><td>Laser sensor rejects part, line stops</td><td>9</td><td>Infill too low; Z-offset drift</td><td>4</td><td>Daily calibration cube; fixed C7 parameters</td><td>3</td><td><span class="rpn-high">108</span></td><td>Implement SPC chart; move to 20% infill</td><td>Quality</td></tr>
-  <tr><td class="process-id">M02</td><td>Thickness Measurement</td><td>False reject due to sensor misalignment</td><td>Good part scrapped, waste</td><td>5</td><td>Sensor mounting shifted</td><td>3</td><td>Weekly sensor check with master gauge</td><td>4</td><td><span class="rpn-medium">60</span></td><td>Automated self-check with reference part</td><td>Maintenance</td></tr>
-  <tr><td class="process-id">T01</td><td>Pick-by-Light / QR</td><td>QR code illegible</td><td>Vision system cannot read, part rejected</td><td>7</td><td>Font too small (2mm)</td><td>2</td><td>Font increased to 4mm in CAD</td><td>2</td><td><span class="rpn-low">28</span></td><td>Maintain ironing = enabled for top surfaces</td><td>Design</td></tr>
-  <tr><td class="process-id">A01</td><td>Component Insertion</td><td>Internal radius too tight</td><td>Component jams halfway</td><td>8</td><td>CAD deviation; shrinkage not compensated</td><td>3</td><td>CMM spot-check every 50 parts</td><td>4</td><td><span class="rpn-medium">96</span></td><td>Increase CAD radius by 0.1 mm compensation</td><td>Design</td></tr>
-  <tr><td class="process-id">A02</td><td>Component Insertion</td><td>Insertion force too low (loose fit)</td><td>Component falls out during handling</td><td>7</td><td>Radius too large; worn nozzle</td><td>3</td><td>Go/no-go gauge for radius</td><td>5</td><td><span class="rpn-high">105</span></td><td>Spec tighter gauge; add automated force monitoring</td><td>Quality</td></tr>
-  <tr><td class="process-id">F01</td><td>Press-Fit / Closing</td><td>Snap too loose</td><td>Case does not latch, assembly separates</td><td>9</td><td>Snap length wrong; extrusion width variation</td><td>5</td><td>Three snap lengths tested (T2b selected)</td><td>3</td><td><span class="rpn-high">135</span></td><td>In-line snap force tester; feedback to print parameters</td><td>Engineer</td></tr>
-  <tr><td class="process-id">F02</td><td>Press-Fit / Closing</td><td>Snap too tight or brittle</td><td>Snap fractures during assembly</td><td>8</td><td>Layer adhesion weak; snap length too long</td><td>3</td><td>C7 parameters (normal speed, 15% infill)</td><td>2</td><td><span class="rpn-low">48</span></td><td>Maintain "Normal" speed; never use "Fast" mode</td><td>Production</td></tr>
-  <tr><td class="process-id">F03</td><td>Press-Fit / Closing</td><td>Case misalignment before pressing</td><td>Uneven closure, stress on snaps</td><td>7</td><td>Part warped; fixturing not precise</td><td>4</td><td>Visual alignment guide on fixture</td><td>4</td><td><span class="rpn-high">112</span></td><td>Add mechanical guide pins; reject if warped >0.2mm</td><td>Design</td></tr>
-  </tbody></table></div>
 
-      <!-- HIGH RISK SUMMARY & REVIEW FREQUENCY - ESTILO TARJETAS -->
-  <div class="summary-container">
-    
-    <!-- Tarjeta 1: High Risk Summary (estilo dark como "The Challenge") -->
-    <div class="summary-card dark">
-      <div class="summary-card-header">
-        🔴 High Risk Summary
-      </div>
-      <div class="summary-card-body">
-        <table class="summary-card-table">
-          <thead>
-            <tr><th>RPN</th><th>ID</th><th>Failure Mode</th><th>Priority Action</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>180</strong></td><td>P01</td><td>Part detachment mid-print</td><td>Auto bed leveling + automatic cleaning</td></tr>
-            <tr><td><strong>140</strong></td><td>P08</td><td>Post-cooling warping</td><td>Controlled cooling ramp + annealing fixture</td></tr>
-            <tr><td><strong>135</strong></td><td>F01</td><td>Snap too loose</td><td>In-line snap force tester + feedback</td></tr>
-            <tr><td><strong>112</strong></td><td>P06</td><td>Under-extrusion</td><td>Real-time flow monitoring</td></tr>
-            <tr><td><strong>112</strong></td><td>F03</td><td>Case misalignment</td><td>Mechanical guide pins + reject if warped</td></tr>
-            <tr><td><strong>108</strong></td><td>M01</td><td>Wall thickness &lt; 1.6mm</td><td>SPC chart + 20% infill if drift detected</td></tr>
-            <tr><td><strong>105</strong></td><td>P02</td><td>Filament jam / tangle</td><td>Filament runout sensor + jam detection</td></tr>
-            <tr><td><strong>105</strong></td><td>A02</td><td>Insertion too loose</td><td>Tighter go/no-go gauge + force monitoring</td></tr>
-          </tbody>
-        </table>
-        <div class="summary-card-note">
-          ⚠️ 8 high-risk items require immediate management review.
-        </div>
-      </div>
+   <div class="fade-up" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+    <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); line-height: 0.95; text-transform: uppercase; color: var(--black);">References</h2>
+    <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--orange), transparent);"></div>
+  </div>
+  
+  <div class="fade-up" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+    <div class="stat-card light" style="padding: 1.5rem;">
+      <p style="font-size: 0.7rem; line-height: 1.5; opacity: 1;">
+        <strong>Gilchrist, A. (2016)</strong> <em>Industry 4.0: The Industrial Internet of Things</em>. Apress. (For vertical/horizontal integration concepts).<br><br>
+        <strong>AIAG & VDA (2019)</strong> <em>Failure Mode and Effects Analysis (FMEA) Handbook</em>. Automotive Industry Action Group. (For the PFMEA table structure).<br><br>
+        <strong>Rother, M., & Shook, J. (2003)</strong> <em>Learning to See: Value Stream Mapping to Add Value and Eliminate MUDA</em>. Lean Enterprise Institute. (For Takt Time & VSM concepts).<br><br>
+        
+      </p>
     </div>
-
-    <!-- Tarjeta 2: Review Frequency (estilo light como "About Us") -->
-    <div class="summary-card light">
-      <div class="summary-card-header">
-        📋 Review Frequency by RPN
-      </div>
-      <div class="summary-card-body">
-        <table class="summary-card-table">
-          <thead>
-            <tr><th>RPN Range</th><th>Review Frequency</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>≥ 120</strong></td><td>Weekly</td></tr>
-            <tr><td><strong>70 – 119</strong></td><td>Bi-weekly or Monthly</td></tr>
-            <tr><td><strong>30 – 69</strong></td><td>Quarterly</td></tr>
-            <tr><td><strong>&lt; 30</strong></td><td>Semi-annually or Annually</td></tr>
-          </tbody>
-        </table>
-        <div class="summary-card-note">
-          <strong>Note:</strong> Based on AIAG & VDA guidelines. RPN ≥ 120 requires immediate action. 
-          RPN 70–119 requires monthly review. Lower RPNs reviewed periodically.
-        </div>
-      </div>
+    <div class="stat-card dark" style="padding: 1.5rem;">
+       <p style="font-size: 0.7rem; line-height: 1.5; opacity: 1;">
+        <strong>Mottola, F. (2024)</strong> 'Numerical methods for warpage minimisation in FDM (Master's thesis)'. Politecnico di Milano. (As referenced in your printing section).<br><br>
+        <strong>Montgomery, D. C. (2019)</strong> <em>Introduction to Statistical Quality Control</em>. 8th edn. Wiley. (Process Capability - Cp/Cpk).<br><br>
+        <strong>Osterwalder, A., & Pigneur, Y. (2010)</strong> <em>Business Model Generation</em>. Wiley.
+      </p>
     </div>
-
   </div>
 
-  <div class="footer-note">📊 PFMEA based on AIAG & VDA standards. Severity (S), Occurrence (O), Detection (D) rated 1–10. 🎯 Priority actions assigned to Engineering, Quality, Maintenance, and Production teams. Target: Reduce all RPNs below 100 by Q3.</div>
 </section>
 
 
