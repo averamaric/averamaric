@@ -1373,7 +1373,7 @@ function showScenario(key) {
           <span class="tag tag-red" style="font-size:0.6rem;opacity:0.5;">❌ Miss</span>
         </div>
         <div style="padding:0.75rem 1rem;background:#fff3f3;border-top:2px solid #c0392b;">
-          <p style="font-size:0.7rem;color:#c0392b;font-weight:600;line-height:1.5;">⚠ Adding more operators beyond 3 has zero effect. The printer count itself is the hard ceiling — the system is printer-constrained, not operator-constrained, once ≥3 operators are present.</p>
+          <p style="font-size:0.7rem;color:#c0392b;font-weight:600;line-height:1.5;">⚠ Adding more operators beyond 3 has zero effect. The printer count itself is the hard ceiling, the system is printer-constrained, not operator-constrained, once ≥3 operators are present.</p>
         </div>
       </div>
     </div>
@@ -1451,7 +1451,7 @@ function showScenario(key) {
       This is a characteristic behaviour of discrete-event simulation that pure theory cannot expose. With <strong>1 operator</strong>, the system is entirely sequential — the single worker follows a fixed, unambiguous route through the printer farm with no resource contention. With <strong>2 operators</strong>, both workers share the same buffers, carriers, and CP Lab stations. At certain moments, both operators arrive at the same resource simultaneously, creating micro-level queuing and a brief deadlock. Accumulated over 252 simulated days, this results in ~36 fewer units produced.
     </p>
     <p style="font-size:0.85rem;color:#555;line-height:1.7;max-width:860px;margin-top:0.75rem;">
-      From 3 operators onward the system stabilises at 51,030 — enough workers exist to absorb contention without competing for the same resource at the same instant. This non-linear behaviour is <strong>invisible to analytical calculation</strong> and is one of the strongest arguments for simulation-based capacity planning.
+      From 3 operators onward the system stabilises at 51,030 enough workers exist to absorb contention without competing for the same resource at the same instant. This non-linear behaviour is <strong>invisible to analytical calculation</strong> and is one of the strongest arguments for simulation-based capacity planning.
     </p>
   </div>
 
@@ -1461,25 +1461,25 @@ function showScenario(key) {
       <span class="section-tag" style="color:var(--gray-dark);">Key Insight</span>
       <h3 style="font-family:var(--font-display);font-size:2rem;color:var(--white);text-transform:uppercase;margin-top:0.3rem;line-height:1.1;">The value of simulation over theory</h3>
       <p style="font-size:0.8rem;color:#aaa;line-height:1.6;margin-top:0.75rem;">
-        Theory said 28 printers + 4 operators. Simulation revealed that 28 printers can never reach 50,000 units regardless of operators, and that the fix is one additional printer — not more headcount. The cost difference is significant: one printer vs. one full-time operator.
+        Theory said 28 printers + 4 operators. Simulation revealed that 28 printers can never reach 50,000 units regardless of operators, and that the fix is one additional printer not more headcount. The cost difference is significant: one printer vs. one full-time operator.
       </p>
     </div>
     <div style="display:flex;flex-direction:column;gap:1rem;">
       <div style="background:#111;padding:1.25rem;border-left:3px solid #555;">
         <p style="font-family:var(--font-condensed);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#666;margin-bottom:0.3rem;">Theory recommended</p>
         <p style="font-family:var(--font-display);font-size:1.8rem;color:#aaa;">28 printers<br>4 operators</p>
-        <p style="font-size:0.7rem;color:#555;margin-top:0.3rem;">Would have missed target by 860 units/year</p>
+        <p style="font-size:0.7rem;color:white;margin-top:0.3rem;">Would have missed target by 860 units/year</p>
       </div>
       <div style="background:#111;padding:1.25rem;border-left:3px solid var(--orange);">
         <p style="font-family:var(--font-condensed);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);margin-bottom:0.3rem;">Simulation recommends</p>
         <p style="font-family:var(--font-display);font-size:1.8rem;color:var(--orange);">29 printers<br>1–3 operators</p>
-        <p style="font-size:0.7rem;color:#aaa;margin-top:0.3rem;">51,030 units/year — target exceeded ✅</p>
+        <p style="font-size:0.7rem;color:#aaa;margin-top:0.3rem;">51,030 units/year —> target exceeded ✅</p>
       </div>
     </div>
     <div style="text-align:center;">
       <p style="font-family:var(--font-display);font-size:4.5rem;color:var(--orange);line-height:1;">+1<br>printer</p>
       <p style="font-family:var(--font-condensed);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-top:0.5rem;">The marginal unit that<br>unlocks the annual target</p>
-      <p style="font-size:0.75rem;color:#666;margin-top:1rem;">This insight is only visible through simulation. No analytical formula would have predicted that 28 printers hit an invisible ceiling — or that 2 operators briefly underperform 1.</p>
+      <p style="font-size:0.75rem;color:white;margin-top:1rem;">This insight is only visible through simulation. No analytical formula would have predicted that 28 printers hit an invisible ceiling, or that 2 operators briefly underperform 1.</p>
     </div>
   </div>
 
@@ -1523,12 +1523,12 @@ function showScenario(key) {
         <tbody>
           <tr><td><strong>Takt Time</strong></td><td style="color:var(--orange);font-weight:700;">218 s</td><td>Demand pace — 1 phone / 218s</td></tr>
           <tr><td>CP Lab cycle time (bottleneck: oven)</td><td>29 s</td><td>Assembly is <strong>7.5× faster</strong> than demand</td></tr>
-          <tr class="bottleneck"><td>Printing batch time (3 sets)</td><td>23,880 s</td><td>Printing is <strong>109× slower</strong> than Takt</td></tr>
+          <tr class="bottleneck"><td>Printing batch time (3 sets)</td><td>32,400 s</td><td>Printing is <strong>148× slower</strong> than Takt</td></tr>
         </tbody>
       </table>
       <div style="margin-top:1.5rem;padding:1rem 1.5rem;background:var(--black);color:white;border-left:4px solid var(--orange);">
         <p style="font-family:var(--font-condensed);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.3rem;">Key Insight</p>
-        <p style="font-size:0.8rem;color:#ccc;line-height:1.5;">Printing is the system bottleneck — not CP Lab assembly. The oven is an internal CP Lab bottleneck, but it operates well within the broader Takt Time envelope. Investment in more printers (not faster assembly) is the correct scaling strategy.</p>
+        <p style="font-size:0.8rem;color:#ccc;line-height:1.5;">Printing is the system bottleneck, not CP Lab assembly. The oven is an internal CP Lab bottleneck, but it operates well within the broader Takt Time envelope. Investment in more printers (not faster assembly) is the correct scaling strategy.</p>
       </div>
     </div>
 
@@ -1559,56 +1559,100 @@ function showScenario(key) {
 <section class="section-pad border-top fade-up" id="findings">
   <div class="section-header">
     <div>
-      <span class="section-tag"></span>
+      <span class="section-tag">4.10 – 4.11</span>
       <h2>Key Findings &<br>Lessons Learned</h2>
     </div>
     <div class="line"></div>
   </div>
-
+ 
   <ul class="findings-list">
+ 
+    <!-- FINDING 1 -->
     <li class="fade-up">
       <div class="finding-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="white" stroke-width="1.5" fill="none"/><line x1="12" y1="12" x2="12" y2="22" stroke="white" stroke-width="1.5"/><line x1="2" y1="7" x2="12" y2="12" stroke="white" stroke-width="1.5"/><line x1="22" y1="7" x2="12" y2="12" stroke="white" stroke-width="1.5"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="11" width="18" height="10" rx="2" stroke="white" stroke-width="1.5" fill="none"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="12" cy="16" r="1.5" fill="white"/>
+        </svg>
       </div>
       <div>
-        <p class="finding-title">Oven is the CP Lab assembly bottleneck</p>
-        <p class="finding-desc">Station 5 (oven, 29s) runs at 89% utilisation. Without printing constraints, the assembly line is limited to ~412 parts/day after adding a second Pick-by-Light station.</p>
+        <p class="finding-title">28 printers hit an invisible ceiling — no matter how many operators</p>
+        <p class="finding-desc">With 28 printers, output plateaued at 49,140 units/year from 3 operators onwards. Adding further operators produced zero improvement. The constraint was the printer count itself — a ceiling the theoretical formula never predicted.</p>
       </div>
-      <p class="finding-impl">Adding a second oven or reducing thermal cycle time would be required to push assembly throughput beyond 412 parts/day. Currently, this is not the binding constraint at the system level.</p>
+      <p class="finding-impl">Theory calculated 28 printers as sufficient. Simulation revealed they fall 860 units short of the 50,000 annual target. The decision to add one printer (29 total) was only possible because simulation exposed this hidden limit before any capital was committed.</p>
     </li>
+ 
+    <!-- FINDING 2 -->
     <li class="fade-up">
       <div class="finding-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="white" stroke-width="1.5"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.5" fill="none"/>
+          <path d="M12 8v4l3 3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
       </div>
       <div>
-        <p class="finding-title">Operator is the true system bottleneck</p>
-        <p class="finding-desc">Theory assumed unlimited operator capacity. Simulation reveals the single operator cannot simultaneously service 28 printers AND perform Pick-by-Light at the CP Lab. Even 5 operators cannot meet 218s Takt Time demand.</p>
+        <p class="finding-title">One extra printer unlocks the annual target — not more operators</p>
+        <p class="finding-desc">Adding a single 29th printer raised output to 51,030 units/year — exceeding the 50,000 target by 1,030 units. This was achieved with just 1 operator, contradicting the theoretical recommendation of 4 operators.</p>
       </div>
-      <p class="finding-impl">Dedicate separate operators to printing farm vs. CP Lab stations. Consider autonomous unloading (conveyor trays, cobot arms) to decouple operator time from printer cycles.</p>
+      <p class="finding-impl">The correct investment was printer hardware, not headcount. A single additional printer costs a one-time capital outlay; an extra operator represents a recurring annual salary. Simulation identified the more cost-effective solution.</p>
     </li>
+ 
+    <!-- FINDING 3 -->
     <li class="fade-up">
       <div class="finding-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" stroke="white" stroke-width="1.5" fill="none"/><rect x="14" y="3" width="7" height="7" stroke="white" stroke-width="1.5" fill="none"/><rect x="3" y="14" width="7" height="7" stroke="white" stroke-width="1.5" fill="none"/><rect x="14" y="14" width="7" height="7" stroke="white" stroke-width="1.5" fill="none"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M100 100 100 100" stroke="white"/>
+          <rect x="3" y="3" width="7" height="7" stroke="white" stroke-width="1.5" fill="none"/>
+          <rect x="14" y="3" width="7" height="7" stroke="white" stroke-width="1.5" fill="none"/>
+          <rect x="3" y="14" width="7" height="7" stroke="white" stroke-width="1.5" fill="none"/>
+          <rect x="14" y="14" width="7" height="7" stroke="white" stroke-width="1.5" fill="none"/>
+          <line x1="10" y1="6.5" x2="14" y2="6.5" stroke="white" stroke-width="1.5"/>
+          <line x1="6.5" y1="10" x2="6.5" y2="14" stroke="white" stroke-width="1.5"/>
+          <line x1="10" y1="17.5" x2="14" y2="17.5" stroke="white" stroke-width="1.5"/>
+          <line x1="17.5" y1="10" x2="17.5" y2="14" stroke="white" stroke-width="1.5"/>
+        </svg>
       </div>
       <div>
-        <p class="finding-title">Layout affects throughput significantly</p>
-        <p class="finding-desc">7 rows × 4 columns of printers generates substantial travel time per batch unload. Theory ignored operator travel distance — simulation makes this visible and quantifiable.</p>
+        <p class="finding-title">The oven (100%) is the CP Lab bottleneck — doubling it doubles throughput exactly</p>
+        <p class="finding-desc">In the CP Lab baseline, the oven ran at 100% utilisation. Adding a second oven alongside a second Pick-by-Light station doubled output from 4,962 to 9,922 parts in the same simulation period. Pick-by-Light held steady at 77% in both scenarios.</p>
       </div>
-      <p class="finding-impl">Compact U-shaped layout would reduce average travel path. A central unloading station per row would reduce per-printer operator time by ~30–40%.</p>
+      <p class="finding-impl">The result confirms Goldratt's principle directly: the oven was the binding constraint, and investing in any other station would have produced no gain. Doubling precisely the bottleneck resource produced a proportional doubling of output.</p>
     </li>
+ 
+    <!-- FINDING 4 -->
     <li class="fade-up">
       <div class="finding-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3 3l7 7m0 0l4-4m-4 4l-3 3m10-10l-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="3" stroke="white" stroke-width="1.5" fill="none"/>
+          <line x1="15.5" y1="15.5" x2="12" y2="12" stroke="white" stroke-width="1.5"/>
+        </svg>
       </div>
       <div>
-        <p class="finding-title">Theory provides upper bound; simulation provides realistic bound</p>
-        <p class="finding-desc">Theoretical calculations (230 printers) assumed zero operator travel, no breaks, and unlimited concurrent capacity. Simulation corrects all three assumptions simultaneously.</p>
+        <p class="finding-title">Non-linear behaviour: 2 operators briefly underperform 1 (29 printers)</p>
+        <p class="finding-desc">With 29 printers, 2 operators produced 50,994 units — 36 fewer than the 51,030 achieved with just 1 operator. This counter-intuitive result emerges from micro-level resource contention in discrete-event simulation: two workers occasionally compete for the same carrier or buffer simultaneously.</p>
       </div>
-      <p class="finding-impl">Never deploy a printer farm based on theoretical calculations alone. The simulation prevented potential over-investment of $200k+ in printers that would still fail to meet demand due to operator constraints.</p>
+      <p class="finding-impl">No analytical formula can predict this behaviour. It is a direct demonstration of why simulation-based planning is superior to spreadsheet-based capacity models for systems with shared resources and stochastic timing.</p>
     </li>
+ 
+    <!-- FINDING 5 -->
+    <li class="fade-up">
+      <div class="finding-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M2 20h20M6 20V10l6-6 6 6v10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="10" y="14" width="4" height="6" stroke="white" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <div>
+        <p class="finding-title">Simulation prevents costly over- and under-investment simultaneously</p>
+        <p class="finding-desc">Theory overestimated operators needed (4 vs. 1 sufficient) and underestimated printers needed (28 vs. 29 required). Both errors would have been expensive: one wasted headcount, the other missed the annual production target entirely.</p>
+      </div>
+      <p class="finding-impl">According to Sargent (2013), validated simulation models provide decision confidence that analytical models cannot. In this case, simulation corrected two simultaneous errors in opposite directions — exactly the scenario where its value is highest.</p>
+    </li>
+ 
   </ul>
 </section>
-
 
 <!-- ══════════════════════════════════════════════
      PHOTO GALLERY
