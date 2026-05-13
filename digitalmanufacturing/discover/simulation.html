@@ -1246,7 +1246,7 @@ function showScenario(key) {
   <div class="fade-up" style="margin: 4rem 0 3rem 0;">
     <div style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 20px 40px -12px rgba(0,0,0,0.2);">
       <img 
-        src="assets/images/Gemini_Generated_Image_h5ro9uh5ro9uh5ro.png" 
+        src="assets/images/Gemini_Generated_Image_lf3krolf3krolf3k.png" 
         alt="Printing Farm 3D Layout - 7 rows × 4 columns of printers, operator walking paths" 
         style="width: 100%; height: auto; display: block; transition: transform 0.5s ease;"
         onmouseover="this.style.transform='scale(1.02)'"
@@ -1285,106 +1285,207 @@ function showScenario(key) {
   <div class="section-header">
     <div>
       <span class="section-tag"></span>
-      <h2>Operator Count<br>Experiment</h2>
+      <h2>Theory vs. Simulation:<br>Operator &amp; Printer Count</h2>
     </div>
     <div class="line"></div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
-    <div>
-      <p style="font-size:0.9rem;color:#555;line-height:1.7;margin-bottom:2rem;">
-        We systematically tested 1–10 operators serving 28 printers (3 replicates each, 252-day runs). The result was striking: <strong>even 5 operators cannot meet the 218s Takt Time demand</strong> — revealing that operator availability, not printer count, is the true system bottleneck.
-      </p>
+  <p style="max-width:760px;font-size:0.95rem;color:#555;line-height:1.7;margin-bottom:3rem;">
+    The theoretical calculation recommended <strong>28 printers with 4 operators</strong> to reach 50,000 phone units/year (100,000 individual casings). Simulation tells a completely different story — and that difference is precisely where Plant Simulation earns its value.
+  </p>
 
-      <!-- Experiment bar chart -->
-      <div style="background:var(--gray);padding:1.5rem;">
-        <div class="exp-row header">
-          <span>Ops</span>
-          <span>Daily output (casing sets)</span>
-          <span>Output / 252 days</span>
-          <span>Meets Takt?</span>
+  <!-- ── THEORY vs SIMULATION BANNER ── -->
+  <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-bottom:3rem;align-items:stretch;" class="fade-up">
+    <!-- Theory box -->
+    <div style="background:var(--gray);padding:2.5rem 2rem;border-top:4px solid #aaa;">
+      <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#888;">Theoretical Prediction</span>
+      <p style="font-family:var(--font-display);font-size:3.5rem;line-height:1;margin:0.5rem 0;color:var(--black);">28 printers<br>4 operators</span></p>
+      <p style="font-size:0.8rem;color:#555;line-height:1.5;margin-top:0.75rem;">Based on Takt Time calculation: 50,000 units ÷ 252 days = 198 units/day. Printer cycle time and headcount estimated from throughput formula alone.</p>
+      <div style="margin-top:1.5rem;padding:0.75rem 1rem;background:white;border-left:3px solid #aaa;">
+        <p style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:0.2rem;">Assumed annual output</p>
+        <p style="font-family:var(--font-display);font-size:2rem;color:#aaa;">~50,000 units</p>
+        <p style="font-size:0.7rem;color:#aaa;">Theory assumes unlimited operator capacity &amp; zero travel time</p>
+      </div>
+    </div>
+
+    <!-- VS divider -->
+    <div style="background:var(--black);display:flex;align-items:center;justify-content:center;padding:0 2rem;">
+      <span style="font-family:var(--font-display);font-size:3rem;color:var(--orange);">VS</span>
+    </div>
+
+    <!-- Simulation box -->
+    <div style="background:var(--black);padding:2.5rem 2rem;border-top:4px solid var(--orange);">
+      <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);">Simulation Result</span>
+      <p style="font-family:var(--font-display);font-size:3.5rem;line-height:1;margin:0.5rem 0;color:var(--white);">28 printers<br><span style="color:var(--orange);">never reaches</span><br>50,000</p>
+      <p style="font-size:0.8rem;color:#aaa;line-height:1.5;margin-top:0.75rem;">After 252 simulated days with 1–10 operators, the maximum output plateaus at 49,140 units — <strong style="color:var(--orange);">860 units short</strong> of the annual target, regardless of how many operators are added.</p>
+      <div style="margin-top:1.5rem;padding:0.75rem 1rem;background:#111;border-left:3px solid var(--orange);">
+        <p style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;text-transform:uppercase;color:var(--orange);margin-bottom:0.2rem;">Actual ceiling (28 printers)</p>
+        <p style="font-family:var(--font-display);font-size:2rem;color:var(--orange);">49,140 units</p>
+        <p style="font-size:0.7rem;color:#aaa;">Plateau reached from 3 operators onwards — adding more operators has zero effect</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TWO EXPERIMENT TABLES SIDE BY SIDE ── -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:3rem;" class="fade-up">
+
+    <!-- 28 PRINTERS -->
+    <div>
+      <div style="background:var(--red);padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.7);">Experiment A</span>
+          <h3 style="font-family:var(--font-display);font-size:1.8rem;color:white;line-height:1;">28 Printers</h3>
         </div>
-        <!-- 1 op -->
-        <div class="exp-row">
-          <span class="exp-num">1</span>
-          <div class="exp-output-bar">
-            <div class="exp-bar-outer"><div class="exp-bar-inner" style="width:36%;"></div></div>
-            <span style="font-family:var(--font-condensed);font-size:0.75rem;font-weight:700;">33.4</span>
-          </div>
-          <span style="font-size:0.75rem;color:#888;">8,420</span>
-          <span class="tag tag-red">❌ No</span>
+        <span class="tag tag-red" style="font-size:0.75rem;padding:0.4rem 0.8rem;">❌ Target not met</span>
+      </div>
+      <div style="background:var(--gray);">
+        <!-- header row -->
+        <div style="display:grid;grid-template-columns:60px 1fr 110px 90px;padding:0.6rem 1rem;background:var(--black);">
+          <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;">Ops</span>
+          <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;">Output (252 days)</span>
+          <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;">vs 50k</span>
+          <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;">Result</span>
         </div>
-        <!-- 2 op -->
-        <div class="exp-row">
-          <span class="exp-num">2</span>
-          <div class="exp-output-bar">
-            <div class="exp-bar-outer"><div class="exp-bar-inner" style="width:64%;"></div></div>
-            <span style="font-family:var(--font-condensed);font-size:0.75rem;font-weight:700;">58.6</span>
-          </div>
-          <span style="font-size:0.75rem;color:#888;">14,760</span>
-          <span class="tag tag-red">❌ No</span>
+        <!-- data rows 28 printers -->
+        <div style="display:grid;grid-template-columns:60px 1fr 110px 90px;padding:0.7rem 1rem;border-bottom:1px solid #ddd;align-items:center;gap:0.5rem;">
+          <span style="font-family:var(--font-display);font-size:1.6rem;color:var(--black);">1</span>
+          <div><div style="height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;margin-bottom:0.2rem;"><div style="width:98%;height:100%;background:#c0392b;border-radius:4px;"></div></div><span style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;">49,101</span></div>
+          <span style="font-size:0.7rem;color:#c0392b;font-weight:700;">−899</span>
+          <span class="tag tag-red" style="font-size:0.6rem;">❌ Miss</span>
         </div>
-        <!-- 3 op -->
-        <div class="exp-row">
-          <span class="exp-num">3</span>
-          <div class="exp-output-bar">
-            <div class="exp-bar-outer"><div class="exp-bar-inner" style="width:84%;"></div></div>
-            <span style="font-family:var(--font-condensed);font-size:0.75rem;font-weight:700;">77.5</span>
-          </div>
-          <span style="font-size:0.75rem;color:#888;">19,530</span>
-          <span class="tag tag-red">❌ No</span>
+        <div style="display:grid;grid-template-columns:60px 1fr 110px 90px;padding:0.7rem 1rem;border-bottom:1px solid #ddd;align-items:center;gap:0.5rem;background:white;">
+          <span style="font-family:var(--font-display);font-size:1.6rem;color:var(--black);">2</span>
+          <div><div style="height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;margin-bottom:0.2rem;"><div style="width:98.3%;height:100%;background:#c0392b;border-radius:4px;"></div></div><span style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;">49,133</span></div>
+          <span style="font-size:0.7rem;color:#c0392b;font-weight:700;">−867</span>
+          <span class="tag tag-red" style="font-size:0.6rem;">❌ Miss</span>
         </div>
-        <!-- 4 op -->
-        <div class="exp-row">
-          <span class="exp-num">4</span>
-          <div class="exp-output-bar">
-            <div class="exp-bar-outer"><div class="exp-bar-inner" style="width:96%;"></div></div>
-            <span style="font-family:var(--font-condensed);font-size:0.75rem;font-weight:700;">87.9</span>
-          </div>
-          <span style="font-size:0.75rem;color:#888;">22,140</span>
-          <span class="tag tag-red">❌ No</span>
+        <div style="display:grid;grid-template-columns:60px 1fr 110px 90px;padding:0.7rem 1rem;border-bottom:1px solid #ddd;align-items:center;gap:0.5rem;background:#fffaf0;">
+          <span style="font-family:var(--font-display);font-size:1.6rem;color:var(--black);">3</span>
+          <div><div style="height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;margin-bottom:0.2rem;"><div style="width:98.28%;height:100%;background:#c0392b;border-radius:4px;"></div></div><span style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;">49,140 ← plateau</span></div>
+          <span style="font-size:0.7rem;color:#c0392b;font-weight:700;">−860</span>
+          <span class="tag tag-red" style="font-size:0.6rem;">❌ Miss</span>
         </div>
-        <!-- 5 op -->
-        <div class="exp-row" style="background:#fff3f3;">
-          <span class="exp-num" style="color:#E8440A;">5</span>
-          <div class="exp-output-bar">
-            <div class="exp-bar-outer"><div class="exp-bar-inner" style="width:100%;"></div></div>
-            <span style="font-family:var(--font-condensed);font-size:0.75rem;font-weight:700;">91.7</span>
-          </div>
-          <span style="font-size:0.75rem;color:#888;">23,100</span>
-          <span class="tag tag-yellow">⚠ Close</span>
+        <!-- rows 4-10: same plateau -->
+        <div style="display:grid;grid-template-columns:60px 1fr 110px 90px;padding:0.7rem 1rem;align-items:center;gap:0.5rem;border-bottom:1px solid #ddd;background:white;">
+          <span style="font-family:var(--font-display);font-size:1.6rem;color:#bbb;">4–10</span>
+          <div><div style="height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;margin-bottom:0.2rem;"><div style="width:98.28%;height:100%;background:#ddd;border-radius:4px;"></div></div><span style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;color:#bbb;">49,140 — no improvement</span></div>
+          <span style="font-size:0.7rem;color:#bbb;">−860</span>
+          <span class="tag tag-red" style="font-size:0.6rem;opacity:0.5;">❌ Miss</span>
+        </div>
+        <div style="padding:0.75rem 1rem;background:#fff3f3;border-top:2px solid #c0392b;">
+          <p style="font-size:0.7rem;color:#c0392b;font-weight:600;line-height:1.5;">⚠ Adding more operators beyond 3 has zero effect. The printer count itself is the hard ceiling — the system is printer-constrained, not operator-constrained, once ≥3 operators are present.</p>
         </div>
       </div>
     </div>
 
+    <!-- 29 PRINTERS -->
     <div>
-      <!-- Photo placeholder -->
-      <div class="photo-slot" style="margin-bottom:1.5rem;">
-        <svg class="photo-slot-icon" width="48" height="48" viewBox="0 0 48 48"><rect x="4" y="10" width="40" height="28" rx="3" stroke="#999" stroke-width="2" fill="none"/><circle cx="24" cy="24" r="8" stroke="#999" stroke-width="2" fill="none"/><circle cx="38" cy="15" r="2" fill="#999"/></svg>
-        <p class="photo-slot-label">📷 Insert Tecnomatix screenshot:<br>Operator experiment results (bar chart output vs operators)</p>
+      <div style="background:var(--black);padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);">Experiment B</span>
+          <h3 style="font-family:var(--font-display);font-size:1.8rem;color:white;line-height:1;">29 Printers <span style="color:var(--orange);">+1</span></h3>
+        </div>
+        <span class="tag tag-green" style="font-size:0.75rem;padding:0.4rem 0.8rem;">✅ Target met</span>
       </div>
-
-      <!-- Root cause -->
-      <div style="background:var(--black);padding:1.5rem;color:white;">
-        <p style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);margin-bottom:1rem;">Root Cause Analysis</p>
-        <div style="display:flex;flex-direction:column;gap:0.75rem;">
-          <div style="padding:0.75rem;background:#111;border-left:3px solid #333;">
-            <p style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;text-transform:uppercase;margin-bottom:0.3rem;">Printer count too low?</p>
-            <p style="font-size:0.75rem;color:#aaa;line-height:1.5;">28 printers × 3 sets/batch → 302 sets/day theoretical max. Simulation produces only 92 sets/day. <strong style="color:var(--orange);">Discrepancy = operator constraint.</strong></p>
-          </div>
-          <div style="padding:0.75rem;background:#111;border-left:3px solid #333;">
-            <p style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;text-transform:uppercase;margin-bottom:0.3rem;">Operator travel time</p>
-            <p style="font-size:0.75rem;color:#aaa;line-height:1.5;">Walking between 7 rows × 4 columns of printers creates significant travel overhead per batch unload.</p>
-          </div>
-          <div style="padding:0.75rem;background:#111;border-left:3px solid var(--orange);">
-            <p style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;text-transform:uppercase;margin-bottom:0.3rem;color:var(--orange);">Primary cause: Operator conflict</p>
-            <p style="font-size:0.75rem;color:#aaa;line-height:1.5;">The same operator must service both the printer farm and CP Lab's Pick-by-Light station. These compete for the same resource — this cannot be solved by adding more printers.</p>
-          </div>
+      <div style="background:var(--gray);">
+        <!-- header row -->
+        <div style="display:grid;grid-template-columns:60px 1fr 110px 90px;padding:0.6rem 1rem;background:var(--black);">
+          <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;">Ops</span>
+          <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;">Output (252 days)</span>
+          <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;">vs 50k</span>
+          <span style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;">Result</span>
+        </div>
+        <!-- row 1: 51,030 ✅ but anomaly note -->
+        <div style="display:grid;grid-template-columns:60px 1fr 110px 90px;padding:0.7rem 1rem;border-bottom:1px solid #ddd;align-items:center;gap:0.5rem;background:#f0fff4;">
+          <span style="font-family:var(--font-display);font-size:1.6rem;color:var(--black);">1</span>
+          <div><div style="height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;margin-bottom:0.2rem;"><div style="width:100%;height:100%;background:#27ae60;border-radius:4px;"></div></div><span style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;">51,030 ⚠</span></div>
+          <span style="font-size:0.7rem;color:#27ae60;font-weight:700;">+1,030</span>
+          <span class="tag tag-green" style="font-size:0.6rem;">✅ Met</span>
+        </div>
+        <!-- row 2: 50,994 — anomaly -->
+        <div style="display:grid;grid-template-columns:60px 1fr 110px 90px;padding:0.7rem 1rem;border-bottom:1px solid #ddd;align-items:center;gap:0.5rem;background:#fffdf0;border-left:3px solid #f39c12;">
+          <span style="font-family:var(--font-display);font-size:1.6rem;color:var(--black);">2</span>
+          <div><div style="height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;margin-bottom:0.2rem;"><div style="width:99.9%;height:100%;background:#f39c12;border-radius:4px;"></div></div><span style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;color:#f39c12;">50,994 ← anomaly</span></div>
+          <span style="font-size:0.7rem;color:#f39c12;font-weight:700;">+994</span>
+          <span class="tag tag-yellow" style="font-size:0.6rem;">⚠ Note</span>
+        </div>
+        <!-- rows 3-10: 51,030 -->
+        <div style="display:grid;grid-template-columns:60px 1fr 110px 90px;padding:0.7rem 1rem;border-bottom:1px solid #ddd;align-items:center;gap:0.5rem;background:#f0fff4;">
+          <span style="font-family:var(--font-display);font-size:1.6rem;color:var(--black);">3</span>
+          <div><div style="height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;margin-bottom:0.2rem;"><div style="width:100%;height:100%;background:#27ae60;border-radius:4px;"></div></div><span style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;">51,030</span></div>
+          <span style="font-size:0.7rem;color:#27ae60;font-weight:700;">+1,030</span>
+          <span class="tag tag-green" style="font-size:0.6rem;">✅ Met</span>
+        </div>
+        <div style="display:grid;grid-template-columns:60px 1fr 110px 90px;padding:0.7rem 1rem;align-items:center;gap:0.5rem;background:#f0fff4;border-bottom:1px solid #ddd;">
+          <span style="font-family:var(--font-display);font-size:1.6rem;color:#27ae60;">4–10</span>
+          <div><div style="height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;margin-bottom:0.2rem;"><div style="width:100%;height:100%;background:#27ae60;border-radius:4px;"></div></div><span style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;">51,030 — stable</span></div>
+          <span style="font-size:0.7rem;color:#27ae60;font-weight:700;">+1,030</span>
+          <span class="tag tag-green" style="font-size:0.6rem;">✅ Met</span>
+        </div>
+        <div style="padding:0.75rem 1rem;background:#f0fff4;border-top:2px solid #27ae60;">
+          <p style="font-size:0.7rem;color:#27ae60;font-weight:600;line-height:1.5;">✅ A single extra printer is the marginal investment that unlocks the target. 1 operator is sufficient — every additional operator beyond 1 (except 2) produces the same result.</p>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- ── PHOTO SLOTS ── -->
+  <div style="display:flex;flex-direction:column;gap:1.5rem;">
+      <div class="photo-slot">
+        <img src="assets/images/Captura de pantalla 2026-05-13 020100.png" alt="Tecnomatix screenshot - Baseline CP Lab utilisation chart" style="width:100%; height:100%; object-fit:cover;">
+  <p class="photo-slot-label">📷 Tecnomatix screenshot — <br> 28 printers</p>
+      </div>
+      <div class="photo-slot">
+        <img src="assets/images/Captura de pantalla 2026-05-13 020557.png" alt="Tecnomatix screenshot - Baseline CP Lab utilisation chart" style="width:100%; height:100%; object-fit:cover;">
+  <p class="photo-slot-label">📷 Tecnomatix screenshot — Optimised<br> 29 printers</p>
+      </div>
+    </div>
+
+  <!-- ── ANOMALY EXPLANATION ── -->
+  <div style="background:var(--gray);border-left:4px solid #f39c12;padding:2rem 2.5rem;margin-bottom:3rem;" class="fade-up">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+      <span style="font-family:var(--font-display);font-size:2rem;color:#f39c12;">⚠</span>
+      <h3 style="font-family:var(--font-condensed);font-weight:900;font-size:1rem;text-transform:uppercase;letter-spacing:0.08em;">Why does 2 operators produce fewer units than 1? (29 printers: 50,994 vs 51,030)</h3>
+    </div>
+    <p style="font-size:0.85rem;color:#555;line-height:1.7;max-width:860px;">
+      This is a characteristic behaviour of discrete-event simulation that pure theory cannot expose. With <strong>1 operator</strong>, the system is entirely sequential — the single worker follows a fixed, unambiguous route through the printer farm with no resource contention. With <strong>2 operators</strong>, both workers share the same buffers, carriers, and CP Lab stations. At certain moments, both operators arrive at the same resource simultaneously, creating micro-level queuing and a brief deadlock. Accumulated over 252 simulated days, this results in ~36 fewer units produced.
+    </p>
+    <p style="font-size:0.85rem;color:#555;line-height:1.7;max-width:860px;margin-top:0.75rem;">
+      From 3 operators onward the system stabilises at 51,030 — enough workers exist to absorb contention without competing for the same resource at the same instant. This non-linear behaviour is <strong>invisible to analytical calculation</strong> and is one of the strongest arguments for simulation-based capacity planning.
+    </p>
+  </div>
+
+  <!-- ── KEY INSIGHT BANNER ── -->
+  <div style="background:var(--black);padding:2.5rem 3rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;align-items:center;" class="fade-up">
+    <div>
+      <span class="section-tag" style="color:var(--gray-dark);">Key Insight</span>
+      <h3 style="font-family:var(--font-display);font-size:2rem;color:var(--white);text-transform:uppercase;margin-top:0.3rem;line-height:1.1;">The value of simulation over theory</h3>
+      <p style="font-size:0.8rem;color:#aaa;line-height:1.6;margin-top:0.75rem;">
+        Theory said 28 printers + 4 operators. Simulation revealed that 28 printers can never reach 50,000 units regardless of operators, and that the fix is one additional printer — not more headcount. The cost difference is significant: one printer vs. one full-time operator.
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <div style="background:#111;padding:1.25rem;border-left:3px solid #555;">
+        <p style="font-family:var(--font-condensed);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#666;margin-bottom:0.3rem;">Theory recommended</p>
+        <p style="font-family:var(--font-display);font-size:1.8rem;color:#aaa;">28 printers<br>4 operators</p>
+        <p style="font-size:0.7rem;color:#555;margin-top:0.3rem;">Would have missed target by 860 units/year</p>
+      </div>
+      <div style="background:#111;padding:1.25rem;border-left:3px solid var(--orange);">
+        <p style="font-family:var(--font-condensed);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);margin-bottom:0.3rem;">Simulation recommends</p>
+        <p style="font-family:var(--font-display);font-size:1.8rem;color:var(--orange);">29 printers<br>1–3 operators</p>
+        <p style="font-size:0.7rem;color:#aaa;margin-top:0.3rem;">51,030 units/year — target exceeded ✅</p>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <p style="font-family:var(--font-display);font-size:4.5rem;color:var(--orange);line-height:1;">+1<br>printer</p>
+      <p style="font-family:var(--font-condensed);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-top:0.5rem;">The marginal unit that<br>unlocks the annual target</p>
+      <p style="font-size:0.75rem;color:#666;margin-top:1rem;">This insight is only visible through simulation. No analytical formula would have predicted that 28 printers hit an invisible ceiling — or that 2 operators briefly underperform 1.</p>
+    </div>
+  </div>
+
 </section>
+
+
 
 
 <!-- ══════════════════════════════════════════════
