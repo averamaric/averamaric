@@ -379,7 +379,7 @@
     .service-card.dark { background: var(--black); }
     .service-card.light { background: var(--gray); }
     .service-info { position: absolute; top: 0; left: 0; right: 0; padding: 1.5rem; }
-    footer {
+   footer {
       background: var(--black);
       color: var(--white);
       padding: 3rem 4rem;
@@ -389,6 +389,8 @@
       flex-wrap: wrap;
       gap: 2rem;
     }
+    footer a { color: #aaa; text-decoration: none; font-size: 0.8rem; margin-left: 1.5rem; }
+    footer a:hover { color: var(--orange); }
     /* Añade esto después de .summary-section */
     .summary-container {
       display: grid;
@@ -1945,8 +1947,20 @@
 
  
 
-<footer><div><div class="footer-logo">Analucia Vera</div><p class="footer-copy">© 2025 Analucia Vera. All rights reserved.</p></div><div class="footer-links"><a href="#about">About</a><a href="#services">Services</a><a href="#why">Why Us</a><a href="#contact">Contact</a></div></footer>
-
+<footer>
+  <div>
+    <div style="font-family:var(--font-condensed);font-weight:900;font-size:1.25rem;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.5rem;">Analucia Vera</div>
+    <p style="font-size:0.75rem;color:#666;">© 2025 Analucia Vera. All rights reserved.</p>
+  </div>
+  <div>
+    <a href="../index.html">Home</a>
+    <a href="ourtechnologies.html">Our technologies</a>
+    <a href="processeng.html">Process Engineering</a>
+    <a href="design.html">3D Design</a>
+    <a href="100kparts.html">100K target</a>
+    <a href="simulation.html">Simulation</a>
+  </div>
+</footer>
 <script>
   const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
