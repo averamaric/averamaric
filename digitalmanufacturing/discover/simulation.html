@@ -1534,8 +1534,8 @@ function showScenario(key) {
 
     <!-- Photo placeholder -->
     <div class="photo-slot">
-      <svg class="photo-slot-icon" width="48" height="48" viewBox="0 0 48 48"><rect x="4" y="10" width="40" height="28" rx="3" stroke="#999" stroke-width="2" fill="none"/><circle cx="24" cy="24" r="8" stroke="#999" stroke-width="2" fill="none"/><circle cx="38" cy="15" r="2" fill="#999"/></svg>
-      <p class="photo-slot-label">📷 Insert Tecnomatix screenshot:<br>Full system model — printing farm + CP Lab</p>
+      <img width="40" height="28" src="assets/images/Screenshot 2026-05-13 112624.png" alt="Tecnomatix screenshot - Baseline CP Lab utilisation chart" style="width:100%; height:100%; object-fit:cover;">
+      <p class="photo-slot-label">Full system model — printing farm + CP Lab</p>
     </div>
   </div>
 </section>
@@ -1651,68 +1651,103 @@ function showScenario(key) {
 <!-- ══════════════════════════════════════════════
      PHOTO GALLERY
 ══════════════════════════════════════════════ -->
-<section class="section-pad border-top" style="background:var(--black);" class="fade-up">
+<section class="section-pad border-top" style="background:var(--black);">
   <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem;">
     <h2 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;color:var(--white);">Simulation Gallery</h2>
     <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--orange),transparent);"></div>
   </div>
-
-  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:1px;background:#222;">
-    <div class="photo-slot" style="background:#111;border:none;min-height:340px;">
-        <img 
-            src="assets/images/Screenshot 2026-05-13 104756.png" 
-            alt="Screenshot 1"
-            style="width:100%;height:100%;object-fit:cover;"
-        >
-      <p class="photo-slot-label" style="color:#444;">Screenshot 1<br> Experiments layout</p>
+ 
+  <!-- ROW 1: Screenshot 1 (big, ~60%) + Screenshots 3 & 4 stacked (~40%) -->
+  <div style="display:grid;grid-template-columns:3fr 2fr;gap:1px;background:#222;">
+ 
+    <!-- Screenshot 1 — large -->
+    <div class="photo-slot" style="background:#111;border:none;min-height:420px;position:relative;">
+      <img
+        src="assets/images/Screenshot 2026-05-13 104756.png"
+        alt="Experiments layout"
+        style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"
+      >
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:0.75rem 1rem;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);">
+        <p style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:white;">01 — Experiments layout</p>
+      </div>
     </div>
-    
-      <div class="photo-slot" style="background:#111;border:none;min-height:340px;">
-        <img 
-            src="assets/images/Screenshot 2026-05-13 104806.png" 
-            alt="Screenshot 1"
-            style="width:100%;height:100%;object-fit:cover;"
-        >
-      <p class="photo-slot-label" style="color:#444;">Screenshot 2<br>Work schedule</p>
-    </div>
+ 
+    <!-- Screenshots 3 & 4 stacked -->
     <div style="display:flex;flex-direction:column;gap:1px;">
-      
-         <div class="photo-slot" style="background:#111;border:none;min-height:340px;">
-        <img 
-            src="assets/images/Screenshot 2026-05-11 132728.png" 
-            alt="Screenshot 1"
-            style="width:100%;height:100%;object-fit:cover;"
+      <div class="photo-slot" style="background:#111;border:none;min-height:208px;position:relative;flex:1;">
+        <img
+          src="assets/images/Screenshot 2026-05-11 132728.png"
+          alt="Optimised CP Station Bottleneck"
+          style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"
         >
-        <p class="photo-slot-label" style="color:#444;font-size:0.6rem;">Screenshot 3<br>Optimised CP Station Bottleneck Analiser</p>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:0.6rem 0.75rem;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);">
+          <p style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:white;">03 — Optimised CP Station Bottleneck</p>
+        </div>
       </div>
-       <div class="photo-slot" style="background:#111;border:none;min-height:340px;">
-        <img 
-            src="assets/images/Screenshot 2026-05-11 132704.png" 
-            alt="Screenshot 1"
-            style="width:100%;height:100%;object-fit:cover;"
+      <div class="photo-slot" style="background:#111;border:none;min-height:208px;position:relative;flex:1;">
+        <img
+          src="assets/images/Screenshot 2026-05-11 132704.png"
+          alt="Baseline CP Station Bottleneck"
+          style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"
         >
-        <p class="photo-slot-label" style="color:#444;font-size:0.6rem;">Screenshot 4<br>Baseline CP station Bottleneck Analiser</p>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:0.6rem 0.75rem;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);">
+          <p style="font-family:var(--font-condensed);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:white;">04 — Baseline CP Station Bottleneck</p>
+        </div>
       </div>
     </div>
+ 
   </div>
-
+ 
+  <!-- ROW 2: Screenshots 2 & 5 side by side -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#222;margin-top:1px;">
-     <div class="photo-slot" style="background:#111;border:none;min-height:340px;">
-        <img 
-            src="assets/images/Screenshot 2026-05-13 104859.png" 
-            alt="Screenshot 1"
-            style="width:100%;height:100%;object-fit:cover;"
-        >
-      <p class="photo-slot-label" style="color:#444;">Screenshot 5<br>Buffer's ExitControl</p>
+ 
+    <div class="photo-slot" style="background:#111;border:none;min-height:300px;position:relative;">
+      <img
+        src="assets/images/Screenshot 2026-05-13 104806.png"
+        alt="Work schedule"
+        style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"
+      >
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:0.75rem 1rem;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);">
+        <p style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:white;">02 — Work schedule</p>
+      </div>
     </div>
-    <div class="photo-slot" style="background:#0A0A0A;border:2px dashed #E8440A;border-style:dashed;min-height:220px;">
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#E8440A" stroke-width="2" opacity="0.4"/><polygon points="20,17 34,24 20,31" fill="#E8440A" opacity="0.4"/></svg>
-      <p class="photo-slot-label" style="color:#E8440A;opacity:0.6;">🎬 Screen Recording<br>60-second animation — parts moving through model<br>Add video embed here</p>
+ 
+    <div class="photo-slot" style="background:#111;border:none;min-height:300px;position:relative;">
+      <img
+        src="assets/images/Screenshot 2026-05-13 104859.png"
+        alt="Buffer's ExitControl"
+        style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"
+      >
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:0.75rem 1rem;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);">
+        <p style="font-family:var(--font-condensed);font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:white;">05 — Buffer's ExitControl</p>
+      </div>
     </div>
+ 
   </div>
+ 
+  <!-- ROW 3: Video full width -->
+  <div style="margin-top:1px;background:#0A0A0A;position:relative;overflow:hidden;">
+    <video
+      src="assets/videos/Video Project 2.mp4"
+      controls
+      loop
+      style="width:100%;display:block;max-height:520px;object-fit:cover;"
+    ></video>
+    <!-- Label overlay at top -->
+    <div style="position:absolute;top:0;left:0;right:0;padding:0.75rem 1.5rem;background:linear-gradient(to bottom,rgba(0,0,0,0.6),transparent);pointer-events:none;">
+      <p style="font-family:var(--font-condensed);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:white;">
+        🎬 &nbsp;Timelapse — parts moving through the simulation model
+      </p>
+    </div>
+    <!-- Fallback if video doesn't load -->
+    <noscript>
+      <div class="photo-slot" style="background:#0A0A0A;border:2px dashed #E8440A;min-height:280px;">
+        <p class="photo-slot-label" style="color:#E8440A;opacity:0.6;">🎬 Video unavailable</p>
+      </div>
+    </noscript>
+  </div>
+ 
 </section>
-
-
 <!-- ══════════════════════════════════════════════
      REFERENCES
 ══════════════════════════════════════════════ -->
