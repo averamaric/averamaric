@@ -356,15 +356,19 @@
       border-bottom: 1px solid #ddd;
       font-size: 0.75rem;
     }
-    .footer-note {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: var(--gray);
-      font-size: 0.7rem;
-      color: #555;
-      text-align: center;
-      border-top: 2px solid var(--orange);
+     footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 2rem;
     }
+    footer a { color: #aaa; text-decoration: none; font-size: 0.8rem; margin-left: 1.5rem; }
+    footer a:hover { color: var(--orange); }
+
     .why-table { width: 100%; border-collapse: collapse; }
     .why-table tr { border-bottom: 1px solid #ccc; }
     .why-table tr:first-child { border-top: 1px solid #ccc; }
