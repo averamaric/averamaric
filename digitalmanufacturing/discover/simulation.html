@@ -1423,7 +1423,7 @@ function showScenario(key) {
           <span class="tag tag-green" style="font-size:0.6rem;">✅ Met</span>
         </div>
         <div style="padding:0.75rem 1rem;background:#f0fff4;border-top:2px solid #27ae60;">
-          <p style="font-size:0.7rem;color:#27ae60;font-weight:600;line-height:1.5;">✅ A single extra printer is the marginal investment that unlocks the target. 1 operator is sufficient — every additional operator beyond 1 (except 2) produces the same result.</p>
+          <p style="font-size:0.7rem;color:#27ae60;font-weight:600;line-height:1.5;">✅ A single extra printer is the marginal investment that unlocks the target. 1 operator is sufficient every additional operator beyond 1 (except 2) produces the same result.</p>
         </div>
       </div>
     </div>
@@ -1447,10 +1447,10 @@ function showScenario(key) {
       <span style="font-family:var(--font-display);font-size:2rem;color:#f39c12;">⚠</span>
       <h3 style="font-family:var(--font-condensed);font-weight:900;font-size:1rem;text-transform:uppercase;letter-spacing:0.08em;">Why does 2 operators produce fewer units than 1? (29 printers: 50,994 vs 51,030)</h3>
     </div>
-    <p style="font-size:0.85rem;color:#555;line-height:1.7;max-width:860px;">
+    <p style="font-size:0.85rem;color:#555;line-height:1.7;max-width:2000px;">
       This is a characteristic behaviour of discrete-event simulation that pure theory cannot expose. With <strong>1 operator</strong>, the system is entirely sequential — the single worker follows a fixed, unambiguous route through the printer farm with no resource contention. With <strong>2 operators</strong>, both workers share the same buffers, carriers, and CP Lab stations. At certain moments, both operators arrive at the same resource simultaneously, creating micro-level queuing and a brief deadlock. Accumulated over 252 simulated days, this results in ~36 fewer units produced.
     </p>
-    <p style="font-size:0.85rem;color:#555;line-height:1.7;max-width:860px;margin-top:0.75rem;">
+    <p style="font-size:0.85rem;color:#555;line-height:1.7;max-width:2000px;margin-top:0.75rem;">
       From 3 operators onward the system stabilises at 51,030 enough workers exist to absorb contention without competing for the same resource at the same instant. This non-linear behaviour is <strong>invisible to analytical calculation</strong> and is one of the strongest arguments for simulation-based capacity planning.
     </p>
   </div>
