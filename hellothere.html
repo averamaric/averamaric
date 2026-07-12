@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analucia Vera</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #E63329;
+      --blue:   #2155A3;
+      --yellow: #F5C800;
+      --green:  #2D9B4E;
+      --black:  #111111;
+      --white:  #FFFFFF;
+      --gray:   #555555;
+      --light:  #F4F4F4;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      overflow-x: hidden;
+    }
+
+    /* ── CANVAS ── */
+    .card {
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+    }
+
+    /* ── LINES SECTION ── */
+    .lines-wrap {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .lines-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── CONTENT SECTION ── */
+    .content {
+      padding: 2rem 0 0;
+    }
+
+    .name {
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--black);
+    }
+
+    .name strong {
+      font-weight: 700;
+      display: block;
+    }
+
+    .role {
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* thin rule — matches the card aesthetic */
+    .rule {
+      margin: 1.6rem 0;
+      width: 100%;
+      height: 1px;
+      background: #ddd;
+      position: relative;
+    }
+
+    /* colored tick marks on the rule, echoing the card lines */
+    .rule::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 0;
+      width: 32px;
+      height: 7px;
+      background: var(--red);
+    }
+
+    .rule::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 36px;
+      width: 16px;
+      height: 7px;
+      background: var(--blue);
+    }
+
+    /* ── BUTTONS ── */
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--black);
+      color: var(--black);
+      background: var(--white);
+      transition: background 0.18s, color 0.18s, border-color 0.18s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* left colored accent strip on each button */
+    .btn::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+    }
+
+    .btn-linkedin::before { background: var(--blue); }
+    .btn-cv::before       { background: var(--red); }
+
+    .btn-linkedin:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+    }
+
+    .btn-cv:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: var(--white);
+    }
+
+    .btn-label {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding-left: 0.4rem;
+    }
+
+    .btn-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .btn-arrow {
+      font-size: 1rem;
+      line-height: 1;
+      transition: transform 0.18s;
+    }
+
+    .btn:hover .btn-arrow { transform: translateX(4px); }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin-top: 2.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* four small colored dots echoing the card lines */
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .dot-r { background: var(--red); }
+    .dot-b { background: var(--blue); }
+    .dot-y { background: var(--yellow); }
+    .dot-g { background: var(--green); }
+
+    .footer-text {
+      margin-left: 0.4rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      .btn, .btn-arrow { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<main class="card" role="main">
+
+  <!-- LINES — drawn via SVG to match card exactly -->
+  <div class="lines-wrap" aria-hidden="true">
+    <svg class="lines-canvas" viewBox="0 0 420 200"
+         preserveAspectRatio="xMidYMid slice"
+         xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Horizontal black lines — uniform, edge to edge -->
+      <g stroke="#111" stroke-width="0.9">
+        <line x1="0" y1="12"  x2="420" y2="12"/>
+        <line x1="0" y1="22"  x2="420" y2="22"/>
+        <line x1="0" y1="32"  x2="420" y2="32"/>
+        <line x1="0" y1="42"  x2="420" y2="42"/>
+        <line x1="0" y1="52"  x2="420" y2="52"/>
+        <line x1="0" y1="62"  x2="420" y2="62"/>
+        <line x1="0" y1="72"  x2="420" y2="72"/>
+        <line x1="0" y1="82"  x2="420" y2="82"/>
+        <line x1="0" y1="92"  x2="420" y2="92"/>
+        <line x1="0" y1="102" x2="420" y2="102"/>
+        <line x1="0" y1="112" x2="420" y2="112"/>
+        <line x1="0" y1="122" x2="420" y2="122"/>
+        <line x1="0" y1="132" x2="420" y2="132"/>
+        <line x1="0" y1="142" x2="420" y2="142"/>
+        <line x1="0" y1="152" x2="420" y2="152"/>
+        <line x1="0" y1="162" x2="420" y2="162"/>
+        <line x1="0" y1="172" x2="420" y2="172"/>
+        <line x1="0" y1="182" x2="420" y2="182"/>
+        <line x1="0" y1="192" x2="420" y2="192"/>
+      </g>
+
+      <!-- Colored accent lines — same palette as business card -->
+      <!-- Red — horizontal, left -->
+      <line x1="0"   y1="18"  x2="200" y2="18"  stroke="#E63329" stroke-width="2.2"/>
+      <!-- Red — top right -->
+      <line x1="280" y1="8"   x2="420" y2="8"   stroke="#E63329" stroke-width="2.2"/>
+
+      <!-- Yellow -->
+      <line x1="0"   y1="62"  x2="170" y2="62"  stroke="#F5C800" stroke-width="1.8"/>
+
+      <!-- Green — horizontal -->
+      <line x1="0"   y1="78"  x2="140" y2="78"  stroke="#2D9B4E" stroke-width="1.8"/>
+      <!-- Green — diagonal -->
+      <line x1="80"  y1="55"  x2="230" y2="95"  stroke="#2D9B4E" stroke-width="1.6"/>
+
+      <!-- Blue — horizontal -->
+      <line x1="200" y1="112" x2="380" y2="112" stroke="#2155A3" stroke-width="2"/>
+      <!-- Blue — short right -->
+      <line x1="340" y1="145" x2="420" y2="145" stroke="#2155A3" stroke-width="1.6"/>
+
+      <!-- Red — vertical -->
+      <line x1="300" y1="52"  x2="300" y2="130" stroke="#E63329" stroke-width="2"/>
+
+      <!-- Yellow — vertical -->
+      <line x1="360" y1="95"  x2="360" y2="175" stroke="#F5C800" stroke-width="1.6"/>
+
+      <!-- Green — small block (dot-like) -->
+      <rect x="388" y="106" width="8" height="8" fill="#2D9B4E"/>
+
+      <!-- Blue — small block -->
+      <rect x="388" y="130" width="8" height="8" fill="#2155A3"/>
+
+      <!-- Red diagonal accent top-left -->
+      <line x1="0"   y1="38"  x2="200" y2="28"  stroke="#E63329" stroke-width="1.4"/>
+
+      <!-- Green diagonal -->
+      <line x1="0"   y1="68"  x2="230" y2="95"  stroke="#2D9B4E" stroke-width="1.4"/>
+
+      <!-- vertical grid lines right side — same as card -->
+      <g stroke="#111" stroke-width="0.6">
+        <line x1="350" y1="85"  x2="350" y2="200"/>
+        <line x1="365" y1="95"  x2="365" y2="200"/>
+        <line x1="380" y1="105" x2="380" y2="200"/>
+        <line x1="395" y1="115" x2="395" y2="200"/>
+        <line x1="410" y1="125" x2="410" y2="200"/>
+      </g>
+      <g stroke="#111" stroke-width="0.6">
+        <line x1="320" y1="120" x2="320" y2="200"/>
+        <line x1="335" y1="130" x2="335" y2="200"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <!-- NAME + ROLE -->
+  <div class="content">
+    <h1 class="name">
+      Analucia<strong>Vera</strong>
+    </h1>
+    <p class="role">Automation Engineer</p>
+
+    <div class="rule" aria-hidden="true"></div>
+
+    <!-- ACTIONS -->
+    <nav class="actions" aria-label="Links">
+
+      <a href="YOUR_LINKEDIN_URL_HERE"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn btn-linkedin">
+        <span class="btn-label">
+          <!-- LinkedIn icon -->
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/>
+          </svg>
+          LinkedIn
+        </span>
+        <span class="btn-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a href="YOUR_CV_URL_HERE"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn btn-cv"
+         download="CV.pdf">
+        <span class="btn-label">
+          <!-- Download icon -->
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download CV
+        </span>
+        <span class="btn-arrow" aria-hidden="true">↓</span>
+      </a>
+
+    </nav>
+
+    <!-- FOOTER -->
+    <footer class="footer" aria-hidden="true">
+      <span class="dot dot-r"></span>
+      <span class="dot dot-b"></span>
+      <span class="dot dot-y"></span>
+      <span class="dot dot-g"></span>
+      <span class="footer-text">MSc Robotics &amp; Automation</span>
+    </footer>
+
+  </div>
+</main>
+
+</body>
+</html>
