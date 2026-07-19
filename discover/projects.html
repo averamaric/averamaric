@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects — Analucia Vera</title>
+  <style>
+    /* ── TOKENS (matches index.html) ── */
+    :root {
+      --red:    #E63329;
+      --blue:   #2155A3;
+      --yellow: #F5C800;
+      --green:  #2D9B4E;
+      --ink:    #111111;
+      --mid:    #444444;
+      --muted:  #888888;
+      --rule:   #DDDDDD;
+      --bg:     #FFFFFF;
+      --off:    #F7F6F3;
+
+      --f-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --f-mono: 'Courier New', Courier, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--f-sans);
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links a {
+      display: block;
+      padding: 0 1.2rem;
+      height: 56px;
+      line-height: 56px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      height: 56px;
+      padding: 0 1.4rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--bg);
+      background: var(--ink);
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--red); }
+
+    /* ── 4-COLOR RULE ── */
+    .color-rule { display: flex; height: 3px; width: 100%; }
+    .color-rule span { flex: 1; }
+    .color-rule .r { background: var(--red); }
+    .color-rule .b { background: var(--blue); }
+    .color-rule .g { background: var(--green); }
+    .color-rule .y { background: var(--yellow); }
+
+    /* ── SECTION LABELS (shared) ── */
+    .section-label {
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    /* ── PAGE HEADER ── */
+    #page-header {
+      margin-top: 56px;
+      padding: 5rem 3.5rem 3.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    #page-header .section-title { margin-top: 0.8rem; font-size: clamp(2.6rem, 6vw, 4rem); }
+    .page-intro {
+      margin-top: 1.4rem;
+      max-width: 620px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--mid);
+      font-weight: 300;
+    }
+    .page-intro strong { font-weight: 700; color: var(--ink); }
+
+    /* ── FILTER BAR ── */
+    #filter-bar {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--rule);
+      background: var(--bg);
+      color: var(--mid);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--ink); color: var(--ink); }
+    .filter-btn.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg);
+    }
+    .filter-count {
+      margin-left: 0.9rem;
+      align-self: center;
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── PROJECT ROWS ── */
+    .project-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      transition: opacity 0.25s ease, max-height 0.35s ease;
+      overflow: hidden;
+    }
+    .project-row:nth-child(even) { direction: rtl; }
+    .project-row:nth-child(even) > * { direction: ltr; }
+
+    .project-row.is-hidden {
+      opacity: 0;
+      max-height: 0;
+      border-bottom: none;
+      pointer-events: none;
+    }
+
+    .project-visual {
+      position: relative;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--off);
+      border-right: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .project-row:nth-child(even) .project-visual { border-right: none; border-left: 1px solid var(--rule); }
+
+    .project-visual::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      z-index: 2;
+    }
+    .project-visual.r::before { background: var(--red); }
+    .project-visual.b::before { background: var(--blue); }
+    .project-visual.g::before { background: var(--green); }
+    .project-visual.y::before { background: var(--yellow); }
+
+    /* ── GALLERY ── */
+    .gallery {
+      position: relative;
+      width: 100%;
+    }
+    .gallery-viewport {
+      overflow: hidden;
+      width: 100%;
+    }
+    .gallery-track {
+      display: flex;
+      transition: transform 0.35s ease;
+    }
+    .gallery-slide {
+      flex: 0 0 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+      padding: 0 2.2rem;
+    }
+    .gallery-slide svg { width: 100%; max-width: 320px; height: auto; }
+    .gallery-slide img, .gallery-slide video {
+      width: 100%;
+      max-height: 260px;
+      object-fit: cover;
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      max-width: 320px;
+      min-height: 160px;
+      border: 1.5px dashed var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid var(--ink);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 3;
+      transition: background 0.2s, color 0.2s;
+    }
+    .gallery-arrow:hover { background: var(--ink); color: var(--bg); }
+    .gallery-arrow.prev { left: 0.6rem; }
+    .gallery-arrow.next { right: 0.6rem; }
+    .gallery.single-slide .gallery-arrow { display: none; }
+
+    .gallery-dots {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+    .gallery-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      border: 1px solid var(--muted);
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+    }
+    .gallery-dot.active { background: var(--ink); border-color: var(--ink); }
+    .gallery.single-slide .gallery-dots { display: none; }
+
+    .visual-caption {
+      margin-top: 1rem;
+      font-family: var(--f-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .project-content {
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-tag {
+      display: inline-block;
+      font-family: var(--f-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+    .project-tag.r { color: var(--red); }
+    .project-tag.b { color: var(--blue); }
+    .project-tag.g { color: var(--green); }
+    .project-tag.y { color: var(--yellow); }
+
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .project-badge {
+      display: inline-block;
+      margin-left: 0.6rem;
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    .project-desc {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--mid);
+      margin-bottom: 1.6rem;
+    }
+
+    .project-desc ul { margin: 0.8rem 0 0 1.1rem; }
+    .project-desc li { margin-bottom: 0.5rem; }
+
+    .tech-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      padding: 0.25rem 0.7rem;
+      font-family: var(--f-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--rule);
+      color: var(--mid);
+      background: var(--bg);
+    }
+
+    /* ── CLOSING CTA ── */
+    #proj-cta {
+      padding: 4.5rem 3.5rem;
+      text-align: center;
+    }
+    #proj-cta p {
+      font-size: 1rem;
+      color: var(--mid);
+      margin-bottom: 1.6rem;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.6rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--bg);
+      background: var(--ink);
+      border: 1.5px solid var(--ink);
+      transition: background 0.2s, color 0.2s;
+    }
+    .cta-btn:hover { background: var(--red); border-color: var(--red); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2.5rem 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .foot-left {
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .foot-dots { display: flex; align-items: center; gap: 0.4rem; }
+    .foot-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ── UTILITY ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      #page-header { padding: 3rem 1.5rem 2rem; }
+      .project-row, .project-row:nth-child(even) { grid-template-columns: 1fr; direction: ltr; }
+      .project-visual, .project-row:nth-child(even) .project-visual {
+        border-right: none; border-left: none; border-bottom: 1px solid var(--rule);
+        padding: 2.5rem 1.5rem;
+      }
+      .project-content { padding: 2.5rem 1.5rem; }
+      #proj-cta { padding: 3rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../../index.html">Analucia V.M.</a>
+  <ul class="nav-links">
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="../profile.html">Profile</a></li>
+  </ul>
+  <a class="nav-cta" href="../profile.html#contact">Get in touch →</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<header id="page-header">
+  <span class="section-label">Selected work</span>
+  <h1 class="section-title">Projects</h1>
+  <p class="page-intro">
+    Six problems from the last three years, <strong>PLC control, IoT pipelines, microgrid research,
+    robotics, and precision agriculture</strong>, each solved end-to-end, from spec to working system.
+  </p>
+  <div id="filter-bar" role="group" aria-label="Filter projects by category">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="plc">PLC</button>
+    <button class="filter-btn" data-filter="hmi">HMI</button>
+    <button class="filter-btn" data-filter="scada">SCADA</button>
+    <button class="filter-btn" data-filter="iot">IoT</button>
+    <button class="filter-btn" data-filter="robotics">Robotics</button>
+    <span class="filter-count" id="filter-count"></span>
+  </div>
+</header>
+
+<!-- PROJECT 1 — A-frame dispensing system -->
+<section class="project-row fade-up" data-tags="plc hmi">
+  <div class="project-visual r">
+    <div class="gallery">
+      <div class="gallery-viewport">
+        <div class="gallery-track">
+          <div class="gallery-slide">
+            <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="30" y="20" width="90" height="60" rx="2" fill="none" stroke="#111" stroke-width="1.2"/>
+              <text x="75" y="55" text-anchor="middle" font-family="Courier New" font-size="9" fill="#444">HMI</text>
+              <line x1="120" y1="50" x2="170" y2="50" stroke="#E63329" stroke-width="1.6"/>
+              <rect x="170" y="20" width="90" height="60" rx="2" fill="none" stroke="#E63329" stroke-width="1.4"/>
+              <text x="215" y="55" text-anchor="middle" font-family="Courier New" font-size="9" fill="#E63329">WAGO PLC</text>
+              <line x1="150" y1="80" x2="150" y2="120" stroke="#111" stroke-width="1.2"/>
+              <polygon points="110,120 190,120 165,180 135,180" fill="none" stroke="#111" stroke-width="1.4"/>
+              <line x1="135" y1="180" x2="135" y2="200" stroke="#111" stroke-width="1.2"/>
+              <line x1="165" y1="180" x2="165" y2="200" stroke="#111" stroke-width="1.2"/>
+              <rect x="115" y="200" width="70" height="12" fill="none" stroke="#E63329" stroke-width="1.2"/>
+              <g stroke="#111" stroke-width="0.6" opacity="0.5">
+                <line x1="0" y1="10" x2="300" y2="10"/>
+                <line x1="0" y1="210" x2="300" y2="210"/>
+              </g>
+            </svg>
+          </div>
+          <div class="gallery-slide">
+           <img src="ruta-a-tu-foto.jpg" alt="Descripción de la foto">
+          </div>
+        </div>
+      </div>
+      <button class="gallery-arrow prev" aria-label="Previous image">‹</button>
+      <button class="gallery-arrow next" aria-label="Next image">›</button>
+      <div class="gallery-dots"></div>
+    </div>
+    <p class="visual-caption">Schematic — swap for real photos/video</p>
+  </div>
+  <div class="project-content">
+    <span class="project-tag r">PLC · SCADA</span>
+    <h2 class="project-title">Industrial A-frame dispensing system</h2>
+    <p class="project-meta">Grüum · Stockport, UK · 01/2026 – Present</p>
+    <p class="project-desc">
+      Built an automated dispensing system from the ground up. Selected components and designed
+      the safety circuit to meet compliance standards, then programmed the core control logic on a
+      WAGO PLC using IEC 61131-3. Designed the HMI and set up PLC-to-HMI communication over Modbus TCP
+      for full operator control.
+    </p>
+    <p class="project-desc">
+      Integrated the purchase order system directly with the PLC through API REST, so incoming orders automatically
+      trigger the right dispensing sequence, no manual entry needed. Ran acceptance testing,
+      debugged logic in the field, and documented the full electrical design and operational navigation for handover.
+    </p>
+    <div class="tech-strip">
+      <span class="tag">WAGO PLC</span>
+      <span class="tag">IEC 61131-3</span>
+      <span class="tag">HMI Design</span>
+      <span class="tag">Modbus TCP Comms</span>
+      <span class="tag">Entire Circuit Design</span>
+      <span class="tag">Structure Design</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 2 — Commission Anywhere -->
+<section class="project-row fade-up" data-tags="plc iot robotics" >
+  <div class="project-visual b">
+    <div class="gallery">
+      <div class="gallery-viewport">
+        <div class="gallery-track">
+          <div class="gallery-slide">
+            <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="20" y="90" width="60" height="40" rx="2" fill="none" stroke="#111" stroke-width="1.2"/>
+              <text x="50" y="113" text-anchor="middle" font-family="Courier New" font-size="8" fill="#444">CP LAB</text>
+              <line x1="80" y1="110" x2="130" y2="110" stroke="#2155A3" stroke-width="1.6"/>
+              <text x="105" y="102" text-anchor="middle" font-family="Courier New" font-size="7" fill="#2155A3">OPC-UA</text>
+              <rect x="130" y="90" width="55" height="40" rx="2" fill="none" stroke="#2155A3" stroke-width="1.4"/>
+              <text x="157" y="113" text-anchor="middle" font-family="Courier New" font-size="8" fill="#2155A3">NODE-RED</text>
+              <line x1="185" y1="110" x2="235" y2="110" stroke="#2155A3" stroke-width="1.6"/>
+              <text x="210" y="102" text-anchor="middle" font-family="Courier New" font-size="7" fill="#2155A3">MQTT</text>
+              <rect x="235" y="80" width="50" height="60" rx="2" fill="none" stroke="#111" stroke-width="1.2"/>
+              <text x="260" y="105" text-anchor="middle" font-family="Courier New" font-size="7" fill="#444">INSIGHTS</text>
+              <text x="260" y="116" text-anchor="middle" font-family="Courier New" font-size="7" fill="#444">HUB</text>
+              <rect x="245" y="122" width="12" height="10" fill="#2D9B4E"/>
+              <rect x="262" y="122" width="12" height="10" fill="#F5C800"/>
+              <circle r="2.5" fill="#2155A3">
+                <animateMotion dur="2.5s" repeatCount="indefinite" path="M80,110 L235,110"/>
+              </circle>
+            </svg>
+          </div>
+          <div class="gallery-slide">
+            <div class="gallery-placeholder">+ Add a photo or video<br>of the Festo CP Lab / dashboard here</div>
+          </div>
+        </div>
+      </div>
+      <button class="gallery-arrow prev" aria-label="Previous image">‹</button>
+      <button class="gallery-arrow next" aria-label="Next image">›</button>
+      <div class="gallery-dots"></div>
+    </div>
+    <p class="visual-caption">Schematic — swap for real photos/video</p>
+  </div>
+  <div class="project-content">
+    <span class="project-tag b">IoT Virtual Commissioning· Siemens</span>
+    <h2 class="project-title">Commission Anywhere, Control Any Robot <span class="project-badge">🥇</span></h2>
+    <p class="project-meta">Siemens Connected Curriculum · Manchester Metropolitan University · 15/07/2026</p>
+    <p class="project-desc"> Gold medal-winning project developed with a teammate for the Siemens Connected Curriculum Competition. <br><br> The project explored a new approach to virtual commissioning by enabling engineers to validate PLC and robot programs remotely, rather than relying solely on physical access to production equipment. This approach promotes global collaboration, reduces commissioning costs, minimizes travel-related emissions, and accelerates development cycles. </p>
+
+<p class="project-desc"> To achieve this, we developed a remote virtual commissioning environment that accurately mirrored the behavior of a real production line. The solution allowed engineers to use the Siemens Simatic Robot Programming Suite (SRPS) to test and validate robot programs in a realistic virtual environment, as if they were working directly on the shop floor. </p>
+
+<p class="project-desc"> We identified and acquired the relevant process signals from the output station of the Festo CP Lab mobile phone production line, implemented an OPC UA-based data acquisition system, transformed the data into MQTT messages for secure internet transmission, and streamed the information through a Node-RED pipeline into the Siemens virtual environment, enabling real-time synchronization between the physical and virtual systems. </p>
+    <div class="tech-strip">
+      <span class="tag">OPC-UA</span>
+      <span class="tag">Node-RED</span>
+      <span class="tag">MQTT</span>
+      <span class="tag">HiveMQ</span>
+      <span class="tag">Siemens NX</span>
+      <span class="tag">PLC SIM Advanced</span>
+      <span class="tag">Tia Portal</span>
+      <span class="tag">Simatic Robot Programming Suite</span>
+    </div>
+  </div>
+</section>
+  
+  <!-- PROJECT 3 — Microgrid testbed -->
+<section class="project-row fade-up" data-tags="plc hmi">
+  <div class="project-visual g">
+    <div class="gallery">
+      <div class="gallery-viewport">
+        <div class="gallery-track">
+          <div class="gallery-slide">
+            <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="30" y="70" width="70" height="50" rx="2" fill="none" stroke="#2D9B4E" stroke-width="1.4"/>
+              <text x="65" y="98" text-anchor="middle" font-family="Courier New" font-size="8" fill="#2D9B4E">RTAC</text>
+              <text x="65" y="108" text-anchor="middle" font-family="Courier New" font-size="7" fill="#2D9B4E">SEL 3555</text>
+              <line x1="100" y1="95" x2="150" y2="95" stroke="#111" stroke-width="1.6"/>
+              <text x="125" y="87" text-anchor="middle" font-family="Courier New" font-size="7" fill="#444">DNP3</text>
+              <rect x="150" y="70" width="80" height="50" rx="2" fill="none" stroke="#111" stroke-width="1.2"/>
+              <text x="190" y="92" text-anchor="middle" font-family="Courier New" font-size="8" fill="#444">OPAL-RT</text>
+              <text x="190" y="104" text-anchor="middle" font-family="Courier New" font-size="7" fill="#888">microgrid sim</text>
+              <line x1="65" y1="120" x2="65" y2="160" stroke="#2D9B4E" stroke-width="1.4"/>
+              <rect x="20" y="160" width="90" height="35" rx="2" fill="none" stroke="#111" stroke-width="1.2"/>
+              <text x="65" y="181" text-anchor="middle" font-family="Courier New" font-size="7" fill="#444">SCADA · NODE-RED</text>
+              <circle cx="190" cy="150" r="4" fill="#F5C800"/>
+              <circle cx="210" cy="150" r="4" fill="#E63329"/>
+              <circle cx="230" cy="150" r="4" fill="#2155A3"/>
+              <line x1="190" y1="150" x2="190" y2="120" stroke="#888" stroke-width="0.8"/>
+              <line x1="210" y1="150" x2="210" y2="120" stroke="#888" stroke-width="0.8"/>
+              <line x1="230" y1="150" x2="230" y2="120" stroke="#888" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <div class="gallery-track">
+            <div class="gallery-slide">
+              <video controls><source src="assets/video/Video Project.mp4" type="video/mp4"></video>
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/Screenshot 2026-01-21 145116.png" alt="HMI - Overview">
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/Screenshot 2026-01-20 192430.png" alt="HMI - Automatic">
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/Screenshot 2026-01-20 192355.png" alt="HMI - Manual">
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/Screenshot 2026-01-19 175337.png" alt="Tia Portal">
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/Screenshot 2025-12-06 221243.png" alt="Siemens NX">
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="gallery-arrow prev" aria-label="Previous image">‹</button>
+      <button class="gallery-arrow next" aria-label="Next image">›</button>
+      <div class="gallery-dots"></div>
+    </div>
+    <p class="visual-caption">Schematic — swap for real photos/video</p>
+  </div>
+  <div class="project-content">
+    <span class="project-tag g">Project</span>
+    <h2 class="project-title">Virtual Commissioning</h2>
+    <p class="project-meta">Manchester Metropolitan University</p>
+    <p class="project-desc">
+      Developed the virtual environment for a digital twin of the Festo CP Lab output station. Prepared and configured the CAD model in Siemens NX by assigning physical properties and defining the simulation behavior required to accurately replicate the real system.
+    </p>
+    <p class="project-desc">
+      Configured and mapped the control parameters between the physical station and its digital counterpart, enabling the virtual model to operate as the production system. Programmed the PLC to implement the station's operating modes, including automatic, semi-automatic, and manual control, as well as the complete alarm handling logic. Additionally, designed and developed the HMI to provide intuitive monitoring and control of the station.
+    </p>
+    <div class="tech-strip">
+      <span class="tag">Tia Portal</span>
+      <span class="tag">PLC SIM Advanced</span>
+      <span class="tag">Siemens NX</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROJECT 3 — Microgrid testbed -->
+<section class="project-row fade-up" data-tags="plc iot scada">
+  <div class="project-visual g">
+    <div class="gallery">
+      <div class="gallery-viewport">
+        <div class="gallery-track">
+          <div class="gallery-slide">
+            <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="30" y="70" width="70" height="50" rx="2" fill="none" stroke="#2D9B4E" stroke-width="1.4"/>
+              <text x="65" y="98" text-anchor="middle" font-family="Courier New" font-size="8" fill="#2D9B4E">RTAC</text>
+              <text x="65" y="108" text-anchor="middle" font-family="Courier New" font-size="7" fill="#2D9B4E">SEL 3555</text>
+              <line x1="100" y1="95" x2="150" y2="95" stroke="#111" stroke-width="1.6"/>
+              <text x="125" y="87" text-anchor="middle" font-family="Courier New" font-size="7" fill="#444">DNP3</text>
+              <rect x="150" y="70" width="80" height="50" rx="2" fill="none" stroke="#111" stroke-width="1.2"/>
+              <text x="190" y="92" text-anchor="middle" font-family="Courier New" font-size="8" fill="#444">OPAL-RT</text>
+              <text x="190" y="104" text-anchor="middle" font-family="Courier New" font-size="7" fill="#888">microgrid sim</text>
+              <line x1="65" y1="120" x2="65" y2="160" stroke="#2D9B4E" stroke-width="1.4"/>
+              <rect x="20" y="160" width="90" height="35" rx="2" fill="none" stroke="#111" stroke-width="1.2"/>
+              <text x="65" y="181" text-anchor="middle" font-family="Courier New" font-size="7" fill="#444">SCADA · NODE-RED</text>
+              <circle cx="190" cy="150" r="4" fill="#F5C800"/>
+              <circle cx="210" cy="150" r="4" fill="#E63329"/>
+              <circle cx="230" cy="150" r="4" fill="#2155A3"/>
+              <line x1="190" y1="150" x2="190" y2="120" stroke="#888" stroke-width="0.8"/>
+              <line x1="210" y1="150" x2="210" y2="120" stroke="#888" stroke-width="0.8"/>
+              <line x1="230" y1="150" x2="230" y2="120" stroke="#888" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <div class="gallery-slide">
+            <div class="gallery-placeholder">+ Add a photo or video<br>of the RTAC / OPAL-RT rig here</div>
+          </div>
+        </div>
+      </div>
+      <button class="gallery-arrow prev" aria-label="Previous image">‹</button>
+      <button class="gallery-arrow next" aria-label="Next image">›</button>
+      <div class="gallery-dots"></div>
+    </div>
+    <p class="visual-caption">Schematic — swap for real photos/video</p>
+  </div>
+  <div class="project-content">
+    <span class="project-tag g">Research</span>
+    <h2 class="project-title">Microgrid control testbed</h2>
+    <p class="project-meta">Research Assistant · Manchester Metropolitan University · 12/2025 – 05/2026</p>
+    <p class="project-desc">
+      Programmed an RTAC SEL 3555 PLC/gateway to implement PID control over a simulated microgrid
+      running on OPAL-RT, with bidirectional DNP3 communication and Modbus TCP bidirectional communication, linking the microgrid simulation to a two-level industrial control testbed used for cybersecurity research.
+    </p>
+    <p class="project-desc">
+      Established the communications between the devices, programmed the RTAC as a PID control system, mapped and addressed signals inside the RTAC to keep data flowing cleanly
+      between control levels and built the SCADA layer in Node-RED, with bidirectional comms back to the RTAC for real-time
+      monitoring and control.
+    </p>
+    <div class="tech-strip">
+      <span class="tag">RTAC SEL 3555</span>
+      <span class="tag">OPAL-RT</span>
+      <span class="tag">DNP3</span>
+      <span class="tag">ModbusTCP</span>
+      <span class="tag">Node-RED SCADA</span>
+      <span class="tag">PID Control</span>
+      <span class="tag">HIL</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 4 — YuMi candle automation -->
+<section class="project-row fade-up" data-tags="robotics">
+  <div class="project-visual y">
+    <div class="gallery">
+      <div class="gallery-viewport">
+        <div class="gallery-track">
+          <div class="gallery-slide">
+            <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="150" cy="50" r="10" fill="none" stroke="#111" stroke-width="1.4"/>
+              <line x1="140" y1="55" x2="90" y2="100" stroke="#F5C800" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="90" y1="100" x2="70" y2="150" stroke="#F5C800" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="160" y1="55" x2="210" y2="100" stroke="#2D9B4E" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="210" y1="100" x2="230" y2="150" stroke="#2D9B4E" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="70" cy="150" r="5" fill="none" stroke="#111" stroke-width="1.2"/>
+              <circle cx="230" cy="150" r="5" fill="none" stroke="#111" stroke-width="1.2"/>
+              <ellipse cx="150" cy="180" rx="24" ry="10" fill="none" stroke="#111" stroke-width="1.2"/>
+              <line x1="126" y1="180" x2="126" y2="160" stroke="#111" stroke-width="1.2"/>
+              <line x1="174" y1="180" x2="174" y2="160" stroke="#111" stroke-width="1.2"/>
+              <line x1="126" y1="160" x2="174" y2="160" stroke="#111" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="gallery-slide">
+            <div class="gallery-placeholder">+ Add a photo or video<br>of the YuMi cell here</div>
+          </div>
+        </div>
+      </div>
+      <button class="gallery-arrow prev" aria-label="Previous image">‹</button>
+      <button class="gallery-arrow next" aria-label="Next image">›</button>
+      <div class="gallery-dots"></div>
+    </div>
+    <p class="visual-caption">Schematic — swap for real photos/video</p>
+  </div>
+  <div class="project-content">
+    <span class="project-tag y">Robotics</span>
+    <h2 class="project-title">ABB YuMi candle automation assessment</h2>
+    <p class="project-meta">Siemens Connected Curriculum Intern · Manchester Metropolitan University · 05/2026 – 07/2026</p>
+    <p class="project-desc">
+      Used the ABB YuMi dual-arm robot to study whether, and how, a candle-making process could
+      be automated: placing the wick with wax, then filling the cup. Programmed synchronised
+      dual-arm motion in RobotStudio using RAPID.
+    </p>
+    <p class="project-desc">
+      Delivered an assessment of how well-suited the robot's dual-arm design and reach were for
+      the process, informing whether it's worth pursuing as a real production solution.
+    </p>
+    <div class="tech-strip">
+      <span class="tag">ABB YuMi</span>
+      <span class="tag">RobotStudio</span>
+      <span class="tag">RAPID</span>
+      <span class="tag">Process Feasibility Assessment</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 4 — YuMi candle automation -->
+<section class="project-row fade-up" data-tags="iot">
+  <div class="project-visual y">
+    <div class="gallery">
+      <div class="gallery-viewport">
+        <div class="gallery-track">
+          <div class="gallery-slide">
+            <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="150" cy="50" r="10" fill="none" stroke="#111" stroke-width="1.4"/>
+              <line x1="140" y1="55" x2="90" y2="100" stroke="#F5C800" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="90" y1="100" x2="70" y2="150" stroke="#F5C800" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="160" y1="55" x2="210" y2="100" stroke="#2D9B4E" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="210" y1="100" x2="230" y2="150" stroke="#2D9B4E" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="70" cy="150" r="5" fill="none" stroke="#111" stroke-width="1.2"/>
+              <circle cx="230" cy="150" r="5" fill="none" stroke="#111" stroke-width="1.2"/>
+              <ellipse cx="150" cy="180" rx="24" ry="10" fill="none" stroke="#111" stroke-width="1.2"/>
+              <line x1="126" y1="180" x2="126" y2="160" stroke="#111" stroke-width="1.2"/>
+              <line x1="174" y1="180" x2="174" y2="160" stroke="#111" stroke-width="1.2"/>
+              <line x1="126" y1="160" x2="174" y2="160" stroke="#111" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="gallery-slide">
+            <div class="gallery-placeholder">+ Add a photo or video<br>of the YuMi cell here</div>
+          </div>
+        </div>
+      </div>
+      <button class="gallery-arrow prev" aria-label="Previous image">‹</button>
+      <button class="gallery-arrow next" aria-label="Next image">›</button>
+      <div class="gallery-dots"></div>
+    </div>
+    <p class="visual-caption">Schematic — swap for real photos/video</p>
+  </div>
+  <div class="project-content">
+    <span class="project-tag y">Robotics</span>
+    <h2 class="project-title">IoT Data analysis dashboards</h2>
+    <p class="project-meta">Siemens Connected Curriculum Intern · Manchester Metropolitan University · 05/2026 – 07/2026</p>
+    <p class="project-desc">
+      Designed and deployed the data acquisition architecture for the complete Festo CP Lab (6 stations), including the acquisition of physical process signals. Implemented a Node-RED-based data collection pipeline using OPC UA and integrated it with Siemens Insights Hub to enable data analysis, visualization, and KPI monitoring.
+    </p>
+    <p class="project-desc">
+      Developed interactive dashboards that transformed raw process data into actionable insights. Created visualizations for station-level and end-to-end cycle times based on product type, estimated oven power consumption, analyzed empty pallet circulation throughout the system, measured conveyor idle time after pallet departure, and implemented additional operational analytics to support process optimization and performance monitoring.
+    </p>
+    <div class="tech-strip">
+      <span class="tag">Node-RED</span>
+      <span class="tag">Insight Hub</span>
+      <span class="tag">OPC UA</span>
+      <span class="tag">Data Analysis</span>
+    </div>
+  </div>
+</section>
+  
+<!-- PROJECT 5 — Rwanda soil monitoring -->
+<section class="project-row fade-up" data-tags="iot">
+  <div class="project-visual g">
+    <div class="gallery">
+      <div class="gallery-viewport">
+        <div class="gallery-track">
+          <div class="gallery-slide">
+            <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g stroke="#2D9B4E" stroke-width="1.2" fill="none">
+                <circle cx="40" cy="150" r="6"/>
+                <circle cx="90" cy="170" r="6"/>
+                <circle cx="140" cy="145" r="6"/>
+                <circle cx="190" cy="175" r="6"/>
+                <circle cx="240" cy="150" r="6"/>
+              </g>
+              <path d="M40,144 Q40,120 60,110" stroke="#2D9B4E" stroke-width="1" fill="none" opacity="0.6"/>
+              <path d="M90,164 Q90,120 130,105" stroke="#2D9B4E" stroke-width="1" fill="none" opacity="0.6"/>
+              <path d="M140,139 Q140,110 150,95" stroke="#2D9B4E" stroke-width="1" fill="none" opacity="0.6"/>
+              <path d="M190,169 Q190,120 165,100" stroke="#2D9B4E" stroke-width="1" fill="none" opacity="0.6"/>
+              <path d="M240,144 Q240,120 200,100" stroke="#2D9B4E" stroke-width="1" fill="none" opacity="0.6"/>
+              <rect x="130" y="70" width="40" height="28" rx="2" fill="none" stroke="#111" stroke-width="1.3"/>
+              <text x="150" y="88" text-anchor="middle" font-family="Courier New" font-size="7" fill="#444">TINYML</text>
+              <path d="M170 60 a12 12 0 0 1 12 12" stroke="#F5C800" stroke-width="1.4" fill="none"/>
+              <path d="M170 52 a20 20 0 0 1 20 20" stroke="#F5C800" stroke-width="1.2" fill="none" opacity="0.7"/>
+              <text x="200" y="45" font-family="Courier New" font-size="7" fill="#F5C800">LoRa</text>
+              <line x1="0" y1="192" x2="300" y2="192" stroke="#111" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <div class="gallery-slide">
+            <div class="gallery-placeholder">+ Add a photo or video<br>of the field deployment here</div>
+          </div>
+        </div>
+      </div>
+      <button class="gallery-arrow prev" aria-label="Previous image">‹</button>
+      <button class="gallery-arrow next" aria-label="Next image">›</button>
+      <div class="gallery-dots"></div>
+    </div>
+    <p class="visual-caption">Schematic — swap for real photos/video</p>
+  </div>
+  <div class="project-content">
+    <span class="project-tag g">IoT · TinyML</span>
+    <h2 class="project-title">Cassava farming soil monitoring, Rwanda</h2>
+    <p class="project-meta">Research Secondment · University of Kigali · Kigali, Rwanda · 07/2026 – 08/2026</p>
+    <p class="project-desc">
+      A precision-agriculture pilot monitoring soil and environmental conditions across one hectare
+      of cassava farmland using five 7-in-1 soil sensors, each forwarding data wirelessly to an
+      Arduino Nano 33 BLE Sense.
+    </p>
+    <p class="project-desc">
+      Developing a lightweight ML model that runs directly on the microcontroller (TinyML) to
+      predict environmental conditions and crop yield/quality, with readings transmitted to the
+      cloud over LoRa and visualised on a farmer-facing dashboard — aimed at helping farmers make
+      timely interventions.
+    </p>
+    <div class="tech-strip">
+      <span class="tag">TinyML</span>
+      <span class="tag">Arduino Nano 33 BLE Sense</span>
+      <span class="tag">LoRa</span>
+      <span class="tag">Soil Sensors</span>
+      <span class="tag">Dashboard Design</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 6 — CEIT tic-tac-toe / portrait robot -->
+<section class="project-row fade-up" data-tags="robotics">
+  <div class="project-visual r">
+    <div class="gallery">
+      <div class="gallery-viewport">
+        <div class="gallery-track">
+          <div class="gallery-slide">
+            <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g stroke="#111" stroke-width="1.3">
+                <line x1="90" y1="40" x2="90" y2="160"/>
+                <line x1="150" y1="40" x2="150" y2="160"/>
+                <line x1="60" y1="70" x2="180" y2="70"/>
+                <line x1="60" y1="130" x2="180" y2="130"/>
+              </g>
+              <line x1="65" y1="45" x2="85" y2="65" stroke="#E63329" stroke-width="2"/>
+              <line x1="85" y1="45" x2="65" y2="65" stroke="#E63329" stroke-width="2"/>
+              <circle cx="120" cy="55" r="9" fill="none" stroke="#2155A3" stroke-width="2"/>
+              <line x1="95" y1="95" x2="115" y2="115" stroke="#E63329" stroke-width="2"/>
+              <line x1="115" y1="95" x2="95" y2="115" stroke="#E63329" stroke-width="2"/>
+              <circle cx="165" cy="105" r="9" fill="none" stroke="#2155A3" stroke-width="2"/>
+              <circle cx="70" cy="145" r="9" fill="none" stroke="#2155A3" stroke-width="2"/>
+              <text x="150" y="195" text-anchor="middle" font-family="Courier New" font-size="8" fill="#888">20,000+ move combinations</text>
+            </svg>
+          </div>
+          <div class="gallery-slide">
+            <div class="gallery-placeholder">+ Add a photo or video<br>of the robot / portrait output here</div>
+          </div>
+        </div>
+      </div>
+      <button class="gallery-arrow prev" aria-label="Previous image">‹</button>
+      <button class="gallery-arrow next" aria-label="Next image">›</button>
+      <div class="gallery-dots"></div>
+    </div>
+    <p class="visual-caption">Schematic — swap for real photos/video</p>
+  </div>
+  <div class="project-content">
+    <span class="project-tag r">Robotics</span>
+    <h2 class="project-title">AI tic-tac-toe robot &amp; portrait sketching <span class="project-badge" style="color:var(--ink)">10/10</span></h2>
+    <p class="project-meta">Robotics Intern — Final Project · CEIT / University of Navarra Tecnun · San Sebastián, Spain · 09/2022 – 12/2022</p>
+    <p class="project-desc">
+      Final degree project delivered independently as two applications. Programmed a TM5Omron robot alongside it's vision
+      system so the robot could play tic-tac-toe against a person with unbeatable logic. Optimised
+      by exploiting board symmetry to cover over 20,000 move combinations in a compact program.
+    </p>
+    <p class="project-desc">
+      Also built a portrait-sketching application, where the robot's camera captured a person's
+      face and its arm drew a rough sketch. Along the way, resolved interface issues and robot
+      limitations, adapting quickly to a proprietary programming environment. Dissertation grade:
+      <strong style="color:var(--ink); font-weight:700;">10/10 with Honours.</strong>
+    </p>
+    <div class="tech-strip">
+      <span class="tag">Computer Vision</span>
+      <span class="tag">TMFlow (Programming languaje)</span>
+      <span class="tag">Omron</span>
+      <span class="tag">Robot Arm Control</span>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section id="proj-cta">
+  <p>Want the full picture — CV, education, and how to reach me?</p>
+  <a class="cta-btn" href="../profile.html">View full profile →</a>
+</section>
+
+<!-- 4-COLOR RULE -->
+<div class="color-rule" aria-hidden="true">
+  <span class="r"></span><span class="b"></span><span class="g"></span><span class="y"></span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="foot-left">© 2026 Analucia Vera Maric · Industrial Automation Engineer</span>
+  <div class="foot-dots">
+    <span class="foot-dot" style="background:var(--red)"></span>
+    <span class="foot-dot" style="background:var(--blue)"></span>
+    <span class="foot-dot" style="background:var(--green)"></span>
+    <span class="foot-dot" style="background:var(--yellow)"></span>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // ── GALLERIES ──
+  document.querySelectorAll('.gallery').forEach(gallery => {
+    const track = gallery.querySelector('.gallery-track');
+    const slides = Array.from(gallery.querySelectorAll('.gallery-slide'));
+    const dotsWrap = gallery.querySelector('.gallery-dots');
+    const prevBtn = gallery.querySelector('.gallery-arrow.prev');
+    const nextBtn = gallery.querySelector('.gallery-arrow.next');
+    let index = 0;
+
+    if (slides.length <= 1) {
+      gallery.classList.add('single-slide');
+      return;
+    }
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, di) => d.classList.toggle('active', di === index));
+    }
+
+    prevBtn.addEventListener('click', () => goTo(index - 1));
+    nextBtn.addEventListener('click', () => goTo(index + 1));
+  });
+
+  // ── FILTERING ──
+  const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+  const rows = Array.from(document.querySelectorAll('.project-row'));
+  const countEl = document.getElementById('filter-count');
+
+  function applyFilter(tag) {
+    let visible = 0;
+    rows.forEach(row => {
+      const tags = (row.dataset.tags || '').split(' ');
+      const show = tag === 'all' || tags.includes(tag);
+      row.classList.toggle('is-hidden', !show);
+      if (show) visible++;
+    });
+    countEl.textContent = tag === 'all' ? '' : `${visible} project${visible === 1 ? '' : 's'}`;
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.filter);
+    });
+  });
+</script>
+
+</body>
+</html>
