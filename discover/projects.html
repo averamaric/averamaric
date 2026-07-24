@@ -456,6 +456,74 @@
     color: var(--bg);
   }
 
+  /* ── TASK TOGGLE (new) ── */
+  .desc-stack { position: relative; margin-bottom: 1.6rem; }
+  .desc-panel {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .desc-panel.is-hidden {
+    display: none;
+  }
+  .desc-panel.entering {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  .task-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .task-list li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.7rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--mid);
+  }
+  .task-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+  .task-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.1rem;
+    margin-bottom: 1.4rem;
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--bg);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+    width: fit-content;
+  }
+  .task-toggle-btn .arrow { transition: transform 0.25s ease; }
+  .task-toggle-btn.is-open .arrow { transform: rotate(90deg); }
+
+  .task-toggle-btn.r { border: 1.5px solid var(--red); color: var(--red); }
+  .task-toggle-btn.r:hover, .task-toggle-btn.r.is-open { background: var(--red); color: var(--bg); }
+  .task-toggle-btn.b { border: 1.5px solid var(--blue); color: var(--blue); }
+  .task-toggle-btn.b:hover, .task-toggle-btn.b.is-open { background: var(--blue); color: var(--bg); }
+  .task-toggle-btn.g { border: 1.5px solid var(--green); color: var(--green); }
+  .task-toggle-btn.g:hover, .task-toggle-btn.g.is-open { background: var(--green); color: var(--bg); }
+  .task-toggle-btn.y { border: 1.5px solid var(--yellow); color: #7a6300; }
+  .task-toggle-btn.y:hover, .task-toggle-btn.y.is-open { background: var(--yellow); color: var(--ink); }
+
+  .task-list.r li::before { background: var(--red); }
+  .task-list.b li::before { background: var(--blue); }
+  .task-list.g li::before { background: var(--green); }
+  .task-list.y li::before { background: var(--yellow); }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--rule);
@@ -622,17 +690,40 @@
     <span class="project-tag r">PLC · SCADA</span>
     <h2 class="project-title">Industrial A-frame dispensing system</h2>
     <p class="project-meta">Grüum · Stockport, UK · 01/2026 – Present</p>
-    <p class="project-desc">
-      Built an automated dispensing system from the ground up. Selected components and designed
-      the safety circuit to meet compliance standards, then programmed the core control logic on a
-      WAGO PLC using IEC 61131-3. Designed the HMI and set up PLC-to-HMI communication over Modbus TCP
-      for full operator control.
-    </p>
-    <p class="project-desc">
-      Integrated the purchase order system directly with the PLC through API REST, so incoming orders automatically
-      trigger the right dispensing sequence, no manual entry needed. Ran acceptance testing,
-      debugged logic in the field, and documented the full electrical design and operational navigation for handover.
-    </p>
+
+    <div class="desc-stack">
+      <div class="desc-panel">
+        <p class="project-desc">
+          Built an automated dispensing system from the ground up. Selected components and designed
+          the safety circuit to meet compliance standards, then programmed the core control logic on a
+          WAGO PLC using IEC 61131-3. Designed the HMI and set up PLC-to-HMI communication over Modbus TCP
+          for full operator control.
+        </p>
+        <p class="project-desc">
+          Integrated the purchase order system directly with the PLC through API REST, so incoming orders automatically
+          trigger the right dispensing sequence, no manual entry needed. Ran acceptance testing,
+          debugged logic in the field, and documented the full electrical design and operational navigation for handover.
+        </p>
+      </div>
+      <div class="desc-panel is-hidden">
+        <ul class="task-list r">
+          <li>Designed the mechanical system in Autodesk Fusion and performed stress analysis to validate the design.</li>
+          <li>Selected components and designed the safety circuit.</li>
+          <li>Completed the electrical wiring and assembly of components, and built the electrical control cabinets.</li>
+          <li>Programmed the core control logic on a WAGO PLC using IEC 61131-3.</li>
+          <li>Designed the HMI and configured PLC-to-HMI communication over Modbus TCP.</li>
+          <li>Integrated the purchase order system with the PLC via API REST for automatic dispensing.</li>
+          <li>Implemented a FIFO queue system to manage multiple simultaneous orders, increasing system throughput.</li>
+          <li>Implemented FIFO </li>
+          <li>Ran testing and debugged control logic directly in the field.</li>
+          <li>Documented the full electrical design and operational navigation for handover.</li>
+        </ul>
+      </div>
+    </div>
+    <button class="task-toggle-btn r" data-label-open="Ver tareas concretas →" data-label-close="Ver resumen →">
+      <span class="txt">What I Worked On →</span>
+    </button>
+
     <div class="tech-strip">
       <span class="tag">WAGO PLC</span>
       <span class="tag">CODESYS</span>
@@ -685,11 +776,30 @@
     <span class="project-tag b">IoT Virtual Commissioning· Siemens</span>
     <h2 class="project-title">Commission Anywhere, Control Any Robot <span class="project-badge">🥇</span></h2>
     <p class="project-meta">Siemens Connected Curriculum · Manchester Metropolitan University · 15/07/2026</p>
-    <p class="project-desc"> Gold medal-winning project developed with a teammate for the Siemens Connected Curriculum Competition. <br><br> The project explored a new approach to virtual commissioning by enabling engineers to validate PLC and robot programs remotely, rather than relying solely on physical access to production equipment. This approach promotes global collaboration, reduces commissioning costs, minimizes travel-related emissions, and accelerates development cycles. </p>
 
-<p class="project-desc"> To achieve this, we developed a remote virtual commissioning environment that accurately mirrored the behavior of a real production line. The solution allowed engineers to use the Siemens Simatic Robot Programming Suite (SRPS) to test and validate robot programs in a realistic virtual environment, as if they were working directly on the shop floor. </p>
+    <div class="desc-stack">
+      <div class="desc-panel">
+        <p class="project-desc"> Gold medal-winning project developed with a teammate for the Siemens Connected Curriculum Competition. <br><br> The project explored a new approach to virtual commissioning by enabling engineers to validate PLC and robot programs remotely, rather than relying solely on physical access to production equipment. This approach promotes global collaboration, reduces commissioning costs, minimizes travel-related emissions, and accelerates development cycles. </p>
 
-<p class="project-desc"> We identified and acquired the relevant process signals from the output station of the Festo CP Lab mobile phone production line, implemented an OPC UA-based data acquisition system, transformed the data into MQTT messages for secure internet transmission, and streamed the information through a Node-RED pipeline into the Siemens virtual environment, enabling real-time synchronization between the physical and virtual systems. </p>
+        <p class="project-desc"> To achieve this, we developed a remote virtual commissioning environment that accurately mirrored the behavior of a real production line. The solution allowed engineers to use the Siemens Simatic Robot Programming Suite (SRPS) to test and validate robot programs in a realistic virtual environment, as if they were working directly on the shop floor. </p>
+
+        <p class="project-desc"> We identified and acquired the relevant process signals from the output station of the Festo CP Lab mobile phone production line, implemented an OPC UA-based data acquisition system, transformed the data into MQTT messages for secure internet transmission, and streamed the information through a Node-RED pipeline into the Siemens virtual environment, enabling real-time synchronization between the physical and virtual systems. </p>
+      </div>
+      <div class="desc-panel is-hidden">
+        <ul class="task-list b">
+          <li>Identified and acquired process signals from the Festo CP Lab output station.</li>
+          <li>Implemented an OPC UA-based data acquisition system in Node-RED.</li>
+          <li>Converted signals into MQTT messages for secure internet transmission using HiveMQ as an MQTT broker.</li>
+          <li>Built a Node-RED pipeline streaming data into the Siemens virtual environment.</li>
+          <li>Validated PLC and robot programs remotely using the Simatic Robot Programming Suite (SRPS).</li>
+          <li>Achieved real-time synchronization between the physical line and its digital counterpart.</li>
+        </ul>
+      </div>
+    </div>
+    <button class="task-toggle-btn b" data-label-open="Ver tareas concretas →" data-label-close="Ver resumen →">
+      <span class="txt">What I Worked On →</span>
+    </button>
+
     <div class="tech-strip">
       <span class="tag">OPC-UA</span>
       <span class="tag">Node-RED</span>
@@ -742,12 +852,30 @@
     <span class="project-tag g">Project</span>
     <h2 class="project-title">Virtual Commissioning</h2>
     <p class="project-meta">Manchester Metropolitan University</p>
-    <p class="project-desc">
-      Developed the virtual environment for a digital twin of the Festo CP Lab output station. Prepared and configured the CAD model in Siemens NX by assigning physical properties and defining the simulation behavior required to accurately replicate the real system.
-    </p>
-    <p class="project-desc">
-      Configured and mapped the control parameters between the physical station and its digital counterpart, enabling the virtual model to operate as the production system. Programmed the PLC to implement the station's operating modes, including automatic, semi-automatic, and manual control, as well as the complete alarm handling logic. Additionally, designed and developed the HMI to provide intuitive monitoring and control of the station.
-    </p>
+
+    <div class="desc-stack">
+      <div class="desc-panel">
+        <p class="project-desc">
+          Developed the virtual environment for a digital twin of the Festo CP Lab output station. Prepared and configured the CAD model in Siemens NX by assigning physical properties and defining the simulation behavior required to accurately replicate the real system.
+        </p>
+        <p class="project-desc">
+          Configured and mapped the control parameters between the physical station and its digital counterpart, enabling the virtual model to operate as the production system. Programmed the PLC to implement the station's operating modes, including automatic, semi-automatic, and manual control, as well as the complete alarm handling logic. Additionally, designed and developed the HMI to provide intuitive monitoring and control of the station.
+        </p>
+      </div>
+      <div class="desc-panel is-hidden">
+        <ul class="task-list g">
+          <li>Configured the CAD model in Siemens NX, assigning physical properties and simulation behavior.</li>
+          <li>Mapped control parameters between the physical station and its digital twin.</li>
+          <li>Programmed PLC logic for automatic, semi-automatic, and manual operating modes.</li>
+          <li>Implemented the complete alarm handling logic.</li>
+          <li>Designed and developed the HMI for intuitive monitoring and control.</li>
+        </ul>
+      </div>
+    </div>
+    <button class="task-toggle-btn g" data-label-open="Ver tareas concretas →" data-label-close="Ver resumen →">
+      <span class="txt">What I Worked On →</span>
+    </button>
+
     <div class="tech-strip">
       <span class="tag">Tia Portal</span>
       <span class="tag">PLC SIM Advanced</span>
@@ -789,15 +917,33 @@
     <span class="project-tag g">Research</span>
     <h2 class="project-title">Microgrid control testbed</h2>
     <p class="project-meta">Research Assistant · Manchester Metropolitan University · 12/2025 – 05/2026</p>
-    <p class="project-desc">
-      Programmed an RTAC SEL 3555 PLC/gateway to implement PID control over a simulated microgrid
-      running on OPAL-RT, with bidirectional DNP3 communication and Modbus TCP bidirectional communication, linking the microgrid simulation to a two-level industrial control testbed used for cybersecurity research.
-    </p>
-    <p class="project-desc">
-      Established the communications between the devices, programmed the RTAC as a PID control system, mapped and addressed signals inside the RTAC to keep data flowing cleanly
-      between control levels and built the SCADA layer in Node-RED, with bidirectional comms back to the RTAC for real-time
-      monitoring and control.
-    </p>
+
+    <div class="desc-stack">
+      <div class="desc-panel">
+        <p class="project-desc">
+          Programmed an RTAC SEL 3555 PLC/gateway to implement PID control over a simulated microgrid
+          running on OPAL-RT, with bidirectional DNP3 communication and Modbus TCP bidirectional communication, linking the microgrid simulation to a two-level industrial control testbed used for cybersecurity research.
+        </p>
+        <p class="project-desc">
+          Established the communications between the devices, programmed the RTAC as a PID control system, mapped and addressed signals inside the RTAC to keep data flowing cleanly
+          between control levels and built the SCADA layer in Node-RED, with bidirectional comms back to the RTAC for real-time
+          monitoring and control.
+        </p>
+      </div>
+      <div class="desc-panel is-hidden">
+        <ul class="task-list g">
+          <li>Programmed an RTAC SEL 3555 as a PID control system over a simulated microgrid.</li>
+          <li>Established bidirectional DNP3 communication with the OPAL-RT simulation.</li>
+          <li>Established bidirectional Modbus TCP communication with the control testbed.</li>
+          <li>Mapped and addressed signals inside the RTAC across control levels.</li>
+          <li>Built the SCADA layer in Node-RED with bidirectional comms back to the RTAC.</li>
+        </ul>
+      </div>
+    </div>
+    <button class="task-toggle-btn g" data-label-open="Ver tareas concretas →" data-label-close="Ver resumen →">
+      <span class="txt">What I Worked On →</span>
+    </button>
+
     <div class="tech-strip">
       <span class="tag">RTAC SEL 3555</span>
       <span class="tag">OPAL-RT</span>
@@ -837,15 +983,33 @@
     <span class="project-tag y">Robotics</span>
     <h2 class="project-title">ABB YuMi candle automation assessment</h2>
     <p class="project-meta">Siemens Connected Curriculum Intern · Manchester Metropolitan University · 05/2026 – 07/2026</p>
-    <p class="project-desc">
-      Used the ABB YuMi dual-arm robot to study whether, and how, a candle-making process could
-      be automated: placing the wick with wax, then filling the cup. Programmed synchronised
-      dual-arm motion in RobotStudio using RAPID.
-    </p>
-    <p class="project-desc">
-      Delivered an assessment of how well-suited the robot's dual-arm design and reach were for
-      the process, informing whether it's worth pursuing as a real production solution.
-    </p>
+
+    <div class="desc-stack">
+      <div class="desc-panel">
+        <p class="project-desc">
+          Used the ABB YuMi dual-arm robot to study whether, and how, a candle-making process could
+          be automated: placing the wick with wax, then filling the cup. Programmed synchronised
+          dual-arm motion in RobotStudio using RAPID.
+        </p>
+        <p class="project-desc">
+          Delivered an assessment of how well-suited the robot's dual-arm design and reach were for
+          the process, informing whether it's worth pursuing as a real production solution.
+        </p>
+      </div>
+      <div class="desc-panel is-hidden">
+        <ul class="task-list y">
+          <li>Callibrated the robot to ensure seamless operation.</li>
+          <li>Programmed synchronised dual-arm motion in RobotStudio using RAPID.</li>
+          <li>Designed the wick-placement-with-wax and cup-filling sequence.</li>
+          <li>Evaluated the robot's reach and dual-arm design against the process requirements.</li>
+          <li>Delivered a feasibility assessment analysing the limitations of the evaluated solution (reliability, gripping issues, spillage issues, etc).</li>
+        </ul>
+      </div>
+    </div>
+    <button class="task-toggle-btn y" data-label-open="Ver tareas concretas →" data-label-close="Ver resumen →">
+      <span class="txt">What I Worked On →</span>
+    </button>
+
     <div class="tech-strip">
       <span class="tag">ABB YuMi</span>
       <span class="tag">RobotStudio</span>
@@ -885,12 +1049,32 @@
     <span class="project-tag y">IoT</span>
     <h2 class="project-title">IoT Data analysis dashboards</h2>
     <p class="project-meta">Siemens Connected Curriculum Intern · Manchester Metropolitan University · 05/2026 – 07/2026</p>
-    <p class="project-desc">
-      Designed and deployed the data acquisition architecture for the complete Festo CP Lab (6 stations), including the acquisition of physical process signals. Implemented a Node-RED-based data collection pipeline using OPC UA and integrated it with Siemens Insights Hub to enable data analysis, visualization, and KPI monitoring.
-    </p>
-    <p class="project-desc">
-      Developed interactive dashboards that transformed raw process data into actionable insights. Created visualizations for station-level and end-to-end cycle times based on product type, estimated oven power consumption, analyzed empty pallet circulation throughout the system, measured conveyor idle time after pallet departure, and implemented additional operational analytics to support process optimization and performance monitoring.
-    </p>
+
+    <div class="desc-stack">
+      <div class="desc-panel">
+        <p class="project-desc">
+          Designed and deployed the data acquisition architecture for the complete Festo CP Lab (6 stations), including the acquisition of physical process signals. Implemented a Node-RED-based data collection pipeline using OPC UA and integrated it with Siemens Insights Hub to enable data analysis, visualization, and KPI monitoring.
+        </p>
+        <p class="project-desc">
+          Developed interactive dashboards that transformed raw process data into actionable insights. Created visualizations for station-level and end-to-end cycle times based on product type, estimated oven power consumption, analyzed empty pallet circulation throughout the system, measured conveyor idle time after pallet departure, and implemented additional operational analytics to support process optimization and performance monitoring.
+        </p>
+      </div>
+      <div class="desc-panel is-hidden">
+        <ul class="task-list y">
+          <li>Designed the data acquisition architecture for the full 6-station Festo CP Lab.</li>
+          <li>Implemented a Node-RED data collection pipeline using OPC UA.</li>
+          <li>Integrated the pipeline with Siemens Insights Hub for KPI monitoring.</li>
+          <li>Developed custom dashboards for each station, displaying the data most relevant to its specific operation.</li>
+          <li>Built and programmed dashboards for station-level and end-to-end cycle times by product type.</li>
+          <li>Analyzed oven power consumption and empty pallet circulation.</li>
+          <li>Measured conveyor idle time and added further operational analytics.</li>
+        </ul>
+      </div>
+    </div>
+    <button class="task-toggle-btn y" data-label-open="Ver tareas concretas →" data-label-close="Ver resumen →">
+      <span class="txt">What I Worked On →</span>
+    </button>
+
     <div class="tech-strip">
       <span class="tag">Node-RED</span>
       <span class="tag">Insight Hub</span>
@@ -940,17 +1124,34 @@
     <span class="project-tag g">IoT · TinyML</span>
     <h2 class="project-title">Cassava farming soil monitoring, Rwanda</h2>
     <p class="project-meta">Research Secondment · University of Kigali · Kigali, Rwanda · 07/2026 – 08/2026</p>
-    <p class="project-desc">
-      A precision-agriculture pilot monitoring soil and environmental conditions across one hectare
-      of cassava farmland using five 7-in-1 soil sensors, each forwarding data wirelessly to an
-      Arduino Nano 33 BLE Sense.
-    </p>
-    <p class="project-desc">
-      Developing a lightweight ML model that runs directly on the microcontroller (TinyML) to
-      predict environmental conditions and crop yield/quality, with readings transmitted to the
-      cloud over LoRa and visualised on a farmer-facing dashboard — aimed at helping farmers make
-      timely interventions.
-    </p>
+
+    <div class="desc-stack">
+      <div class="desc-panel">
+        <p class="project-desc">
+          A precision-agriculture pilot monitoring soil and environmental conditions across one hectare
+          of cassava farmland using five 7-in-1 soil sensors, each forwarding data wirelessly to an
+          Arduino Nano 33 BLE Sense.
+        </p>
+        <p class="project-desc">
+          Developing a lightweight ML model that runs directly on the microcontroller (TinyML) to
+          predict environmental conditions and crop yield/quality, with readings transmitted to the
+          cloud over LoRa and visualised on a farmer-facing dashboard — aimed at helping farmers make
+          timely interventions.
+        </p>
+      </div>
+      <div class="desc-panel is-hidden">
+        <ul class="task-list g">
+          <li>Deployed five 7-in-1 soil sensors across one hectare, feeding an Arduino Nano 33 BLE Sense.</li>
+          <li>Developing a TinyML model embedded on the microcontroller for on-device prediction.</li>
+          <li>Transmitting readings to the cloud over LoRa.</li>
+          <li>Designing a farmer-facing dashboard for timely interventions.</li>
+        </ul>
+      </div>
+    </div>
+    <button class="task-toggle-btn g" data-label-open="Ver tareas concretas →" data-label-close="Ver resumen →">
+      <span class="txt">What I'm Working On →</span>
+    </button>
+
     <div class="tech-strip">
       <span class="tag">TinyML</span>
       <span class="tag">Arduino Nano 33 BLE Sense</span>
@@ -985,17 +1186,34 @@
     <span class="project-tag r">Robotics</span>
     <h2 class="project-title">AI tic-tac-toe robot &amp; portrait sketching <span class="project-badge" style="color:var(--ink)">10/10</span></h2>
     <p class="project-meta">Robotics Intern — Final Project · CEIT / University of Navarra Tecnun · San Sebastián, Spain · 09/2022 – 12/2022</p>
-    <p class="project-desc">
-      Final degree project delivered independently as two applications. Programmed a TM5Omron robot alongside it's vision
-      system so the robot could play tic-tac-toe against a person with unbeatable logic. Optimised
-      by exploiting board symmetry to cover over 20,000 move combinations in a compact program.
-    </p>
-    <p class="project-desc">
-      Also built a portrait-sketching application, where the robot's camera captured a person's
-      face and its arm drew a rough sketch. Along the way, resolved interface issues and robot
-      limitations, adapting quickly to a proprietary programming environment. Dissertation grade:
-      <strong style="color:var(--ink); font-weight:700;">10/10 with Honours.</strong>
-    </p>
+
+    <div class="desc-stack">
+      <div class="desc-panel">
+        <p class="project-desc">
+          Final degree project delivered independently as two applications. Programmed a TM5Omron robot alongside it's vision
+          system so the robot could play tic-tac-toe against a person with unbeatable logic. Optimised
+          by exploiting board symmetry to cover over 20,000 move combinations in a compact program.
+        </p>
+        <p class="project-desc">
+          Also built a portrait-sketching application, where the robot's camera captured a person's
+          face and its arm drew a rough sketch. Along the way, resolved interface issues and robot
+          limitations, adapting quickly to a proprietary programming environment. Dissertation grade:
+          <strong style="color:var(--ink); font-weight:700;">10/10 with Honours.</strong>
+        </p>
+      </div>
+      <div class="desc-panel is-hidden">
+        <ul class="task-list r">
+          <li>Programmed the TM5 Omron robot together with its vision system.</li>
+          <li>Built unbeatable tic-tac-toe logic exploiting board symmetry (20,000+ move combinations).</li>
+          <li>Developed a portrait-sketching application from camera capture to arm-drawn sketch.</li>
+          <li>Resolved interface and hardware limitations within a proprietary programming environment (TMFlow).</li>
+        </ul>
+      </div>
+    </div>
+    <button class="task-toggle-btn r" data-label-open="Ver tareas concretas →" data-label-close="Ver resumen →">
+      <span class="txt">What I Worked On →</span>
+    </button>
+
     <div class="tech-strip">
       <span class="tag">Computer Vision</span>
       <span class="tag">TMFlow (Programming languaje)</span>
@@ -1093,6 +1311,31 @@
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       applyFilter(btn.dataset.filter);
+    });
+  });
+
+  // ── TASK TOGGLE (nuevo) ──
+  document.querySelectorAll('.task-toggle-btn').forEach(btn => {
+    const stack = btn.previousElementSibling; // .desc-stack
+    const panels = Array.from(stack.querySelectorAll('.desc-panel'));
+    const [summaryPanel, taskPanel] = panels;
+    const label = btn.querySelector('.txt');
+    const openText = btn.dataset.labelOpen;
+    const closeText = btn.dataset.labelClose;
+    let isOpen = false;
+
+    btn.addEventListener('click', () => {
+      isOpen = !isOpen;
+      btn.classList.toggle('is-open', isOpen);
+      label.textContent = isOpen ? closeText : openText;
+
+      const showPanel = isOpen ? taskPanel : summaryPanel;
+      const hidePanel = isOpen ? summaryPanel : taskPanel;
+
+      hidePanel.classList.add('is-hidden');
+      showPanel.classList.remove('is-hidden');
+      showPanel.classList.add('entering');
+      requestAnimationFrame(() => showPanel.classList.remove('entering'));
     });
   });
 </script>
