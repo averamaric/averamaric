@@ -1,805 +1,928 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANALUCIA V.M. | Professional Profile</title>
-    <link rel="stylesheet" href="profile.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile — Analucia Vera</title>
+  <style>
+    /* ── TOKENS (matches projects.html / index.html) ── */
+    :root {
+      --red:    #E63329;
+      --blue:   #2155A3;
+      --yellow: #F5C800;
+      --green:  #2D9B4E;
+      --ink:    #111111;
+      --mid:    #444444;
+      --muted:  #888888;
+      --rule:   #DDDDDD;
+      --bg:     #FFFFFF;
+      --off:    #F7F6F3;
+
+      /* light tints for the vibrant section backgrounds */
+      --red-tint:    #FDEBE9;
+      --blue-tint:   #E8EFF8;
+      --green-tint:  #E9F6ED;
+      --yellow-tint: #FEF7DC;
+
+      --f-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --f-mono: 'Courier New', Courier, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--f-sans);
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV (same as projects.html) ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links a {
+      display: block;
+      padding: 0 1.2rem;
+      height: 56px;
+      line-height: 56px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      height: 56px;
+      padding: 0 1.4rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--bg);
+      background: var(--ink);
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--red); }
+
+    /* ── 4-COLOR RULE ── */
+    .color-rule { display: flex; height: 3px; width: 100%; }
+    .color-rule span { flex: 1; }
+    .color-rule .r { background: var(--red); }
+    .color-rule .b { background: var(--blue); }
+    .color-rule .g { background: var(--green); }
+    .color-rule .y { background: var(--yellow); }
+
+    .section-label {
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    /* ── HERO / SOBRE MÍ ── */
+    #hero {
+      margin-top: 56px;
+      padding: 5rem 3.5rem 4rem;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-flags {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .flag-chip {
+      font-family: var(--f-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border: 1.5px solid var(--ink);
+      border-radius: 20px;
+      transform: rotate(-1.5deg);
+    }
+    .flag-chip:nth-child(1) { border-color: var(--red); color: var(--red); }
+    .flag-chip:nth-child(2) { border-color: var(--blue); color: var(--blue); transform: rotate(1deg); }
+    .flag-chip:nth-child(3) { border-color: var(--yellow); color: #7a6300; transform: rotate(-1deg); }
+
+    #hero .section-title { margin-top: 0.4rem; font-size: clamp(2.6rem, 6vw, 4rem); }
+    .hero-intro {
+      margin-top: 1.4rem;
+      max-width: 680px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--mid);
+      font-weight: 300;
+    }
+    .hero-intro strong { font-weight: 700; color: var(--ink); }
+    .hero-joke {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-family: var(--f-mono);
+      font-size: 0.78rem;
+      color: var(--red);
+      background: var(--red-tint);
+      padding: 0.5rem 0.9rem;
+      border-radius: 4px;
+      transform: rotate(-1deg);
+    }
+    .hero-actions {
+      margin-top: 2.2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-solid, .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.6rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn-solid {
+      color: var(--bg);
+      background: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .btn-solid:hover { background: var(--red); border-color: var(--red); }
+    .btn-outline {
+      color: var(--ink);
+      background: transparent;
+      border: 1.5px solid var(--ink);
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--bg); }
+
+    /* ── GENERIC VIBRANT SECTION ── */
+    .vibrant-section {
+      padding: 4.5rem 3.5rem;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+    .vibrant-section.tint-r { background: var(--red-tint); }
+    .vibrant-section.tint-b { background: var(--blue-tint); }
+    .vibrant-section.tint-g { background: var(--green-tint); }
+    .vibrant-section.tint-y { background: var(--yellow-tint); }
+
+    .vibrant-section .section-label.r { color: var(--red); }
+    .vibrant-section .section-label.b { color: var(--blue); }
+    .vibrant-section .section-label.g { color: var(--green); }
+    .vibrant-section .section-label.y { color: #7a6300; }
+
+    .vibrant-section .section-title { margin-top: 0.5rem; margin-bottom: 2.2rem; }
+
+    /* ── PASSIONS MOSAIC ── */
+    .passion-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .passion-card {
+      background: var(--bg);
+      border: 1.5px solid var(--ink);
+      padding: 1rem 1.3rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.2s;
+    }
+    .passion-card:hover { transform: translate(-2px, -2px); }
+    .passion-card:nth-child(4n+1) { transform: rotate(-1.5deg); }
+    .passion-card:nth-child(4n+2) { transform: rotate(1deg); }
+    .passion-card:nth-child(4n+3) { transform: rotate(-0.8deg); }
+    .passion-card:nth-child(4n+4) { transform: rotate(1.5deg); }
+    .passion-card:hover { transform: translate(-2px,-2px) rotate(0deg); }
+    .passion-card .emoji { font-size: 1.1rem; }
+
+    /* ── VALUES ── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.4rem;
+    }
+    .value-card {
+      background: var(--bg);
+      padding: 1.6rem;
+      border-radius: 6px;
+      border-top: 4px solid var(--blue);
+    }
+    .value-card:nth-child(4n+2) { border-top-color: var(--red); }
+    .value-card:nth-child(4n+3) { border-top-color: var(--green); }
+    .value-card:nth-child(4n+4) { border-top-color: var(--yellow); }
+    .value-num {
+      font-family: var(--f-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .value-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0.4rem 0 0.5rem;
+    }
+    .value-desc { font-size: 0.85rem; line-height: 1.6; color: var(--mid); }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+      max-width: 720px;
+      margin-top: 1rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 6px;
+      bottom: 6px;
+      width: 3px;
+      background: var(--rule);
+    }
+    .tl-item {
+      position: relative;
+      padding-left: 2.6rem;
+      padding-bottom: 2.2rem;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute;
+      left: 0; top: 4px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--ink);
+    }
+    .tl-item:nth-child(4n+1) .tl-dot { background: var(--red); }
+    .tl-item:nth-child(4n+2) .tl-dot { background: var(--blue); }
+    .tl-item:nth-child(4n+3) .tl-dot { background: var(--green); }
+    .tl-item:nth-child(4n+4) .tl-dot { background: var(--yellow); }
+    .tl-date {
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .tl-title { font-size: 1rem; font-weight: 800; margin: 0.2rem 0 0.3rem; }
+    .tl-desc { font-size: 0.85rem; line-height: 1.6; color: var(--mid); max-width: 560px; }
+
+    /* ── PERSONAL PROJECTS ── */
+    .side-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.4rem;
+    }
+    .side-card {
+      background: var(--bg);
+      padding: 1.6rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      border-bottom: 4px solid var(--green);
+    }
+    .side-card:nth-child(4n+2) { border-bottom-color: var(--red); }
+    .side-card:nth-child(4n+3) { border-bottom-color: var(--blue); }
+    .side-card:nth-child(4n+4) { border-bottom-color: var(--yellow); }
+    .side-tag {
+      display: inline-block;
+      font-family: var(--f-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .side-title { font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .side-desc { font-size: 0.85rem; line-height: 1.65; color: var(--mid); }
+    .side-status {
+      display: inline-block;
+      margin-top: 0.8rem;
+      font-family: var(--f-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      background: var(--off);
+      color: var(--mid);
+    }
+
+    /* ── FUN FACTS (line-art / schematic style) ── */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.1rem;
+    }
+    .fact-card {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--blue);
+      padding: 1.6rem 1.4rem 1.4rem;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+    }
+    .fact-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+    }
+    .fact-card:nth-child(5n+1) { border-top-color: var(--red); }
+    .fact-card:nth-child(5n+2) { border-top-color: var(--blue); }
+    .fact-card:nth-child(5n+3) { border-top-color: var(--green); }
+    .fact-card:nth-child(5n+4) { border-top-color: var(--yellow); }
+    .fact-card:nth-child(5n+5) { border-top-color: var(--ink); }
+    .fact-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fact-icon svg { width: 100%; height: 100%; display: block; }
+    .fact-num {
+      font-family: var(--f-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .fact-text {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--mid);
+      font-weight: 500;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .cert-card {
+      background: var(--bg);
+      border: 1.5px dashed var(--rule);
+      padding: 1.3rem;
+      border-radius: 6px;
+      font-family: var(--f-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      text-align: center;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.6;
+    }
+    
+    /* ── CONTACT ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--red);
+      padding: 1.1rem 1.3rem;
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact-card:hover { transform: translateX(3px); box-shadow: 0 6px 16px rgba(0,0,0,0.06); }
+    .contact-card.linkedin { border-left-color: var(--blue); }
+    .contact-card .c-icon { width: 34px; height: 34px; flex-shrink: 0; }
+    .contact-card .c-icon svg { width: 100%; height: 100%; }
+    .contact-card .c-label {
+      font-family: var(--f-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .contact-card .c-value { font-size: 0.92rem; font-weight: 700; }
+ 
+    .contact-form {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 2rem;
+    }
+    .form-row { margin-bottom: 1.3rem; }
+    .form-row label {
+      display: block;
+      font-family: var(--f-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .form-row input, .form-row textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1.5px solid var(--rule);
+      background: transparent;
+      font-family: var(--f-sans);
+      font-size: 0.92rem;
+      color: var(--ink);
+      padding: 0.5rem 0.1rem;
+      transition: border-color 0.2s;
+    }
+    .form-row input:focus, .form-row textarea:focus {
+      outline: none;
+      border-bottom-color: var(--ink);
+    }
+    .form-row textarea { resize: vertical; min-height: 90px; }
+    .form-submit {
+      border: none;
+      cursor: pointer;
+      font-family: var(--f-sans);
+    }
+    .form-note {
+      margin-top: 1rem;
+      font-family: var(--f-mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+ 
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+ 
+
+    /* ── CLOSING CTA ── */
+    #profile-cta {
+      padding: 4.5rem 3.5rem;
+      text-align: center;
+    }
+    #profile-cta p {
+      font-size: 1rem;
+      color: var(--mid);
+      margin-bottom: 1.6rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2.5rem 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .foot-left {
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .foot-dots { display: flex; align-items: center; gap: 0.4rem; }
+    .foot-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ── UTILITY ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding: 3rem 1.5rem 2.5rem; }
+      .vibrant-section { padding: 3rem 1.5rem; }
+      #profile-cta { padding: 3rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; }
+      .fact-card { width: 45%; min-width: 150px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { transition: none; }
+    }
+  </style>
 </head>
-<body class="profile-page">
+<body>
 
-    <!-- BOTÓN SKIP -->
-    <button class="skip-btn" id="skipBtn">Skip intro ↓</button>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">Analucia V.M.</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="profile.html" class="active">Profile</a></li>
+  </ul>
+  <a class="nav-cta" href="profile.html#contact">Get in touch →</a>
+</nav>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="menu-icon">
-            <span></span>
-            <span></span>
-        </div>
-        <div class="nav-links">
-            <a href="../index.html">HOME</a>
-            <a href="projects/projects.html">PROJECTS</a>
-            <!-- <a href="#experience">ENG</a>-->
-            <a href="#contact">CONTACT</a>
-        </div>
-    </nav>
+<!-- HERO -->
+<header id="hero" class="fade-up">
+  <div class="hero-flags">
+    <span class="flag-chip">🇧🇴 Bolivia</span>
+    <span class="flag-chip">🇨🇱 Chile</span>
+    <span class="flag-chip">🇪🇨 Ecuador</span>
+  </div>
+  <span class="section-label">Beyond the CV</span>
+  <h1 class="section-title">Hi, I'm Analucia.</h1>
+  <p class="hero-intro">
+    I was born in <strong>La Paz, Bolivia</strong>, and hold Bolivian, Chilean, and Ecuadorian
+    nationality, three passports that could, in theory, make me a very convincing spy.
+  </p>
+  <p class="hero-intro">
+    My path into automation started early: as a kid I kept a notebook full of inventions,
+    and it was the first sign I wanted to be an engineer. Later, working with <strong>IoT</strong>
+    I fell in love with PLCs, automation lines, and everything Industry 4.0. The way automation and other tools
+    can genuinely transform a process is still what excites me most about this field.
+  </p>
+  
+  <div class="hero-actions">
+    <!-- Replace the href below with the real path to your CV file -->
+    <a class="btn-solid" href="assets/Analucia_Vera.pdf" download>Download CV ↓</a>
+    <a class="btn-outline" href="projects.html">See my projects →</a>
+  </div>
+</header>
 
-    <!-- ANIMACIÓN INICIAL -->
-    <div class="animation-container" id="animationContainer">
-        <div class="white-rectangle" id="whiteRectangle">
-            <div class="profile-word-black" id="blackWord">PROFILE</div>
-        </div>
-        <div class="typing-cursor" id="typingCursor"></div>
-        <div class="typing-text" id="typingText">
-            <span class="letter">P</span>
-            <span class="letter">R</span>
-            <span class="letter">O</span>
-            <span class="letter">F</span>
-            <span class="letter">I</span>
-            <span class="letter">L</span>
-            <span class="letter">E</span>
-        </div>
+<!-- PASSIONS -->
+<section class="vibrant-section tint-y fade-up">
+  <span class="section-label y">What I love</span>
+  <h2 class="section-title">Passions &amp; interests</h2>
+  <div class="passion-grid">
+    <div class="passion-card"><span class="emoji">✈️</span> Traveling &amp; new cultures</div>
+    <div class="passion-card"><span class="emoji">🥾</span> Hiking</div>
+    <div class="passion-card"><span class="emoji">🎾</span> Tennis</div>
+    <div class="passion-card"><span class="emoji">🥊</span> Boxing</div>
+    <div class="passion-card"><span class="emoji">🎵</span> Music</div>
+    <div class="passion-card"><span class="emoji">💃</span> Salsa dancing</div>
+    <div class="passion-card"><span class="emoji">🦁</span> Animal documentaries</div>
+    <div class="passion-card"><span class="emoji">🎲</span> Board games</div>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section class="vibrant-section tint-b fade-up">
+  <span class="section-label b">My approach</span>
+  <h2 class="section-title">How I work</h2>
+  <div class="values-grid">
+    <div class="value-card">
+      <span class="value-num">01</span>
+      <h3 class="value-title">Always learning</h3>
+      <p class="value-desc">I look for places where I can keep developing and growing, new tools, new environments, new challenges.</p>
+    </div>
+    <div class="value-card">
+      <span class="value-num">02</span>
+      <h3 class="value-title">Proactive</h3>
+      <p class="value-desc">I try to find solutions on my own first, and I'm comfortable figuring things out before asking for help.</p>
+    </div>
+    <div class="value-card">
+      <span class="value-num">03</span>
+      <h3 class="value-title">Team player</h3>
+      <p class="value-desc">I genuinely enjoy working with others the best solutions usually come from combining perspectives.</p>
+    </div>
+    <div class="value-card">
+      <span class="value-num">04</span>
+      <h3 class="value-title">Critical &amp; communicative</h3>
+      <p class="value-desc">I hold my own work to a high standard, and I make sure to communicate clearly along the way.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="vibrant-section tint-g fade-up">
+  <span class="section-label g">The journey</span>
+  <h2 class="section-title">Trayectory</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-date">2022</div>
+      <div class="tl-title">Robotics intern — CEIT</div>
+      <div class="tl-desc">Programmed a TM5 Omron robot for an AI tic-tac-toe game and portrait-sketching application. Graduated with a 10/10 with Honours.</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-date">2023</div>
+      <div class="tl-title">IoT Project Manager — Alhona</div>
+      <div class="tl-desc">Collaborated in the delivery and implementation of IoT solutions for clients' production lines and industrial processes across Europe.</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-date">Dec 2025 – May 2026</div>
+      <div class="tl-title">Research Assistant — Manchester Metropolitan University</div>
+      <div class="tl-desc">Built a microgrid control testbed linking OPAL-RT simulation to an industrial control environment for cybersecurity research.</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-date">Jan 2026 – Present</div>
+      <div class="tl-title">Automation Engineer Intern — Grüum</div>
+      <div class="tl-desc">Designed and programmed an industrial A-frame dispensing system end-to-end, from circuit design to HMI and order-system integration.</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-date">Jun – Jul 2026</div>
+      <div class="tl-title">Siemens Connected Curriculum Intern</div>
+      <div class="tl-desc">Worked across IoT dashboards, virtual commissioning, and robotics feasibility projects at Manchester Metropolitan University.</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-date">Jul 2026</div>
+      <div class="tl-title">🥇 Gold Medal — Siemens Connected Curriculum Competition</div>
+      <div class="tl-desc">Won first place for "Commission Anywhere, Control Any Robot," a remote virtual commissioning solution.</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-date">Jul – Aug 2026</div>
+      <div class="tl-title">Research Secondment — University of Kigali, Rwanda</div>
+      <div class="tl-desc">Leading a precision-agriculture pilot combining TinyML, LoRa, and soil sensors for cassava farming.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL PROJECTS -->
+<section class="vibrant-section tint-r fade-up">
+  <span class="section-label r">Outside of work</span>
+  <h2 class="section-title">Personal projects</h2>
+  <div class="side-grid">
+    <div class="side-card">
+      <span class="side-tag">Web Design</span>
+      <h3 class="side-title">Company &amp; course websites</h3>
+      <p class="side-desc">Designed and built websites beyond this portfolio: one for a company, one for a course, and the site for the Siemens competition entry.</p>
+      <span class="side-status">Shipped</span>
+    </div>
+    <div class="side-card">
+      <span class="side-tag">Web Design</span>
+      <h3 class="side-title">This portfolio</h3>
+      <p class="side-desc">Designed and coded from scratch, including this profile page and the projects gallery you just came from.</p>
+      <span class="side-status">Shipped</span>
+    </div>
+    <div class="side-card">
+      <span class="side-tag">Robotics</span>
+      <h3 class="side-title">Robotics inventions</h3>
+      <p class="side-desc">A handful of robotics invention ideas I'd like to take from sketch to working prototype, the spirit of that childhood notebook is still alive.</p>
+      <span class="side-status">In progress</span>
+    </div>
+    <div class="side-card">
+      <span class="side-tag">Software</span>
+      <h3 class="side-title">App development</h3>
+      <p class="side-desc">Building small applications in my free time as a way to keep growing beyond automation, new languages, new problem types.</p>
+      <span class="side-status">In progress</span>
+    </div>
+  </div>
+</section>
+
+<!-- FUN FACTS -->
+<section class="vibrant-section fade-up" style="background: var(--off);">
+  <span class="section-label" style="color: var(--mid);">A few random things</span>
+  <h2 class="section-title">Fun facts</h2>
+  <div class="facts-grid">
+
+    <div class="fact-card">
+      <div class="fact-icon">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="#E63329" stroke-width="1.4" stroke-linecap="round">
+            <path d="M8 26 h14 a6 6 0 0 1 6 6 v0 a6 6 0 0 1-6 6 H8 a4 4 0 0 1-4-4 v-4 a4 4 0 0 1 4-4 z"/>
+            <path d="M52 26 H38 a6 6 0 0 0-6 6 v0 a6 6 0 0 0 6 6 h14 a4 4 0 0 0 4-4 v-4 a4 4 0 0 0-4-4 z"/>
+            <path d="M28 32 h4"/>
+            <path d="M4 28 l-4 -2 M56 28 l4 -2"/>
+          </g>
+          <text x="30" y="50" text-anchor="middle" font-family="Courier New" font-size="6" fill="#888">x3</text>
+        </svg>
+      </div>
+      <span class="fact-num">01</span>
+      <p class="fact-text">Three nationalities — Bolivian, Chilean &amp; Ecuadorian. Basically undercover-agent material.</p>
     </div>
 
-    <main class="profile-container">
+    <div class="fact-card">
+      <div class="fact-icon">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="#2155A3" stroke-width="1.4" stroke-linecap="round">
+            <ellipse cx="30" cy="38" rx="20" ry="7"/>
+            <path d="M10 38 V26 a20 7 0 0 1 40 0 v12"/>
+            <path d="M18 20 l6 10 M42 20 l-6 10"/>
+            <circle cx="18" cy="18" r="2"/>
+            <circle cx="42" cy="18" r="2"/>
+          </g>
+        </svg>
+      </div>
+      <span class="fact-num">02</span>
+      <p class="fact-text">I play the drums.</p>
+    </div>
 
-        <!-- TARJETA INTRO con línea decorativa -->
-        <section class="profile-intro-card" id="intro">
-            <div class="description-card profile-description">
-                <div class="card-content">
-                    <p class="card-text">Industrial Electronics Engineer specializing in automation and robotics. With a passion for transforming industrial challenges into intelligent, efficient systems through innovative engineering solutions.</p>
-                    <p class="card-text">Currently deepening expertise in Industry 4.0 technologies while leading automation projects that bridge the gap between conceptual design and real-world implementation.</p>
-                </div>
-                <div class="card-footer">
-                    <span class="footer-tag">INDUSTRIAL 4.0</span>
-                    <span class="footer-tag">AUTOMATION</span>
-                    <span class="footer-tag">ROBOTICS</span>
-                    <span class="footer-tag">SYSTEM DESIGN</span>
-                </div>
-            </div>
-            <!-- Línea decorativa sutil en lugar del texto gigante de fondo -->
-            <div class="intro-decorative-line">
-                <span class="decorative-label">PROFILE</span>
-                <div class="decorative-rule"></div>
-            </div>
-        </section>
+    <div class="fact-card">
+      <div class="fact-icon">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="#2D9B4E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 24 h32 a8 8 0 0 1 8 8 v6 a6 6 0 0 1-10.5 4 l-3-3.5 a4 4 0 0 0-3-1.5 h-14 a4 4 0 0 0-3 1.5 l-3 3.5 a6 6 0 0 1-10.5-4 v-6 a8 8 0 0 1 8-8 z"/>
+            <path d="M22 30 v6 M19 33 h6"/>
+            <circle cx="40" cy="30" r="1.6" fill="#2D9B4E"/>
+            <circle cx="45" cy="35" r="1.6" fill="#2D9B4E"/>
+          </g>
+        </svg>
+      </div>
+      <span class="fact-num">03</span>
+      <p class="fact-text">I love playing video games.</p>
+    </div>
 
-        <!-- ACORDEONES -->
-        <section class="accordions-section">
+    <div class="fact-card">
+      <div class="fact-icon">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="#F5C800" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M30 8 l4.5 12.5 L47 24 l-12.5 4.5 L30 41 l-4.5-12.5 L13 24 l12.5-3.5 z"/>
+            <path d="M48 38 l2 5.5 5.5 2 -5.5 2 -2 5.5 -2-5.5 -5.5-2 5.5-2 z" stroke-width="1.1"/>
+          </g>
+        </svg>
+      </div>
+      <span class="fact-num">04</span>
+      <p class="fact-text">Always up for trying new things.</p>
+    </div>
 
-            <!-- ACORDEÓN: LANGUAGES -->
-            <div class="accordion" id="languages">
-                <div class="accordion-header">
-                    <h2 class="accordion-title">LANGUAGES</h2>
-                    <div class="accordion-indicator">
-                        <span class="indicator-line"></span>
-                        <span class="indicator-arrow">↓</span>
-                    </div>
-                </div>
-                <div class="accordion-content">
-                    <div class="languages-layout">
-                        <!-- Gráfico radar central -->
-                        <div class="spider-chart-container">
-                            <canvas id="languagesChart" width="340" height="340"></canvas>
-                        </div>
-                        <!-- Tarjetas de idioma con certificado inline -->
-                        <div class="languages-cards">
+    <div class="fact-card">
+      <div class="fact-icon">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="#111111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20 A18 18 0 0 1 48 20"/>
+            <path d="M12 20 L30 34 L48 20"/>
+            <path d="M30 34 V44"/>
+            <path d="M30 44 l-6 8 M30 44 l6 8"/>
+          </g>
+        </svg>
+      </div>
+      <span class="fact-num">05</span>
+      <p class="fact-text">Dream: skydiving. One day, I'll jump.</p>
+    </div>
 
-                            <div class="language-card" data-language="spanish">
-                                <div class="language-card-top">
-                                    <div class="lang-info">
-                                        <h3 class="language-name">Spanish</h3>
-                                        <span class="language-level">Native · C2</span>
-                                    </div>
-                                    <div class="lang-bar-wrap">
-                                        <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
-                                    </div>
-                                </div>
-                                <!--<div class="cert-toggle-row">
-                                    <button class="certificate-btn" data-cert="dele">View DELE Certificate ↓</button>
-                                    <div class="certificate-info">
-                                        <p><strong>DELE C2</strong> — Diploma de Español Nivel C2 (Mastery)</p>
-                                        <p class="cert-date">2018 · Instituto Cervantes</p>
-                                    </div>
-                                </div>-->
-                            </div>
+  </div>
+</section>
 
-                            <div class="language-card" data-language="english">
-                                <div class="language-card-top">
-                                    <div class="lang-info">
-                                        <h3 class="language-name">English</h3>
-                                        <span class="language-level">Fluent · C1</span>
-                                    </div>
-                                    <div class="lang-bar-wrap">
-                                        <div class="lang-bar"><div class="lang-bar-fill" style="width:80%"></div></div>
-                                    </div>
-                                </div>
-                            </div>
+<!-- CERTIFICATIONS 
+<section class="vibrant-section tint-b fade-up">
+  <span class="section-label b">Always learning</span>
+  <h2 class="section-title">Certifications</h2>
+  <div class="cert-grid">
+    <div class="cert-card">+ Add certification</div>
+    <div class="cert-card">+ Add certification</div>
+    <div class="cert-card">+ Add certification</div>
+    <div class="cert-card">+ Add certification</div>
+  </div>
+</section>
+-->
 
-                            <div class="language-card" data-language="french">
-                                <div class="language-card-top">
-                                    <div class="lang-info">
-                                        <h3 class="language-name">French</h3>
-                                        <span class="language-level">Fluent · C1</span>
-                                    </div>
-                                    <div class="lang-bar-wrap">
-                                        <div class="lang-bar"><div class="lang-bar-fill" style="width:80%"></div></div>
-                                    </div>
-                                </div>
-                            </div>
+  
+<!-- CONTACT -->
+<section id="contact" class="vibrant-section tint-g fade-up">
+  <span class="section-label g">Let's talk</span>
+  <h2 class="section-title">Get in touch</h2>
+  <div class="contact-layout" style="margin-top: 2.2rem;">
+ 
+    <div class="contact-cards">
+      <a class="contact-card" href="mailto:averamaric@gmail.com">
+        <span class="c-icon">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke="#E63329" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="9" width="32" height="22" rx="2"/>
+              <path d="M4 11 L20 24 L36 11"/>
+            </g>
+          </svg>
+        </span>
+        <span>
+          <span class="c-label">Email</span>
+          <span class="c-value">averamaric@gmail.com</span>
+        </span>
+      </a>
+ 
+      <a class="contact-card linkedin" href="https://www.linkedin.com/in/analucia-vera-maric/" target="_blank" rel="noopener">
+        <span class="c-icon">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke="#2155A3" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="32" height="32" rx="4"/>
+              <circle cx="13" cy="14" r="1.8" fill="#2155A3" stroke="none"/>
+              <path d="M13 19 V30"/>
+              <path d="M20 30 V22 a4 4 0 0 1 8 0 v8"/>
+              <path d="M20 22 v-2"/>
+            </g>
+          </svg>
+        </span>
+        <span>
+          <span class="c-label">LinkedIn</span>
+          <span class="c-value">/in/analucia-vera-maric</span>
+        </span>
+      </a>
+    </div>
+ 
+    <form class="contact-form" id="contact-form">
+      <div class="form-row">
+        <label for="cf-name">Name</label>
+        <input type="text" id="cf-name" name="name" required>
+      </div>
+      <div class="form-row">
+        <label for="cf-email">Your email</label>
+        <input type="email" id="cf-email" name="email" required>
+      </div>
+      <div class="form-row">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="btn-solid form-submit">Send message →</button>
+      <p class="form-note">Opens your email app with everything prefilled, addressed to averamaric@gmail.com.</p>
+    </form>
+ 
+  </div>
+</section>
+  
+  
+<!-- CLOSING CTA -->
+<section id="profile-cta" class="fade-up">
+  <p>Want to see the technical work behind all this?</p>
+  <a class="btn-solid" href="projects.html">View my projects →</a>
+</section>
 
-                            <div class="language-card" data-language="italian">
-                                <div class="language-card-top">
-                                    <div class="lang-info">
-                                        <h3 class="language-name">Italian</h3>
-                                        <span class="language-level">Intermediate · B2</span>
-                                    </div>
-                                    <div class="lang-bar-wrap">
-                                        <div class="lang-bar"><div class="lang-bar-fill" style="width:60%"></div></div>
-                                    </div>
-                                </div>
-                            </div>
+<!-- 4-COLOR RULE -->
+<div class="color-rule" aria-hidden="true">
+  <span class="r"></span><span class="b"></span><span class="g"></span><span class="y"></span>
+</div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- FOOTER -->
+<footer>
+  <span class="foot-left">© 2026 Analucia Vera Maric · Industrial Automation Engineer</span>
+  <div class="foot-dots">
+    <span class="foot-dot" style="background:var(--red)"></span>
+    <span class="foot-dot" style="background:var(--blue)"></span>
+    <span class="foot-dot" style="background:var(--green)"></span>
+    <span class="foot-dot" style="background:var(--yellow)"></span>
+  </div>
+</footer>
 
-            <!-- ACORDEÓN: EXPERIENCE -->
-            <div class="accordion" id="experience">
-                <div class="accordion-header">
-                    <h2 class="accordion-title">EXPERIENCE</h2>
-                    <div class="accordion-indicator">
-                        <span class="indicator-line"></span>
-                        <span class="indicator-arrow">↓</span>
-                    </div>
-                </div>
-                <div class="accordion-content">
-                    <div class="timeline">
+<script>
+  const obs = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
 
-                        <!-- EXP0 -->
-                        <div class="timeline-item experience-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-body">
-                                <div class="experience-header">
-                                    <div class="experience-title-row">
-                                        <h3 class="experience-title">Internship</h3>
-                                        <span class="experience-period">Jan 2026 – Present</span>
-                                    </div>
-                                    <p class="experience-company">Grüum</p>
-                                </div>
-                                <div class="experience-summary" id="summary-0">
-                                    <p class="summary-text">In charge of designing, building, circuiting and programming an industrial A-frame for Grüum as part of my master’s dissertation</p>
-                                    <div class="experience-tags">
-                                        <span class="exp-tag">Industrial Automation</span>
-                                        <span class="exp-tag">WAGO PLC Programming</span>
-                                        <span class="exp-tag">HMI Design</span>
-                                        <span class="exp-tag">Hardware Design</span>
-                                    </div>
-                                </div>
-                                <div class="experience-details" id="details-0">
-                                    <div class="details-content">
-                                        <h4>Key Responsibilities & Achievements</h4>
-                                        <ul class="details-list">
-                                            <li>Designed, built and programmed an industrial A-frame automation solution from concept to validation including design, component selection and testing.</li>
-                                            <li>Programmed WAGO PLC and designed HMI, establishing communication between PLC and HMI for full system control.</li>
-                                            <li>Generated technical documentation for maintenance and operational handover, ensuring clarity for technical and non-technical staff.</li>
-                                            <li>Delivered a validated POC (proof of concept) meeting all expectations and company requirements.</li>
-                                        </ul>
-                                        <div class="technologies-used">
-                                            <h4>Technologies & Tools</h4>
-                                            <div class="tech-tags">
-                                                <span>WAGO 750 8212 PLC</span>
-                                                <span>Kinco HMI</span>
-                                                <span>Electronic Schematics</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="toggle-details-btn" data-target="0">View Full Details</button>
-                            </div>
-                        </div>
-                        <!-- Exp 1 -->
-                        <div class="timeline-item experience-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-body">
-                                <div class="experience-header">
-                                    <div class="experience-title-row">
-                                        <h3 class="experience-title">Research Assistant — AI & Cyber-Physical Security</h3>
-                                        <span class="experience-period">Dec 2025 – Present</span>
-                                    </div>
-                                    <p class="experience-company">Manchester Metropolitan University</p>
-                                </div>
-                                <div class="experience-summary" id="summary-1">
-                                    <p class="summary-text">Research assistant focused on creating an industry-like control system of a microgrid to build a test environment for cyberattacks</p>
-                                    <div class="experience-tags">
-                                        <span class="exp-tag">Cybersecurity</span>
-                                        <span class="exp-tag">OT Networks</span>
-                                        <span class="exp-tag">SCADA & control systems</span>
-                                    </div>
-                                </div>
-                                <div class="experience-details" id="details-1">
-                                    <div class="details-content">
-                                        <h4>Key Responsibilities & Achievements</h4>
-                                        <ul class="details-list">
-                                            <li>Programmed RTAC SEL 3555 PLC using IEC-61131-3 standard languages in AcSelerator.</li>
-                                            <li>Built a SCADA system with NodeRed for real-time data visualization and control signals over Modbus TCP.</li>
-                                            <li>Configured OPAL RT (microgrid simulator) for bidirectional communication using DNP3 and IEC-61850 MMS, creating a HIL (hardware in the loop) system to simulate cyberattacks on industrial control systems.</li>
-                                            <li>Analyzed network packets for delay measurement and data collection to support AI‑based security algorithms</li>
-                                        </ul>
-                                        <div class="technologies-used">
-                                            <h4>Technologies & Tools</h4>
-                                            <div class="tech-tags">
-                                                <span>OPAL-RT</span>
-                                                <span>SEL-3555</span>
-                                                <span>SCADA - NodeRed</span>
-                                                <span>HIL</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="toggle-details-btn" data-target="1">View Full Details</button>
-                            </div>
-                        </div>
-
-                        <!-- Exp 2 -->
-                        <div class="timeline-item experience-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-body">
-                                <div class="experience-header">
-                                    <div class="experience-title-row">
-                                        <h3 class="experience-title">IoT Project Manager</h3>
-                                        <span class="experience-period">Sept 2023 – Jun 2025</span>
-                                    </div>
-                                    <p class="experience-company">Alhona</p>
-                                </div>
-                                <div class="experience-summary" id="summary-2">
-                                    <p class="summary-text">Industry 4.0 Project Manager, focused on integrating devices and machines into IoT platforms for data analysis and rule implementation.</p>
-                                    <div class="experience-tags">
-                                        <span class="exp-tag">IoT</span>
-                                        <span class="exp-tag">Project Management</span>
-                                        <span class="exp-tag">Industry 4.0</span>
-                                    </div>
-                                </div>
-                                <div class="experience-details" id="details-2">
-                                    <div class="details-content">
-                                        <h4>Key Responsibilities & Achievements</h4>
-                                        <ul class="details-list">
-                                            <li>Promoted from Junior Project Manager to IoT Project Manager.</li>
-                                            <li>Collaborated and managed end-to-end IoT integration: device identification, signal taxonomy definition, signal selection per device, and deployment into data acquisition platforms</li>
-                                            <li>Validated and conducted data analysis and deployed rules to enable predictive insights</li>
-                                            <li>Authored technical and non-technical deliverables for knowledge transfer with clients, bridging communication between engineering teams and stakeholders.</li>
-                                            <li>Collaborated in analyzing and testing a new IoT platform.</li>
-                                            <li>Visited international client sites and collaborated with on-site teams.</li>
-                                        </ul>
-                                        <div class="technologies-used">
-                                            <h4>Technologies & Tools</h4>
-                                            <div class="tech-tags">
-                                                <span>MQTT</span>
-                                                <span>vNode</span>
-                                                <span>OPC UA</span>
-                                                <span>IoT Platform</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="toggle-details-btn" data-target="2">View Full Details</button>
-                            </div>
-                        </div>
-
-                        <!-- Exp 4 -->
-                        <div class="timeline-item experience-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-body">
-                                <div class="experience-header">
-                                    <div class="experience-title-row">
-                                        <h3 class="experience-title">Robotics Intern</h3>
-                                        <span class="experience-period">Sept 2022 – Dec 2022</span>
-                                    </div>
-                                    <p class="experience-company">CEIT Research Center</p>
-                                </div>
-                                <div class="experience-summary" id="summary-4">
-                                    <p class="summary-text">Developed final degree project at CEIT, programming the TM5 Omron robot. Achieved 10/10 with honours.</p>
-                                    <div class="experience-tags">
-                                        <span class="exp-tag">Robotics</span>
-                                        <span class="exp-tag">Computer Vision</span>
-                                        <span class="exp-tag">Troubleshooting</span>
-                                    </div>
-                                </div>
-                                <div class="experience-details" id="details-4">
-                                    <div class="details-content">
-                                        <h4>Key Responsibilities & Achievements</h4>
-                                        <ul class="details-list">
-                                            <li>Mastering the TMFlow programming language for complex robotic tasks with the TM5 Omron robot.</li>
-                                            <li>Programming a robot arm + integrated camera to play tic-tac-toe using a strategic algorithm that never loses.</li>
-                                            <li>Designing a system where the robot captures facial features and reproduces them as a sketch</li>
-                                        </ul>
-                                        <div class="technologies-used">
-                                            <h4>Technologies & Tools</h4>
-                                            <div class="tech-tags">
-                                                <span>TM5 Omron Robot</span>
-                                                <span>TMFlow</span>
-                                                <span>Computer Vision</span>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="toggle-details-btn" data-target="4">View Full Details</button>
-                            </div>
-                        </div>
-
-                    </div><!-- /timeline -->
-                </div>
-            </div>
-
-            <!-- ACORDEÓN: EDUCATION -->
-            <div class="accordion" id="education">
-                <div class="accordion-header">
-                    <h2 class="accordion-title">EDUCATION</h2>
-                    <div class="accordion-indicator">
-                        <span class="indicator-line"></span>
-                        <span class="indicator-arrow">↓</span>
-                    </div>
-                </div>
-                <div class="accordion-content">
-                    <div class="timeline">
-
-                        <!-- Edu 1 -->
-                        <div class="timeline-item education-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-body">
-                                <div class="education-header">
-                                    <div class="education-title-row">
-                                        <h3 class="education-title">MSc Robotics and Automation</h3>
-                                        <span class="education-period">2025 – 2026</span>
-                                    </div>
-                                    <p class="education-institution">Manchester Metropolitan University</p>
-                                </div>
-                                <div class="education-summary" id="edu-summary-1">
-                                    <p class="summary-text">Specialized program in Industry 4.0 technologies including robotics, AI, digital manufacturing, and industrial IoT. Advanced training in systems integration, cyber-physical systems, and industrial programming.</p>
-                                    <div class="education-highlights">
-                                        <span class="highlight">PLC Programming</span>
-                                        <span class="highlight">IIoT</span>
-                                        <span class="highlight">Digital Twins</span>
-                                        <span class="highlight">Robotics</span>
-                                    </div>
-                                </div>
-                                <div class="education-details" id="edu-details-1">
-                                    <div class="details-content">
-                                        <h4>Relevant Coursework & Projects</h4>
-                                        <ul class="details-list">
-                                            <li><strong>Batch mixing plant project:</strong> Designed automated sorting system using PLC control over CODESYS.</li>
-                                            <li><strong>Pick & Place virtual commissioning:</strong>Developed a fully virtual commissioned solution for the Festo CPLab Pick & Place station by integrating Siemens NX design with TIA Portal.</li>
-                                            <li><strong>Sorting station:</strong>Developed a robot simulation in CoppeliaSim using inverse kinematics to control robotic arm movements, enabling precise path planning and motion validation.</li>
-                                        </ul>
-                                        <div class="courses">
-                                            <h4>Key Courses</h4>
-                                            <div class="course-tags">
-                                                <span>Programming and virtual commissioning</span>
-                                                <span>Sensors and IoT</span>
-                                                <span>Industrial Robotics</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="toggle-details-btn" data-target="edu-1">View Full Details</button>
-                            </div>
-                        </div>
-                        <div class="timeline-item education-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-body">
-                                <div class="education-header">
-                                    <div class="education-title-row">
-                                        <h3 class="education-title">Business Introduction Program</h3>
-                                        <span class="education-period">2023 – 2024</span>
-                                    </div>
-                                    <p class="education-institution">University of Navarra — Tecnun</p>
-                                </div>
-                                <div class="education-summary" id="edu-summary-3">
-                                    <p class="summary-text">Program combining practical in‑company training with online academic education, providing exposure to corporate environments and business management fundamentals.</p>
-                                    <div class="education-highlights">
-                                        <span class="highlight">Project Management Tecniques</span>
-                                        <span class="highlight">Practical work as an IoT PM Junior</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Edu 2 -->
-                        <div class="timeline-item education-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-body">
-                                <div class="education-header">
-                                    <div class="education-title-row">
-                                        <h3 class="education-title">Automation and Control Engineering (ERASMUS/Exchange)</h3>
-                                        <span class="education-period">February 2022 – July 2023</span>
-                                    </div>
-                                    <p class="education-institution">Politecnico di Milano</p>
-                                </div>
-                                <div class="education-summary" id="edu-summary-2">
-                                    <p class="summary-text">Academic exchange at a leading European technical university.</p>
-                                    <div class="education-highlights">
-                                        <span class="highlight">International Environment</span>
-                                        <span class="highlight">Power Electronics</span>
-                                        <span class="highlight">Production Systems</span>
-                                    </div>
-                                </div>
-                                <div class="education-details" id="edu-details-2">
-                                    <div class="details-content">
-                                        <h4>Key Courses</h4>
-                                        <div class="course-tags">
-                                            <span>Production Systems Control</span>
-                                            <span>Power Electronics</span>
-                                            <span>Dynamics of Electrical Machines</span>
-                                            <span>Materials for Electronics</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="toggle-details-btn" data-target="edu-2">View Full Details</button>
-                            </div>
-                        </div>
-
-                        <!-- Edu 3 -->
-                        <div class="timeline-item education-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-body">
-                                <div class="education-header">
-                                    <div class="education-title-row">
-                                        <h3 class="education-title">BEng Industrial Electronic Engineering</h3>
-                                        <span class="education-period">2019 – 2023</span>
-                                    </div>
-                                    <p class="education-institution">University of Navarra — Tecnun</p>
-                                </div>
-                                <div class="education-summary" id="edu-summary-3">
-                                    <p class="summary-text">Comprehensive education in electronics, automation, control systems, and power electronics. Emphasis on problem-solving, technical expertise, and multidisciplinary collaboration.</p>
-                                    <div class="education-highlights">
-                                        <span class="highlight">Control Systems</span>
-                                        <span class="highlight">Circuits</span>
-                                        <span class="highlight">Electronics</span>
-                                    </div>
-                                </div>
-                                <div class="education-details" id="edu-details-3">
-                                    <div class="details-content">
-                                        <h4>Key Courses</h4>
-                                        <div class="course-tags">
-                                            <span>Electronic Properties of Materials</span>
-                                            <span>Electromagnetic Compatibility</span>
-                                            <span>Microprocessors and Microcontrollers</span>
-                                            <span>Digital Systems</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="toggle-details-btn" data-target="edu-3">View Full Details</button>
-                            </div>
-                        </div>
-
-                        <!-- Edu 4 -->
-                        <div class="timeline-item education-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-body">
-                                <div class="education-header">
-                                    <div class="education-title-row">
-                                        <h3 class="education-title">Mathematical French Baccalauréat</h3>
-                                        <span class="education-period">2006 – 2018</span>
-                                    </div>
-                                    <p class="education-institution">Franco-Bolivian School</p>
-                                </div>
-                                <div class="education-summary" id="edu-summary-4">
-                                    <p class="summary-text">Rigorous bilingual French international baccalaureate, Scientific (S) stream. Advanced foundation in pure and applied mathematics, physics, and chemistry in a multicultural environment.</p>
-                                    <div class="education-highlights">
-                                        <span class="highlight">Scientific Stream</span>
-                                        <span class="highlight">Bilingual French</span>
-                                    </div>
-                                </div>
-                                <div class="education-details" id="edu-details-4">
-                                    <div class="details-content">
-                                        <h4>Key Subjects</h4>
-                                        <div class="course-tags">
-                                            <span>Advanced Mathematics</span>
-                                            <span>Physics & Chemistry</span>
-                                            <span>French Language</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="toggle-details-btn" data-target="edu-4">View Full Details</button>
-                            </div>
-                        </div>
-
-                    </div><!-- /timeline -->
-
-                    <!-- CERTIFICATIONS -->
-                    <div class="certifications-section">
-                        <h3 class="certifications-title">CERTIFICATIONS</h3>
-                        <div class="certifications-grid">
-                            <div class="certification-card">
-                                <div class="certification-header">
-                                    <h4>Pentesting Fundamentals for Beginners</h4>
-                                    <span class="cert-year">2025</span>
-                                </div>
-                                <p class="cert-issuer">EC-Council</p>
-                                <button class="view-cert-btn" data-cert="siemens">View Certificate</button>
-                            </div>
-                            <div class="certification-card">
-                                <div class="certification-header">
-                                    <h4>Shell Scripting with BashFanuc</h4>
-                                    <span class="cert-year">2024</span>
-                                </div>
-                                <p class="cert-issuer">EC-Council</p>
-                                <button class="view-cert-btn" data-cert="fanuc">View Certificate</button>
-                            </div>
-                            <div class="certification-card">
-                                <div class="certification-header">
-                                    <h4>Networking Basics</h4>
-                                    <span class="cert-year">2024</span>
-                                </div>
-                                <p class="cert-issuer">Cisco Netwroking Academy</p>
-                                <button class="view-cert-btn" data-cert="iot">View Certificate</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- ACORDEÓN: TOOLS & TECHNOLOGIES -->
-            <div class="accordion" id="tools">
-                <div class="accordion-header">
-                    <h2 class="accordion-title">TOOLS & TECHNOLOGIES</h2>
-                    <div class="accordion-indicator">
-                        <span class="indicator-line"></span>
-                        <span class="indicator-arrow">↓</span>
-                    </div>
-                </div>
-                <div class="accordion-content">
-                    <div class="tools-categories">
-
-                        <div class="tools-category">
-                            <h3 class="category-title">PLC & Control Systems</h3>
-                            <div class="skills-grid">
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Siemens TIA Portal</span>
-                                        <span class="skill-level">Intermadiate</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">CODESYS</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">AcSELerator</span>
-                                        <span class="skill-level">Intermadiate</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:60%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">SCADA - NodeRed</span>
-                                        <span class="skill-level">Intermediate</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:65%"></div></div>
-                                </div>
-                            </div>
-                        </div>
-
-                         <div class="tools-category">
-                            <h3 class="category-title">Software & Programming</h3>
-                            <div class="skills-grid">
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Easyeda</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">MATLAB / Simulink</span>
-                                        <span class="skill-level">Intermediate</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:50%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">C++/C</span>
-                                        <span class="skill-level">Intermediate</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:65%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Java</span>
-                                        <span class="skill-level">Intermediate</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:65%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Insights Hub</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:87%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">SQL</span>
-                                        <span class="skill-level">Beginner</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:30%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">PowerBI</span>
-                                        <span class="skill-level">Intermediate</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:45%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Microsoft tools</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="tools-category">
-                            <h3 class="category-title">Simulation</h3>
-                            <div class="skills-grid">
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Siemens NX</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Fusion</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Creo Parametric</span>
-                                        <span class="skill-level">Intermediate</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:60%"></div></div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Plant Simulation</span>
-                                        <span class="skill-level">Beginner</span>
-                                    </div>
-                                    <div class="skill-bar"><div class="skill-progress" style="width:30%"></div></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Software: ahora también usa skill-bar en lugar de puntos -->
-                    </div>
-                        <!-- Mensaje de aprendizaje continuo - AL FINAL DE TOOLS -->
-                    <div class="growth-mindset-card">
-                        <div class="growth-icon">⚡</div>
-                        <div class="growth-content">
-                            <h4 class="growth-title">Don't see a specific tool/technology you're looking for?</h4>
-                            <p class="growth-text">
-                                I'm <strong>highly adaptable</strong> and <strong>eager to learn</strong> any new software, framework, or system required for the role. 
-                                My engineering foundation allows me to quickly master new technologies and apply them effectively.
-                            </p>
-                            <div class="growth-tags">
-                                <span>Fast Learner</span>
-                                <span>Adaptable</span>
-                                <span>Growth Mindset</span>
-                                <span>Tech Agnostic</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-
-        
-            
-        </section>
-
-        <!-- CONTACTO -->
-        <section class="contact-section" id="contact">
-            <div class="contact-card">
-                <div class="contact-content">
-                    <h2 class="contact-title">GET IN TOUCH</h2>
-                    <!-- <p class="contact-description">Interested in discussing automation solutions or potential collaborations?</p> -->
-                    <div class="contact-actions">
-                        <a href="mailto:averamaric@gmail.com" class="contact-button">
-                            <span>Send Email</span>
-                            <div class="button-icon">↗</div>
-                        </a>
-                        <a href="../assets/Analucía Vera Maric.pdf" download class="contact-button secondary">
-                            <span>Download Full CV</span>
-                            <div class="button-icon">↓</div>
-                        </a>
-                    </div>
-                    <div class="contact-info">
-                        <div class="info-item">
-                            <div class="info-label">Location</div>
-                            <div class="info-value">Manchester, UK</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Available from</div>
-                            <div class="info-value">September 2026</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="profile-footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">AVM</div>
-                <p class="footer-tagline">Industrial Automation Engineering</p>
-            </div>
-            <div class="footer-links">
-                <a href="../index.html">Home</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
-                
-            </div>
-            <div class="footer-copyright">
-                <p>© 2025 Analucia V.M. All systems operational.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="profile.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const ctx = document.getElementById('languagesChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['Spanish', 'English', 'French', 'Italian'],
-                    datasets: [{
-                        data: [100, 80, 80, 60],
-                        backgroundColor: 'rgba(212, 255, 94, 0.15)',
-                        borderColor: 'rgba(212, 255, 94, 0.8)',
-                        borderWidth: 2,
-                        pointBackgroundColor: '#D4FF5E',
-                        pointBorderColor: '#0A0A0A',
-                        pointBorderWidth: 2,
-                        pointRadius: 5
-                    }]
-                },
-                options: {
-                    scales: {
-                        r: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: { display: false },
-                            grid: { color: 'rgba(255,255,255,0.08)' },
-                            angleLines: { color: 'rgba(255,255,255,0.08)' },
-                            pointLabels: {
-                                color: '#FFFFFF',
-                                font: { size: 13, weight: '500' }
-                            }
-                        }
-                    },
-                    plugins: { legend: { display: false } },
-                    animation: { duration: 1200, easing: 'easeInOutQuart' }
-                }
-            });
-        });
-    </script>
 </body>
 </html>
